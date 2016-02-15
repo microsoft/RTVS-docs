@@ -22,8 +22,8 @@ Welcome to R Tools 0.1 for Visual Studio (RTVS)!
 
 ## Guide to the documentation
 
-* [Install R Tools for Visual Studio](Installation.html)
-* [Overview Videos](Videos.html)
+* [Install R Tools for Visual Studio](installation.html)
+* [Overview Videos](videos.html)
 
 **Tutorials**
 
@@ -36,15 +36,15 @@ Welcome to R Tools 0.1 for Visual Studio (RTVS)!
 	* [History window](editing.html#history-window)
 * [Interactive REPL](interactive-repl.html)
 	* [Interactive REPL in general](interactive-repl.html#repl-general)
-	* [REPL history](Interactive-repl.html#repl-history)
-	* [Auto-complete behavior](Interactive-repl.html#auto-complete)
-	* [Variable Explorer](Interactive-repl.html#variable-explorer)
+	* [REPL history](interactive-repl.html#repl-history)
+	* [Auto-complete behavior](interactive-repl.html#auto-complete)
+	* [Variable Explorer](interactive-repl.html#variable-explorer)
 
-* [Plotting](Plotting.html)
+* [Plotting](plotting.html)
 
-* [Debugging](Debugging.html)
+* [Debugging](debugging.html)
 
-* [Help](Help.html)
+* [Help](help.html)
 
 
 ## Feedback
