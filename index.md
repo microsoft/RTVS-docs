@@ -1,55 +1,51 @@
 ---
 layout: default
 ---
-#Getting Started with R Tools for Visual Studio
+# Getting Started with R Tools for Visual Studio
 
 Welcome to R Tools 0.1 for Visual Studio (RTVS)!
  
 [![R Tools for Visual Studio](./media/video-placeholder-image.png)](https://channel9.msdn.com/events/Visual-Studio/?TBD?)
 
-## Key new features in Version 0.1
-* Debugging support!
-* New graphical plotting device implementation, that no longer relies on R GUI support for rendering
-* Improved Variable Explorer and Table Viewer
-* History Window
-* Simplified experience for setting Visual Studio to Data Science window and menu layout
+## Key features in Version 0.1
 
-## Confidential Information Policy for partner release
-Please remember: this is an partner release of RTVS intended for use only by Microsoft FTEs, and is covered under the Microsoft Confidential Information Policy.
-
+* Full Visual Studio editing experience, including tabbed windows, syntax highlighting, and more!
+* Debugging support, with breakpoints, stepping, watch windows, call stacks and more!
+* Interactive R: work with the R console directly from within Visual Studio
+* IntelliSense (also known as command completion) available in both the editor and the Interactive R window
+* History window: see all of the commands that you have entered in a scrollable window
+* Integrated plotting support: see all of your R plots in a Visual Studio tool window
+* Integrated Help: use ? and ?? to view R documentation within Visual Studio
+* Variable Explorer that lets you drill into your R data structures and examine their values
+* Table Viewer: quickly see values in your data frames
+* Simplify your Visual Studio environment for Data Science by bringing the most commonly used commands to the forefront
 
 ## Guide to the documentation
 
-* [Install R Tools for Visual Studio](Installation.md)
-* [Overview Videos](Videos.md)
+* [Install R Tools for Visual Studio](Installation.html)
+* [Overview Videos](Videos.html)
 
 **Tutorials**
 
-* [How to start a new project using RTVS](start-project.md)
+* [How to start a new project using RTVS](start-project.html)
 
 **Features in Depth**
 
-* [Editing](editing.md)
-	* [Editing window](editing.md#editing-window)
-	* [History window](editing.md#history-window)
-* [Interactive REPL](interactive-repl.md)
-	* [Interactive REPL in general](interactive-repl.md#repl-general)
-	* [REPL history](Interactive-repl.md#repl-history)
-	* [Auto-complete behavior](Interactive-repl.md#auto-complete)
-	* [Variable Explorer](Interactive-repl.md#variable-explorer)
+* [Editing](editing.html)
+	* [Editing window](editing.html#editing-window)
+	* [History window](editing.html#history-window)
+* [Interactive REPL](interactive-repl.html)
+	* [Interactive REPL in general](interactive-repl.html#repl-general)
+	* [REPL history](Interactive-repl.html#repl-history)
+	* [Auto-complete behavior](Interactive-repl.html#auto-complete)
+	* [Variable Explorer](Interactive-repl.html#variable-explorer)
 
-* [Plotting](Plotting.md)
+* [Plotting](Plotting.html)
 
-* [Debugging](Debugging.md)
+* [Debugging](Debugging.html)
 
-* [Help](Help.md)
+* [Help](Help.html)
 
 
 ## Feedback
-We’re looking for your feedback! This is the final internal preview before we go public with RTVS, so please join the internal community by clicking on this [link](TBD) if you haven’t already. If you have joined our community already, feel free to send mail to rtvsdisc@microsoft.com with your feedback.
-
-If you’re reporting a bug, oftentimes it’s helpful to send logs, which is why we’ve added a feature to RTVS to make it easy to send mail with logs automatically attached. You can use the R Tools/Feedback/Send a Frown command to send mail with attached logs to rtvsdisc@microsoft.com.
-
-##Release Notes
-
-See the downloads page for each release to read the release notes.
+We’re looking for your feedback! Please use our feedback tool to send us smiles and frowns!
