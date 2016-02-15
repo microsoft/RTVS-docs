@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Editing in R Tools for Visual Studio
  
 ## <a name="editing-window">Editing window

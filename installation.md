@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Install R Tools for Visual Studio
 
 ## Prerequisites

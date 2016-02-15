@@ -1,4 +1,6 @@
-
+---
+layout: default
+---
 
 # What is RTVS: a video introduction
 

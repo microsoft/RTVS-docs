@@ -1,3 +1,8 @@
+---
+layout: default
+---
+
+
 #Debugging with R Tools for Visual Studio
 
 ## Attach the debugger

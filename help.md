@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Help in R Tools for Visual Studio
 
 The help window pops up within Visual Studio as a tool window. You can get help for a specific topic by title using the `?` command in R:

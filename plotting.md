@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 #Plotting
 
 We have support for generating R plots as part of the interactive programming experience.  Here's a command that generates a simple linear XY plot:

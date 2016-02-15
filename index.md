@@ -1,3 +1,6 @@
+---
+layout: default
+---
 #Getting Started with R Tools for Visual Studio
 
 Welcome to R Tools 0.1 for Visual Studio (RTVS)!

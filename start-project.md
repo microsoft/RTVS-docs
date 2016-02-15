@@ -1,4 +1,6 @@
-
+---
+layout: default
+---
 
 # How to start a new project using R Tools for Visual Studio
 
