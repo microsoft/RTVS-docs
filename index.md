@@ -1,4 +1,4 @@
----
+﻿---
 layout: default
 ---
 # Getting Started with R Tools for Visual Studio
@@ -9,6 +9,7 @@ Welcome to R Tools 0.1 for Visual Studio (RTVS)!
 
 ## Key features in Version 0.1
 
+* Shahrokh was here
 * Full Visual Studio editing experience, including tabbed windows, syntax highlighting, and more!
 * Debugging support, with breakpoints, stepping, watch windows, call stacks and more!
 * Interactive R: work with the R console directly from within Visual Studio
