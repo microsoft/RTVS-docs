@@ -17,8 +17,8 @@ Please remember: this is an partner release of RTVS intended for use only by Mic
 
 ## Guide to the documentation
 
-* [Install R Tools for Visual Studio](Installation.md)
-* [Overview Videos](Videos.md)
+* [Install R Tools for Visual Studio](installation.md)
+* [Overview Videos](videos.md)
 
 **Tutorials**
 
@@ -31,15 +31,15 @@ Please remember: this is an partner release of RTVS intended for use only by Mic
 	* [History window](editing.md#history-window)
 * [Interactive REPL](interactive-repl.md)
 	* [Interactive REPL in general](interactive-repl.md#repl-general)
-	* [REPL history](Interactive-repl.md#repl-history)
-	* [Auto-complete behavior](Interactive-repl.md#auto-complete)
-	* [Variable Explorer](Interactive-repl.md#variable-explorer)
+	* [REPL history](interactive-repl.md#repl-history)
+	* [Auto-complete behavior](interactive-repl.md#auto-complete)
+	* [Variable Explorer](interactive-repl.md#variable-explorer)
 
-* [Plotting](Plotting.md)
+* [Plotting](plotting.md)
 
-* [Debugging](Debugging.md)
+* [Debugging](debugging.md)
 
-* [Help](Help.md)
+* [Help](help.md)
 
 
 ## Feedback
