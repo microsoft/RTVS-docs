@@ -38,12 +38,10 @@ Welcome to R Tools 0.1 for Visual Studio (RTVS)!
 	* [Interactive REPL in general](interactive-repl.html#repl-general)
 	* [REPL history](interactive-repl.html#repl-history)
 	* [Auto-complete behavior](interactive-repl.html#auto-complete)
-	* [Variable Explorer](interactive-repl.html#variable-explorer)
 
+* [Variable Explorer](variable-explorer.html)
 * [Plotting](plotting.html)
-
 * [Debugging](debugging.html)
-
 * [Help](help.html)
 
 

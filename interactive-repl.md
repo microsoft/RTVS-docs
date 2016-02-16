@@ -176,39 +176,3 @@ If you type a named parameter name with pop-up help showing, we will boldface an
 ![](./media/RTVS-REPL-auto-complete-function-parameters.png)
 
 
-## <a name="variable-explorer"></a>Variable Explorer
-
-The **Table View**: We have greatly improved the Variable Explorer. You can launch it from the R **Tools** | **Windows** | **Variable Explorer** menu:
-
- ![](./media/RTVS-REPL-variable-explorer-table-view.png)
-
-As you can see in the Variable Explorer, if a variable can be viewed in a tabular format, you will see an icon at the far left of the Value column. Clicking on that will open that in the Table View. 
-
- ![](./media/RTVS-REPL-variable-explorer-table-view-example.png)
-
-**Note: Known Issues in the Variable Explorer / Table View** The last column and/or last row in the Table View may be partially cut off. We are working on a fix for this in a future release.
-	
-The Variable Explorer provides a list of all variables at global scope from the REPL. So, if in the REPL you executed:
- 
-![](./media/RTVS-REPL-variable-explorer-example.png)
-
-The variable explorer will return this global environment:
-
-![](./media/RTVS-REPL-variable-explorer-example-result.png)
-
-If you have a more complex R data frame defined in the REPL, you drill into the data. If you execute these commands:
- 
-![](./media/RTVS-REPL-variable-explorer-cmds-example.png)
-
-You will see this view in the Variable Explorer:
-
-![](./media/RTVS-REPL-variable-explorer-cmds-example-results.png)
- 
-Next we click on the chevron to drill into the data:
-
-![](./media/RTVS-REPL-variable-explorer-cmds-example-drill-down.png)
-
-We can drill as deep as the data is nested within the data frame:
- 
-![](./media/RTVS-REPL-variable-explorer-cmds-example-drill-down2.png)
-
