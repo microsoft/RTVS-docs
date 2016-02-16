@@ -2,30 +2,47 @@
 layout: default
 ---
 
-
-#Debugging with R Tools for Visual Studio
+# Debugging with R Tools for Visual Studio
 
 ## Attach the debugger
-If you’re an experienced Visual Studio user, you’ll find that the debugging experience is a bit different from what you may be used to. For example, if you’re writing a C# console application, you’re used to just pressing **F5** to launch your console application under control of the debugger.
+
+If you're an experienced Visual Studio user, you'll find that the debugging
+experience is a bit different from what you may be used to. For example, if
+you're writing a C# console application, you're used to just pressing **F5**
+to launch your console application under control of the debugger.
 
 In the R World, the experience is a bit different. (See note [1] below.)
 
-First, you must attach the debugger to the R Runtime, using the R **Tools** | **Session** | **Attach Debugger** command. 
+First, you must attach the debugger to the R Runtime. You can do this one of two
+different ways:
+
+1. Use the R Tools menu - there is an Attach Debugger command under the Session
+   menu:
 
   ![](./media/RTVS-Debugging-attach-debugger.png)
 
-In your everyday work you should use the toolbar in R Interactive, as it saves you a number of mouse clicks / keystrokes:
+In your everyday work you should use the toolbar in R Interactive, as it saves
+you a number of mouse clicks / keystrokes:
 
   ![](./media/RTVS-Debugging-r-toolbar.png)
 
 ## Set breakpoints
-Next you need to set any breakpoints that you want to hit in the debugger. You need to tell R to run the code that you want to debug. This is called sourcing your file. This tells the R interpreter to run the code inside the file, and since you’ve attached a debugger to the R process, execution will stop at the first appropriate breakpoint.
 
-For example, if the code that you want to debug is at global scope (i.e., not within a function) in a file called Tutorial.R, you would:
+Once you've attached the debugger to R, you'll need to set breakpoints and tell
+R the code that you want to debug. The latter is referred to as *sourcing* your
+file, which tells the R interpreter to run the code inside the file. Since
+you've attached a debugger to the R process, execution will stop at the first
+appropriate breakpoint.
 
-1. Attach the debugger to R (you’ll notice that Visual Studio will change your window layout to the debugger window layout).
-2. Set a breakpoint in the file – in the example below, this is on line 3.
-3. Source the file – you can do this via R Tools/Session/Source R Script command, or by typing **CTRL+R**, **CTRL+S** with the input focus set to the editor. (See note [1] below.)
+For example, if the code that you want to debug is at global scope (i.e., not
+within a function) in a file called Tutorial.R, you would:
+
+1. Attach the debugger to R (you'll notice that Visual Studio will change your
+   window layout to the debugger window layout).
+2. Set a breakpoint in the file in the example below, this is on line 3.
+3. Source the file you can do this via R Tools/Session/Source R Script
+   command, or by typing **CTRL+R**, **CTRL+S** with the input focus set to the
+   editor. (See note [1] below.)
 
   ![](./media/RTVS-Debugging-set-breakpoint.png)
 
