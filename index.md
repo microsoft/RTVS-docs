@@ -36,4 +36,11 @@ layout: default
 * [Help](help.html)
 
 ## Feedback
+
 We're looking for your feedback! Please the feedback menu in RTVS to send us smiles and frowns!
+
+## Contributing
+
+If you're interested in contributing to the docs or samples, feel free to clone
+the repo and submit a PR. More instructions can be found in our [contribution
+guide](contributing-docs.html).
