@@ -68,7 +68,7 @@ A. RStudio is a fantastic and mature IDE for R that's been under development for
 years. RTVS is a long way from RStudio, because we've only been developing it
 for months. We hope to have all the critical features that you need to be
 successful in the coming year. Please help us prioritize the TODO list by taking
-the RTVS survey.
+the [RTVS survey](https://www.surveymonkey.com/r/RTVS1)
 
 **Q. Will RTVS work on MacOS / Linux?**
 
