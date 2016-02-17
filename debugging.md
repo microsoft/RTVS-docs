@@ -50,11 +50,14 @@ All standard Visual Studio debugger commands work, with a few known limitations.
 You can:
 
 * Set, Delete, and Deactivate Breakpoints
-* Step Over (**F10**), Step Into (**F11**) and Step Out (**SHIFT-F11**) the current line
+* Step Over (**F10**) and Step Into (**F11**) the current line
 * Continue Execution (**F5**)
 * Inspect local variables using the Locals Window
 * Inspect arbitrary expressions (that are in scope) using Watch Windows
 * Stop Debugging (**SHIFT-F5**)
+
+**Note**: we haven't implemented support for Step Out (**SHIFT+F11**) in the preview
+release.
 
 After each debugger command, you'll also see that you are stopped at the
 Environment Browser prompt in the R Interactive Window.  From there, you can
@@ -62,10 +65,6 @@ also issue Environment Browser commands (e.g., n for next command, or c to
 continue execution). 
 
 ### Known Issues in the Debugger:
-
-* Step Out (**F11**) will sometimes step out of the current block scope (e.g.,
-within a for() loop) and not out of the current function. We are investigating
-a fix for this in a subsequent release.
 
 * Setting a breakpoint on the first line of a function declaration doesn't
 work: line 1 the example below, so don't do this:
