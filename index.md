@@ -4,9 +4,7 @@ layout: default
 
 # Welcome to R Tools for Visual Studio Preview
 
-Welcome to R Tools 0.1 for Visual Studio (RTVS)!
- 
-[![R Tools for Visual Studio](./media/video-placeholder-image.png)](https://channel9.msdn.com/events/Visual-Studio/?TBD?)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VEOhaP4x7LE" frameborder="0" allowfullscreen></iframe>
 
 ## Key features in Version 0.1
 
