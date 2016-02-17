@@ -24,7 +24,6 @@ Welcome to R Tools 0.1 for Visual Studio (RTVS)!
 ## Guide to the documentation
 
 * [Install R Tools for Visual Studio](installation.html)
-* [Overview Videos](videos.html)
 
 **Tutorials**
 
@@ -47,4 +46,4 @@ Welcome to R Tools 0.1 for Visual Studio (RTVS)!
 
 
 ## Feedback
-We’re looking for your feedback! Please use our feedback tool to send us smiles and frowns!
+We're looking for your feedback! Please use our feedback tool to send us smiles and frowns!
