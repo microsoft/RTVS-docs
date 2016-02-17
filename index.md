@@ -34,35 +34,35 @@ layout: default
 
 ## FAQ
 
-Q. Is RTVS going to be free?
+**Q. Is RTVS going to be free?**
 
 A. Yes! RTVS will be free and Open Source. We will release the code on Github
 when it is ready.
 
-Q. What versions of Visual Studio does RTVS run on?
+**Q. What versions of Visual Studio does RTVS run on?**
 
 A. Visual Studio 2015 Update 1, Community Pro and Enterprise Editions.
 
-Q. Does RTVS work with Visual Studio Express editions?
+**Q. Does RTVS work with Visual Studio Express editions?**
 
 A. No.
 
-Q. What R interpreters does RTVS work with?
+**Q. What R interpreters does RTVS work with?**
 
 A. CRAN R, Microsoft R Open, and Microsoft R Server.
 
-Q. Where can I download these interpreters?
+**Q. Where can I download these interpreters?**
 
 A. See the [installation](installation.html) instructions.
 
-Q. Since RTVS is in VS, does it mean that R can be easily used with C#, C++ and
-other Microsoft languages?
+**Q. Since RTVS is in VS, does it mean that R can be easily used with C#, C++ and
+other Microsoft languages?**
 
 A. No. RTVS is a tool for developing R code, and uses the standard native R
 interpreters. We do not have any support currently for interop between R and
 other languages.
 
-Q. Feature X is missing, but it RStudio has it!
+**Q. Feature X is missing, but it RStudio has it!**
 
 A. RStudio is a fantastic and mature IDE for R that's been under development for
 years. RTVS is a long way from RStudio, because we've only been developing it
@@ -70,19 +70,19 @@ for months. We hope to have all the critical features that you need to be
 successful in the coming year. Please help us prioritize the TODO list by taking
 the RTVS survey.
 
-Q. Will RTVS work on MacOS / Linux?
+**Q. Will RTVS work on MacOS / Linux?**
 
 A. No. RTVS is built on top of Visual Studio, which is a Windows-only
 implementation. However, we are looking at porting RTVS to run on top of Visual
 Studio Code, which is the new cross-platform IDE from Microsoft.
 
-Q. Can I contribute to RTVS?
+**Q. Can I contribute to RTVS?**
 
 A. Absolutely! We will release the source in the near future, and PRs are very
 welcome. For now, the most important contribution is feedback and bug reports.
 
-Q. I want to try out the R markdown support and knitr. What do I need to install
-to get it to work?
+**Q. I want to try out the R markdown support and knitr. What do I need to install
+to get it to work?**
 
 A. You need to install [pandoc](http://pandoc.org/installing.html). You will
 also need to install the knitr and rmarkdown packages.
@@ -92,7 +92,7 @@ install.packages("knitr")
 install.packages("rmarkdown")
 {% endhighlight %}
 
-Q. I want to save my plots as PDFs. What software do I need for that? 
+**Q. I want to save my plots as PDFs. What software do I need for that?**
 
 A. See above.
 
