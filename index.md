@@ -28,11 +28,8 @@ layout: default
 
 * [Editing](editing.html)
 * [History window](history.html)
-* [Interactive REPL](interactive-repl.html)
-	* [Interactive REPL in general](interactive-repl.html#repl-general)
-	* [REPL history](interactive-repl.html#repl-history)
-	* [Auto-complete behavior](interactive-repl.html#auto-complete)
-
+* [R Interactive Window](interactive-repl.html)
+* [IntelliSense](intellisense.html)
 * [Variable Explorer](variable-explorer.html)
 * [Plotting](plotting.html)
 * [Debugging](debugging.html)
