@@ -19,13 +19,10 @@ layout: default
 * Table Viewer: quickly see values in your data frames
 * Simplify your Visual Studio environment for Data Science by bringing the most commonly used commands to the forefront
 
-## Guide to the documentation
+## Documentation
 
-* [Install R Tools for Visual Studio](installation.html)
-* [How to start a new project using RTVS](start-project.html)
-
-**Features in Depth**
-
+* [First steps](installation.html)
+* [How to start a new project](start-project.html)
 * [Editing](editing.html)
 * [History window](history.html)
 * [R Interactive Window](interactive-repl.html)
@@ -37,7 +34,8 @@ layout: default
 
 ## Feedback
 
-We're looking for your feedback! Please the feedback menu in RTVS to send us smiles and frowns!
+We're looking for your feedback! Please use the R Tools / Feedback menu to send
+us smiles and frowns!
 
 ## Contributing
 
