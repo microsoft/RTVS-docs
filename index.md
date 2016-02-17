@@ -27,8 +27,7 @@ layout: default
 **Features in Depth**
 
 * [Editing](editing.html)
-	* [Editing window](editing.html#editing-window)
-	* [History window](editing.html#history-window)
+* [History window](history.html)
 * [Interactive REPL](interactive-repl.html)
 	* [Interactive REPL in general](interactive-repl.html#repl-general)
 	* [REPL history](interactive-repl.html#repl-history)
