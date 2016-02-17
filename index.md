@@ -36,6 +36,4 @@ layout: default
 * [Help](help.html)
 
 ## Feedback
-We're looking for your feedback! Please use our feedback tool to send us smiles and frowns!
-
-
+We're looking for your feedback! Please the feedback menu in RTVS to send us smiles and frowns!
