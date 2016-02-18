@@ -65,7 +65,7 @@ A. No. RTVS is a tool for developing R code, and uses the standard native R
 interpreters. We do not have any support currently for interop between R and
 other languages.
 
-**Q. Feature X is missing, but it RStudio has it!**
+**Q. Feature X is missing, but RStudio has it!**
 
 A. RStudio is a fantastic and mature IDE for R that's been under development for
 years. RTVS is a long way from RStudio, because we've only been developing it
