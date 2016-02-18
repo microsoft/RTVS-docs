@@ -37,11 +37,12 @@ layout: default
 **Q. Is RTVS going to be free?**
 
 A. Yes! RTVS will be free and Open Source. We will release the code on Github
-when it is ready.
+when it is ready. Parts of the source code that link to R are already available
+under GPLv2 at the [R-Host repository on Github](https://github.com/microsoft/R-Host).
 
 **Q. What versions of Visual Studio does RTVS run on?**
 
-A. Visual Studio 2015 Update 1, Community Pro and Enterprise Editions.
+A. Visual Studio 2015 Update 1. Community, Pro, and Enterprise Editions.
 
 **Q. Does RTVS work with Visual Studio Express editions?**
 
@@ -68,7 +69,7 @@ A. RStudio is a fantastic and mature IDE for R that's been under development for
 years. RTVS is a long way from RStudio, because we've only been developing it
 for months. We hope to have all the critical features that you need to be
 successful in the coming year. Please help us prioritize the TODO list by taking
-the [RTVS survey](https://www.surveymonkey.com/r/RTVS1)
+the [RTVS survey](https://www.surveymonkey.com/r/RTVS1).
 
 **Q. Will RTVS work on MacOS / Linux?**
 
