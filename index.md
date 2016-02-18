@@ -36,9 +36,11 @@ layout: default
 
 **Q. Is RTVS going to be free?**
 
-A. Yes! RTVS will be free and Open Source. We will release the code on Github
-when it is ready. Parts of the source code that link to R are already available
-under GPLv2 at the [R-Host repository on Github](https://github.com/microsoft/R-Host).
+A. Yes! RTVS when combined with Visual Studio Community Edition is a complete
+and perpetually free IDE. RTVS itself will also be Open Source. We will
+release the code on Github when it is ready. Parts of the source code that link
+to R are already available under GPLv2 at the [R-Host repository on
+Github](https://github.com/microsoft/R-Host).
 
 **Q. What versions of Visual Studio does RTVS run on?**
 
@@ -96,6 +98,12 @@ install.packages("rmarkdown")
 **Q. I want to save my plots as PDFs. What software do I need for that?**
 
 A. See above.
+
+**Q. Does RTVS work with my source control system?**
+
+A. Yes, you can use any source control system that is integrated into Visual
+Studio. e.g., TFS, git, SVN, hg etc.
+
 
 ## Feedback
 
