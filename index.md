@@ -104,6 +104,16 @@ A. See above.
 A. Yes, you can use any source control system that is integrated into Visual
 Studio. e.g., TFS, git, SVN, hg etc.
 
+**Q. I don't use a US English locale in Windows or in VS. Will RTVS work?**
+
+A. It should. However, we haven't done extensive testing in non-US English
+locales. For the best experience with the Preview bits, please set your local to
+English in Visual Studio. You can do so through Tools / Options dialog box,
+setting International Settings Language to English. If English is not available
+in the drop-down, you'll need to install the [Visual Studio Language
+pack](https://www.microsoft.com/en-us/download/details.aspx?id=48157).
+
+![](./media/FAQ-international-settings.png)
 
 ## Feedback
 

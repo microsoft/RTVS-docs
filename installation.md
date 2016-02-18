@@ -5,7 +5,7 @@ layout: default
 # Install R Tools for Visual Studio
 
 R Tools for Visual Studio is a free extension for Visual Studio 2015 that brings
-a fantastic IDE experience to R users. This is a preview release, that is
+the Visual Studio IDE experience to R users. This is a preview release, that is
 intended for early adopters who are eager to try out our new data science
 experience for R and Visual Studio users. Please send us feedback!
 
