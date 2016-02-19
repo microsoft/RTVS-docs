@@ -23,12 +23,10 @@
 
 
 #### Step 0: Get Started.
-# Increase memory limits.
-memory.limit(size = 10000)
 
 # Initial some variables.
-inputFileFlightURL <- "https://raw.githubusercontent.com/Azure/finance-analytics-pr/master/examples/R/Flight_Delays_Prediction_with_R/Flight_Delays_Sample.csv?token=APoO9q7JdTiPO-BM0524uUZ9cilg-l00ks5WzJQLwA%3D%3D"
-inputFileWeatherURL <- "https://raw.githubusercontent.com/Azure/finance-analytics-pr/master/examples/R/Flight_Delays_Prediction_with_R/Weather_Sample.csv?token=APoO9jirDfy_WpmSsXw-2YUAQ8vR4dLjks5WzJQjwA%3D%3D"
+inputFileFlightURL <- "https://raw.githubusercontent.com/mezmicrosoft/RTVS-docs/master/examples/R/Flight_Delays_Prediction_with_R/Flight_Delays_Sample.csv"
+inputFileWeatherURL <- "https://raw.githubusercontent.com/mezmicrosoft/RTVS-docs/master/examples/R/Flight_Delays_Prediction_with_R/Weather_Sample.csv"
 
 # Import libraries.
 (if (!require("RCurl")) install.packages("RCurl"))
