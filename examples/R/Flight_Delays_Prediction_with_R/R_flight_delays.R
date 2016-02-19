@@ -25,8 +25,8 @@
 #### Step 0: Get Started.
 
 # Initial some variables.
-inputFileFlightURL <- "https://raw.githubusercontent.com/mezmicrosoft/RTVS-docs/master/examples/R/Flight_Delays_Prediction_with_R/Flight_Delays_Sample.csv"
-inputFileWeatherURL <- "https://raw.githubusercontent.com/mezmicrosoft/RTVS-docs/master/examples/R/Flight_Delays_Prediction_with_R/Weather_Sample.csv"
+inputFileFlightURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/R/Flight_Delays_Prediction_with_R/Flight_Delays_Sample.csv"
+inputFileWeatherURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/R/Flight_Delays_Prediction_with_R/Weather_Sample.csv"
 
 # Import libraries.
 (if (!require("RCurl")) install.packages("RCurl"))
@@ -37,7 +37,6 @@ library(foreign)
 # Download flight and weather data from a repository.
 inputFileFlight <- getURL(inputFileFlightURL)
 inputFileWeather <- getURL(inputFileWeatherURL)
-
 
 
 #### Step 1: Import Data.
@@ -55,7 +54,6 @@ summary(flight_r)
 # And eliminate some features due to redundance.
 weather_r <- subset(read.csv(text = inputFileWeather, na.strings = "NA", stringsAsFactors = FALSE),
                     select = -c(Year, Timezone, DryBulbFarenheit, DewPointFarenheit))
-
 
 
 #### Step 2: Pre-process Data.
@@ -146,7 +144,6 @@ xform3_r <- function(df) {
 finalData_r <- xform3_r(destData_r)
 
 
-
 #### Step 3: Prepare Training and Test Datasets.
 
 # Randomly split 80% data as training set and the remaining 20% as test set.
@@ -154,7 +151,6 @@ set.seed(17)
 sub <- sample(nrow(finalData_r), floor(nrow(finalData_r) * 0.8))
 train <- finalData_r[sub,]
 test <- finalData_r[ - sub,]
-
 
 
 #### Step 4A: Choose and apply a learning algorithm (Logistic Regression).
@@ -167,7 +163,6 @@ form <- as.formula(paste("ArrDel15", "~", paste(xvars, collapse = "+")))
 # Build a Logistic Regression model.
 logitModel_r <- glm(form, data = train, family = "binomial")
 summary(logitModel_r)
-
 
 
 #### Step 5A: Predict over new data (Logistic Regression).
@@ -188,7 +183,6 @@ auc <- function(outcome, prob) {
 auc(testLogit$ArrDel15, testLogit$ArrDel15_Pred) # AUC = 0.68
 
 
-
 #### Step 4B: Choose and apply a learning algorithm (Decision Tree).
 
 # Build a decision tree model.
@@ -204,7 +198,6 @@ treeCp_r <- dTree1_r$cptable[which.min(dTree1_r$cptable[, "xerror"]), "CP"] # tr
 
 # Prune a decision tree created by rxDTree and return the smaller tree.
 dTree2_r <- prune(dTree1_r, cp = treeCp_r)
-
 
 
 #### Step 5B: Predict over new data (Decision Tree).

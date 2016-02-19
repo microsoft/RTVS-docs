@@ -21,11 +21,11 @@
 #########################################################################################################
 
 
-
 #### Step 0: Get Started.
+
 # Initial some variables.
-inputFileFlightURL <- "https://raw.githubusercontent.com/mezmicrosoft/RTVS-docs/master/examples/R_Server/Flight_Delays_Prediction_with_MRS/Flight_Delays_Sample.csv"
-inputFileWeatherURL <- "https://raw.githubusercontent.com/mezmicrosoft/RTVS-docs/master/examples/R_Server/Flight_Delays_Prediction_with_MRS/Weather_Sample.csv"
+inputFileFlightURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/R_Server/Flight_Delays_Prediction_with_MRS/Flight_Delays_Sample.csv"
+inputFileWeatherURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/R_Server/Flight_Delays_Prediction_with_MRS/Weather_Sample.csv"
 inputFileFlight <- "Flight_Delays_Sample.csv"
 inputFileWeather <- "Weather_Sample.csv"
 outFileFlight <- 'flight.xdf'
@@ -35,7 +35,6 @@ outFileWeather2 <- 'weather2.xdf'
 outFileOrigin <- 'originData.xdf'
 outFileDest <- 'DestData.xdf'
 outFileFinal <- 'finalData.xdf'
-
 
 # Import libraries.
 (if (!require("RCurl")) install.packages("RCurl"))
@@ -49,7 +48,6 @@ download.file(inputFileWeatherURL, destfile = inputFileWeather, method = "libcur
 
 # Turn off the progress reported in MRS.
 rxOptions(reportProgress = 0)
-
 
 
 #### Step 1: Import Data.
@@ -69,7 +67,6 @@ weather_mrs <- rxImport(inData = inputFileWeather, outFile = outFileWeather,
                         missingValueString = "M", stringsAsFactors = FALSE,
                         varsToDrop = c('Year', 'Timezone', 'DryBulbFarenheit', 'DewPointFarenheit'),
                         overwrite = TRUE)
-
 
 
 #### Step 2: Pre-process Data.
@@ -152,7 +149,6 @@ finalData_mrs <- rxDataStep(inData = destData_mrs, outFile = outFileFinal,
                             overwrite = TRUE)
 
 
-
 #### Step 3: Prepare Training and Test Datasets.
 
 # Randomly split 80% data as training set and the remaining 20% as test set.
@@ -171,7 +167,6 @@ file.rename('finalData.splitVar.Test.xdf', 'finalData.splitVar.Test.logit.xdf')
 file.copy('finalData.splitVar.Test.logit.xdf', 'finalData.splitVar.Test.tree.xdf')
 
 
-
 #### Step 4A: Choose and apply a learning algorithm (Logistic Regression).
 
 # Build the formula.
@@ -184,7 +179,6 @@ logitModel_mrs <- rxLogit(form, data = 'finalData.splitVar.Train.xdf')
 summary(logitModel_mrs)
 
 
-
 #### Step 5A: Predict over new data (Logistic Regression).
 
 # Predict the probability on the test dataset.
@@ -193,7 +187,6 @@ predictLogit_mrs <- rxPredict(logitModel_mrs, data = 'finalData.splitVar.Test.lo
 
 # Calculate Area Under the Curve (AUC).
 rxAuc(rxRoc("ArrDel15", "ArrDel15_Pred", predictLogit_mrs)) # AUC = 0.67
-
 
 
 #### Step 4B: Choose and apply a learning algorithm (Decision Tree).
@@ -208,7 +201,6 @@ treeCp_mrs <- rxDTreeBestCp(dTree1_mrs)
 dTree2_mrs <- prune.rxDTree(dTree1_mrs, cp = treeCp_mrs)
 
 
-
 #### Step 5B: Predict over new data (Decision Tree).
 
 # Predict the probability on the test dataset.
@@ -217,7 +209,6 @@ predictTree_mrs <- rxPredict(dTree2_mrs, data = 'finalData.splitVar.Test.tree.xd
 
 # Calculate Area Under the Curve (AUC).
 rxAuc(rxRoc("ArrDel15", "ArrDel15_Pred", predictTree_mrs)) # AUC = 0.70
-
 
 
 #### Close Up: Remove all .xdf and .csv files in the current directory.
