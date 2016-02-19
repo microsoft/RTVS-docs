@@ -117,6 +117,10 @@ pack](https://www.microsoft.com/en-us/download/details.aspx?id=48157).
 
 ![](./media/FAQ-international-settings.png)
 
+**Q. Will RTVS work with 32-bit editions of R?**
+
+A. No. RTVS only supports 64-bit editions of R.
+
 ## Feedback
 
 We're looking for your feedback! Please use the R Tools / Feedback menu to send
