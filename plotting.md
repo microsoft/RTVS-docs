@@ -24,6 +24,3 @@ The plot window will resize the contained plot as the window is resized:
 
 ![Resize window](./media/RTVS-plotting-resize-window.png)
 
-The current implementation simply re-hosts the plot window. 
-//TBD: are we sharing the spec or does the following need to be cut?
-For details, see the functional spec for the production level behavior of the plot window.

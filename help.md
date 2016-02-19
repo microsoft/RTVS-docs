@@ -13,8 +13,6 @@ The help window pops up within Visual Studio as a tool window. You can get help 
 
 All standard Visual Studio tool window behavior is available to the **R Help** window.
 
-Note: The **Home** button in the toolbar will redirect to the internal [http://rtvs](http://rtvs) website during the preview release.
-
 You can search help using the ?? command in R. Note that you have to quote the search term if it includes spaces.
 
 	> ??"Motor Trend"
