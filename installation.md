@@ -22,10 +22,10 @@ Once you've installed Visual Studio 2015, you can install Update 1 from here:
 
 * [Visual Studio 2015 Update 1](https://www.microsoft.com/en-us/download/details.aspx?id=49989)
 
-RTVS Preview requires an installation of R on your computer. We only support R
-versions 3.2.1, 3.2.2 and 3.2.3. We support both the CRAN R distributions as
-well as the Microsoft R distributions. You can download them from for free from
-these locations:
+RTVS Preview requires an installation of R on your computer. We only support
+**64 bit** editions of R versions 3.2.1, 3.2.2 and 3.2.3. We support both the
+CRAN R distributions as well as the Microsoft R distributions. You can download
+them from for free from these locations:
 
 * [Microsoft R Open](https://mran.revolutionanalytics.com/download/)
 * [Microsoft R Server](https://www.microsoft.com/en-us/server-cloud/products/r-server/)
@@ -34,10 +34,12 @@ these locations:
 If you don't have an R distribution installed before you install RTVS, you will
 be prompted to install an R distribution during setup.
 
-You can install R Tools for Visual Studio from here: TODO. Please note that if
-you had an earlier version of R Tools for Visual Studio installed on your
-machine, you must first uninstall it from Add / Remove Programs before you can
-install this Preview release.
+RTVS Preview is only available by invite only at the moment. If you haven't
+already, please send email to rtvs-invite@microsoft.com to request your invite. 
+
+Please note that if you had an earlier version of R Tools for Visual Studio
+installed on your machine, you must first uninstall it from Add / Remove
+Programs before you can install this Preview release.
 
 ## Window Layout for Data Scientists in Visual Studio
 
