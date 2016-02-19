@@ -4,7 +4,7 @@ layout: default
 
 # Welcome to R Tools for Visual Studio Preview
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/VEOhaP4x7LE" frameborder="0" allowfullscreen></iframe>
+![](./media/RTVS-screenshot.png)
 
 ## Key features in Version 0.1
 
@@ -18,6 +18,8 @@ layout: default
 * Variable Explorer that lets you drill into your R data structures and examine their values
 * Table Viewer: quickly see values in your data frames
 * Simplify your Visual Studio environment for Data Science by bringing the most commonly used commands to the forefront
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VEOhaP4x7LE" frameborder="0" allowfullscreen></iframe>
 
 ## Documentation
 
