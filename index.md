@@ -128,6 +128,13 @@ A. You can always save your current Visual Studio settings through Tools ->
 Import and Export Settings... command. You can also use this command to
 restore one of the default Visual Studio settings (e.g., C++ or General).
 
+**Q. I'm getting the error "Input is too long - no more than 4096 characters
+expected"**
+
+A. We're working on fixing this for the next release. If you want to run the
+entire file, you can try right clicking on the editor and running the Source R
+Script command (or hitting CTRL+SHIFT+S). 
+
 ## Feedback
 
 We're looking for your feedback! Please use the R Tools / Feedback menu to send
