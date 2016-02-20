@@ -23,7 +23,7 @@ layout: default
 
 ## Documentation
 
-* [First steps](installation.html)
+* [Installation](installation.html)
 * [How to start a new project](start-project.html)
 * [Editing](editing.html)
 * [History window](history.html)
