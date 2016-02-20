@@ -14,7 +14,7 @@ experience for R and Visual Studio users. Please send us feedback!
 RTVS Preview can **only** be installed on Visual Studio 2015 Update 1. We
 support the following editions of Visual Studio:
 
-* Visual Studio 2015 Community
+* [Visual Studio 2015 Community](https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx)
 * Visual Studio 2015 Professional 
 * Visual Studio 2015 Enterprise
 

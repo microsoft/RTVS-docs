@@ -121,6 +121,13 @@ pack](https://www.microsoft.com/en-us/download/details.aspx?id=48157).
 
 A. No. RTVS only supports 64-bit editions of R.
 
+**Q. I really like my current Visual Studio settings, but I want to try out the
+new Data Science settings. What should I do?**
+
+A. You can always save your current Visual Studio settings through Tools ->
+Import and Export Settings... command. You can also use this command to
+restore one of the default Visual Studio settings (e.g., C++ or General).
+
 ## Feedback
 
 We're looking for your feedback! Please use the R Tools / Feedback menu to send
