@@ -135,6 +135,25 @@ A. We're working on fixing this for the next release. If you want to run the
 entire file, you can try right clicking on the editor and running the Source R
 Script command (or hitting CTRL+SHIFT+S). 
 
+**Q. After installing RTVS, the R Interactive Window doesn't work at all. I
+don't even get a > prompt.**
+
+A. This bug can occur when you have Visual Studio installed in a non-default
+location. To unblock you, copy `Microsoft.R.Host.exe` from
+
+```
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\R Tools for Visual Studio
+``` 
+
+to 
+ 
+```
+[VS_LOCATION]\Common7\IDE\Extensions\Microsoft\R Tools for Visual Studio
+```
+
+where VS_LOCATION is where you installed Visual Studio. We will fix this in the
+next release.
+
 ## Feedback
 
 We're looking for your feedback! Please use the R Tools / Feedback menu to send
