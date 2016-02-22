@@ -57,14 +57,79 @@ editData_mrs <- rxFactors(inData = bike_mrs, outFile = outFileEdit, sortLevels =
 
 
 #### Step 2: Feature Engineering.
-source(file.path(dataDir, "lagging.R"))
 
-## Set A = weather + holiday + weekday + weekend features for the predicted day.
+# Create a function to compute lag features.
+computeLagFeatures <- function (dataList) {   
+  numLags <- length(nLagsVector)
+  for (iL in 1:numLags)
+  {
+    nlag <- nLagsVector[iL]
+    varLagName <- paste("demand.",nlag,unit,sep="")
+    numRowsInChunk <- length(dataList[[baseVar]])
+    numRowsToRead <- nlag * interval
+    numRowsPadding <- 0
+    if (numRowsToRead >= .rxStartRow)
+    {
+      numRowsToRead <- .rxStartRow - 1
+      numRowsPadding <- nlag * interval - numRowsToRead
+    }
+    startRow <- .rxStartRow - numRowsToRead
+    previousRowsDataList <- RevoScaleR::rxReadXdf(file = .rxReadFileName,
+                                                  varsToKeep = baseVar,
+                                                  startRow = startRow, numRows = numRowsToRead,
+                                                  returnDataFrame = FALSE)
+    paddingRowsDataList <- RevoScaleR::rxReadXdf(file=.rxReadFileName,
+                                                 varsToKeep = baseVar,
+                                                 startRow = 1, numRows = numRowsPadding,
+                                                 returnDataFrame = FALSE)
+    dataList[[varLagName]] <- c(paddingRowsDataList[[baseVar]], previousRowsDataList[[baseVar]], dataList[[baseVar]])[1:numRowsInChunk]	
+  }
+  return(dataList)
+}
+
+# Create a function to add lag features a set of columns at a time.
+addLag <- function(inputData, outputFileBase) {
+  
+  inputFile <- inputData
+  outputFileHour <- paste(outputFileBase, "_hour",".xdf",sep="")
+  outputFileHourDay <- paste(outputFileBase, "_hour_day",".xdf",sep="")
+  outputFileHourDayWeek <- paste(outputFileBase, "_hour_day_week",".xdf",sep="")
+  
+  
+  # Initialize some fix values.
+  hourInterval <- 1
+  dayInterval <- 24
+  weekInterval <- 168
+  previous <- 12
+  
+  # Add number of bikes that were rented in each of the previous 12 hours (for Set B).
+  rxDataStep(inData = inputFile,outFile = outputFileHour, transformFunc=computeLagFeatures,
+             transformObjects = list(baseVar = "cnt", unit = "hour",nLagsVector=seq(12), 
+                                     interval = hourInterval),
+             transformVars = c("cnt"), overwrite=TRUE)
+  
+  # Add number of bikes that were rented in each of the previous 12 days at the same hour (for Set C).
+  rxDataStep(inData = outputFileHour,outFile = outputFileHourDay, transformFunc=computeLagFeatures,
+             transformObjects = list(baseVar = "cnt", unit = "day",nLagsVector=seq(12), 
+                                     interval = dayInterval),
+             transformVars = c("cnt"), overwrite=TRUE)
+  
+  # Add number of bikes that were rented in each of the previous 12 weeks at the same hour and the same day (for Set D).
+  rxDataStep(inData = outputFileHourDay,outFile = outputFileHourDayWeek, transformFunc=computeLagFeatures,
+             transformObjects = list(baseVar = "cnt", unit = "week",nLagsVector=seq(12), 
+                                     interval = weekInterval),
+             transformVars = c("cnt"), overwrite=TRUE)
+  
+  file.remove(outputFileHour)
+  file.remove(outputFileHourDay)
+  
+  return(outputFileHourDayWeek)
+}
+
+# Set A = weather + holiday + weekday + weekend features for the predicted day.
 finalDataA_mrs <- editData_mrs
 
-## Set B = number of bikes that were rented in each of the previous 12 hours.
-## Set C = number of bikes that were rented in each of the previous 12 days at the same hour.
-## Set D = number of bikes that were rented in each of the previous 12 weeks at the same hour and the same day.
+# Set B, C & D.
 finalDataLag_dir <- addLag(inputData = editData_mrs, outputFileBase = outFileLag)
 finalDataLag_mrs <- RxXdfData(finalDataLag_dir)
 
@@ -79,7 +144,7 @@ rxSplit(inData = finalDataA_mrs, outFilesBase = "modelDataA", splitByFactor = "y
 trainA_mrs <- rxDataStep("modelDataA.yr.0.xdf", outFileTrainA, varsToDrop = "yr", overwrite = TRUE)
 testA_mrs <- rxDataStep("modelDataA.yr.1.xdf", outFileTestA, varsToDrop = "yr", overwrite = TRUE)
 
-## Set B, C, D:
+## Set B, C & D:
 # Split Data.
 rxSplit(inData = finalDataLag_mrs, outFilesBase = "modelDataLag", splitByFactor = "yr",
         overwrite = TRUE, reportProgress = 0, verbose = 0)
@@ -137,7 +202,6 @@ dForestD_mrs <- rxDForest(formD_mrs, data = "trainData.xdf", importance = TRUE, 
 predictA_mrs <- rxPredict(dForestA_mrs, data = 'testDataA.xdf', overwrite = TRUE, computeResiduals = TRUE)
 scoreA <- rxXdfToDataFrame(predictA_mrs)
 
-
 ## Set B:
 # Predict the probability on the test dataset.
 predictB_mrs <- rxPredict(dForestB_mrs, data = 'testDataB.xdf', overwrite = TRUE, computeResiduals = TRUE)
@@ -184,6 +248,6 @@ outputs <- data.frame(Features = features,
 outputs
 
 
-#### Close Up: Remove all .xdf files in the current directory.
-rmFiles <- list.files(pattern = "\\.xdf")
+#### Close Up: Remove all .xdf and .csv files in the current directory.
+rmFiles <- list.files(pattern = "\\.xdf|\\.csv")
 file.remove(rmFiles)
