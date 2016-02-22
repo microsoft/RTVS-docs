@@ -36,5 +36,10 @@ threadsToTest <- if(exists("setMKLthreads")){
 
 scale.factor <- 0.25
 x <- RevoMultiBenchmark(r, threads = threadsToTest, scale.factor = scale.factor)
+
+# Print a table of results
 print(x)
-plot(x, theme_size = 8)
+
+# Create a plot
+p <- plot(x, theme_size = 12)
+print(p)
