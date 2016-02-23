@@ -20,7 +20,7 @@
 
 
 # Initial some variables.
-inputFileBikeURL <- "https://raw.githubusercontent.com/mezmicrosoft/RTVS-docs/master/examples/R_Server/Bike_Rental_Estimation_with_MRS/Bike%20Rental%20UCI%20dataset.csv"
+inputFileBikeURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/R_Server/Bike_Rental_Estimation_with_MRS/Bike%20Rental%20UCI%20dataset.csv"
 inputFileBike <- "Bike Rental UCI dataset.csv"
 outFileBike <- "bike.xdf"
 outFileEdit <- "editData.xdf"
@@ -29,12 +29,6 @@ outFileTrainA <- "trainDataA.xdf"
 outFileTestA <- "testDataA.xdf"
 outFileTrain <- "trainData.xdf"
 outFileTest <- "testData.xdf"
-
-# Import libraries.
-(if (!require("RCurl")) install.packages("RCurl"))
-(if (!require("foreign")) install.packages("foreign"))
-library(RCurl)
-library(foreign)
 
 # Download flight and weather data from a repository.
 download.file(inputFileBikeURL, destfile = inputFileBike, method = "libcurl")
