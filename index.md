@@ -154,6 +154,23 @@ to
 where VS_LOCATION is where you installed Visual Studio. We will fix this in the
 next release.
 
+**Q. After installing RTVS on top of Visual Studio Update 1, Visual Studio
+crashes on startup every time I try to run it. What can I do?**
+
+A. Try resetting Visual Studio settings from the command line. Open a Visual
+Studio command prompt and type:
+
+```
+devenv.exe /ResetSettings
+```
+
+or navigate to `C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE`
+first in a command prompt and type:
+
+```
+devenv.exe /ResetSettings
+```
+
 ## Feedback
 
 We're looking for your feedback! Please use the R Tools / Feedback menu to send
