@@ -1,9 +1,9 @@
-rxImportUrl <-  function (inUrl, ...) {
-    inData <- tempfile()
+rxImportUrl <-  function (inData, ...) {
+    inFile <- tempfile()
     tryCatch({
-            download.file(inUrl, inData)
-            xdf <- rxImport(inData = inData, ...)
+            download.file(inData, inFile)
+            xdf <- rxImport(inData = inFile, ...)
         },
-        finally = file.remove(inData))
+        finally = file.remove(inFile))
     return(xdf)
 }
