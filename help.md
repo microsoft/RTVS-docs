@@ -32,7 +32,7 @@ Pressing **F1** during an auto-complete operation will send the sub-string used 
 
 ![Help auto-complete](./media/RTVS-Help-auto-complete.png)
 
-To bring up results:
+To bring up results in your browser:
 
 ![Help auto-complete results](./media/RTVS-Help-auto-complete-results.png
 )
