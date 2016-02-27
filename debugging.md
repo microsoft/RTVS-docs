@@ -75,15 +75,9 @@ f <- function(x) {
 }
 {% endhighlight %}
 
-* We are working on adding tool tips (hover over a variable to see a tooltip
+* We are working on adding data tips (hover over a variable to see information
 display the value of the variable) for a future release.
 
-* The Browse prompt in the R Interactive Window is frequently out of date with
-respect to the actual state when debugging. This manifests itself when a
-debugging session runs to completion, but you still see a Browse> prompt in the
-R Interactive Window. This is nothing to be concerned about; you can dismiss
-this prompt by pressing Enter. We are working on a fix for this in a future
-release.
 
 * If you are stopped on a breakpoint you may need to press **F10** multiple
 times to step over the line that contains the breakpoint. This is a known

@@ -8,7 +8,7 @@ layout: default
 
 ## About this release
 
-THANK YOU for checking out this early version for RTVS.  We've decided to make it available early so that we'll have more time to address your feedback.  As such, there are bugs and many missing features, so please beware!  This release is meant for evaluation purposes only and not production use.
+THANK YOU for checking out this early version for RTVS.  We've decided to make it available early so that we'll have more time to address your feedback.  As such, there are bugs and many missing features, so please beware!  This release is meant for evaluation purposes only and not for production use.
 
 ## Key features in Version 0.1
 
