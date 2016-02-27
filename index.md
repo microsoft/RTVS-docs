@@ -20,6 +20,8 @@ THANK YOU for checking out this early version for RTVS.  We've decided to make i
 * [Variable Explorer](variable-explorer.html) - lets you drill into your R data structures and examine their values
 * [Plotting](plotting.html) - see all of your R plots in a Visual Studio tool window
 * [Debugging](debugging.html) -  breakpoints, stepping, watch windows, call stacks and more!
+* [R Markdown](rmarkdown.html) - R Markdown/knitter support with export to Word and HTML
+* [Git](git.html) - Source code control via Git and Github
 * [Help](help.html) - use ? and ?? to view R documentation within Visual Studio
 
 
@@ -110,17 +112,6 @@ Studio Code, which is the new cross-platform IDE from Microsoft.
 
 A. Absolutely! We will release the source in the near future, and PRs are very
 welcome. For now, the most important contribution is feedback and bug reports.
-
-**Q. I want to try out the R markdown support and knitr. What do I need to install
-to get it to work?**
-
-A. You need to install [pandoc](http://pandoc.org/installing.html). You will
-also need to install the knitr and rmarkdown packages.
-
-{% highlight R %}
-install.packages("knitr")
-install.packages("rmarkdown")
-{% endhighlight %}
 
 **Q. I want to save my plots as PDFs. What software do I need for that?**
 
