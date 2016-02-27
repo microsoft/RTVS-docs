@@ -2,39 +2,64 @@
 layout: default
 ---
 
-# Welcome to R Tools for Visual Studio Preview
+# Welcome to R Tools for Visual Studio Preview!
 
 ![](./media/RTVS-screenshot.png)
 
+## About this release
+
+THANK YOU for checking out this early version for RTVS.  We've decided to make it available early so that we'll have more time to address your feedback.  As such, there are bugs and many missing features, so please beware!  This release is meant for evaluation purposes only and not production use.
+
 ## Key features in Version 0.1
 
-* Full Visual Studio editing experience, including tabbed windows, syntax highlighting, and more!
-* Debugging support, with breakpoints, stepping, watch windows, call stacks and more!
-* Interactive R: work with the R console directly from within Visual Studio
-* IntelliSense (also known as command completion) available in both the editor and the Interactive R window
-* History window: see all of the commands that you have entered in a scrollable window
-* Integrated plotting support: see all of your R plots in a Visual Studio tool window
-* Integrated Help: use ? and ?? to view R documentation within Visual Studio
-* Variable Explorer that lets you drill into your R data structures and examine their values
-* Table Viewer: quickly see values in your data frames
-* Simplify your Visual Studio environment for Data Science by bringing the most commonly used commands to the forefront
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/VEOhaP4x7LE" frameborder="0" allowfullscreen></iframe>
+* [Editor](editing.html) - full edit experience including tabbed windows, syntax highlighting, and more
+* [History window](history.html) - see all of the commands that you have entered in a scrollable window
+* [R Interactive Window](interactive-repl.html) - work with the R console directly from within Visual Studio
+* [IntelliSense](intellisense.html) - (aka Completion) available in both the editor and the Interactive R window
+* [Variable Explorer](variable-explorer.html) - lets you drill into your R data structures and examine their values
+* [Plotting](plotting.html) - see all of your R plots in a Visual Studio tool window
+* [Debugging](debugging.html) -  breakpoints, stepping, watch windows, call stacks and more!
+* [Help](help.html) - use ? and ?? to view R documentation within Visual Studio
 
-## Documentation
 
-* [Installation](installation.html)
-* [How to start a new project](start-project.html)
-* [Editing](editing.html)
-* [History window](history.html)
-* [R Interactive Window](interactive-repl.html)
-* [IntelliSense](intellisense.html)
-* [Variable Explorer](variable-explorer.html)
-* [Plotting](plotting.html)
-* [Debugging](debugging.html)
-* [Help](help.html)
+## A quick video overview 
+<iframe width="560" height="315" align="middle" src="https://www.youtube.com/embed/VEOhaP4x7LE" frameborder="0" allowfullscreen></iframe>
+
+<br>
+
+## Installation and first steps
+
+RTVS prerequistes are : VS 2015 + VS Update 1 + an R interpreter. 
+
+Please check out the installation steps, *especially* if you are new to Visual Studio
+
+* [RTVS Installation](installation.html) 
+
+Once installed, create a project and code away!
+
+* [How to start a new project in RTVS](start-project.html)
+
+
+## Feedback, bugs, etc.
+
+For a list of existing bugs and feature requests, and to file new bugs, please go to:
+
+[https://github.com/Microsoft/RTVS/issues](https://github.com/Microsoft/RTVS/issues)
+
+(currently private - pls use rtvsuserfeedback@microsoft.com for now)
+
+<hr>
+<hr>
+<hr>
+
+<br>
 
 ## FAQ
+
+**Q. Should I use RTVS in production mode?**
+
+A. No. This is the very first public preview.  As such there are many bugs and many many missing features which will be addressed in the next few months.  This release is only recommended for evaluation purposes and usage in production is strongly advised against.
 
 **Q. Is RTVS going to be free?**
 
@@ -121,6 +146,19 @@ pack](https://www.microsoft.com/en-us/download/details.aspx?id=48157).
 
 A. No. RTVS only supports 64-bit editions of R.
 
+**Q. What are the key missing features of RTVS currently?** 
+
+A. There a number of these.  For example:
+
+* There is no UI for package installation or creation
+* Variable Explorer does not allow edit, search, sort and supports global scope only
+* Refactoring in the Editor
+* Shiny apps inside RTVS (pop out is ok)
+* Interactive ggviz plots inside RTVS (pop out is ok)
+* Customization options when saving plots as PDF or bitmaps
+
+We'll be addressing these in the near future.
+
 **Q. I really like my current Visual Studio settings, but I want to try out the
 new Data Science settings. What should I do?**
 
@@ -181,3 +219,4 @@ us smiles and frowns!
 If you're interested in contributing to the docs or samples, feel free to clone
 the repo and submit a PR. More instructions can be found in our [contribution
 guide](contributing-docs.html).
+
