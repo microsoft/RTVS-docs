@@ -14,11 +14,13 @@ experience for R and Visual Studio users. Please send us feedback!
 RTVS Preview can **only** be installed on Visual Studio 2015 Update 1. We
 support the following editions of Visual Studio:
 
-* [Visual Studio 2015 Community](https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx)
+* [Visual Studio 2015 Community](https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx) (free)
 * Visual Studio 2015 Professional 
 * Visual Studio 2015 Enterprise
 
-Once you've installed Visual Studio 2015, you can install Update 1 from here: 
+Please go to Help / About to check your version of Visual Studio.  It should be VS 2015 or VS 2015 with Update 1.
+
+Once you've installed VS 2015, if you do not have Update 1, install it from here:
 
 * [Visual Studio 2015 Update 1](https://www.microsoft.com/en-us/download/details.aspx?id=49989)
 
@@ -52,6 +54,9 @@ We know that some of you prefer to retain your existing Visual Studio settings,
 so we leave things this way by default. However, for those of you who want our
 tailored experience, enabling it is really easy to do. Just run the Data Science
 Settings from the R Tools menu:
+
+**IMPORTANT NOTE: you should save your current settings if you want to revert back to them: Tools / Import and Export Settings.**
+
 
 ![](./media/RTVS-Installation-data-scientist-layout.png)
 		
