@@ -1,0 +1,45 @@
+# Microsoft R Open includes the Intel MKL for fast, parallel linear algebra computations
+# This script runs performance benchmarks using different numbers of threads
+
+# The test uses the package "version.compare", available on github
+# Install this package first, if it is not already installed
+
+if(!"version.compare" %in% rownames(installed.packages())){
+  library(devtools)
+  devtools::install_github("andrie/version.compare")
+}
+
+library(version.compare)
+
+# Determine the local installation path
+
+r <- findRscript(
+  version = as.character(getRversion())
+)
+
+# Determine how many threads to use, in sequence 1,2,4,8...
+# up to maximum number of physical processors on the machine
+
+threadsToTest <- if(exists("setMKLthreads")){
+  local({
+    threads <- 2^(0:4)
+    max <- match(RevoUtilsMath:::.Default.Revo.Threads, threads)
+    threads[seq_len(max)]
+  })
+} else {
+  1
+}
+
+# Run the benchmark tests
+# Set scale.factor to 1 for the full tests, lower than 1 for tests on 
+# reduces data set sizes
+
+scale.factor <- 0.25
+x <- RevoMultiBenchmark(r, threads = threadsToTest, scale.factor = scale.factor)
+
+# Print a table of results
+print(x)
+
+# Create a plot
+p <- plot(x, theme_size = 12)
+print(p)
