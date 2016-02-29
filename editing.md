@@ -15,7 +15,7 @@ from the Visual Studio gallery.
 ## Editing window
 
 When you are writing code in the editor, we will pop up IntelliSense for
-both library functions as well as user-defined functions: 
+both library functions: 
  
 ![](./media/RTVS-Editing-auto-completion.png)
  
@@ -101,7 +101,8 @@ There are a number of configurable options here:
 
 - **CRAN Mirror** controls which CRAN mirror to download packages from by default.
 
-- **R Engine**  
+- **R Engine** is set to the directory of your R installation. If you change
+  this setting, please restart Visual Studio.
 
 - **Send to R Console shortcut** lets the user redefine what keyboard shortcut
 sends the current editor selection to the REPL.
