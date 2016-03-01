@@ -1,8 +1,13 @@
+---
+layout: default
+---
+
 # Examples R Tools for Visual Studio Preview
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/VEOhaP4x7LE" frameborder="0" allowfullscreen></iframe>
 
-We've put together some examples to get you started building projects in Visual Studio using Microsoft R Open and R Server.
+We've put together some examples to get you started building projects in Visual
+Studio using Microsoft R Open and R Server.
 
 ### Microsoft R Server examples
 * Comparison (benchmark.R)
@@ -33,18 +38,13 @@ We've put together some examples to get you started building projects in Visual 
 1. Getting started with R
 2. A first look at R
 3. Data structures
-4.1 Functions
-4.2 Functions 2
-5. Data manipulation
-6. Plots
-7. Basic statistics
-8. Data exploration
-9. Clustering
-10. Classification
-11. SQLite
-12. CARET
-
-
-
-
-
+4. Functions
+5. Functions 2
+6. Data manipulation
+7. Plots
+8. Basic statistics
+9. Data exploration
+10. Clustering
+11. Classification
+12. SQLite
+13. CARET
