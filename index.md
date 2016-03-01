@@ -201,6 +201,11 @@ first in a command prompt and type:
 devenv.exe /ResetSettings
 ```
 
+**Q. What is the recommended `.gitignore` settings for an RTVS project?**
+
+A. Gitub maintains a master repository of recommended `.gitignore` files. You
+can see it here: [R .gitignore](https://github.com/github/gitignore/blob/master/R.gitignore)
+
 ## Feedback
 
 We're looking for your feedback! Please use the R Tools / Feedback menu to send
