@@ -6,7 +6,7 @@ layout: default
 
 The latest version of RTVS is:
 
-## 0.1  (Recommended)
+## 0.2  (Recommended)
 
 If you don't have this version, please send an email to rtvs-invite@microsoft.com.
 
