@@ -36,16 +36,6 @@ outFileOrigin <- 'originData.xdf'
 outFileDest <- 'DestData.xdf'
 outFileFinal <- 'finalData.xdf'
 
-# Import libraries.
-(if (!require("RCurl")) install.packages("RCurl"))
-(if (!require("foreign")) install.packages("foreign"))
-library(RCurl)
-library(foreign)
-
-# Download flight and weather data from a repository.
-download.file(inputFileFlightURL, destfile = inputFileFlight, method = "libcurl")
-download.file(inputFileWeatherURL, destfile = inputFileWeather, method = "libcurl")
-
 # Turn off the progress reported in MRS.
 rxOptions(reportProgress = 0)
 
@@ -53,7 +43,7 @@ rxOptions(reportProgress = 0)
 #### Step 1: Import Data.
 
 # Import the flight data.
-flight_mrs <- rxImport(inData = inputFileFlight, outFile = outFileFlight,
+flight_mrs <- rxImport(inData = inputFileFlightURL, outFile = outFileFlight,
                        missingValueString = "M", stringsAsFactors = FALSE)
 
 # Review the first 6 rows of flight data.
@@ -63,7 +53,7 @@ head(flight_mrs)
 rxSummary(~., data = flight_mrs, blocksPerRead = 2)
 
 # Import the weather dataset and eliminate some features due to redundance.
-weather_mrs <- rxImport(inData = inputFileWeather, outFile = outFileWeather,
+weather_mrs <- rxImport(inData = inputFileWeatherURL, outFile = outFileWeather,
                         missingValueString = "M", stringsAsFactors = FALSE,
                         varsToDrop = c('Year', 'Timezone', 'DryBulbFarenheit', 'DewPointFarenheit'),
                         overwrite = TRUE)
@@ -211,7 +201,7 @@ predictTree_mrs <- rxPredict(dTree2_mrs, data = 'finalData.splitVar.Test.tree.xd
 rxAuc(rxRoc("ArrDel15", "ArrDel15_Pred", predictTree_mrs)) # AUC = 0.70
 
 
-#### Close Up: Remove all .xdf and .csv files in the current directory.
+#### Close Up: Remove all .xdf files in the current directory.
 
-rmFiles <- list.files(pattern = "\\.xdf|\\.csv")
+rmFiles <- list.files(pattern = "\\.xdf")
 file.remove(rmFiles)
