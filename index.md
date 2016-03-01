@@ -22,6 +22,7 @@ THANK YOU for checking out this early version for RTVS.  We've decided to make i
 * [Debugging](debugging.html) -  breakpoints, stepping, watch windows, call stacks and more!
 * [R Markdown](rmarkdown.html) - R Markdown/knitter support with export to Word and HTML
 * [Git](git.html) - Source code control via Git and Github
+* [Polyglot IDE](polyglot.html) - VS supports R, Python, C++, C#, Node.js, SQL, … projects simultaneously
 * [Help](help.html) - use ? and ?? to view R documentation within Visual Studio
 
 
