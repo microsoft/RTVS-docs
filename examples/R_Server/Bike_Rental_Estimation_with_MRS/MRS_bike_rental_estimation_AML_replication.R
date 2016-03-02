@@ -18,8 +18,7 @@
 ##############################################################################################################
 
 
-
-# Initial some variables.
+#---------------------------Step 0: Initial some variables---------------------------
 inputFileBikeURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/R_Server/Bike_Rental_Estimation_with_MRS/Bike%20Rental%20UCI%20dataset.csv"
 inputFileBike <- "Bike Rental UCI dataset.csv"
 outFileBike <- "bike.xdf"
@@ -30,12 +29,7 @@ outFileTestA <- "testDataA.xdf"
 outFileTrain <- "trainData.xdf"
 outFileTest <- "testData.xdf"
 
-# Stop Report Progress.
-rxOptions(reportProgress = 0)
-
-
-#### Step 1: Import Data.
-
+#---------------------------Step 1: Import Data---------------------------
 # Import the bike data.
 # Remove timestamps and all columns that are part of the label (casual and registered columns).
 bike_mrs <- rxImport(inData = inputFileBikeURL, outFile = outFileBike,
@@ -46,9 +40,7 @@ bike_mrs <- rxImport(inData = inputFileBikeURL, outFile = outFileBike,
 editData_mrs <- rxFactors(inData = bike_mrs, outFile = outFileEdit, sortLevels = TRUE,
                           factorInfo = c("yr", "weathersit", "season"), overwrite = TRUE)
 
-
-#### Step 2: Feature Engineering.
-
+#---------------------------Step 2: Feature Engineering---------------------------
 # Create a function to compute lag features.
 computeLagFeatures <- function (dataList) {   
   numLags <- length(nLagsVector)
@@ -85,8 +77,7 @@ addLag <- function(inputData, outputFileBase) {
   outputFileHour <- paste(outputFileBase, "_hour",".xdf",sep="")
   outputFileHourDay <- paste(outputFileBase, "_hour_day",".xdf",sep="")
   outputFileHourDayWeek <- paste(outputFileBase, "_hour_day_week",".xdf",sep="")
-  
-  
+
   # Initialize some fix values.
   hourInterval <- 1
   dayInterval <- 24
@@ -125,8 +116,7 @@ finalDataLag_dir <- addLag(inputData = editData_mrs, outputFileBase = outFileLag
 finalDataLag_mrs <- RxXdfData(finalDataLag_dir)
 
 
-#### Step 3: Prepare Training and Test Datasets.
-
+#---------------------------Step 3: Prepare Training and Test Datasets---------------------------
 ## Set A:
 # Split Data.
 rxSplit(inData = finalDataA_mrs, outFilesBase = "modelDataA", splitByFactor = "yr",
@@ -147,9 +137,7 @@ file.rename('testData.xdf', 'testDataB.xdf')
 file.copy('testDataB.xdf', 'testDataC.xdf')
 file.copy('testDataC.xdf', 'testDataD.xdf')
 
-
-#### Step 4: Choose and apply a learning algorithm (Decision Forest Regression).
-
+#---------------------------Step 4: Choose and apply a learning algorithm (Decision Forest Regression)---------------------------
 newDayFeatures <- paste("demand", ".", seq(12), "day", sep = "")
 newWeekFeatures <- paste("demand", ".", seq(12), "week", sep = "")
 
@@ -185,9 +173,7 @@ formD_mrs <- as.formula(paste("cnt", "~", paste(xvarsD_mrs, collapse = "+")))
 # Fit Decision Forest Regression model.
 dForestD_mrs <- rxDForest(formD_mrs, data = "trainData.xdf", importance = TRUE, seed = 123)
 
-
-#### Step 5: Predict over new data.
-
+#---------------------------Step 5: Predict over new data---------------------------
 ## Set A:
 # Predict the probability on the test dataset.
 predictA_mrs <- rxPredict(dForestA_mrs, data = 'testDataA.xdf', overwrite = TRUE, computeResiduals = TRUE)
@@ -208,8 +194,7 @@ scoreC <- rxXdfToDataFrame(predictC_mrs)
 predictD_mrs <- rxPredict(dForestD_mrs, data = 'testDataD.xdf', overwrite = TRUE, computeResiduals = TRUE)
 scoreD <- rxXdfToDataFrame(predictD_mrs)
 
-
-#### Prepare outputs.
+#---------------------------Prepare outputs---------------------------
 
 # Mean Absolute Error:
 mae <- function(df) {
@@ -238,7 +223,6 @@ outputs <- data.frame(Features = features,
 # View model performance comparison.
 outputs
 
-
-#### Close Up: Remove all .xdf files in the current directory.
+#---------------------------Close Up: Remove all .xdf files in the current directory---------------------------
 rmFiles <- list.files(pattern = "\\.xdf")
 file.remove(rmFiles)

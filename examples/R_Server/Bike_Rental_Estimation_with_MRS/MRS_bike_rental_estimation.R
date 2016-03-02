@@ -18,13 +18,13 @@
 #########################################################################################################
 
 
-# Initial some variables.
+#---------------------------Step 0: Initial some variables---------------------------
 inputFileBikeURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/R_Server/Bike_Rental_Estimation_with_MRS/Bike%20Rental%20UCI%20dataset.csv"
 inputFileBike <- "Bike Rental UCI dataset.csv"
 outFileBike <- "bike.xdf"
 outFileLag <- "lagData.xdf"
 
-#### Step 1: Import the Bike Data.
+#---------------------------Step 1: Import the Bike Data---------------------------
 bike <- rxImport(inData = inputFileBikeURL, outFile = outFileBike,
                  missingValueString = "M", stringsAsFactors = FALSE,
                  # Remove timestamps and all columns that are part of the label.
@@ -34,7 +34,7 @@ bike <- rxImport(inData = inputFileBikeURL, outFile = outFileBike,
                                 weathersit = list(type = "factor"),
                                 season = list(type = "factor")))
 
-#### Step 2: Feature Engineering.
+#---------------------------Step 2: Feature Engineering---------------------------
 # Add number of bikes that were rented in each of the previous 12 hours as 12 lag features.
 computeLagFeatures <- function (dataList) {  # function for computing lag features.
   
@@ -66,26 +66,31 @@ computeLagFeatures <- function (dataList) {  # function for computing lag featur
   return(dataList)                
 }
 
+# Apply the "computeLagFeatures" on the bike data.
 lagData <- rxDataStep(inData = bike, outFile = outFileLag, transformFunc = computeLagFeatures,
                       transformObjects = list(varName = "cnt", nLagsVector = seq(12)),
                       transformVars = "cnt", overwrite=TRUE)
 
-#### Step 3: Prepare Training and Test Datasets.
+#---------------------------Step 3: Prepare Training and Test Datasets---------------------------
 # Split data by "yr" so that the training data contains records for the year 2011 and the test data contains records for 2012.
 rxSplit(inData = lagData, outFilesBase = "modelData", splitByFactor = "yr", overwrite = TRUE, reportProgress = 0, verbose = 0)
+
+# Point to the .xdf files for the training and test set.
 train <- RxXdfData("modelData.yr.0.xdf")
 test <- RxXdfData("modelData.yr.1.xdf")
 
-#### Step 4: Choose and apply a learning algorithm (Decision Forest Regression).
+#---------------------------Step 4: Choose and apply a learning algorithm (Decision Forest Regression)---------------------------
 # Build a formula for the regression model and remove the "yr", which is used to split the training and test data.
 modelFormula <- formula(train, depVars = "cnt", varsToDrop = c("RowNum", "yr"))
+
 # Fit a Decision Forest Regression model on the training data.
 dForest <- rxDForest(modelFormula, data = train, importance = TRUE, seed = 123)
 
-#### Step 5: Predict over new data and review the model performance.
+#---------------------------Step 5: Predict over new data and review the model performance---------------------------
 # Predict the probability on the test dataset.
 predict <- rxPredict(dForest, data = test, overwrite = TRUE, computeResiduals = TRUE,
                      transforms = list(cnt_Resid_2 = cnt_Resid^2))
+
 # Calculate three statistical measures: Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), and Relative Absolute Error (RAE).
 sum <- rxSummary(~ cnt_Resid_abs+cnt_Resid_2+cnt_rel, data = predict, summaryStats = "Mean", 
                  transforms = list(cnt_Resid_abs = abs(cnt_Resid), 
@@ -93,9 +98,12 @@ sum <- rxSummary(~ cnt_Resid_abs+cnt_Resid_2+cnt_rel, data = predict, summarySta
                                    cnt_rel = abs(cnt_Resid)/cnt)
 )$sDataFrame
 
+# List all measures in a data frame.
 measures <- data.frame(MAE = sum[1, 2], RMSE = sqrt(sum[2, 2]), RAE = sum[3, 2])
+
+# Review the measures.
 measures
 
-#### Close Up: Remove all .xdf files in the current directory.
+#---------------------------Close Up: Remove all .xdf files in the current directory---------------------------
 rmFiles <- list.files(pattern = "\\.xdf")
 file.remove(rmFiles)
