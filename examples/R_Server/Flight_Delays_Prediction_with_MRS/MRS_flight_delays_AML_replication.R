@@ -56,16 +56,8 @@ rxSummary(~., data = flight_mrs, blocksPerRead = 2)
 weather_mrs <- rxImport(inData = inputFileWeatherURL, outFile = outFileWeather,
                         missingValueString = "M", stringsAsFactors = FALSE,
                         varsToDrop = c('Year', 'Timezone', 'DryBulbFarenheit', 'DewPointFarenheit'),
-                        colInfo = list('AdjustedMonth' = list(newName = 'Month'),
-                                       # 'AdjustedDay' = list(newName = 'DayofMonth'),
-#                                        'AirportID' = list(newName = 'OriginAirportID'),
-#                                        'AdjustedHour' = list(newName = 'CRSDepTime')
-                                        ),
                         overwrite = TRUE)
 
-
-names(dataList)[match(c('AdjustedMonth', 'AdjustedDay', 'AirportID', 'AdjustedHour'),
-                      names(dataList))] <- c('Month', 'DayofMonth', 'OriginAirportID', 'CRSDepTime')
 
 #### Step 2: Pre-process Data.
 
@@ -87,13 +79,11 @@ xform <- function(dataList) {
 flight_mrs <- rxDataStep(inData = flight_mrs,
                          outFile = outFileFlight2,
                          varsToDrop = varsToDrop,
-                         #transformFunc = xform,
-                         #transformVars = 'CRSDepTime',
-                         transforms = list(CRSDepTime = floor(CRSDepTime/100)),
+                         transformFunc = xform,
+                         transformVars = 'CRSDepTime',
                          overwrite = TRUE)
 
-
-# Rename some column names in the weather data to prepare it for merging.  (colInfo)
+# Rename some column names in the weather data to prepare it for merging.
 xform2 <- function(dataList) {
   # Create a new column 'DestAirportID' in weather data.
   dataList$DestAirportID <- dataList$AirportID
@@ -161,17 +151,6 @@ rxExec(rxSplit, inData = finalData_mrs,
                                            levels = c("Train", "Test"))),
        rngSeed = 17,
        consoleOutput = TRUE)
-
-
-rxSplit(inData = finalData_mrs,
-        outFilesBase = "finalData",
-        outFileSuffixes = c("Train", "Test"),
-        splitByFactor = "splitVar",
-        overwrite = TRUE,
-        transforms = list(splitVar = factor(sample(c("Train", "Test"), size = .rxNumRows, replace = TRUE, prob = c(.80, .20)),
-                                            levels = c("Train", "Test"))),
-        rngSeed = 17,
-        consoleOutput = TRUE)
 
 # Duplicate the test file for two models.
 file.rename('finalData.splitVar.Test.xdf', 'finalData.splitVar.Test.logit.xdf')
