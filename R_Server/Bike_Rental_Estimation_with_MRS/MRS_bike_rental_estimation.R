@@ -30,9 +30,6 @@ outFileTestA <- "testDataA.xdf"
 outFileTrain <- "trainData.xdf"
 outFileTest <- "testData.xdf"
 
-# Download flight and weather data from a repository.
-download.file(inputFileBikeURL, destfile = inputFileBike, method = "libcurl")
-
 # Stop Report Progress.
 rxOptions(reportProgress = 0)
 
@@ -41,7 +38,7 @@ rxOptions(reportProgress = 0)
 
 # Import the bike data.
 # Remove timestamps and all columns that are part of the label (casual and registered columns).
-bike_mrs <- rxImport(inData = inputFileBike, outFile = outFileBike,
+bike_mrs <- rxImport(inData = inputFileBikeURL, outFile = outFileBike,
                      missingValueString = "M", stringsAsFactors = FALSE,
                      varsToDrop = c("instant", "dteday", "casual", "registered"))
 
@@ -242,6 +239,6 @@ outputs <- data.frame(Features = features,
 outputs
 
 
-#### Close Up: Remove all .xdf and .csv files in the current directory.
-rmFiles <- list.files(pattern = "\\.xdf|\\.csv")
+#### Close Up: Remove all .xdf files in the current directory.
+rmFiles <- list.files(pattern = "\\.xdf")
 file.remove(rmFiles)
