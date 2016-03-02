@@ -18,7 +18,6 @@
 #########################################################################################################
 
 
-
 # Initial some variables.
 inputFileBikeURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/R_Server/Bike_Rental_Estimation_with_MRS/Bike%20Rental%20UCI%20dataset.csv"
 inputFileBike <- "Bike Rental UCI dataset.csv"

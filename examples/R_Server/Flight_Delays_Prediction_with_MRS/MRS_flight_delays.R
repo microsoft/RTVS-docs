@@ -21,30 +21,31 @@
 #########################################################################################################
 
 
-#### Step 0: Get Started.
-
 # Initial some variables.
 inputFileFlightURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/R_Server/Flight_Delays_Prediction_with_MRS/Flight_Delays_Sample.csv"
 inputFileWeatherURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/R_Server/Flight_Delays_Prediction_with_MRS/Weather_Sample.csv"
 inputFileFlight <- "Flight_Delays_Sample.csv"
 inputFileWeather <- "Weather_Sample.csv"
 outFileFlight <- 'flight.xdf'
-outFileFlight2 <- 'flight2.xdf'
 outFileWeather <- 'weather.xdf'
-outFileWeather2 <- 'weather2.xdf'
 outFileOrigin <- 'originData.xdf'
 outFileDest <- 'DestData.xdf'
 outFileFinal <- 'finalData.xdf'
 
-# Turn off the progress reported in MRS.
-rxOptions(reportProgress = 0)
 
-
-#### Step 1: Import Data.
-
+#### Step 1: Import Data
 # Import the flight data.
 flight_mrs <- rxImport(inData = inputFileFlightURL, outFile = outFileFlight,
-                       missingValueString = "M", stringsAsFactors = FALSE)
+                       missingValueString = "M", stringsAsFactors = FALSE,
+                       # Remove columns that are possible target leakers from the flight data.
+                       varsToDrop = c('DepDelay', 'DepDel15', 'ArrDelay', 'Cancelled', 'Year'),
+                       # Definite Carrier, OriginAirportID and DestAirportID as categorical.
+#                        colInfo = list(Carrier = list(type = "factor"),
+#                                       OriginAirportID = list(type = "factor"),
+#                                       DestAirportID = list(type = "factor")),
+                       # Round down scheduled departure time to full hour.
+                       transforms = list(CRSDepTime = floor(CRSDepTime/100)),  
+                       overwrite = TRUE)
 
 # Review the first 6 rows of flight data.
 head(flight_mrs)
@@ -52,119 +53,59 @@ head(flight_mrs)
 # Summary the flight data.
 rxSummary(~., data = flight_mrs, blocksPerRead = 2)
 
-# Import the weather dataset and eliminate some features due to redundance.
+# Import the weather data.
+xform <- function(dataList) {
+  featureNames <- c("Visibility", "DryBulbCelsius", "DewPointCelsius", "RelativeHumidity", "WindSpeed", "Altimeter")
+  dataList[featureNames] <- lapply(dataList[featureNames], scale)
+  return(dataList)
+}
 weather_mrs <- rxImport(inData = inputFileWeatherURL, outFile = outFileWeather,
                         missingValueString = "M", stringsAsFactors = FALSE,
+                        # Eliminate some features due to redundance.
                         varsToDrop = c('Year', 'Timezone', 'DryBulbFarenheit', 'DewPointFarenheit'),
-                        colInfo = list('AdjustedMonth' = list(newName = 'Month'),
-                                       # 'AdjustedDay' = list(newName = 'DayofMonth'),
-#                                        'AirportID' = list(newName = 'OriginAirportID'),
-#                                        'AdjustedHour' = list(newName = 'CRSDepTime')
-                                        ),
+                        # Create a new column 'DestAirportID' in weather data.
+                        transforms = list(DestAirportID = AirportID),
+                        # Definite AirportID and DestAirportID as categorical.
+#                         colInfo = list(AirportID = list(type = "factor"),
+#                                        DestAirportID = list(type = "factor")),
+                        # Normalize some numerical features.
+                        transformFunc = xform,  
+                        transformVars = c("Visibility", "DryBulbCelsius", "DewPointCelsius", "RelativeHumidity", "WindSpeed", "Altimeter"),
                         overwrite = TRUE)
 
-
-names(dataList)[match(c('AdjustedMonth', 'AdjustedDay', 'AirportID', 'AdjustedHour'),
-                      names(dataList))] <- c('Month', 'DayofMonth', 'OriginAirportID', 'CRSDepTime')
+# Review the variable information of weather data.
+rxGetVarInfo(weather_mrs)
 
 #### Step 2: Pre-process Data.
-
-# Remove columns that are possible target leakers from the flight data. 
-varsToDrop <- c('DepDelay', 'DepDel15', 'ArrDelay', 'Cancelled', 'Year')
-
-# Round down scheduled departure time to full hour.
-xform <- function(dataList) {
-  # Create a new continuous variable from an existing continuous variables:
-  # round down CSRDepTime column to the nearest hour.
-  dataList$CRSDepTime <- sapply(dataList$CRSDepTime,
-                                FUN = function(x) {
-                                  floor(x / 100)
-                                })
-  
-  # Return the adapted variable list.
-  return(dataList)
-}
-flight_mrs <- rxDataStep(inData = flight_mrs,
-                         outFile = outFileFlight2,
-                         varsToDrop = varsToDrop,
-                         #transformFunc = xform,
-                         #transformVars = 'CRSDepTime',
-                         transforms = list(CRSDepTime = floor(CRSDepTime/100)),
-                         overwrite = TRUE)
-
-
-# Rename some column names in the weather data to prepare it for merging.  (colInfo)
-xform2 <- function(dataList) {
-  # Create a new column 'DestAirportID' in weather data.
-  dataList$DestAirportID <- dataList$AirportID
-  # Rename 'AdjustedMonth', 'AdjustedDay', 'AirportID', 'AdjustedHour'.
-  names(dataList)[match(c('AdjustedMonth', 'AdjustedDay', 'AirportID', 'AdjustedHour'),
-                        names(dataList))] <- c('Month', 'DayofMonth', 'OriginAirportID', 'CRSDepTime')
-  
-  # Return the adapted variable list.
-  return(dataList)
-}
-weather_mrs <- rxDataStep(inData = weather_mrs,
-                          outFile = outFileWeather2,
-                          transformFunc = xform2,
-                          transformVars = c('AdjustedMonth', 'AdjustedDay', 'AirportID', 'AdjustedHour'),
-                          overwrite = TRUE)
+# Rename some column names in the weather data to prepare it for merging.
+newVarInfo <- list(AdjustedMonth = list(newName = "Month"),
+                   AdjustedDay = list(newName = "DayofMonth"),
+                   AirportID = list(newName = "OriginAirportID"),
+                   AdjustedHour = list(newName = "CRSDepTime"))
+rxSetVarInfo(varInfo = newVarInfo, data = weather_mrs)
 
 # Concatenate/Merge flight records and weather data.
 # 1). Join flight records and weather data at origin of the flight (OriginAirportID).
 originData_mrs <- rxMerge(inData1 = flight_mrs, inData2 = weather_mrs, outFile = outFileOrigin,
-                          type = 'inner', autoSort = TRUE, decreasing = FALSE,
+                          type = 'inner', autoSort = TRUE, 
                           matchVars = c('Month', 'DayofMonth', 'OriginAirportID', 'CRSDepTime'),
                           varsToDrop2 = 'DestAirportID',
                           overwrite = TRUE)
 
 # 2). Join flight records and weather data using the destination of the flight (DestAirportID).
 destData_mrs <- rxMerge(inData1 = originData_mrs, inData2 = weather_mrs, outFile = outFileDest,
-                        type = 'inner', autoSort = TRUE, decreasing = FALSE,
+                        type = 'inner', autoSort = TRUE, 
                         matchVars = c('Month', 'DayofMonth', 'DestAirportID', 'CRSDepTime'),
                         varsToDrop2 = c('OriginAirportID'),
                         duplicateVarExt = c("Origin", "Destination"),
                         overwrite = TRUE)
 
-# Normalize some numerical features and convert some features to be categorical.
-finalData_mrs <- rxDataStep(inData = destData_mrs, outFile = outFileFinal,
-                            transforms = list(
-                              # Normalize some numerical features
-                              Visibility.Origin = scale(Visibility.Origin),
-                              DryBulbCelsius.Origin = scale(DryBulbCelsius.Origin),
-                              DewPointCelsius.Origin = scale(DewPointCelsius.Origin),
-                              RelativeHumidity.Origin = scale(RelativeHumidity.Origin),
-                              WindSpeed.Origin = scale(WindSpeed.Origin),
-                              Altimeter.Origin = scale(Altimeter.Origin),
-                              Visibility.Destination = scale(Visibility.Destination),
-                              DryBulbCelsius.Destination = scale(DryBulbCelsius.Destination),
-                              DewPointCelsius.Destination = scale(DewPointCelsius.Destination),
-                              RelativeHumidity.Destination = scale(RelativeHumidity.Destination),
-                              WindSpeed.Destination = scale(WindSpeed.Destination),
-                              Altimeter.Destination = scale(Altimeter.Destination),
-                              
-                              # Convert 'OriginAirportID', 'Carrier' to categorical features
-                              OriginAirportID = factor(OriginAirportID),
-                              Carrier = factor(Carrier)),
-                            overwrite = TRUE)
-
 
 #### Step 3: Prepare Training and Test Datasets.
 
 # Randomly split 80% data as training set and the remaining 20% as test set.
-rxExec(rxSplit, inData = finalData_mrs,
-       outFilesBase = "finalData",
-       outFileSuffixes = c("Train", "Test"),
-       splitByFactor = "splitVar",
-       overwrite = TRUE,
-       transforms = list(splitVar = factor(sample(c("Train", "Test"), size = .rxNumRows, replace = TRUE, prob = c(.80, .20)),
-                                           levels = c("Train", "Test"))),
-       rngSeed = 17,
-       consoleOutput = TRUE)
-
-
-rxSplit(inData = finalData_mrs,
-        outFilesBase = "finalData",
+rxSplit(inData = destData_mrs,
+        outFilesBase = "modelData",
         outFileSuffixes = c("Train", "Test"),
         splitByFactor = "splitVar",
         overwrite = TRUE,
@@ -174,8 +115,11 @@ rxSplit(inData = finalData_mrs,
         consoleOutput = TRUE)
 
 # Duplicate the test file for two models.
-file.rename('finalData.splitVar.Test.xdf', 'finalData.splitVar.Test.logit.xdf')
-file.copy('finalData.splitVar.Test.logit.xdf', 'finalData.splitVar.Test.tree.xdf')
+file.rename('modelData.splitVar.Test.xdf', 'modelData.splitVar.Test.logit.xdf')
+file.copy('modelData.splitVar.Test.logit.xdf', 'modelData.splitVar.Test.tree.xdf')
+train <- RxXdfData("modelData.splitVar.Train.xdf")
+testLogit <- RxXdfData("modelData.splitVar.Test.logit.xdf")
+testTree <- RxXdfData("modelData.splitVar.Test.tree.xdf")
 
 
 #### Step 4A: Choose and apply a learning algorithm (Logistic Regression).
@@ -184,6 +128,7 @@ file.copy('finalData.splitVar.Test.logit.xdf', 'finalData.splitVar.Test.tree.xdf
 allvars <- names(finalData_mrs)
 xvars <- allvars[allvars != 'ArrDel15']
 form <- as.formula(paste("ArrDel15", "~", paste(xvars, collapse = "+")))
+modelFormula <- formula(train, depVars = "ArrDel15", varsToDrop = c("RowNum", "splitVar"))
 
 # Build a Logistic Regression model.
 logitModel_mrs <- rxLogit(form, data = 'finalData.splitVar.Train.xdf')
