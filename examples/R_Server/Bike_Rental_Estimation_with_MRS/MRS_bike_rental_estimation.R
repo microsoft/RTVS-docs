@@ -78,25 +78,23 @@ train <- RxXdfData("modelData.yr.0.xdf")
 test <- RxXdfData("modelData.yr.1.xdf")
 
 #### Step 4: Choose and apply a learning algorithm (Decision Forest Regression).
-# Build a formula for the regression model.
-allvars <- names(train)
-xvars <- allvars[!allvars %in% c("yr", "cnt")]  # remove the "yr", which is used to split the training and test data, and the target variable "cnt"
-form <- as.formula(paste("cnt", "~", paste(xvars, collapse = "+")))
+# Build a formula for the regression model and remove the "yr", which is used to split the training and test data.
+modelFormula <- formula(train, depVars = "cnt", varsToDrop = c("RowNum", "yr"))
 # Fit a Decision Forest Regression model on the training data.
-dForest <- rxDForest(form, data = train, importance = TRUE, seed = 123)
+dForest <- rxDForest(modelFormula, data = train, importance = TRUE, seed = 123)
 
 #### Step 5: Predict over new data and review the model performance.
 # Predict the probability on the test dataset.
-predict <- rxPredict(dForest, data = test, overwrite = TRUE, computeResiduals = TRUE)
-score <- rxXdfToDataFrame(predict)
+predict <- rxPredict(dForest, data = test, overwrite = TRUE, computeResiduals = TRUE,
+                     transforms = list(cnt_Resid_2 = cnt_Resid^2))
+# Calculate three statistical measures: Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), and Relative Absolute Error (RAE).
+sum <- rxSummary(~ cnt_Resid_abs+cnt_Resid_2+cnt_rel, data = predict, summaryStats = "Mean", 
+                 transforms = list(cnt_Resid_abs = abs(cnt_Resid), 
+                                   cnt_Resid_2 = cnt_Resid^2, 
+                                   cnt_rel = abs(cnt_Resid)/cnt)
+)$sDataFrame
 
-# Calculate three statistical measures.
-mae <- function(df) {mean(abs(df$cnt_Resid))}  # Mean Absolute Error
-rmse <- function(df) {sqrt(mean(df$cnt_Resid ^ 2))}  # Root Mean Squared Error
-rae <- function(df) {mean(abs(df$cnt_Resid) / df$cnt)}  # Relative Absolute Error
-
-# Review the results.
-measures <- data.frame(MAE = mae(score), RMSE = rmse(score), RAE = rae(score))
+measures <- data.frame(MAE = sum[1, 2], RMSE = sqrt(sum[2, 2]), RAE = sum[3, 2])
 measures
 
 #### Close Up: Remove all .xdf files in the current directory.
