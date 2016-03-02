@@ -26,7 +26,6 @@ outFileBike <- "bike.xdf"
 outFileLag <- "lagData.xdf"
 
 #### Step 1: Import the Bike Data.
-
 bike <- rxImport(inData = inputFileBikeURL, outFile = outFileBike,
                  missingValueString = "M", stringsAsFactors = FALSE,
                  # Remove timestamps and all columns that are part of the label.
@@ -37,7 +36,6 @@ bike <- rxImport(inData = inputFileBikeURL, outFile = outFileBike,
                                 season = list(type = "factor")))
 
 #### Step 2: Feature Engineering.
-
 # Add number of bikes that were rented in each of the previous 12 hours as 12 lag features.
 computeLagFeatures <- function (dataList) {  # function for computing lag features.
   
@@ -74,14 +72,12 @@ lagData <- rxDataStep(inData = bike, outFile = outFileLag, transformFunc = compu
                       transformVars = "cnt", overwrite=TRUE)
 
 #### Step 3: Prepare Training and Test Datasets.
-
 # Split data by "yr" so that the training data contains records for the year 2011 and the test data contains records for 2012.
 rxSplit(inData = lagData, outFilesBase = "modelData", splitByFactor = "yr", overwrite = TRUE, reportProgress = 0, verbose = 0)
 train <- RxXdfData("modelData.yr.0.xdf")
 test <- RxXdfData("modelData.yr.1.xdf")
 
 #### Step 4: Choose and apply a learning algorithm (Decision Forest Regression).
-
 # Build a formula for the regression model.
 allvars <- names(train)
 xvars <- allvars[!allvars %in% c("yr", "cnt")]  # remove the "yr", which is used to split the training and test data, and the target variable "cnt"
@@ -90,7 +86,6 @@ form <- as.formula(paste("cnt", "~", paste(xvars, collapse = "+")))
 dForest <- rxDForest(form, data = train, importance = TRUE, seed = 123)
 
 #### Step 5: Predict over new data and review the model performance.
-
 # Predict the probability on the test dataset.
 predict <- rxPredict(dForest, data = test, overwrite = TRUE, computeResiduals = TRUE)
 score <- rxXdfToDataFrame(predict)
@@ -103,7 +98,6 @@ rae <- function(df) {mean(abs(df$cnt_Resid) / df$cnt)}  # Relative Absolute Erro
 # Review the results.
 measures <- data.frame(MAE = mae(score), RMSE = rmse(score), RAE = rae(score))
 measures
-
 
 #### Close Up: Remove all .xdf files in the current directory.
 rmFiles <- list.files(pattern = "\\.xdf")
