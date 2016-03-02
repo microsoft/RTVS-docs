@@ -30,7 +30,6 @@ outFileFlight <- 'flight.xdf'
 outFileWeather <- 'weather.xdf'
 outFileOrigin <- 'originData.xdf'
 outFileDest <- 'DestData.xdf'
-outFileFinal <- 'finalData.xdf'
 
 
 #### Step 1: Import Data
@@ -39,8 +38,8 @@ flight_mrs <- rxImport(inData = inputFileFlightURL, outFile = outFileFlight,
                        missingValueString = "M", stringsAsFactors = FALSE,
                        # Remove columns that are possible target leakers from the flight data.
                        varsToDrop = c('DepDelay', 'DepDel15', 'ArrDelay', 'Cancelled', 'Year'),
-                       # Definite Carrier, OriginAirportID and DestAirportID as categorical.
-#                        colInfo = list(Carrier = list(type = "factor"),
+                       # Definite "Carrier" as categorical.
+                       colInfo = list(Carrier = list(type = "factor")),
 #                                       OriginAirportID = list(type = "factor"),
 #                                       DestAirportID = list(type = "factor")),
                        # Round down scheduled departure time to full hour.
@@ -100,7 +99,6 @@ destData_mrs <- rxMerge(inData1 = originData_mrs, inData2 = weather_mrs, outFile
                         duplicateVarExt = c("Origin", "Destination"),
                         overwrite = TRUE)
 
-
 #### Step 3: Prepare Training and Test Datasets.
 
 # Randomly split 80% data as training set and the remaining 20% as test set.
@@ -113,6 +111,8 @@ rxSplit(inData = destData_mrs,
                                             levels = c("Train", "Test"))),
         rngSeed = 17,
         consoleOutput = TRUE)
+        
+
 
 # Duplicate the test file for two models.
 file.rename('modelData.splitVar.Test.xdf', 'modelData.splitVar.Test.logit.xdf')
