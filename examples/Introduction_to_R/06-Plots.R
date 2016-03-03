@@ -28,7 +28,7 @@ plot(Duncan$education,Duncan$prestige)
 # http://students.washington.edu/mclarkso/documents/line%20styles%20Ver2.pdf	
 
 attach(Duncan)  	# make variables in data frame available in environment	
-#	
+
 plot(education,prestige,	
    main = "Simple but ugly scatter plot", #add a title	
 	 col = "red",                  # Change the color of thepoints	
@@ -70,7 +70,7 @@ pairs(cbind(prestige,income,education),  	# pairs is function that produces a ma
 par(mfrow=c(2,2))  						# set up to draw multiple plots on the same chart	
 # basic histogram	
 hist(Duncan$prestige,xlab="prestige",col = "yellow",main="Histogram")	
-#	
+
 x <- rnorm(10000)							# random draw from normal distribution	
                               # plot histogram	
 hist(x, freq = FALSE, col = "pink")				
@@ -91,6 +91,7 @@ rug(x,col="red")
 
 
 ## Lattice (trellis) Graphics	
+
 # Lattice graphics are the second major plotting system in R. Plots built with lattice have a very distinctive look, but the real value is the ease of making trellis plots - graphs that display a variable conditioned on an other variable. Some useful websites are:	
 # http://www.statmethods.net/advgraphs/trellis.html	
 # http://user2007.org/program/presentations/sarkar.pdf   	
@@ -116,7 +117,7 @@ histogram( ~ income | type,
               panel.mathdensity(dmath = dnorm, col = "black",	
                                 args = list(mean=mean(x),sd=sd(x)))	
           } )	
-#	
+
 # More histograms	
 # using singer data	
 histogram( ~ height | voice.part, data = singer,	
@@ -129,7 +130,6 @@ histogram( ~ height | voice.part, data = singer,
 
 
 ### Lattice Density plots  	
-
 
 densityplot( ~ height | voice.part, data = singer, layout = c(2, 4),  	
             xlab = "Height (inches)", bw = 5)  	
@@ -163,7 +163,7 @@ levelplot(prestige ~ income*education,
        #ylim = c(min(y), max(y)),	
        )	
 	
-#	
+
 # Fancy Level plot	
 x <- seq(pi/4, 5 * pi, length.out = 100)	
 y <- seq(pi/4, 5 * pi, length.out = 100)	
@@ -173,7 +173,7 @@ grid$z <- cos(r^2) * exp(-r/(pi^3))
 levelplot(z~x*y, grid, cuts = 50, scales=list(log="e"), xlab="",	
           ylab="", main="Weird Function", sub="with log scales",	
           colorkey = FALSE, region = TRUE)	
-#	
+
 # Another level plot	
 attach(environmental)	
 ozo.m <- loess((ozone^(1/3)) ~ wind * temperature * radiation,	
@@ -218,7 +218,8 @@ cloud(prop.table(Titanic, margin = 1:3),
 #----------------------------------------------------------------------------------	
 	
 
-## GGPLOT2 GRAPHICS	
+### ggplot2 graphics
+
 # ggplot is the third major plotting system for R.It is based on Leland Wilkinson's grammar of graphics. Plots are built in layers.	
 
 # Some useful websites are:	
@@ -254,11 +255,13 @@ p + geom_histogram(binwidth=10)
 set.seed(1410) # Make the sample reproducible	
 dsmall <- diamonds[sample(nrow(diamonds), 500), ]	
 p <- ggplot(dsmall, aes(carat, price))	
-p + geom_point() + stat_smooth()	
+p + geom_point() + stat_smooth()
+
 # Same plot with alternate "simple" plot function qplot	
 
 
 ### qplot examples	
+
 # The ggplot2 package also has a function called qplot which is often simpler to use	
 # However, it has a different syntax than the ggplot function.	
 
@@ -268,16 +271,13 @@ qplot(carat, price, data = diamonds, geom = c("point", "smooth"))
 # quality (right).	
 qplot(carat, price, data = dsmall, colour = color)	
 qplot(carat, price, data = dsmall, shape = cut)	
-#	
+
 # Reducing the alpha value from 1/10 (left) to 1/100 (middle) to 1/200	
 # (right) makes it possible to see where the bulk of the points lie.	
 qplot(carat, price, data = diamonds)	
 qplot(carat, price, data = diamonds, alpha = I(1/10))	
 qplot(carat, price, data = diamonds, alpha = I(1/100))	
-#	
+
 # Smooth curves add to scatterplots of carat vs.\ price. The dsmall	
 # dataset (1st) and the full dataset (2nd).	
 qplot(carat, price, data = dsmall, geom = c("point", "smooth"))	
-#	
-
-

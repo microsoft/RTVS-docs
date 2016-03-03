@@ -12,7 +12,9 @@ checkpoint("2016-01-01")
 
 # In this script we will show some basic data wrangling. 	
 
+
 ### Fetch some data from Yahoo Finance  	
+
 # Go to http://finance.yahoo.com/q/hp?s=IBM+Historical+Prices and copy the link to the table. Then read the data directly from the URL into an R data frame.	
 
 	
@@ -25,7 +27,9 @@ head(IBM.stock)
 write.csv(IBM.stock,file="IBM.stock.csv",row.names=FALSE)	
 IBM_too  <- read.csv("IBM.stock.csv")	
 
+
 ### Augment the data frame	
+
 # Here are two ways to add a new variable, Volatility, to a data frame, The first uses "$" to index into the data frame, The second uses the within function	
 
 IBM.stock$Volatility<- (IBM.stock$High - IBM.stock$Low)/IBM.stock$Open	
@@ -34,7 +38,9 @@ head(IBM.stock)
 IBM.stock2 <- within(IBM.stock,{Volatility = (High - Low)/Open})	
 head(IBM.stock2)	
 
+
 ### Prune the data frame	
+
 # We show two was to prune the data frame so that it only include prices after January 1, 2000. Note that both methods use row, column indexing into the data frame IBM.stock[row,column]. The first thing we do is check to see what data types the varables are. Noticing that Date is a factor, we willmake it a date as we build a new data frame.	
 
 sapply(IBM.stock,class)  		# Note that Date is a factor	
@@ -51,7 +57,9 @@ which(xx > 5)
 IBM.stock2.2000 <- IBM.stock[which(as.Date(IBM.stock$Date) > as.Date('2000-01-01')),]	
 tail(IBM.stock2.2000)	
 
+
 ### Aggregate data	
+
 # Here we will aggregate daily observations to form a monthly series. First we will create new year and month variables by extracting the relevant information from the Date variable	
 
 IBM.stock.2000$Month <- substr(IBM.stock.2000$Date,6,7)  		# Add variable Month to data frame	
@@ -73,14 +81,16 @@ head(IBM.stock.month)
 IBM.stock.month <- IBM.stock.month[with(IBM.stock.month,order(-as.integer(Year),Month)),]	
 head(IBM.stock.month)	
 
+
 ### Merge data	
+
 # We will merge the the data frame containing the aggregated monthly stock prices from the year 2000 to the present with a new data frame containing dividend data. First we get the dividend data.	
 
 url2 <- "http://ichart.finance.yahoo.com/table.csv?s=IBM&a=00&b=2&c=1962&d=11&e=22&f=2011&g=v&ignore=.csv"	
 IBM.div <- read.table(url2,header=TRUE,sep=",")	
 #write.csv(IBM.div,"IBM.div.csv",row.names=FALSE)	
 head(IBM.div)	
-#	
+
 class(IBM.stock.month$Date)	
 class(IBM.div$Date)	
 
@@ -106,14 +116,16 @@ class(IBM$divDate)
 IBM1 <- IBM[order(-as.integer(as.Date(IBM$divDate))),]	
 head(IBM1)	
 
-### Is there an easirer way to merge?	
-# Lets try using the join function from the plyr package.	
+
+### Is there an easier way to merge?	
+
+# Lets try using the join() function from the plyr package.	
 
 library(plyr)	
 head(IBM.stock.month)	
 head(IBM.div)	
 names(IBM.div)[1] <- "divDate"	
-#	
+
 IBM2 <- join(IBM.stock.month,IBM.div,by='divDate')	
 head(IBM2)	
 
@@ -124,7 +136,9 @@ head(IBMs)
 IBM2s <- IBM2[order(-as.integer(as.Date(IBM2$Date))),]	
 head(IBM2s)	
 
+
 ### Comparing data frames	
+
 # Have a look at the vignette for the compare package	
 # http://cran.r-project.org/web/packages/compare/vignettes/compare-intro.pdf	
 
@@ -133,14 +147,17 @@ comparison <- compare(IBMs,IBM2s,allowAll=TRUE)
 comparison$result	
 
 ### Reshaping a data frame	
-# Finaly, let's look at using the reshape function to make "wide" and "long" versions of the data set.	
+
+# Finally, let's look at using the reshape function to make "wide" and "long" versions of the data set.	
 
 IBM.wide <- reshape(IBM[,c("Year","Month","Close")],idvar="Year",timevar="Month",direction="wide")	
 IBM.wide	
 IBM.long <- reshape(IBM.wide,idvar="Year",timevar="Month",direction="long")	
 head(IBM.long, n=20)	
 
-## The dplyer Package	
+
+### The dplyr Package	
+
 # So far, we have been looking mostly at base R data manipulation techniques. But for the past year or so "state-of-the-art"" data wrangling with R is accomplished through Hadley Wichham's dplyr package. Let's look at Hadly's tutorial in his online vignette.	
 # http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html	
 # C:/Users/Joe.Rickert/Documents/RStudio Projects/Bootcamp_DataWeek_2014/Introduction to dplyr.htm	

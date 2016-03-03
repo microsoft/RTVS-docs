@@ -20,8 +20,8 @@ library(kernlab)			# SVM library
 library(e1071)				# SVM library	
 library(ada)          # Boosting library	
 
+
 ### Some Convenience Functions	
-##	
 
 # Function to divide data into training, and test sets 	
 ttIndex <- function(data=data,pctTrain=0.7)	
@@ -42,6 +42,7 @@ score <- function(model,target=data[testInd, 21],predict=pr){
 }	
 
 ### Read the Data and Prepare the Training and Test Sets	
+
 # Get the weather data and select the subset for modeling	
 
 data(weather, package = "rattle")
@@ -117,17 +118,19 @@ par(opar)
 
 drawTreeNodes(model)	
 title(main="Decision Tree weather.csv $ RainTomorrow")	
-	
 
 
-#### Evaluate model performance on the test set 	
+### Evaluate model performance on the test set 	
+
 # Run the tree model on the test set and generate an error matrix	
 
-  pr <- predict(model, data[testInd, ], type="class")	
-# 	
+pr <- predict(model, data[testInd, ], type="class")	
+
 score(model)                     # generate the confusion matrix      	
 
-#### Draw the ROC Curve	
+
+### Draw the ROC Curve	
+
 # First, create a prediction object.	
 
 pred <- prediction(as.vector(as.numeric(pr)), data[testInd,21])	
@@ -135,7 +138,8 @@ perf <- performance(pred,"tpr","fpr")
 plot(perf, main="ROC curve", colorize = TRUE)	
 
 
-#### Explore an unpruned tree	
+### Explore an unpruned tree	
+
 # The complexity parameter sets the minimum benefit that must be gained at each split of the decision tree. (default = .01) Typical behavior with cp=0 is to see the error reate decrease at first and then begin to increase.	
 
 control <- rpart.control(minsplit=10,	
