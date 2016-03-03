@@ -7,13 +7,18 @@
 # In this section we will show off some R features for exploring data using plots from various contributed packages.	
 
 
-	
-library(Hmisc)  		                  # for describe()	
-library(fBasics)			
-library(gplots)                       # for barplot	
-library(ggplot2)                      # for boxplots	
-library(ellipse)		                  # for correlation plot	
-library(rattle)                       # for the weather data set	
+(if (!require("Hmisc")) install.packages("Hmisc"))	
+library("Hmisc")  		                  # for describe()	
+(if (!require("fBasics")) install.packages("fBasics"))
+library("fBasics")			
+(if (!require("gplots")) install.packages("gplots"))
+library("gplots")                       # for barplot	
+(if (!require("ggplot2")) install.packages("ggplot2"))
+library("ggplot2")                      # for boxplots	
+(if (!require("ellipse")) install.packages("ellipse"))
+library("ellipse")		                  # for correlation plot	
+(if (!require("rattle")) install.packages("rattle"))
+library("rattle")                       # for the weather data set	
 
 ### The Weather Data	
 # We will use the weather data set that is included in the rattle package. First we fetch the data from the package and then write it to disk in the working directory. After that, we can read the data directly from disk.	

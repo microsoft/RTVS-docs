@@ -6,19 +6,16 @@
 # ---	
 # In this script we will look at Kmeans and hierarchical clustering using the weather data.	
 
-set.seed(42)	
+set.seed(42)
+(if (!require("rattle")) install.packages("rattle"))
 library(rattle)	
-library(fpc)  	                       # for the plotcluster function	
-library(Hmisc)                         # for varclus function	
+(if (!require("fpc")) install.packages("fpc"))
+library("fpc")  	                       # for the plotcluster function	
+(if (!require("Hmisc")) install.packages("Hmisc"))
+library("Hmisc")                         # for varclus function	
 
 ### Weather Data	
-
-name <- "weather.csv"                  # name of the file	
-#dataDir <- getwd()                    # directory location	
-dataDir <- "C:/DATA/Rattle Data"	
-file <- file.path(dataDir,name)        # Construct the file path	
-weather <- read.csv(file)           	
-#	
+data(weather)
 weather <- weather[,-c(1,2)]           # Drop the first two columns	
 head(weather)                          # Look at the data	
 

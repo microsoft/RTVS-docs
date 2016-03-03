@@ -9,6 +9,10 @@
 ### Fetch some data from Yahoo Finance  	
 # Go to http://finance.yahoo.com/q/hp?s=IBM+Historical+Prices and copy the link to the table. Then read the data directly from the URL into an R data frame.	
 
+(if (!require("compare")) install.packages("compare"))
+library("compare")
+(if (!require("plyr")) install.packages("plyr"))
+library("plyr")
 	
 url <- "http://ichart.finance.yahoo.com/table.csv?s=IBM&a=00&b=2&c=1962&d=11&e=22&f=2011&g=d&ignore=.csv"	
 IBM.stock <- read.table(url,header=TRUE,sep=",")	
@@ -103,7 +107,6 @@ head(IBM1)
 ### Is there an easirer way to merge?	
 # Lets try using the join function from the plyr package.	
 
-library(plyr)	
 head(IBM.stock.month)	
 head(IBM.div)	
 names(IBM.div)[1] <- "divDate"	
@@ -122,7 +125,6 @@ head(IBM2s)
 # Have a look at the vignette for the compare package	
 # http://cran.r-project.org/web/packages/compare/vignettes/compare-intro.pdf	
 
-library(compare)	
 comparison <- compare(IBMs,IBM2s,allowAll=TRUE)	
 comparison$result	
 

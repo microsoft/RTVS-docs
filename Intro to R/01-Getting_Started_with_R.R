@@ -74,15 +74,13 @@
 
 ### Looking at Packages	
 
-
 # library()                  # list all available installed packages	
-search()                     # list all "attached" or loaded packages	
-# install.packages("rattle") # to install the package rattle	
-library(rattle)              # to load the package rattle	
-data()                       # to see all of the data sets available in the packages you have loaded	
-data(package="rattle")       # to see all the data sets in the pakage rattle	
-help(package=rattle)         # to get help with the package rattle	
+search() # list all "attached" or loaded packages	
+(if (!require("rattle")) install.packages("rattle"))
+# install the package rattle if necessary	
+library("rattle") # to load the package rattle	
+data() # to see all of the data sets available in the packages you have loaded	
+data(package = "rattle") # to see all the data sets in the pakage rattle	
+help(package = rattle) # to get help with the package rattle	
 # lsf.str("package:rattle")  # to list all of the functions in rattle	
-
-
 

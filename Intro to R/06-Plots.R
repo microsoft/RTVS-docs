@@ -7,7 +7,13 @@
 ### Basic R Graphics	
 # First, let's look at some simple scatter plots. The Duncan data frame has 45 rows and 4 columns. Data on the prestige and other characteristics of 45 U. S. occupations in 1950. 	
 
-library(car)  	# Load the library containing the sample data	
+(if (!require("car")) install.packages("car"))
+library("car") # Load the library containing the sample data	
+(if (!require("ggplot2")) install.packages("ggplot2"))
+library("ggplot2")
+(if (!require("lattice")) install.packages("lattice"))
+library("lattice")
+
 class(Duncan)		# What kind of data structure is Duncan?	
 dim(Duncan)			# How big is Duncan? 	
 Duncan[1:5,]		# Look at the first five rows of the data frame	
@@ -83,20 +89,14 @@ rug(x,col="red")
 
 
 ## Lattice (trellis) Graphics	
-# Lattice graphics are the second major plotting system in R. Plots built with lattice have a very distinctive look, but the real value is the ease of making trellis plots - graphs that display a variable conditioned on an other variable. Some useful websites are:	
+# Lattice graphics are the second major plotting system in R. Plots built with
+# lattice have a very distinctive look, but the real value is the ease of 
+# making trellis plots - graphs that display a variable conditioned on an 
+# other variable. Some useful websites are:	
 # http://www.statmethods.net/advgraphs/trellis.html	
 # http://user2007.org/program/presentations/sarkar.pdf   	
 
 ### Lattice Histograms	
-
-# Basic histogram	
-histogram( ~ prestige | type,  			# Formula to plot variable by a factor	
-	         data = Duncan,					# Data set is an input	
-			 nint=10,	
-             layout = c(3,1), 	
-			 aspect = 1,	
-             xlab = "Type of Profession")	
-	
 histogram( ~ income | type, 	
 	       data = Duncan,	
 		   nint=5,	
@@ -221,7 +221,6 @@ cloud(prop.table(Titanic, margin = 1:3),
 
 # Here we illustrate building up a multi-layer plot	
 
-library(ggplot2)	
 # Scatter plot	
 p <- ggplot(Duncan, aes(income, prestige))  					# data to be plotted	
 # p		# This will produce an error since no layers are defined														

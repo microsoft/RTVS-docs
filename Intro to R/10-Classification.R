@@ -5,14 +5,22 @@
 # output: html_document	
 # ---	
 
-library(rattle)  			# for weather data set	
-library(rpart)				# CART Decision Trees	
-library(colorspace)		# used to generate colors for plots	
-library(randomForest)	
-library(ROCR)				  # ROC 	
-library(kernlab)			# SVM library	
-library(e1071)				# SVM library	
-library(ada)          # Boosting library	
+(if (!require("rattle")) install.packages("rattle"))
+library("rattle")  			# for weather data set	
+(if (!require("rpart")) install.packages("rpart"))
+library("rpart")				# CART Decision Trees	
+(if (!require("colorspace")) install.packages("colorspace"))
+library("colorspace")		# used to generate colors for plots	
+(if (!require("randomForest")) install.packages("randomForest"))
+library("randomForest")	
+(if (!require("ROCR")) install.packages("ROCR"))
+library("ROCR")				  # ROC 	
+(if (!require("kernlab")) install.packages("kernlab"))
+library("kernlab")			# SVM library	
+(if (!require("e1071")) install.packages("e1071"))
+library("e1071")				# SVM library	
+(if (!require("ada")) install.packages("ada"))
+library("ada")          # Boosting library	
 
 ### Some Convenience Functions	
 ##	
@@ -38,10 +46,7 @@ score <- function(model,target=data[testInd, 21],predict=pr){
 ### Read the Data and Prepare the Training and Test Sets	
 # Get the weather data and select the subset for modeling	
 
-name <- "weather.csv"	
-dataDir <- "C:/DATA/Rattle Data"	
-path <- file.path(dataDir,name)	
-data <- read.csv(path,header=TRUE)	
+data(weather)
 # head(data)	
 # Select variables for the model	
 data <- subset(data,select=c(MinTemp:RainToday,RainTomorrow))	

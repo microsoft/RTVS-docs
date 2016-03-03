@@ -7,7 +7,7 @@
 ### A Simple Regression Example	
 # This simple regression example comes from Peter Dalgaard's classic book: Statistics and Computing, Introductory Statistics with R (Springer 2002)  	
 
-
+(if (!require("ISwR")) install.packages("ISwR"))
 library(ISwR)             # Load the ISwR package written for the book	
 data(package="ISwR")      # Look at the data sets that come with the package	
 
