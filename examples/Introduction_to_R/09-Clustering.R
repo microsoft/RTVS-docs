@@ -17,6 +17,7 @@ library(rattle)
 library(fpc)  	                       # for the plotcluster function	
 library(Hmisc)                         # for varclus function	
 
+
 ### Weather Data	
 
 data(weather, package = "rattle")
@@ -24,6 +25,7 @@ weather <- weather[,-c(1,2)]           # Drop the first two columns
 head(weather)                          # Look at the data	
 
 ### KMEANS with plot and statistics	
+
 # Note that the K means algorithm requires numeric variables	
 
 numvars <- lapply(weather,is.numeric)			# Find numeric variables in data set	
@@ -73,7 +75,9 @@ kmod8 <- kmPlot(numdataS,nclust=8)
 kmod2 <- kmPlot(numdataS,nclust=2)	
 kmod2b <- kmPlot(numdataS,nclust=2,clnum=1,method="bc")	
 
+
 ### Hierarchical Clustering	
+
 # The following function to produce a hierarchical correlation plot. It follows code on page 135 of Data Mining with Rattle and R.	
 
 # Note that in the plot shorter lengths correspond to higher correlations	
@@ -98,7 +102,7 @@ hcPlot <- function(data="numdata"){
 	
 hcPlot(data="weather.num")           # Note: name of file must be in quotes!!	
 
-# varclus, in the Hmisc package, does a hierarchical cluster analysis on variables, using the Hoeffding D statistic, squared Pearson or Spearman (the default) correlations, or proportion of observations for which two variables are both positive as similarity measures. The clustering is done by hclust(). 	
+# varclus(), in the Hmisc package, does a hierarchical cluster analysis on variables, using the Hoeffding D statistic, squared Pearson or Spearman (the default) correlations, or proportion of observations for which two variables are both positive as similarity measures. The clustering is done by hclust(). 	
 
 vClus <- varclus(as.matrix(numdata))	
 vClus	

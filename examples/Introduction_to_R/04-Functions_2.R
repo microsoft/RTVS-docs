@@ -10,10 +10,10 @@ library(checkpoint)
 checkpoint("2016-01-01")
 
 
-# ---	
 ### A SECOND LOOK AT R FUNCTIONS	
 
 #### Some Properties of Functions:	
+
 # Functions have formals(), body() and a parent environment(). These are functions that are helpful for looking at other functions.	
 # formals() returns the formal arguments of a function.	
 
@@ -30,7 +30,9 @@ environment(rnorm)		# returns the environment of a function
 # For a great discussin or Environments in R see the Environments chapter of Hadley Wickham's advanced R book:   	
 # http://adv-r.had.co.nz/Environments.html  	
 
+
 #### Anonymous Functions       	
+
 # Functions in R are ordinary objects. You don't have to assign them a name they can be anonymous. For example:	
 
 function(x) x + cos(x)		# define the function	
@@ -41,7 +43,9 @@ function(x) x + cos(x)		# define the function
 mtcars	
 lapply(mtcars, function(x) length(unique(x)))	
 
-#### Closure  	
+
+#### Closure  
+	
 # R uses lexical scoping: The binding of symbols to values depends on what was available in the function's environment at the time the function was created. This is called the enclosing environment.	
 
 x <- 5	
@@ -62,7 +66,7 @@ x
 #	
 environment(f)	
 
-# If a variable is not in the current environment R looks in the parent environment. Use search() to see the heirarchy of environments R will search.	
+# If a variable is not in the current environment R looks in the parent environment. Use search() to see the hierarchy of environments R will search.	
 
 search()	
 
@@ -101,6 +105,7 @@ f5 <- function(x){
 	
 f5(5)     # f5 picks up y	
 
+
 #### Functions that need functions   	
 
 head(iris)	
@@ -108,18 +113,20 @@ sapply(iris,class)					          # applies function to every column of a data fr
 irisF <- Filter(is.factor,iris)       # Keeps the data that are TRUE	
 class(irisF)	
 head(irisF)	
-#	
+
 irisN <- Find(is.numeric,iris)        # Find the first value TRUE	
 class(irisN)	
 head(irisN)	
-#	
+
 Position(is.factor,iris)            # Find the poistion of first TRUE value	
 # some math functions	
 integrate(sin,0,pi/2)	
 optimise(sin,c(0,pi),maximum=TRUE)  	
 
+
 #### tapply	
-# tapply Applies a function to each cell of a ragged array. A ragged array is an array (vector, matrix, etc.) organized into groups by a factor variable where some of the levels of the factor may have zero entries.   	
+
+# tapply() applies a function to each cell of a ragged array. A ragged array is an array (vector, matrix, etc.) organized into groups by a factor variable where some of the levels of the factor may have zero entries.   	
 
 n <- 17	
 x <- 1:n	
@@ -137,6 +144,7 @@ tapply(df$x,df$group,min)
 myFcn <- function(n){min(n) + 4}						           # write your own function	
 tapply(df$x,df$group,myFcn)								             # tapply your own function   	
 
+
 #### Recursive functions	
 
 myLog <- function(x){	
@@ -145,6 +153,7 @@ myLog <- function(x){
 myLog(5)   	
 
 ##### Some Resources	
+
 # Hadley Wickham's book: Advanced R http://adv-r.had.co.nz/   	
 # A Berkeley Workshop: http://www.stat.berkeley.edu/~statcur/Workshop2/Presentations/functions.pdf    	
 # A Google Movie: http://www.youtube.com/watch?v=CHmmHfJ8hCA&list=PLOU2XLYxmsIK9qQfztXeybpHvru-TrqAP	

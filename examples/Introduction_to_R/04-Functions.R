@@ -12,6 +12,7 @@ checkpoint("2016-01-01")
 
 # "A function is a group of instructions that takes inputs, uses them to compute other values, and returns the result" - Norm Matloff The Art of R Programming	
 
+
 ### Get Some Data	
 
 aq <- airquality[,1:4]  	# get the first four columns of the airquality data frame	
@@ -38,16 +39,19 @@ help(mean)								# getting help with an R function
 #?mean									    # Same as the above	
 example(mean)							# See an example of an R function	
 
+
 ### Writing Functions  	
+
 # Let's write our own mean function  	
 
 jmean <- function(x){	
 	m <- sum(x)/length(x)		# where is m?	
 	return(m)	
 }	
-jmean(Oz)	
-# R will through an error because m is not in the global environment	
-# m 	
+jmean(Oz)
+	
+# R will throw an error because m is not in the global environment	
+m 	
 
 # Try again and improve the formatting	
 
@@ -64,14 +68,18 @@ jmean2(Oz)
 jmean3 <- function(x,...){	
 	m <- round(sum(x)/length(x),...)	
 	return(m)	
-}	
+  }
+
+
 #?round						# look to see what parameters round is expecting	
 	
 jmean3(Oz,3)	
 jmean3(Oz)				# the default value for round is 0	
 jmean3(Oz,1)	
 
+
 ### Functions calling Functions  	
+
 # How about giving the user a choice about which rounding function to use?  	
 # Look at the difference between round() and signif().	
 
@@ -89,7 +97,9 @@ jmean4 <- function(x,FUN,...){
 jmean4(Oz,round,4)	
 jmean4(Oz,signif,4)	
 
+
 ### Functions with Defaults	
+
 # One last try  	
 #      - make round the default method of rounding	
 #      - make the default number of decimal digits 2  	
@@ -102,7 +112,9 @@ jmean5(Oz)
 jmean5(Oz,FUN=signif)	
 jmean5(Oz,FUN=signif,digits=4)	
 
+
 ### How to make a function return multiple values	
+
 # A simple function that returns multiple values	
 
 aq.noMV <- na.omit(aq)	
@@ -121,13 +133,14 @@ mvsd(aq.noMV)
 ### Clean up the Global Environment	
 
 detach(aq)	# remove the aq data frame variables from the global environment								
-#	
+
 rm(aq)			# remove aq from the global environment	
-#	
+
 #rm(list=ls())	# Get rid of everything. Be careful with this!!!	
 
 
 ### Some Important,  Helpful Functions	
+
 # Missing Values	
 # NA is the way to designate a missiong value as we saw above.	
 
@@ -151,7 +164,9 @@ is.na(z1)					    # Finds NAs and NaNs
 #	
 is.nan(z1)            # Only finds NaNs	
 
+
 ### Getting rid of NAs	
+
 # na.omit removes the entire row cantaining an NA from a data frame	
 
 a <- 1:10	
@@ -164,5 +179,3 @@ dF$v1[3] <- NA
 dF$v2[7] <- NA	
 dF	
 na.omit(dF)						
-
-
