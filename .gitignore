@@ -160,3 +160,5 @@ $RECYCLE.BIN/
 *.html
 *.pdf
 
+.sass-cache/
+_site/
