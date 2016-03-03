@@ -10,7 +10,7 @@ layout: default
 THANK YOU for checking out this early version for RTVS. We’ve decided to make it available early so that we’ll have more time to address your feedback. As such, there are bugs and many missing features, so please beware! This release is meant for evaluation purposes only and not for production use.
 
 
-## Resrouces
+## Resources
 
 * For general overview of the features, please see the interim [Documentation.](./index.html)
 * To install RTVS, especially if you are new to Visual Studio, please see [Installation steps.](./installation.html)
