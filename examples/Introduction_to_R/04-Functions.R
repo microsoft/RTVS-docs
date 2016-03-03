@@ -1,9 +1,15 @@
 # ---	
 # title: "4 - Functions"	
-# author: "Joseph Rickert"	
-# date: "Monday, August 18, 2014"	
-# output: html_document	
 # ---	
+
+# The checkpoint function installs all required dependencies (i.e. CRAN packages)
+# you need to run the examples.
+if (!require(checkpoint, quietly = TRUE))
+  install.packages("checkpoint")
+library(checkpoint)
+checkpoint("2016-01-01")
+
+
 # "A function is a group of instructions that takes inputs, uses them to compute other values, and returns the result" - Norm Matloff The Art of R Programming	
 
 ### Get Some Data	

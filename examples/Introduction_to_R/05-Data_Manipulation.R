@@ -1,9 +1,15 @@
 # ---	
 # title: "5 - Data Manipulation"	
-# author: "Joseph Rickert"	
-# date: "Monday, August 18, 2014"	
-# output: html_document	
 # ---	
+
+# The checkpoint function installs all required dependencies (i.e. CRAN packages)
+# you need to run the examples.
+if (!require(checkpoint, quietly = TRUE))
+  install.packages("checkpoint")
+library(checkpoint)
+checkpoint("2016-01-01")
+
+
 # In this script we will show some basic data wrangling. 	
 
 ### Fetch some data from Yahoo Finance  	

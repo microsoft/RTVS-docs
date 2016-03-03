@@ -1,12 +1,18 @@
 # ---	
 # title: "4 - Functions 2"	
-# author: "Joseph Rickert"	
-# date: "Thursday, September 04, 2014"	
-# output: html_document	
 # ---	
+
+# The checkpoint function installs all required dependencies (i.e. CRAN packages)
+# you need to run the examples.
+if (!require(checkpoint, quietly = TRUE))
+  install.packages("checkpoint")
+library(checkpoint)
+checkpoint("2016-01-01")
+
 
 # ---	
 ### A SECOND LOOK AT R FUNCTIONS	
+
 #### Some Properties of Functions:	
 # Functions have formals(), body() and a parent environment(). These are functions that are helpful for looking at other functions.	
 # formals() returns the formal arguments of a function.	

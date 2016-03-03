@@ -1,9 +1,14 @@
 # ---	
 # title: "7 - Basic Statistics"	
-# author: "Joseph Rickert"	
-# date: "Friday, August 22, 2014"	
-# output: html_document	
 # ---	
+
+# The checkpoint function installs all required dependencies (i.e. CRAN packages)
+# you need to run the examples.
+if (!require(checkpoint, quietly = TRUE))
+  install.packages("checkpoint")
+library(checkpoint)
+checkpoint("2016-01-01")
+
 
 ### Descriptive Statistics	
 # There are countless examples of doing simple, descriptive statistics with R on the web, for example:	

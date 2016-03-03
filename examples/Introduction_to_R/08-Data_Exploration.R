@@ -1,14 +1,21 @@
 # ---	
 # title: "8 - Data Exploration"	
-# author: "Joseph Rickert"	
-# date: "Wednesday, August 27, 2014"	
-# output: html_document	
 # ---	
+
+# The checkpoint function installs all required dependencies (i.e. CRAN packages)
+# you need to run the examples.
+if (!require(checkpoint, quietly = TRUE))
+  install.packages("checkpoint")
+library(checkpoint)
+checkpoint("2016-01-01")
+
+
 # In this section we will show off some R features for exploring data using plots from various contributed packages.	
 
 
 	
-library(Hmisc)  		                  # for describe()	
+library(Hmisc) # for describe()	
+library(RGtk2)
 library(fBasics)			
 library(gplots)                       # for barplot	
 library(ggplot2)                      # for boxplots	

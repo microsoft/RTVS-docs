@@ -1,10 +1,17 @@
 # ---	
 # title: "6 - Plots"	
-# author: "Joseph Rickert"	
-# date: "Wednesday, August 20, 2014"	
-# output: html_document	
 # ---	
+
+# The checkpoint function installs all required dependencies (i.e. CRAN packages)
+# you need to run the examples.
+if (!require(checkpoint, quietly = TRUE))
+  install.packages("checkpoint")
+library(checkpoint)
+checkpoint("2016-01-01")
+
+
 ### Basic R Graphics	
+
 # First, let's look at some simple scatter plots. The Duncan data frame has 45 rows and 4 columns. Data on the prestige and other characteristics of 45 U. S. occupations in 1950. 	
 
 library(car)  	# Load the library containing the sample data	
@@ -12,6 +19,7 @@ class(Duncan)		# What kind of data structure is Duncan?
 dim(Duncan)			# How big is Duncan? 	
 Duncan[1:5,]		# Look at the first five rows of the data frame	
 plot(Duncan$education,Duncan$prestige)	
+
 
 
 # Now, here is a truly ugly scatter plot. As an exercise, play with the parameters to creating something that is more pleasing to the eye. Here are a few web pages that you may find helpful.	
@@ -22,17 +30,17 @@ plot(Duncan$education,Duncan$prestige)
 attach(Duncan)  	# make variables in data frame available in environment	
 #	
 plot(education,prestige,	
-   main="Simple but ugly scatter plot", #add a title	
-	 col="red",                  # Change the color of thepoints	
-	 pch=15,                     # Change the symbol to plot  	
-   cex=2,                      # Change size of plotting symbol   		
-   xlab="EDUCATION",		       # Add a label on the x-axis	
-	 ylab="PRESTIGE",            # Add a label on the y-axis	
-	 bty="n",                    # Remove the box around the plot	
-	 asp=1,                      # Change the y/x aspect ratio see help(plot)	
-	 font.axis=4,                # Change axis font to bold italic	
-	 col.axis="green",           # Change axia color to green	
-	 las=1)                      # Make axis labels parallel to x-axis	
+   main = "Simple but ugly scatter plot", #add a title	
+	 col = "red",                  # Change the color of thepoints	
+	 pch = 15,                     # Change the symbol to plot  	
+   cex = 2,                      # Change size of plotting symbol   		
+   xlab = "EDUCATION",		       # Add a label on the x-axis	
+	 ylab = "PRESTIGE",            # Add a label on the y-axis	
+	 bty = "n",                    # Remove the box around the plot	
+	 asp = 1,                      # Change the y/x aspect ratio see help(plot)	
+	 font.axis = 4,                # Change axis font to bold italic	
+	 col.axis = "green",           # Change axia color to green	
+	 las = 1)                      # Make axis labels parallel to x-axis	
 abline(lm(prestige~education), col="red") # regression line (y~x) 	
 lines(lowess(prestige,education), col="blue") # lowess line (y~x)	
 	
