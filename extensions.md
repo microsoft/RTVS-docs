@@ -11,7 +11,9 @@ Being part of Visual Studio means you have access to a large library of Extensio
 
 These Extensions are provided by Microsoft, Microsoft DevLabs, and most importantly by the Community.
 
-You can write your own Extension and provide it for free or sell it to a [large global market](https://www.visualstudio.com/en-us/integrate/explore/explore-vside-vsi.aspx).  
+You can write your own Extension and provide it for free or sell it to a [large global market](https://www.visualstudio.com/en-us/integrate/explore/explore-vside-vsi.aspx).
+
+
 
 For example, here's a free Extension that highlights all words that match your selection (a freature not yet available in RTVS):
 
