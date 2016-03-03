@@ -1,9 +1,24 @@
-# purpose: fit a GBM model
+# ----------------------------------------------------------------------------
+# purpose:  fit a gradient boosting machine model
+# audience: you are expected to have some prior experience with R
+# ----------------------------------------------------------------------------
 
-# load the libraries
-library(MASS)
-library(caret)
+# ----------------------------------------------------------------------------
+# install a library if it's not already installed
+# ----------------------------------------------------------------------------
+if (!('caret' %in% rownames(installed.packages()))) {
+  install.packages("caret")
+}
 
+# ----------------------------------------------------------------------------
+# load libraries
+# ----------------------------------------------------------------------------
+library("MASS") # use the mvrnorm function
+library("caret") # use the train function for selecting hyper parameters
+
+# ----------------------------------------------------------------------------
+# select hyper parameters
+# ----------------------------------------------------------------------------
 # ensure results are repeatable
 set.seed(123)
 
@@ -23,8 +38,9 @@ grid <- expand.grid(n.trees = c(5000, 10000),
                     shrinkage = c(0.001, 0.01))
 
 # tune the parameters
-gbm1 <- train(medv ~ ., data = Boston, method = "gbm", distribution = "gaussian",
-              trControl = control, verbose = FALSE, tuneGrid = grid, metric = "RMSE")
+gbm1 <- train(medv ~ ., data = Boston, method = "gbm", 
+  distribution = "gaussian", trControl = control, 
+  verbose = FALSE, tuneGrid = grid, metric = "RMSE")
 
 # summarize the model
 print(gbm1)
@@ -32,7 +48,9 @@ print(gbm1)
 # plot cross-validation results
 plot(gbm1)
 
-# fit the model with estimated hyper parameters
+# ----------------------------------------------------------------------------
+# fit the model with estimated hyper parameters and draw some plots
+# ----------------------------------------------------------------------------
 gbm2 <- gbm(medv ~ .,
             distribution = "gaussian",
             n.trees = 5000,
@@ -52,4 +70,5 @@ best.iter <- gbm.perf(gbm2, method = "cv")
 f_imp <- summary(gbm2, n.trees = best.iter, plot = FALSE)
 
 # use a custom plot to show variable importance
-barplot(f_imp$rel.inf, names.arg = f_imp$var, xlab = "Feature", ylab = "Relative influence", cex.names = 0.8)
+barplot(f_imp$rel.inf, names.arg = f_imp$var, xlab = "Feature", 
+  ylab = "Relative influence", cex.names = 0.8)
