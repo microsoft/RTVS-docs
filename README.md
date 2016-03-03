@@ -30,6 +30,13 @@ want to check out the examples in the
 [Introduction_to_R_Server](https://github.com/Microsoft/RTVS-docs/tree/master/examples/Introduction_to_R_Server)
 directory.
 
+Questions to answer here (and the same for the others above this):
+
+1. What does this sample do?
+2. What happens when I run it (screenshot would be great)?
+3. What do I need to run it (dependencies etc.)?
+4. How do I run it?
+
 ## Machine Learning with R
 
 If you want to see examples of Machine Learning with R, check out the examples
