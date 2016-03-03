@@ -11,6 +11,7 @@ checkpoint("2016-01-01")
 
 
 ### READING FROM A SQL DATABASE	
+
 # This script creates a SQLite database from a csv file using the RSQlite library. Then a simple query is sent to the database.	
 
 (if (!require("DBI")) install.packages("DBI"))
@@ -48,10 +49,4 @@ result <- dbGetQuery(con,
   )	
 head(result)
 nrow(result)
-
-	
-
-
-
-
 

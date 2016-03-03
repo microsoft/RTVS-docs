@@ -4,27 +4,41 @@
 
 # The checkpoint function installs all required dependencies (i.e. CRAN packages)
 # you need to run the examples.
-if (!require(checkpoint, quietly = TRUE))
+if (!require("checkpoint", quietly = TRUE))
   install.packages("checkpoint")
-library(checkpoint)
+library("checkpoint")
 checkpoint("2016-01-01")
 
 ## Getting Started  	
-# Data Week 2014 R Bootcamp   	
-# Copyright: Revolution Analytics  	
-# This document is licensed under the GPLv2 license: http://www.gnu.org/licenses/gpl-2.0.html  	
 
 ### Some Brief History	
-# R followed S. The S language was conceived by John Chambers, Rick Becker, Trevor Hastie, Allan Wilks and others at Bell Labs in the mid 1970s. S was made publically available in the early 1980’s. R, which is modeled closely on S, was developed by Robert Gentleman and Ross Ihaka in the early 1990's while they were both faculty members at the University of Auckland. R was established as an open source project (www.r-project.org) in 1995. Since 1997 the R project has been managed by the R Core Group. When AT&T spun of Bell Labs in 1996, S was no longer freely available. S-PLUS is a commercial implementation of the S language developed by the Insightful corporation which is now sold by TIBCO software Inc.	
+# R followed S. The S language was conceived by John Chambers, Rick Becker,
+# Trevor Hastie, Allan Wilks and others at Bell Labs in the mid 1970s. 
+# S was made publically available in the early 1980’s. R, which is modeled
+# closely on S, was developed by Robert Gentleman and Ross Ihaka in the early 
+# 1990's while they were both faculty members at the University of Auckland. 
+# R was established as an open source project (www.r-project.org) in 1995. 
+# Since 1997 the R project has been managed by the R Core Group. 
+# When AT&T spun of Bell Labs in 1996, S was no longer freely available. 
+# S-PLUS is a commercial implementation of the S language developed by the 
+# Insightful corporation which is now sold by TIBCO software Inc.	
 
 # The R Core Group: http://www.r-project.org/contributors.html  	
 # Download R: http://cran.r-project.org/	
 
+
 ### How R is oganized	
-# R is an interpreted functional language with objects. The core of R language contains the the data manipulation and statistical functions. Most of R's capabilities are delivered as user contributed packages that may be downloaded from CRAN.R ships with the "base and recommended" packages:	
+
+# R is an interpreted functional language with objects. The core of 
+# R language contains the the data manipulation and statistical functions. 
+# Most of R's capabilities are delivered as user contributed packages that 
+# may be downloaded from CRAN.R ships with the "base and recommended" 
+# packages:	
 # http://cran.r-project.org/doc/FAQ/R-FAQ.html#Which-add_002don-packages-exist-for-R_003f  	
 
+
 ###  R RESOURCES	
+
 # What is R? the movie: http://www.youtube.com/watch?v=TR2bHSJ_eck   	
 # Search for R topics on the web: http://www.rseek.org  	
 # search or R packages: http://www.rdocumentation.org  	
@@ -37,14 +51,23 @@ checkpoint("2016-01-01")
 # Some help with packages: http://crantastic.org/  				                                   	
 # the BIOCONDUCTOR PROJECT FOR GENOMICS: http://www.bioconductor.org/     	
 
+
 ### R Blogs	
+
 # Revolutions blog: http://blog.revolutionanalytics.com/  	
 # RBloggers: http://www.r-bloggers.com	
 
-### Getting Help	
-# If you are looking for help with technical questions about the language please consult the community site (http://www.r-project.org) for frequently asked questions. Ask for help on one of the several R mailing lists  http://www.r-project.org/mail.html or Stack Overflow http://stackoverflow.com/questions/tagged/r  	
 
-### Packages needed for this Bootcamp	
+### Getting Help	
+
+# If you are looking for help with technical questions about the language 
+# please consult the community site (http://www.r-project.org) for frequently 
+# asked questions. Ask for help on one of the several R mailing lists  
+# http://www.r-project.org/mail.html or Stack Overflow http://stackoverflow.com/questions/tagged/r  	
+
+
+### Packages used in this set of examples
+
 # Package      | Use                                      | Module	
 # ----------   | ----------                               | --
 # ada          | Boosting library                         | 12	
@@ -75,6 +98,7 @@ checkpoint("2016-01-01")
 # rpart        | for classification and regression trees  | 12	
 # RSOLite      | For SQLite conectivity                   | 11	
 # vcd          | for rainwow_hcl colors                   | 6	
+
 
 ### Looking at Packages	
 

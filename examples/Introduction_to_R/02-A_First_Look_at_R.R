@@ -11,6 +11,7 @@ checkpoint("2016-01-01")
 
 
 ### A Simple Regression Example	
+
 # This simple regression example comes from Peter Dalgaard's classic book: Statistics and Computing, Introductory Statistics with R (Springer 2002)  	
 
 (if (!require("ISwR")) install.packages("ISwR"))
@@ -46,6 +47,7 @@ class(thuesen)           # Find out what kind of object thuesen is
 sapply(thuesen,class)   # Find out what kind of animals the variables are	
 
 ### Plots in R	
+
 # R has three systems for static graphics: base graphics, lattice and ggplot2. For now we will see how easy it is to produce bare bones plots with the base graphics system.	
 
 # You can produce a basic scatter plot either by giving the plot() function a formula or a pair of coordinates 	
@@ -62,6 +64,7 @@ plot(thuesen$blood.glucose,thuesen$short.velocity,   # index into the data frame
 #	
 
 ### Linear Regression in R	
+
 # Now, let's build a simple regression model, examine the results of the model and plot the points and the regression line.	
 
 model <- lm(short.velocity ~ blood.glucose, data=thuesen) # build the model	
@@ -76,6 +79,7 @@ abline(model,col="red")             # adds the regression line
 
 
 ### Regression Diagnostics	
+
 # It is easy to get regression diagnostic plots. The same plot function that plots points either with a formula or with the coordinates also has a "method" for dealing with a model object.	
 
 par(mfrow=c(2,2))                   # Set up for multiple plots on the same figure	
