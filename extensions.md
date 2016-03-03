@@ -18,13 +18,13 @@ You can write your own Extension and provide it for free or sell it to a [large 
 For example, here's a free Extension that highlights all words that match your selection (a feature not yet available in RTVS):
 
 
-![extensions.highlight](./media/extensions.highlight.png)
+![extensions.highlight](./media/extensions-highlight.png)
 
 
 To install an Extension, go to Tools / Extensions and Updates:
 
 
-![extensions.vs](./media/extensions.vs.png)
+![extensions.vs](./media/extensions-vs.png)
 
 
 
