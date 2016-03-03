@@ -1,11 +1,15 @@
-#########################################################################################################
-####################### Flight Delay Prediction with Open Source R #################################
-#########################################################################################################
+##########################################################################################################################
+################################### Flight Delay Prediction with Open Source R ###########################################
+##########################################################################################################################
 # 
+#
+# This example demostrates a step-by-step comparison of solving a Machine Learning use case using open
+# source R (a.k.a. CRAN R) and Microsoft R Server. The Microsoft R Server script is available in a GitHub
+# repository: https://github.com/Microsoft/RTVS-docs/tree/master/R_Server/Flight_Delays_Prediction_with_MRS.
 #
 # In this example, we use historical on-time performance and weather data to predict whether the arrival 
 # of a scheduled passenger flight will be delayed by more than 15 minutes.
-#
+# 
 # We approach this problem as a classification problem, predicting two classes -- whether the flight will 
 # be delayed, or whether it will be on time. Broadly speaking, in machine learning and statistics, 
 # classification is the task of identifying the class or category to which a new observation belongs, on 
@@ -18,24 +22,23 @@
 # are labeled 1 if a flight was delayed, and labeled 0 if the flight was on time.
 #
 # The following scripts include five basic steps of building this example using open source R.
-#########################################################################################################
-
+#
+#
+##########################################################################################################################
 
 
 #---------------------------Step 0: Get Started---------------------------
 # Initial some variables.
-inputFileFlightURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/R/Flight_Delays_Prediction_with_R/Flight_Delays_Sample.csv"
-inputFileWeatherURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/R/Flight_Delays_Prediction_with_R/Weather_Sample.csv"
+inputFileFlightURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/R/Flight_Delays_Prediction_with_R/Flight_Delays_Sample.csv"
+inputFileWeatherURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/R/Flight_Delays_Prediction_with_R/Weather_Sample.csv"
 
 # Import libraries.
 (if (!require("RCurl")) install.packages("RCurl"))
-(if (!require("foreign")) install.packages("foreign"))
 (if (!require("rpart")) install.packages("rpart"))
-library(RCurl)  # Load RCurl and foreign packages for importing a file from a URL.
-library(foreign)
-library(rpart)  # Load rpart package for building the decision tree model.
+library("RCurl")  # Load RCurl package for importing files from a URL.
+library("rpart")  # Load rpart package for building the decision tree model.
 
-# Download flight and weather data from a repository.
+# Download URLs of flight and weather data.
 inputFileFlight <- getURL(inputFileFlightURL)
 inputFileWeather <- getURL(inputFileWeatherURL)
 
@@ -60,10 +63,8 @@ xform_r <- function(df) {
   # Remove columns that are possible target leakers.
   varsToDrop <- c('DepDelay', 'DepDel15', 'ArrDelay', 'Cancelled', 'Year')
   df <- df[, !(names(df) %in% varsToDrop)]
-  
   # Round down scheduled departure time to full hour.
   df$CRSDepTime <- floor(df$CRSDepTime / 100)
-  
   # Return the data frame.
   return(df)
 }
@@ -73,11 +74,9 @@ flight_r <- xform_r(flight_r)
 xform2_r <- function(df) {
   # Create a new column 'DestAirportID' in weather data.
   df$DestAirportID <- df$AirportID
-  
   # Rename 'AdjustedMonth', 'AdjustedDay', 'AirportID', 'AdjustedHour'.
   names(df)[match(c('AdjustedMonth', 'AdjustedDay', 'AirportID', 'AdjustedHour'),
                   names(df))] <- c('Month', 'DayofMonth', 'OriginAirportID', 'CRSDepTime')
-  
   # Return the data frame.
   return(df)
 }
@@ -88,11 +87,9 @@ weather_r <- xform2_r(weather_r)
 mergeFunc <- function(df1, df2) {
   # Remove the "DestAirportID" column from the weather data before the merge.
   df2 <- subset(df2, select = -DestAirportID)
-  
   # Merge the two data frames.
   dfOut <- merge(df1, df2,
                  by = c('Month', 'DayofMonth', 'OriginAirportID', 'CRSDepTime'))
-  
   # Return the data frame.
   return(dfOut)
 }
@@ -102,12 +99,10 @@ originData_r <- mergeFunc(flight_r, weather_r)
 mergeFunc2 <- function(df1, df2) {
   # Remove the "OriginAirportID" column from the weather data before the merge.
   df2 <- subset(df2, select = -OriginAirportID)
-  
   # Merge the two data frames.
   dfOut <- merge(df1, df2,
                  by = c('Month', 'DayofMonth', 'DestAirportID', 'CRSDepTime'),
                  suffixes = c(".Origin", ".Destination"))
-  
   # Return the data frame.
   return(dfOut)
 }
@@ -125,15 +120,9 @@ cateVar <- c('OriginAirportID', 'Carrier')
 
 xform3_r <- function(df) {
   # Normalization.
-  df[, scaleVar] <- sapply(df[, scaleVar], FUN = function(x) {
-    scale(x)
-  })
-  
+  df[, scaleVar] <- sapply(df[, scaleVar], FUN = function(x) {scale(x)})
   # Convert to categorical.
-  df[, cateVar] <- sapply(df[, cateVar], FUN = function(x) {
-    factor(x)
-  })
-  
+  df[, cateVar] <- sapply(df[, cateVar], FUN = function(x) {factor(x)                                                                  })
   # Return the data frame.
   return(df)
 }
@@ -164,8 +153,8 @@ testLogit <- cbind(test, data.frame(ArrDel15_Pred = predictLogit_r))
 
 # Calculate Area Under the Curve (AUC).
 auc <- function(outcome, prob) {
-  N <- as.numeric(length(prob))
-  N_pos <- as.numeric(sum(outcome))
+  N <- as.numeric(length(prob))  # number of the records
+  N_pos <- as.numeric(sum(outcome))  
   df <- data.frame(out = outcome, prob = prob)
   df <- df[order( - df$prob),]
   df$above <- (1:N) - cumsum(df$out)
@@ -181,7 +170,7 @@ dTree1_r <- rpart(form, data = train, method = 'class',
                                           xval = 2, maxDepth = 10))
 
 # Find the Best Value of cp for Pruning rxDTree Object.
-treeCp_r <- dTree1_r$cptable[which.min(dTree1_r$cptable[, "xerror"]), "CP"] # treeCp_r = 1.063143e-05
+treeCp_r <- dTree1_r$cptable[which.min(dTree1_r$cptable[, "xerror"]), "CP"]
 
 # Prune a decision tree created by rxDTree and return the smaller tree.
 dTree2_r <- prune(dTree1_r, cp = treeCp_r)
