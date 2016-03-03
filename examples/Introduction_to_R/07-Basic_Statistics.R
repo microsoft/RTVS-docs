@@ -11,6 +11,7 @@ checkpoint("2016-01-01")
 
 
 ### Descriptive Statistics	
+
 # There are countless examples of doing simple, descriptive statistics with R on the web, for example:	
 # http://www.statmethods.net/stats/descriptives.html	
 # http://www.r-tutor.com/elementary-statistics	
@@ -33,7 +34,9 @@ cor(sl,pl)				# correlation
 t.test(sl,mu=.5)	# one-sided t-test	
 t.test(sl,pl)			# two-sided t test   	
 
+
 ### Simulation	
+
 # The basis for simulation and computational statistics is the ability to draw pweud0-random samples from various probability distributions. R has extensive capabilities to do this. For most distributions R provides four functions which are illustrated here for the Normal Distribution.	
 
 rnorm(10,0,1)           # generate 10 random numbers from a normal distribution with mean = 0 and sd = 1 	
@@ -43,19 +46,19 @@ dnorm(0)                # The value of the density function at 0
 
 # You can easily get randow draws from the following distributions in a manner similar to rnorm(10,0,1) above.	
 
-# RANDOM DRAWS | Distribution	
-# ----------------|------------	
-# rnorm(x,mean,sd)|Normal	
-# rlnorm(x,mean,sd)|Lognormal	
-# rt(x,df)|Student's t	
-# rf(x,n1,n1)|F distribution	
-# rchisq(x,df)|Chi-squared	
-# rbinom(x,n,p)|Binomial	
-# rpois(x,lambda)|Poisson	
-# runif(x,min,max)|Uniform	
-# rexp(x,rate)|Exponential	
-# rgamma(x,shape,scale)|Gamma	
-# rbeta(x,a,b)|Beta	
+# RANDOM DRAWS          | Distribution	
+# ----------------      | ------------	
+# rnorm(x,mean,sd)      | Normal	
+# rlnorm(x,mean,sd)     | Lognormal	
+# rt(x,df)              | Student's t	
+# rf(x,n1,n1)           | F distribution	
+# rchisq(x,df)          | Chi-squared	
+# rbinom(x,n,p)         | Binomial	
+# rpois(x,lambda)       | Poisson	
+# runif(x,min,max)      | Uniform	
+# rexp(x,rate)          | Exponential	
+# rgamma(x,shape,scale) | Gamma	
+# rbeta(x,a,b)          | Beta	
 
 # This next bit of code draws random numbers from a gamma distribution and plots the results.	
 
@@ -73,12 +76,13 @@ boxplot(y,col="blue",main="Boxplot")  			# Look at a boxplot
 plot(density(y),col="blue",main="Gamma Density")    # Draw a kernel density plot	
 rug(y,col="red")	
 
+
 ### Bootstrapping	
+
 # To get a flavor for what it is like to do statistics in R we will get a bootstrap estimate for the standard error of the median. First, we will wirte a simple function that computes the bootstrap from scratch, then we will use the boot package. The example comes from the UCLA online statistics pages which have many fine examples of doing statistics with R.	
 # http://statistics.ats.ucla.edu/stat/r/library/bootstrap.htm	
 
-# This is an example of a non-parametric bootstrap procedure. We will use the Airquality data set again.	
-
+# This is an example of a non-parametric bootstrap procedure. We will use the Airquality data set again.
 
 aq <- airquality[,1:4]                 # Get the first four columns									
 head(aq)	

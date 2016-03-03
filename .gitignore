@@ -163,3 +163,5 @@ $RECYCLE.BIN/
 .sass-cache/
 _site/
 .Rproj.user
+/examples/Intro to R
+/examples/R_Server
