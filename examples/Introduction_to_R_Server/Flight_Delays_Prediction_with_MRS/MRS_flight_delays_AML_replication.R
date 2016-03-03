@@ -1,8 +1,12 @@
-#########################################################################################################
-####################### Flight Delay Prediction with Microsoft R Server #################################
-#########################################################################################################
+#################################################################################################################
+################################ Flight Delay Prediction with Microsoft R Server ################################
+#################################################################################################################
 # 
 #
+# This example demostrates a step-by-step comparison of solving a Machine Learning use case using open
+# source R (a.k.a. CRAN R) and Microsoft R Server. The open source R script is available in a GitHub
+# repository: https://github.com/Microsoft/RTVS-docs/tree/master/R/Flight_Delays_Prediction_with_R.
+# 
 # In this example, we use historical on-time performance and weather data to predict whether the arrival 
 # of a scheduled passenger flight will be delayed by more than 15 minutes.
 #
@@ -18,12 +22,31 @@
 # are labeled 1 if a flight was delayed, and labeled 0 if the flight was on time.
 #
 # The following scripts include five basic steps of building this example using Microsoft R Server.
-#########################################################################################################
+#
+#
+#################################################################################################################
 
 
-#---------------------------Step 0: Initial some variables---------------------------
-inputFileFlightURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/R_Server/Flight_Delays_Prediction_with_MRS/Flight_Delays_Sample.csv"
-inputFileWeatherURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/R_Server/Flight_Delays_Prediction_with_MRS/Weather_Sample.csv"
+#---------------------------Step 0: Get Started---------------------------
+# Check the "RevoScaleR" package is loaded in the current RTVS enivronment.
+tryCatch(
+  {
+    library("RevoScaleR")  # Load RevoScaleR package from Microsoft R Server.
+    message("RevoScaleR package is succesfully loaded. Please continue with the further steps.")
+  },
+  error=function(e) {
+    message("RevoScaleR package does not seem to exist...")
+    message("Here's the original error message:")
+    message(paste(e, "\n"))
+    message("If you have Mircrosoft R Server installed, please switch the R engine in R Tools for Visual Studio: R Tools -> Options -> R Engine.")
+    message("If Microsoft R Server is not installed, please download it from here: https://www.microsoft.com/en-us/server-cloud/products/r-server/.")
+    return(NA)
+  }
+)    
+
+# Initial some variables.
+inputFileFlightURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/R_Server/Flight_Delays_Prediction_with_MRS/Flight_Delays_Sample.csv"
+inputFileWeatherURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/R_Server/Flight_Delays_Prediction_with_MRS/Weather_Sample.csv"
 inputFileFlight <- "Flight_Delays_Sample.csv"
 inputFileWeather <- "Weather_Sample.csv"
 outFileFlight <- 'flight.xdf'
@@ -52,26 +75,13 @@ weather_mrs <- rxImport(inData = inputFileWeatherURL, outFile = outFileWeather,
                         overwrite = TRUE)
 
 #---------------------------Step 2: Pre-process Data---------------------------
-# Remove columns that are possible target leakers from the flight data. 
-varsToDrop <- c('DepDelay', 'DepDel15', 'ArrDelay', 'Cancelled', 'Year')
-
-# Round down scheduled departure time to full hour.
-xform <- function(dataList) {
-  # Create a new continuous variable from an existing continuous variables:
-  # round down CSRDepTime column to the nearest hour.
-  dataList$CRSDepTime <- sapply(dataList$CRSDepTime,
-                                FUN = function(x) {
-                                  floor(x / 100)
-                                })
-  
-  # Return the adapted variable list.
-  return(dataList)
-}
+# Apply some data transformation on the flight data.
 flight_mrs <- rxDataStep(inData = flight_mrs,
                          outFile = outFileFlight2,
-                         varsToDrop = varsToDrop,
-                         transformFunc = xform,
-                         transformVars = 'CRSDepTime',
+                         # Remove columns that are possible target leakers from the flight data. 
+                         varsToDrop = c('DepDelay', 'DepDel15', 'ArrDelay', 'Cancelled', 'Year'),
+                         # Round down scheduled departure time to full hour.
+                         transforms = list(CRSDepTime = floor(CRSDepTime/100)),
                          overwrite = TRUE)
 
 # Rename some column names in the weather data to prepare it for merging.
@@ -81,7 +91,6 @@ xform2 <- function(dataList) {
   # Rename 'AdjustedMonth', 'AdjustedDay', 'AirportID', 'AdjustedHour'.
   names(dataList)[match(c('AdjustedMonth', 'AdjustedDay', 'AirportID', 'AdjustedHour'),
                         names(dataList))] <- c('Month', 'DayofMonth', 'OriginAirportID', 'CRSDepTime')
-  
   # Return the adapted variable list.
   return(dataList)
 }
@@ -132,41 +141,40 @@ finalData_mrs <- rxDataStep(inData = destData_mrs, outFile = outFileFinal,
 
 #---------------------------Step 3: Prepare Training and Test Datasets---------------------------
 # Randomly split 80% data as training set and the remaining 20% as test set.
-rxExec(rxSplit, inData = finalData_mrs,
-       outFilesBase = "finalData",
-       outFileSuffixes = c("Train", "Test"),
-       splitByFactor = "splitVar",
-       overwrite = TRUE,
-       transforms = list(splitVar = factor(sample(c("Train", "Test"), size = .rxNumRows, replace = TRUE, prob = c(.80, .20)),
-                                           levels = c("Train", "Test"))),
-       rngSeed = 17,
-       consoleOutput = TRUE)
+rxSplit(inData = outFileFinal,
+        outFilesBase = "modelData",
+        outFileSuffixes = c("Train", "Test"),
+        splitByFactor = "splitVar",
+        overwrite = TRUE,
+        transforms = list(splitVar = factor(sample(c("Train", "Test"), size = .rxNumRows, replace = TRUE, prob = c(.80, .20)),
+                                            levels = c("Train", "Test"))),
+        rngSeed = 17,
+        consoleOutput = TRUE)
 
-# Duplicate the test file for two models.
-file.rename('finalData.splitVar.Test.xdf', 'finalData.splitVar.Test.logit.xdf')
-file.copy('finalData.splitVar.Test.logit.xdf', 'finalData.splitVar.Test.tree.xdf')
+# Point to the .xdf files for the training and test set.
+train <- RxXdfData("modelData.splitVar.Train.xdf")
+test <- RxXdfData("modelData.splitVar.Test.xdf")
 
 #---------------------------Step 4A: Choose and apply a learning algorithm (Logistic Regression)---------------------------
 # Build the formula.
-allvars <- names(finalData_mrs)
-xvars <- allvars[allvars != 'ArrDel15']
-form <- as.formula(paste("ArrDel15", "~", paste(xvars, collapse = "+")))
+modelFormula <- formula(train, depVars = "ArrDel15", varsToDrop = c("RowNum", "splitVar"))
 
 # Build a Logistic Regression model.
-logitModel_mrs <- rxLogit(form, data = 'finalData.splitVar.Train.xdf')
+logitModel_mrs <- rxLogit(modelFormula, data = train)
+
+# Review the model results.
 summary(logitModel_mrs)
 
 #---------------------------Step 5A: Predict over new data (Logistic Regression)---------------------------
 # Predict the probability on the test dataset.
-predictLogit_mrs <- rxPredict(logitModel_mrs, data = 'finalData.splitVar.Test.logit.xdf',
-                              type = 'response', overwrite = TRUE)
+predictLogit_mrs <- rxPredict(logitModel_mrs, data = test, type = "response", predVarNames = "ArrDel15_Pred_Logit", overwrite = TRUE)
 
 # Calculate Area Under the Curve (AUC).
-rxAuc(rxRoc("ArrDel15", "ArrDel15_Pred", predictLogit_mrs))
+rxAuc(rxRoc("ArrDel15", "ArrDel15_Pred_Logit", predictLogit_mrs))
 
 #---------------------------Step 4B: Choose and apply a learning algorithm (Decision Tree)---------------------------
 # Build a decision tree model.
-dTree1_mrs <- rxDTree(form, data = 'finalData.splitVar.Train.xdf')
+dTree1_mrs <- rxDTree(modelFormula, data = test)
 
 # Find the Best Value of cp for Pruning rxDTree Object.
 treeCp_mrs <- rxDTreeBestCp(dTree1_mrs)
@@ -176,11 +184,10 @@ dTree2_mrs <- prune.rxDTree(dTree1_mrs, cp = treeCp_mrs)
 
 #---------------------------Step 5B: Predict over new data (Decision Tree)---------------------------
 # Predict the probability on the test dataset.
-predictTree_mrs <- rxPredict(dTree2_mrs, data = 'finalData.splitVar.Test.tree.xdf',
-                             overwrite = TRUE)
+predictTree_mrs <- rxPredict(dTree2_mrs, data = test, predVarNames = "ArrDel15_Pred_Tree", overwrite = TRUE)
 
 # Calculate Area Under the Curve (AUC).
-rxAuc(rxRoc("ArrDel15", "ArrDel15_Pred", predictTree_mrs))
+rxAuc(rxRoc("ArrDel15", "ArrDel15_Pred_Tree", predictTree_mrs))
 
 #---------------------------Close Up: Remove all .xdf files in the current directory---------------------------
 rmFiles <- list.files(pattern = "\\.xdf")
