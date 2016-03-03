@@ -1,9 +1,15 @@
 # ---	
 # title: "10 - Classification"	
-# author: "Joseph Rickert"	
-# date: "Friday, August 29, 2014"	
-# output: html_document	
 # ---	
+
+
+# The checkpoint function installs all required dependencies (i.e. CRAN packages)
+# you need to run the examples.
+if (!require(checkpoint, quietly = TRUE))
+  install.packages("checkpoint")
+library(checkpoint)
+checkpoint("2016-01-01")
+
 
 library(rattle)  			# for weather data set	
 library(rpart)				# CART Decision Trees	
@@ -38,13 +44,10 @@ score <- function(model,target=data[testInd, 21],predict=pr){
 ### Read the Data and Prepare the Training and Test Sets	
 # Get the weather data and select the subset for modeling	
 
-name <- "weather.csv"	
-dataDir <- "C:/DATA/Rattle Data"	
-path <- file.path(dataDir,name)	
-data <- read.csv(path,header=TRUE)	
+data(weather, package = "rattle")
 # head(data)	
 # Select variables for the model	
-data <- subset(data,select=c(MinTemp:RainToday,RainTomorrow))	
+data <- subset(weather, select = c(MinTemp:RainToday,RainTomorrow))	
 set.seed(42)									# Set seed	
 ttIndex(data) # Pick out rows (index into data) for the training and test data sets	
 
@@ -146,32 +149,4 @@ model2 <- rpart(formula=form,control=control,data=data[trainInd,])
 print(model2$cptable)	
 plotcp(model2)	
 grid()	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

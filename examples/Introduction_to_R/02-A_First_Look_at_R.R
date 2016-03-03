@@ -1,9 +1,15 @@
 # ---	
 # title: "2 - A First Look at R"	
-# author: "Joseph Rickert"	
-# date: "Friday, August 15, 2014"	
-# output: html_document	
 # ---	
+
+# The checkpoint function installs all required dependencies (i.e. CRAN packages)
+# you need to run the examples.
+if (!require(checkpoint, quietly = TRUE))
+  install.packages("checkpoint")
+library(checkpoint)
+checkpoint("2016-01-01")
+
+
 ### A Simple Regression Example	
 # This simple regression example comes from Peter Dalgaard's classic book: Statistics and Computing, Introductory Statistics with R (Springer 2002)  	
 

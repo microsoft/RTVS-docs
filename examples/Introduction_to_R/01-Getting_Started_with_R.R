@@ -1,9 +1,13 @@
 # ---	
-# title: "R Bootcamp DataWeek 2014"	
-# author: "Joseph B Rickert"	
-# date: "Thursday, August 14, 2014"	
-# output: html_document	
+# title: "Introduction to R"	
 # ---	
+
+# The checkpoint function installs all required dependencies (i.e. CRAN packages)
+# you need to run the examples.
+if (!require(checkpoint, quietly = TRUE))
+  install.packages("checkpoint")
+library(checkpoint)
+checkpoint("2016-01-01")
 
 ## Getting Started  	
 # Data Week 2014 R Bootcamp   	
@@ -41,30 +45,30 @@
 # If you are looking for help with technical questions about the language please consult the community site (http://www.r-project.org) for frequently asked questions. Ask for help on one of the several R mailing lists  http://www.r-project.org/mail.html or Stack Overflow http://stackoverflow.com/questions/tagged/r  	
 
 ### Packages needed for this Bootcamp	
-# Package      | Use                             | Module	
-# ----------   |----------                       | --	
-# ada          | Boosting library                | 12	
-# boot         | bootstrap library               | 7	
-# car          | for data sets                   | 6  	
+# Package      | Use                                      | Module	
+# ----------   | ----------                               | --
+# ada          | Boosting library                         | 12	
+# boot         | bootstrap library                        | 7	
+# car          | for data sets                            | 6  	
 # colorspace   | plotting colors  	
-# compare      | compare data frames             | 5 	
-# corrplot     | correlation plots               | 12	
-# DBI          | database                        | 11	
-# doParallel   | backend for parallel computing  |12 	
-# e1071        | svm                             | 12	
-# ellipse      | for correlation plot            | 8	
-# fbasics      | for the plotcluster function    | 8	
-# fpc          | Clustering                      | 10	
-# gbm          | boosting models                 | 12	
-# gplots       | for barplot                     | 8	
-# ggplot2      | Plots                           | 6, 8	
-# Hmisc 	     | for describe()                  | 8, 10	
-# ISwR         | FOR DATA SET                    | 2	
-# kernlab      | svm                             | 12	
-# lattice      | Graphics                        | 6	
-# partyplot    | tree plots                      | 12	
-# plyr         | for data data manipulation      | 5	
-# pROC         | for ROC curve                   | 12	
+# compare      | compare data frames                      | 5 	
+# corrplot     | correlation plots                        | 12	
+# DBI          | database                                 | 11	
+# doParallel   | backend for parallel computing           | 12 	
+# e1071        | svm                                      | 12	
+# ellipse      | for correlation plot                     | 8	
+# fbasics      | for the plotcluster function             | 8	
+# fpc          | Clustering                               | 10	
+# gbm          | boosting models                          | 12	
+# gplots       | for barplot                              | 8	
+# ggplot2      | Plots                                    | 6, 8	
+# Hmisc 	     | for describe()                           | 8, 10	
+# ISwR         | FOR DATA SET                             | 2	
+# kernlab      | svm                                      | 12	
+# lattice      | Graphics                                 | 6	
+# partyplot    | tree plots                               | 12	
+# plyr         | for data data manipulation               | 5	
+# pROC         | for ROC curve                            | 12	
 # randomForest | randomForest classification algorithm    | 12	
 # rattle       | for data mining gui and data sets        | 1, 12 	
 # ROCR         | ROC                                      | 12 	
@@ -78,11 +82,13 @@
 # library()                  # list all available installed packages	
 search()                     # list all "attached" or loaded packages	
 # install.packages("rattle") # to install the package rattle	
+library(RGtk2)
 library(rattle)              # to load the package rattle	
 data()                       # to see all of the data sets available in the packages you have loaded	
 data(package="rattle")       # to see all the data sets in the pakage rattle	
 help(package=rattle)         # to get help with the package rattle	
 # lsf.str("package:rattle")  # to list all of the functions in rattle	
+
 
 
 

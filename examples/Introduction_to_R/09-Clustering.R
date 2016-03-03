@@ -1,9 +1,15 @@
 # ---	
 # title: "9 - Clustering"	
-# author: "Joseph Rickert"	
-# date: "Friday, August 29, 2014"	
-# output: html_document	
 # ---	
+
+# The checkpoint function installs all required dependencies (i.e. CRAN packages)
+# you need to run the examples.
+if (!require(checkpoint, quietly = TRUE))
+  install.packages("checkpoint")
+library(checkpoint)
+checkpoint("2016-01-01")
+
+
 # In this script we will look at Kmeans and hierarchical clustering using the weather data.	
 
 set.seed(42)	
@@ -13,12 +19,7 @@ library(Hmisc)                         # for varclus function
 
 ### Weather Data	
 
-name <- "weather.csv"                  # name of the file	
-#dataDir <- getwd()                    # directory location	
-dataDir <- "C:/DATA/Rattle Data"	
-file <- file.path(dataDir,name)        # Construct the file path	
-weather <- read.csv(file)           	
-#	
+data(weather, package = "rattle")
 weather <- weather[,-c(1,2)]           # Drop the first two columns	
 head(weather)                          # Look at the data	
 

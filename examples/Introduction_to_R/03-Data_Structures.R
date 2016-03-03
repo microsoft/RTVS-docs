@@ -1,9 +1,14 @@
 # ---	
 # title: "3 - Data Structures"	
-# author: "Joseph Rickert"	
-# date: "Friday, August 15, 2014"	
-# output: html_document	
 # ---	
+
+# The checkpoint function installs all required dependencies (i.e. CRAN packages)
+# you need to run the examples.
+if (!require(checkpoint, quietly = TRUE))
+  install.packages("checkpoint")
+library(checkpoint)
+checkpoint("2016-01-01")
+
 ### Vectors	
 
 v <- 10           # or v = 10 	
