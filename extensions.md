@@ -6,7 +6,7 @@ layout: default
 
 Being part of Visual Studio means you have access to a large library of Extension, both free and paid.  These cover a wide spectrum from Tools to Controls to Data:
 
-![Extensions.cats](./media/extensions.cats.png)
+![extensions.cats](./media/extensions.cats.png)
 
 
 These Extensions are provided by Microsoft, Microsoft DevLabs, and most importantly by the Community.
@@ -22,5 +22,5 @@ For example, here's a free Extension that highlights all words that match your s
 To isntall an Extension, go to Tools / Extensions and Updates:
 
 
-![Extensions.vs](./media/extensions.vs.png)
+![extensions.vs](./media/extensions.vs.png)
 
