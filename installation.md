@@ -18,9 +18,18 @@ support the following editions of Visual Studio:
 * Visual Studio 2015 Professional 
 * Visual Studio 2015 Enterprise
 
-Please go to Help / About to check your version of Visual Studio.  It should be VS 2015 or VS 2015 with Update 1.
+Please go to Help / About to check your version of Visual Studio.  It should be
+VS 2015 or VS 2015 with Update 1.
 
-Once you've installed VS 2015, if you do not have Update 1, install it from here:
+While installing Visual Studio 2015, please make sure that you have the Web
+Developer Tools option checked. This is checked by default, so if you're
+installing using the default Visual Studio settings, you'll be fine. We will be
+removing this dependency in the future.
+
+![](./media/RTVS-installation-web-developer-settings.png)
+
+Once you've installed VS 2015, if you do not have Update 1, install it from
+here:
 
 * [Visual Studio 2015 Update 1](https://www.microsoft.com/en-us/download/details.aspx?id=49989)
 
