@@ -1,6 +1,6 @@
-#########################################################################################################
-##################### Regression: Demand estimation with Microsoft R Server #############################
-#########################################################################################################
+##############################################################################################################
+##################### Regression: Demand estimation with Microsoft R Server ##################################
+##############################################################################################################
 # 
 #
 # This example demonstrates the Feature Engineering process for builing a regression model to predict 
@@ -12,14 +12,34 @@
 # weekday etc.
 #
 # The field to predict is "cnt", which contain a count value ranging from 1 to 977, representing the number
-# of bike rentals within a specific hour.
+# of bike rentals within a specific hour. The lag features we add in the data set is the number of bikes that 
+# were rented in each of the previous 12 hours, which caputures the very recent demand for the bikes.
 #
 # The following scripts include five basic steps of building this example using Microsoft R Server.
-#########################################################################################################
+#
+#
+##############################################################################################################
 
 
-#---------------------------Step 0: Initial some variables---------------------------
-inputFileBikeURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/R_Server/Bike_Rental_Estimation_with_MRS/Bike%20Rental%20UCI%20dataset.csv"
+#---------------------------Step 0: Get Started---------------------------
+# Check the "RevoScaleR" package is loaded in the current RTVS enivronment.
+tryCatch(
+  {
+    library("RevoScaleR")  # Load RevoScaleR package from Microsoft R Server.
+    message("RevoScaleR package is succesfully loaded. Please continue with the further steps.")
+  },
+  error=function(e) {
+    message("RevoScaleR package does not seem to exist...")
+    message("Here's the original error message:")
+    message(paste(e, "\n"))
+    message("If you have Mircrosoft R Server installed, please switch the R engine in R Tools for Visual Studio: R Tools -> Options -> R Engine.")
+    message("If Microsoft R Server is not installed, please download it from here: https://www.microsoft.com/en-us/server-cloud/products/r-server/.")
+    return(NA)
+  }
+)    
+
+# Initial some variables.
+inputFileBikeURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/R_Server/Bike_Rental_Estimation_with_MRS/Bike%20Rental%20UCI%20dataset.csv"
 inputFileBike <- "Bike Rental UCI dataset.csv"
 outFileBike <- "bike.xdf"
 outFileLag <- "lagData.xdf"
@@ -88,8 +108,7 @@ dForest <- rxDForest(modelFormula, data = train, importance = TRUE, seed = 123)
 
 #---------------------------Step 5: Predict over new data and review the model performance---------------------------
 # Predict the probability on the test dataset.
-predict <- rxPredict(dForest, data = test, overwrite = TRUE, computeResiduals = TRUE,
-                     transforms = list(cnt_Resid_2 = cnt_Resid^2))
+predict <- rxPredict(dForest, data = test, overwrite = TRUE, computeResiduals = TRUE)
 
 # Calculate three statistical measures: Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), and Relative Absolute Error (RAE).
 sum <- rxSummary(~ cnt_Resid_abs+cnt_Resid_2+cnt_rel, data = predict, summaryStats = "Mean", 

@@ -18,12 +18,31 @@
 # are labeled 1 if a flight was delayed, and labeled 0 if the flight was on time.
 #
 # The following scripts include five basic steps of building this example using Microsoft R Server.
+#
+#
 #########################################################################################################
 
 
-#---------------------------Step 0: Initial some variables---------------------------
-inputFileFlightURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/R_Server/Flight_Delays_Prediction_with_MRS/Flight_Delays_Sample.csv"
-inputFileWeatherURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/R_Server/Flight_Delays_Prediction_with_MRS/Weather_Sample.csv"
+#---------------------------Step 0: Get Started---------------------------
+# Check the "RevoScaleR" package is loaded in the current RTVS enivronment.
+tryCatch(
+  {
+    library("RevoScaleR")  # Load RevoScaleR package from Microsoft R Server.
+    message("RevoScaleR package is succesfully loaded. Please continue with the further steps.")
+  },
+  error=function(e) {
+    message("RevoScaleR package does not seem to exist...")
+    message("Here's the original error message:")
+    message(paste(e, "\n"))
+    message("If you have Mircrosoft R Server installed, please switch the R engine in R Tools for Visual Studio: R Tools -> Options -> R Engine.")
+    message("If Microsoft R Server is not installed, please download it from here: https://www.microsoft.com/en-us/server-cloud/products/r-server/.")
+    return(NA)
+  }
+)    
+
+# Initial some variables.
+inputFileFlightURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/R_Server/Flight_Delays_Prediction_with_MRS/Flight_Delays_Sample.csv"
+inputFileWeatherURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/R_Server/Flight_Delays_Prediction_with_MRS/Weather_Sample.csv"
 inputFileFlight <- "Flight_Delays_Sample.csv"
 inputFileWeather <- "Weather_Sample.csv"
 outFileFlight <- "flight.xdf"
