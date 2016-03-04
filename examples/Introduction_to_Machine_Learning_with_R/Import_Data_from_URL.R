@@ -9,7 +9,7 @@ inputDataURL <- "<an URL contains the raw data>"
 #inputDataURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Introduction_to_R_Server/Flight_Delays_Prediction_with_MRS/Flight_Delays_Sample.csv"
 
 # Download data from the URL.
-inputData <- getURL(inputFileFlightURL)
+inputData <- getURL(inputDataURL)
 
 # Read downloaded data into a data frame.
 df <- read.csv(text = inputData, na.strings = "NA", stringsAsFactors = FALSE)
