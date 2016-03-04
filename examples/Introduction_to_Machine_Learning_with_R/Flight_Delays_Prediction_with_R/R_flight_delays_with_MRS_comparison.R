@@ -29,8 +29,8 @@
 
 #---------------------------Step 0: Get Started---------------------------
 # Initial some variables.
-inputFileFlightURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/R/Flight_Delays_Prediction_with_R/Flight_Delays_Sample.csv"
-inputFileWeatherURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/R/Flight_Delays_Prediction_with_R/Weather_Sample.csv"
+inputFileFlightURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Introduction_to_Machine_Learning_with_R/Flight_Delays_Prediction_with_R/Flight_Delays_Sample.csv"
+inputFileWeatherURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Introduction_to_Machine_Learning_with_R/Flight_Delays_Prediction_with_R/Weather_Sample.csv"
 
 # Import libraries.
 (if (!require("RCurl")) install.packages("RCurl"))
