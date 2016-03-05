@@ -4,7 +4,7 @@ layout: default
 
 # Extensions for every need
 
-Being part of Visual Studio means you have access to a large library of Extension, both free and paid.  These cover a wide spectrum from Tools to Controls to Data:
+Being part of Visual Studio means you have access to a large library of Extensions, both free and paid.  These cover a wide spectrum from Tools to Controls to Data:
 
 ![extensions.cats](./media/extensions.cats.png)
 
