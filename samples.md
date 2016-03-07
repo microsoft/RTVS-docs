@@ -9,7 +9,7 @@ We'd like to give you a running start using R Tools for Visual Studio. Here are 
 ### Download and install
 To get the examples, just:
 
-* [Download RTVS-docs.zip.](https://github.com/Microsoft/RTVS-docs/archive/master.zip)
+* [Download RTVS-docs.zip (15MB).](https://github.com/Microsoft/RTVS-docs/archive/master.zip)
 * Unzip it.
 * Double-click the solution.
 
@@ -27,6 +27,8 @@ Here are a few of the examples that will get you started building projects in Vi
 * Gradient Boosting Machine
 * Shiny Airports
 * A collection giving a gentle Introduction to R
+
+If you're wondering what the difference is between R, Microsoft R Open and Microsoft R Server, [check out this comparison.](https://github.com/lixzhang/R-MRO-MRS/)
 
 # 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/VEOhaP4x7LE" frameborder="0" allowfullscreen></iframe>
