@@ -21,7 +21,7 @@ Github](https://github.com/microsoft/rtvs-docs).
 
 ## Overview 
 
-In the zip archive, there are a number of examples, grouped into different categories:
+In the zip archive, there are examples grouped into different categories. Here are some of the highlights.
 
 ### Microsoft R Server examples
 
@@ -39,8 +39,7 @@ you can scale those datasets to whatever size makes sense for your application.
 
 #### Bike rental estimation
 
-This example demonstrates the Feature Engineering process *TODO: need link for
-the Feature Engineering process* for builing a regression model to predict bike
+This example demonstrates feature engineering process and builing a regression model to predict bike
 rental demand using historical datasets. Similar to the previous example, the
 datasets are relatively small (17,379 rows and 17 columns) for the purposes of
 illustration, but can be scaled to whatever size makes sense for your
@@ -56,13 +55,12 @@ which has two key differentiators over [CRAN R](https://cran.r-project.org/):
    performance](https://mran.revolutionanalytics.com/rro/#intelmkl1) when
    coupled with the [Intel Math Kernel
    Libraries](https://software.intel.com/en-us/intel-mkl) which are available as
-   a free download from Microsoft for use with Microsoft R Open. 
+   a free download from Microsoft for use with Microsoft R Open.
 
 1. [Reproducible R
    Toolkit](https://mran.revolutionanalytics.com/rro/#reproducibility), which
    ensures that the libraries that you built your R program with are always
-   available to others that want to reproduce your work. -- TODO:
-   do we have a sample that shows this off?
+   available to others that want to reproduce your work.
 
 #### Benchmarks
 
@@ -75,14 +73,16 @@ Libraries in Microsoft R Open.
 This example shows how you can create a linear regression model using R, and
 then publish it as an Azure Web Service using an [Azure Machine
 Learning](https://azure.microsoft.com/en-us/services/machine-learning/)
-workspace *TODO: should we call it Cortana Analytics?* that you can create for
+workspace that you can create for
 free.
 
 ### Introduction to R and Machine Learning
 
 #### Gradient Boosting Machine
 
-TODO
+This examples shows you how to create a popular kind of machine learning model
+based on decision trees--a Gradient Boosting Machine. In a few lines of code,
+this script creates, trains and evaluates the model.
 
 ### A collection giving a gentle Introduction to R
 
@@ -102,3 +102,9 @@ its libraries. Here are the topics that are covered:
 1. Classification
 1. Working with SQLite
 
+
+If you're wondering what the difference is between R, Microsoft R Open
+and Microsoft R Server, [check out this comparison.](https://github.com/lixzhang/R-MRO-MRS/)
+
+
+<iframe width="560" height="315" src="https://youtu.be/5Z30_Qpc8j0" frameborder="0"></iframe>
