@@ -58,7 +58,7 @@ tryCatch(
 )    
 
 # Initial some variables.
-inputFileBikeURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Introduction_to_R_Server/Bike_Rental_Estimation_with_MRS/Bike%20Rental%20UCI%20dataset.csv"
+inputFileBikeURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Bike_Rental_UCI_Dataset.csv"
 outFileBike <- "bike.xdf"
 outFileEdit <- "editData.xdf"
 outFileLag <- "lagData"

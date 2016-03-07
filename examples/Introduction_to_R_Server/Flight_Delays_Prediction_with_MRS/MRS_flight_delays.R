@@ -41,8 +41,8 @@ tryCatch(
 )    
 
 # Initial some variables.
-inputFileFlightURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Introduction_to_R_Server/Flight_Delays_Prediction_with_MRS/Flight_Delays_Sample.csv"
-inputFileWeatherURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Introduction_to_R_Server/Flight_Delays_Prediction_with_MRS/Weather_Sample.csv"
+inputFileFlightURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Flight_Delays_Sample.csv"
+inputFileWeatherURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Weather_Sample.csv"
 outFileFlight <- "flight.xdf"
 outFileWeather <- "weather.xdf"
 outFileOrigin <- "originData.xdf"
