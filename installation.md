@@ -78,3 +78,11 @@ After it is done, you'll have a Visual Studio layout that resembles this:
 R Tools for Visual Studio installs in this folder:
 
 	%ProgramFiles(x86)%\Microsoft Visual Studio <VS version>\Common7\IDE\Extensions\Microsoft\R Tools for Visual Studio
+
+
+## Try the samples
+
+Once you've installed RTVS, try some of the samples from github:
+
+![](samples.html)
+
