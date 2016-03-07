@@ -22,14 +22,17 @@ Here are a few of the examples that will get you started building projects in
 Visual Studio using Microsoft R Open and R Server.
 
 ### Microsoft R Server examples
+
 * Flight delay prediction
 * Bike rental estimation
 
 ### Microsoft R Open (R with MKL) examples
+
 * MRO-MKL benchmarks
 * Linear regression and Azure ML web service
 
 ### R examples
+
 * Gradient Boosting Machine
 * Shiny Airports
 * A collection giving a gentle Introduction to R
