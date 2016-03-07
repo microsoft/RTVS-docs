@@ -17,6 +17,8 @@ str(quakes)
 # install the ggplot2 package if not available
 if (!require("ggplot2"))
   install.packages("ggplot2")
+if (!require("mapproj"))
+  install.packages("mapproj") # required for map projections
 
 # Load the package
 library(ggplot2)
