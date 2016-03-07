@@ -6,11 +6,14 @@ layout: default
 
 We'd like to give you a running start using R Tools for Visual Studio. Here are
 some examples for how to write R code, how to make it fast and how to use
-Microsoft R Server for big datasets and multi-core machines.
+Microsoft R Server for big datasets and multi-core machines. Below is a brief
+3-minute video will give you a quick overview of the examples.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5Z30_Qpc8j0" frameborder="0" allowfullscreen></iframe>
 
 ## Download and install
 
-1. [Download the samples](https://github.com/Microsoft/RTVS-docs/archive/master.zip).
+1. [Download the examples](https://github.com/Microsoft/RTVS-docs/archive/master.zip).
 
 1. Unzip the archive open the solution by double clicking on the
    `examples\Examples.sln` file.
@@ -25,7 +28,7 @@ In the zip archive, there are a number of examples, grouped into different categ
 
 ### Microsoft R Server examples
 
-These samples show off the power of [Microsoft R
+These examples show off the power of [Microsoft R
 Server](https://www.microsoft.com/en-us/server-cloud/products/r-server/), which
 lets you work with datasets that are too large to fit in memory.
 
@@ -33,18 +36,17 @@ lets you work with datasets that are too large to fit in memory.
 
 This example uses historical on-time performance and weather data to predict
 whether the arrival of a scheduled passenger flight will be delayed by more than
-15 minutes. It uses datasets from the Github repository for the samples. While
+15 minutes. It uses datasets from the Github repository for the examples. While
 the datasets are relatively small for the purposes of illustration, in practice
 you can scale those datasets to whatever size makes sense for your application.
 
 #### Bike rental estimation
 
-This example demonstrates the Feature Engineering process *TODO: need link for
-the Feature Engineering process* for builing a regression model to predict bike
-rental demand using historical datasets. Similar to the previous example, the
-datasets are relatively small (17,379 rows and 17 columns) for the purposes of
-illustration, but can be scaled to whatever size makes sense for your
-application.
+This example demonstrates the Feature Engineering process for builing a
+regression model to predict bike rental demand using historical datasets.
+Similar to the previous example, the datasets are relatively small (17,379 rows
+and 17 columns) for the purposes of illustration, but can be scaled to whatever
+size makes sense for your application.
 
 ### Microsoft R Open (R with MKL) examples
 
@@ -61,8 +63,7 @@ which has two key differentiators over [CRAN R](https://cran.r-project.org/):
 1. [Reproducible R
    Toolkit](https://mran.revolutionanalytics.com/rro/#reproducibility), which
    ensures that the libraries that you built your R program with are always
-   available to others that want to reproduce your work. -- TODO:
-   do we have a sample that shows this off?
+   available to others that want to reproduce your work.
 
 #### Benchmarks
 
@@ -75,8 +76,7 @@ Libraries in Microsoft R Open.
 This example shows how you can create a linear regression model using R, and
 then publish it as an Azure Web Service using an [Azure Machine
 Learning](https://azure.microsoft.com/en-us/services/machine-learning/)
-workspace *TODO: should we call it Cortana Analytics?* that you can create for
-free.
+workspace.
 
 ### Introduction to R and Machine Learning
 
