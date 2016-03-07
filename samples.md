@@ -103,8 +103,8 @@ its libraries. Here are the topics that are covered:
 1. Working with SQLite
 
 
-\If you're wondering what the difference is between R, Microsoft R Open
+If you're wondering what the difference is between R, Microsoft R Open
 and Microsoft R Server, [check out this comparison.](https://github.com/lixzhang/R-MRO-MRS/)
 
-<iframe width="560" height="315" src="https://youtu.be/5Z30_Qpc8j0" frameborder="0"
->allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://youtu.be/5Z30_Qpc8j0" frameborder="0">allowfullscreen></iframe>
