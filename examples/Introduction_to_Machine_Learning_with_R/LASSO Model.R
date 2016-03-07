@@ -9,8 +9,8 @@
 # ----------------------------------------------------------------------------
 # install a library if it's not already installed
 # ----------------------------------------------------------------------------
-if (!('AzureML' %in% rownames(installed.packages()))) {
-  install.packages("AzureML")
+if (!('glmnet' %in% rownames(installed.packages()))) {
+    install.packages("glmnet")
 }
 
 # ----------------------------------------------------------------------------
@@ -36,12 +36,12 @@ plot(model1)
 
 # print out the optimal lambdas
 cat("Lambda that gives minimum mean cross-validated error:",
-            as.character(round(model1$lambda.min, 4)), "\n\n")
+    as.character(round(model1$lambda.min, 4)), "\n\n")
 cat("Largest lambda with mean cross-validated error",
-            "within 1 standard error of the minimum error:",
-            as.character(round(model1$lambda.1se, 4)), "\n\n")
+    "within 1 standard error of the minimum error:",
+    as.character(round(model1$lambda.1se, 4)), "\n\n")
 cat("Coefficients based on lambda that", 
-  " gives minimum mean cross-validated error: \n")
+    " gives minimum mean cross-validated error: \n")
 print(coef(model1, s = "lambda.min"))
 
 # ----------------------------------------------------------------------------
@@ -58,7 +58,7 @@ vnat = coef(model2)
 vnat = vnat[-1, ncol(vnat)] 
 
 axis(4, at = vnat, line = -.5, label = vn, las = 1, tick = FALSE, 
-  cex.axis = 0.5)
+     cex.axis = 0.5)
 
 # check coefficients from using glmnet() to compare with 
 # those from cv.glmnet(): the same
