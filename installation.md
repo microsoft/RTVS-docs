@@ -45,8 +45,7 @@ them from for free from these locations:
 If you don't have an R distribution installed before you install RTVS, you will
 be prompted to install an R distribution during setup.
 
-RTVS Preview is only available by invite only at the moment. If you haven't
-already, please send email to rtvs-invite@microsoft.com to request your invite. 
+Next download the Public Preview of R Tools for Visual Studio.
 
 Please note that if you had an earlier version of R Tools for Visual Studio
 installed on your machine, you must first uninstall it from Add / Remove
@@ -78,3 +77,11 @@ After it is done, you'll have a Visual Studio layout that resembles this:
 R Tools for Visual Studio installs in this folder:
 
 	%ProgramFiles(x86)%\Microsoft Visual Studio <VS version>\Common7\IDE\Extensions\Microsoft\R Tools for Visual Studio
+
+
+## Try the samples
+
+Once you've installed RTVS, try some of the samples from github:
+
+[Samples documentation](samples.html)
+

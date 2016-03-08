@@ -8,10 +8,13 @@ layout: default
 
 ## About this release
 
-THANK YOU for checking out this early version for RTVS.  We've decided to make it available early so that we'll have more time to address your feedback.  As such, there are bugs and many missing features, so please beware!  This release is meant for evaluation purposes only and not for production use.
+**THANK YOU** for checking out this early version of R Tools for Visual Studio
+(RTVS).  We've decided to make it available early so that we'll have more time
+to address your feedback.  As such, there are bugs and missing features, so
+please beware!  This release is meant for evaluation purposes only and not for
+production use.
 
 ## Key features in Version 0.2
-
 
 * [Editor](editing.html) - full edit experience including tabbed windows, syntax highlighting, and more
 * [History window](history.html) - see all of the commands that you have entered in a scrollable window
@@ -26,17 +29,22 @@ THANK YOU for checking out this early version for RTVS.  We've decided to make i
 * [Polyglot IDE](polyglot.html) - VS supports R, Python, C++, C#, Node.js, SQL, … projects simultaneously
 * [Help](help.html) - use ? and ?? to view R documentation within Visual Studio
 
-
 ## A quick video overview 
+
 <iframe width="560" height="315" align="middle" src="https://www.youtube.com/embed/VEOhaP4x7LE" frameborder="0" allowfullscreen></iframe>
 
 <br>
 
 ## Installation and first steps
 
-RTVS prerequistes are : VS 2015 + VS Update 1 + an R interpreter. 
+The pre-requisites for RTVS are: 
 
-Please check out the installation steps, *especially* if you are new to Visual Studio
+* Visual Studio 2015 Community, Professional or Enterprise
+* Visual Studio 2015 Update 1 
+* An R interpreter
+
+Please check out the installation steps, *especially* if you are new to Visual
+Studio
 
 * [RTVS Installation](installation.html) 
 
@@ -44,14 +52,14 @@ Once installed, create a project and code away!
 
 * [How to start a new project in RTVS](start-project.html)
 
-
 ## Feedback, bugs, etc.
 
-For a list of existing bugs and feature requests, and to file new bugs, please go to:
+To send us feedback on the Public Preview, please use the Send a Smile and Send
+a Frown commands under the R Tools menu, or send email to
+[rtvsuserfeedback@microsoft.com](mailto:rtvsuserfeedback@microsoft.com).
 
-[https://github.com/Microsoft/RTVS/issues](https://github.com/Microsoft/RTVS/issues)
-
-(currently private - pls use rtvsuserfeedback@microsoft.com for now)
+In the future, when we Open Source RTVS, you will be able to use Github to look
+up our open issues, and file bug reports and feature requests.
 
 <hr>
 <hr>
@@ -61,9 +69,12 @@ For a list of existing bugs and feature requests, and to file new bugs, please g
 
 ## FAQ
 
-**Q. Should I use RTVS in production mode?**
+**Q. Should I use RTVS in production?**
 
-A. No. This is the very first public preview.  As such there are many bugs and many many missing features which will be addressed in the next few months.  This release is only recommended for evaluation purposes and usage in production is strongly advised against.
+A. No. This is the very first public preview.  As such, there are bugs and
+missing features which will be addressed in the next few months.  This release
+is only recommended for evaluation purposes and usage in production is strongly
+advised against.
 
 **Q. Is RTVS going to be free?**
 
@@ -112,8 +123,9 @@ Studio Code, which is the new cross-platform IDE from Microsoft.
 
 **Q. Can I contribute to RTVS?**
 
-A. Absolutely! We will release the source in the near future, and PRs are very
-welcome. For now, the most important contribution is feedback and bug reports.
+A. Absolutely! We will release the source in the near future, and pull requests
+are very welcome. For now, the most important contribution is feedback and bug
+reports.
 
 **Q. I want to save my plots as PDFs. What software do I need for that?**
 
@@ -146,8 +158,10 @@ A. There a number of these.  For example:
 * There is no UI for package installation or creation
 * Variable Explorer does not allow edit, search, sort and supports global scope only
 * Refactoring in the Editor
-* Shiny apps inside RTVS (pop out is ok)
-* Interactive ggviz plots inside RTVS (pop out is ok)
+* Rendering Shiny apps in a VS window. We currently render using the default
+  browser
+* Interactive ggviz plots in a VS window. We currently render using the default
+  browser
 * Customization options when saving plots as PDF or bitmaps
 
 We'll be addressing these in the near future.
@@ -159,52 +173,9 @@ A. You can always save your current Visual Studio settings through Tools ->
 Import and Export Settings... command. You can also use this command to
 restore one of the default Visual Studio settings (e.g., C++ or General).
 
-**Q. I'm getting the error "Input is too long - no more than 4096 characters
-expected"**
-
-A. We're working on fixing this for the next release. If you want to run the
-entire file, you can try right clicking on the editor and running the Source R
-Script command (or hitting CTRL+SHIFT+S). 
-
-**Q. After installing RTVS, the R Interactive Window doesn't work at all. I
-don't even get a > prompt.**
-
-A. This bug can occur when you have Visual Studio installed in a non-default
-location. To unblock you, copy `Microsoft.R.Host.exe` from
-
-```
-C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\R Tools for Visual Studio
-``` 
-
-to 
- 
-```
-[VS_LOCATION]\Common7\IDE\Extensions\Microsoft\R Tools for Visual Studio
-```
-
-where VS_LOCATION is where you installed Visual Studio. We will fix this in the
-next release.
-
-**Q. After installing RTVS on top of Visual Studio Update 1, Visual Studio
-crashes on startup every time I try to run it. What can I do?**
-
-A. Try resetting Visual Studio settings from the command line. Open a Visual
-Studio command prompt and type:
-
-```
-devenv.exe /ResetSettings
-```
-
-or navigate to `C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE`
-first in a command prompt and type:
-
-```
-devenv.exe /ResetSettings
-```
-
 **Q. What is the recommended `.gitignore` settings for an RTVS project?**
 
-A. Gitub maintains a master repository of recommended `.gitignore` files. You
+A. Github maintains a master repository of recommended `.gitignore` files. You
 can see it here: [R .gitignore](https://github.com/github/gitignore/blob/master/R.gitignore)
 
 **Q. Can I store my Visual Studio project on a network share?**
@@ -219,6 +190,5 @@ us smiles and frowns!
 ## Contributing
 
 If you're interested in contributing to the docs or samples, feel free to clone
-the repo and submit a PR. More instructions can be found in our [contribution
-guide](contributing-docs.html).
-
+the repository and submit a pull request. More instructions can be found in our
+[contribution guide](contributing-docs.html).

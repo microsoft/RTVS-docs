@@ -4,15 +4,19 @@ layout: default
 
 # Examples for how to use R Tools for Visual Studio
 
-We'd like to give you a running start using R Tools for Visual Studio. Here are
-some examples for how to write R code, how to make it fast and how to use
-Microsoft R Server for big datasets and multi-core machines.
+These examples will give you a running start using R Tools for Visual Studio.
+There are examples that give you an introduction to R, examples on how to make
+your code run fast, and examples on how to use Microsoft R Server for big
+datasets on multi-core machines. Watch this 3-minute video to get a quick
+overview of the examples:
 
-## Download and install
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5Z30_Qpc8j0" frameborder="0" allowfullscreen></iframe>
 
-1. [Download the samples](https://github.com/Microsoft/RTVS-docs/archive/master.zip).
+## Downloading and launching the examples
 
-1. Unzip the archive open the solution by double clicking on the
+1. [Download the examples](https://github.com/Microsoft/RTVS-docs/archive/master.zip).
+
+1. Unzip the archive, and open the solution by double-clicking on the
    `examples\Examples.sln` file.
 
 If you prefer to work with the examples via Github, they are all available in
@@ -23,29 +27,49 @@ Github](https://github.com/microsoft/rtvs-docs).
 
 In the zip archive, there are examples grouped into different categories. Here are some of the highlights.
 
-### Microsoft R Server examples
+* Microsoft R Server 
+* Microsoft R Open
+* Machine Learning 
+* Introduction to R
 
-These samples show off the power of [Microsoft R
+In the sections that follow, you'll find detailed abstracts for each example.
+
+### Microsoft R Server 
+
+These examples show off the power of [Microsoft R
 Server](https://www.microsoft.com/en-us/server-cloud/products/r-server/), which
 lets you work with datasets that are too large to fit in memory.
+
+#### rxGLM() benchmark
+
+This example demonstrates the differences between CRAN R and R server.
+Specifically, it shows how the difference in performance between rxGlm() and
+glm(). The R server function rxGlm() fits a generalized linear model on data
+that is potentially much larger than available RAM.
+
+![rxGlm benchmark](./media/samples/Introduction_to_R_Server/rxGLM_benchmark.png)
+
 
 #### Flight delay prediction
 
 This example uses historical on-time performance and weather data to predict
 whether the arrival of a scheduled passenger flight will be delayed by more than
-15 minutes. It uses datasets from the Github repository for the samples. While
+15 minutes. It uses datasets from the Github repository for the examples. While
 the datasets are relatively small for the purposes of illustration, in practice
 you can scale those datasets to whatever size makes sense for your application.
 
+![Flight delay ROC curve](./media/samples/Introduction_to_R_Server/MRS_flight_delays_RocCurve.png)
+
+
 #### Bike rental estimation
 
-This example demonstrates feature engineering process and builing a regression model to predict bike
-rental demand using historical datasets. Similar to the previous example, the
-datasets are relatively small (17,379 rows and 17 columns) for the purposes of
-illustration, but can be scaled to whatever size makes sense for your
-application.
+This example demonstrates the feature engineering process for building a
+regression model to predict bike rental demand using historical datasets.
+Similar to the previous example, the datasets are relatively small (17,379 rows
+and 17 columns) for the purposes of illustration, but can be scaled to whatever
+size makes sense for your application.
 
-### Microsoft R Open (R with MKL) examples
+### Microsoft R Open (R with MKL) 
 
 These examples show off the power of [Microsoft R
 Open](https://mran.revolutionanalytics.com/open/), Microsoft's distribution of R
@@ -66,7 +90,10 @@ which has two key differentiators over [CRAN R](https://cran.r-project.org/):
 
 This example runs a number of compute-intensive benchmarks to show the
 performance gains that are possible through the use of the Intel Math Kernel
-Libraries in Microsoft R Open.
+Libraries in Microsoft R Open. This sample produces a box plot showing the
+impact of running the same computation on multiple cores:
+
+![](./media/sample_mro_benchmark_plot.png)
 
 #### Deploying an Azure Machine Learning web service
 
@@ -80,17 +107,37 @@ free.
 
 #### Gradient Boosting Machine
 
-This examples shows you how to create a popular kind of machine learning model
-based on decision trees--a Gradient Boosting Machine. In a few lines of code,
-this script creates, trains and evaluates the model.
+This example uses a Gradient Boosting machine to create a model that predicts
+[housing prices in the suburbs of
+Boston](https://cran.r-project.org/web/packages/MASS/MASS.pdf) based on features
+such as per-capita crime statistics, number of rooms per dwelling and the
+property tax rate. Note that it takes quite some time to run this model, so
+don't expect immediate results. If you find that it takes too long, there is a
+commented out block of code that you can substitute that has a smaller parameter
+tuning grid.
 
-### A collection giving a gentle Introduction to R
+The output of this example is a plot of features showing the relative influence
+of each one on the model:
 
-If you are new to R, this example is a great introduction to the language and
-its libraries. Here are the topics that are covered:
+![](./media/sample_gradient_boosting_machine_plot.png)
+
+### Introduction to R
+
+If you are new to R, this set of examples is a great introduction to the
+language and its packages. 
+
+Note that these examples all use the `checkpoint` package to manage
+dependencies. At the start of each script, the `checkpoint()` function scans the
+project for dependencies and automatically installs them. This can take quite
+some time the first time you run the script. However, the installation happens
+only once. On subsequent script execution, the packages do not get re-installed.
+
+![Scanning the project for dependencies](./media/samples/Introduction_to_R/1_a_checkpoint.PNG)
+
+Here are the topics that are covered:
 
 1. Getting Started
-1. A First look at R
+1. A first look at R
 1. Data structures
 1. Functions
 1. More functions
@@ -102,9 +149,8 @@ its libraries. Here are the topics that are covered:
 1. Classification
 1. Working with SQLite
 
+Example output from these tutorial scripts:
 
-If you're wondering what the difference is between R, Microsoft R Open
-and Microsoft R Server, [check out this comparison.](https://github.com/lixzhang/R-MRO-MRS/)
-
-
-<iframe width="560" height="315" src="https://youtu.be/5Z30_Qpc8j0" frameborder="0"></iframe>
+![Classification](./media/samples/Introduction_to_R/10_classification.PNG)
+![Classification](./media/samples/Introduction_to_R/6_plots_ozone.PNG)
+![Classification](./media/samples/Introduction_to_R/8_data_exploration_2.PNG)
