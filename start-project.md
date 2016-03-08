@@ -14,3 +14,10 @@ layout: default
    **Enter** to see the answer displayed.
 
 ![](./media/RTVS-OpenProject-Test.PNG)
+
+
+# Try some of the samples
+
+You can also try one of our sample projects.  Just download, open and run:
+
+[Samples documenation](samples.html)
