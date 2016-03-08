@@ -4,18 +4,19 @@ layout: default
 
 # Examples for how to use R Tools for Visual Studio
 
-We'd like to give you a running start using R Tools for Visual Studio. Here are
-some examples for how to write R code, how to make it fast and how to use
-Microsoft R Server for big datasets and multi-core machines. Below is a brief
-3-minute video will give you a quick overview of the examples.
+These examples will give you a running start using R Tools for Visual Studio.
+There are examples that give you an introduction to R, examples on how to make
+your code run fast, and examples on how to use Microsoft R Server for big
+datasets on multi-core machines. Watch this 3-minute video to get a quick
+overview of the examples:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/5Z30_Qpc8j0" frameborder="0" allowfullscreen></iframe>
 
-## Download and install
+## Downloading and launching the examples
 
 1. [Download the examples](https://github.com/Microsoft/RTVS-docs/archive/master.zip).
 
-1. Unzip the archive open the solution by double clicking on the
+1. Unzip the archive, and open the solution by double-clicking on the
    `examples\Examples.sln` file.
 
 If you prefer to work with the examples via Github, they are all available in
@@ -26,7 +27,14 @@ Github](https://github.com/microsoft/rtvs-docs).
 
 In the zip archive, there are a number of examples, grouped into different categories:
 
-### Microsoft R Server examples
+* Microsoft R Server 
+* Microsoft R Open
+* Machine Learning 
+* Introduction to R
+
+In the sections that follow, you'll find detailed abstracts for each example.
+
+### Microsoft R Server 
 
 These examples show off the power of [Microsoft R
 Server](https://www.microsoft.com/en-us/server-cloud/products/r-server/), which
@@ -34,7 +42,10 @@ lets you work with datasets that are too large to fit in memory.
 
 #### rxGLM() benchmark
 
-This example demonstrates the differences between CRAN R and R server.  Specifically, it shows how the difference in performance between rxGlm() and glm(). The R server function rxGlm() fits a generalized linear model on data that is potentially much larger than available RAM.
+This example demonstrates the differences between CRAN R and R server.
+Specifically, it shows how the difference in performance between rxGlm() and
+glm(). The R server function rxGlm() fits a generalized linear model on data
+that is potentially much larger than available RAM.
 
 ![rxGlm benchmark](./media/samples/Introduction_to_R_Server/rxGLM_benchmark.png)
 
@@ -52,13 +63,13 @@ you can scale those datasets to whatever size makes sense for your application.
 
 #### Bike rental estimation
 
-This example demonstrates the Feature Engineering process for builing a
+This example demonstrates the Feature Engineering process for building a
 regression model to predict bike rental demand using historical datasets.
 Similar to the previous example, the datasets are relatively small (17,379 rows
 and 17 columns) for the purposes of illustration, but can be scaled to whatever
 size makes sense for your application.
 
-### Microsoft R Open (R with MKL) examples
+### Microsoft R Open (R with MKL) 
 
 These examples show off the power of [Microsoft R
 Open](https://mran.revolutionanalytics.com/open/), Microsoft's distribution of R
@@ -109,12 +120,16 @@ of each one on the model:
 
 ![](./media/sample_gradient_boosting_machine_plot.png)
 
-### A collection giving a gentle Introduction to R
+### Introduction to R
 
-If you are new to R, this example is a great introduction to the language and
-its packages. 
+If you are new to R, this set of examples is a great introduction to the
+language and its packages. 
 
-Note that these examples all use the `checkpoint` package to manage dependencies. At the start of each script, the `checkpoint()` function scans the project for dependencies and automaticall installs these dependencies. This can take quite some time the first time you run the script. However, the installation happens only once. On subsequent script execution, the packages do not get re-installed.
+Note that these examples all use the `checkpoint` package to manage
+dependencies. At the start of each script, the `checkpoint()` function scans the
+project for dependencies and automatically installs them. This can take quite
+some time the first time you run the script. However, the installation happens
+only once. On subsequent script execution, the packages do not get re-installed.
 
 ![Scanning the project for dependencies](./media/samples/Introduction_to_R/1_a_checkpoint.PNG)
 
@@ -138,5 +153,3 @@ Example output from these tutorial scripts:
 ![Classification](./media/samples/Introduction_to_R/10_classification.PNG)
 ![Classification](./media/samples/Introduction_to_R/6_plots_ozone.PNG)
 ![Classification](./media/samples/Introduction_to_R/8_data_exploration_2.PNG)
-
-
