@@ -102,10 +102,16 @@ of each one on the model:
 ### A collection giving a gentle Introduction to R
 
 If you are new to R, this example is a great introduction to the language and
-its libraries. Here are the topics that are covered:
+its packages. 
+
+Note that these examples all use the `checkpoint` package to manage dependencies. At the start of each script, the `checkpoint()` function scans the project for dependencies and automaticall installs these dependencies. This can take quite some time the first time you run the script. However, the installation happens only once. On subsequent script execution, the packages do not get re-installed.
+
+![Scanning the project for dependencies](./media/samples/Introduction_to_R/1_a_checkpoint.png)
+
+Here are the topics that are covered:
 
 1. Getting Started
-1. A First look at R
+1. A first look at R
 1. Data structures
 1. Functions
 1. More functions
@@ -116,3 +122,11 @@ its libraries. Here are the topics that are covered:
 1. Clustering
 1. Classification
 1. Working with SQLite
+
+Example output from these tutorial scripts:
+
+![Classification](./media/samples/Introduction_to_R/10_classification.png)
+![Classification](./media/samples/Introduction_to_R/6_plots_ozone.png)
+![Classification](./media/samples/Introduction_to_R/8_data_exploration_2.png)
+
+
