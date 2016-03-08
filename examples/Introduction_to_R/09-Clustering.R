@@ -4,22 +4,17 @@
 
 # The checkpoint function installs all required dependencies (i.e. CRAN packages)
 # you need to run the examples.
-if (!require(checkpoint, quietly = TRUE))
+if (!require("checkpoint", quietly = TRUE))
   install.packages("checkpoint")
-library(checkpoint)
+library("checkpoint")
 checkpoint("2016-01-01")
 
+library("rattle")
+library("fpc") # for the plotcluster function	 
+library("Hmisc")
 
 # In this script we will look at Kmeans and hierarchical clustering using the weather data.	
-
 set.seed(42)
-(if (!require("rattle")) install.packages("rattle"))
-library(rattle)	
-(if (!require("fpc")) install.packages("fpc"))
-library("fpc")  	                       # for the plotcluster function	
-(if (!require("Hmisc")) install.packages("Hmisc"))
-library("Hmisc")                         # for varclus function	
-
 
 ### Weather Data	
 data(weather, package = "rattle")

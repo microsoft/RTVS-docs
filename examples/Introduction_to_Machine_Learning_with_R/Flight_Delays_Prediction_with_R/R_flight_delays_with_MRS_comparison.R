@@ -33,10 +33,10 @@
 inputFileFlightURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Flight_Delays_Sample.csv"
 inputFileWeatherURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Weather_Sample.csv"
 
-# Import libraries.
+# Import packages.
 (if (!require("RCurl")) install.packages("RCurl"))
+library("RCurl") # Load RCurl package for importing files from a URL.
 (if (!require("rpart")) install.packages("rpart"))
-library("RCurl")  # Load RCurl package for importing files from a URL.
 library("rpart")  # Load rpart package for building the decision tree model.
 
 # Download URLs of flight and weather data.

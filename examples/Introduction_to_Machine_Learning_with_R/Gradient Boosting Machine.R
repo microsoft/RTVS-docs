@@ -4,17 +4,14 @@
 # ----------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------
-# install a library if it's not already installed
+# load packages
 # ----------------------------------------------------------------------------
-if (!('caret' %in% rownames(installed.packages()))) {
-    install.packages("caret")
-}
-
-# ----------------------------------------------------------------------------
-# load libraries
-# ----------------------------------------------------------------------------
+(if (!require("MASS")) install.packages("MASS"))
 library("MASS") # use the mvrnorm function
+(if (!require("caret")) install.packages("caret"))
 library("caret") # use the train function for selecting hyper parameters
+(if (!require("gbm")) install.packages("gbm"))
+library("gbm") # Gradient Boosting Machine package
 
 # ----------------------------------------------------------------------------
 # select hyper parameters

@@ -4,23 +4,19 @@
 
 # The checkpoint function installs all required dependencies (i.e. CRAN packages)
 # you need to run the examples.
-if (!require(checkpoint, quietly = TRUE))
+if (!require("checkpoint", quietly = TRUE))
   install.packages("checkpoint")
-library(checkpoint)
+library("checkpoint")
 checkpoint("2016-01-01")
 
+library("DBI")
+library("RSQLite")
+library("recommenderlab")
 
 ### READING FROM A SQL DATABASE	
 
-# This script creates a SQLite database from a csv file using the RSQlite library. Then a simple query is sent to the database.	
-
-(if (!require("DBI")) install.packages("DBI"))
-library("DBI")	
-(if (!require("RSQLite")) install.packages("RSQLite"))
-library("RSQLite")
-(if (!require("recommenderlab")) install.packages("recommenderlab"))
-library("recommenderlab")
-
+# This script creates a SQLite database from a csv file using the RSQlite package. 
+# Then a simple query is sent to the database.	
 # Point to the file and read it in	
 
 data(diamonds, package = "ggplot2")

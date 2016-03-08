@@ -29,19 +29,18 @@
 
 
 #---------------------------Step 0: Get Started---------------------------
-# Check the "RevoScaleR" package is loaded in the current RTVS enivronment.
-if (require("RevoScaleR"))
-{
-  # Load RevoScaleR package from Microsoft R Server.
-  message("RevoScaleR package is succesfully loaded.\n",
-          "Please continue with the further steps.")
-} else
-{
-  message("RevoScaleR package does not seem to exist...\n", 
-          "If you have Microsoft R Server installed, please switch the R engine\n",
-          "Using R Tools for Visual Studio: R Tools -> Options -> R Engine.\n",
-          "If Microsoft R Server is not installed, please download it from\n",
-          "https://www.microsoft.com/en-us/server-cloud/products/r-server/.")
+# Check whether the "RevoScaleR" package is loaded in the current environment.
+if (require("RevoScaleR")) {
+    library("RevoScaleR") # Load RevoScaleR package from Microsoft R Server.
+    message("RevoScaleR package is succesfully loaded.")
+} else {
+    message("Can't find RevoScaleR package...")
+    message("If you have Microsoft R Server installed,")
+    message("please switch the R engine")
+    message("in R Tools for Visual Studio: R Tools -> Options -> R Engine.")
+    message("If Microsoft R Server is not installed,")
+    message("please download it from here:")
+    message("https://www.microsoft.com/en-us/server-cloud/products/r-server/.")
 }
 
 # Initial some variables.
@@ -190,7 +189,10 @@ predictTree_mrs <- rxPredict(dTree2_mrs, data = test, predVarNames = "ArrDel15_P
 
 # Calculate Area Under the Curve (AUC).
 rxAuc(rxRoc("ArrDel15", "ArrDel15_Pred_Tree", predictTree_mrs))
+<<<<<<< HEAD
 rxRocCurve("ArrDel15",
            predVarNames = c("ArrDel15_Pred_Tree", "ArrDel15_Pred_Logit"),
            data = test,
            title = "ROC curve - Logistic regression")
+=======
+>>>>>>> 5677fd41eb8011dae8e1c0ecf626df3d11cd3dc4

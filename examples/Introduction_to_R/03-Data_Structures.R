@@ -4,9 +4,9 @@
 
 # The checkpoint function installs all required dependencies (i.e. CRAN packages)
 # you need to run the examples.
-if (!require(checkpoint, quietly = TRUE))
+if (!require("checkpoint", quietly = TRUE))
   install.packages("checkpoint")
-library(checkpoint)
+library("checkpoint")
 checkpoint("2016-01-01")
 
 ### Vectors	

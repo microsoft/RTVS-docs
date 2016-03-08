@@ -10,27 +10,26 @@
 # ----------------------------------------------------------------------------
 # check if Microsoft R Server (RRE 8.0) is installed
 # ----------------------------------------------------------------------------
-if (!require("RevoScaleR"))
-{
-  stop(
-    "RevoScaleR package does not seem to exist. \n",
-    "This means that the functions starting with 'rx' will not run. \n",
-    "If you have Microsoft R Server installed, please switch the R engine.\n",
-    "For example, in R Tools for Visual Studio: \n",
-    "R Tools -> Options -> R Engine. \n",
-    "If Microsoft R Server is not installed, you can download it from: \n",
-    "https://www.microsoft.com/en-us/server-cloud/products/r-server/")
+if (require("RevoScaleR")) {
+    library("RevoScaleR") # Load RevoScaleR package from Microsoft R Server.
+    message("RevoScaleR package is succesfully loaded.")
+} else {
+    message("Can't find RevoScaleR package...")
+    message("If you have Microsoft R Server installed,")
+    message("please switch the R engine")
+    message("in R Tools for Visual Studio: R Tools -> Options -> R Engine.")
+    message("If Microsoft R Server is not installed,")
+    message("please download it from here:")
+    message("https://www.microsoft.com/en-us/server-cloud/products/r-server/.")
 }
 
-# install a package if it's not already installed
-if (!require("ggplot2", quietly = TRUE))
-  install.packages("ggplot2")
-
 # ----------------------------------------------------------------------------
-# load libraries
+# install a library if it's not already installed
 # ----------------------------------------------------------------------------
-library("MASS") # to use the mvrnorm function
-library("ggplot2") # used for plotting
+(if (!require("ggplot2")) install.packages("ggplot2"))
+library("ggplot2")
+(if (!require("MASS")) install.packages("MASS"))
+library("MASS") # used for plotting
 
 # ----------------------------------------------------------------------------
 # run the following code on R, MRO, and MRS and 
@@ -70,7 +69,6 @@ A <- matrix(runif(m * n), m, n)
 system.time(P <- prcomp(A))
 
 # Linear Discriminant Analysis
-library("MASS")
 g <- 5
 k <- round(m / 2)
 A <- data.frame(A, fac = sample(LETTERS[1:g], m, replace = TRUE))

@@ -4,6 +4,23 @@
 
 # This example demonstrates how to fit a logistic regression using CRAN R,
 # and how the rxGlm() function is dramatically faster and more scalable
+#
+# NOTE: The CRAN portion of this comparison requires about 7GB of RAM.
+# If your machine has less, this script will crash.
+
+# Check whether the "RevoScaleR" package is loaded in the current environment.
+if (require("RevoScaleR")) {
+    library("RevoScaleR") # Load RevoScaleR package from Microsoft R Server.
+    message("RevoScaleR package is succesfully loaded.")
+} else {
+    message("Can't find RevoScaleR package...")
+    message("If you have Microsoft R Server installed,")
+    message("please switch the R engine")
+    message("in R Tools for Visual Studio: R Tools -> Options -> R Engine.")
+    message("If Microsoft R Server is not installed,")
+    message("please download it from here:")
+    message("https://www.microsoft.com/en-us/server-cloud/products/r-server/.")
+}
 
 # ---- Using CRAN R functions -------------------------------------------------
 
@@ -29,16 +46,17 @@ nrow(df)
 names(df)
 
 # Fit a logistic regression model
-# On a system with limited memory this operation could run out of memory
-# However, on a bigger machine, this operation can take several minutes
+# NOTE:
+# On a system with limited memory this operation could run out of memory.
+# If it completes, it may take several minutes.
 system.time(
   model1 <- glm(ARR_DEL15 ~ ORIGIN + DAY_OF_WEEK + DEP_TIME,
                 data = df,
                 family = binomial))
 
-# Fit the same model on a smaller set of data, by randomly sampling down
-# This should take about 10 seconds to run
-sampledata <- df[sample.int(nrow(df), size = 10000),]
+# Fit the same model on a smaller set of data, by randomly sampling down.
+# This should take about 10 seconds to run.
+sampledata <- df[sample.int(nrow(df), size = 10000), ]
 nrow(sampledata)
 system.time(
   model1 <- glm(ARR_DEL15 ~ ORIGIN + DAY_OF_WEEK + DEP_TIME,
@@ -46,14 +64,15 @@ system.time(
                 family = binomial))
 
 
-# Print information about the model
+# Print information about the model.
 summary(model1)
 
 
 # ---- Using Microsoft R Server functions ------------------------------------
 
 
-# Note: download AirOnTime2012.xdf from http://packages.revolutionanalytics.com/datasets/
+# Note: download AirOnTime2012.xdf from 
+# http://packages.revolutionanalytics.com/datasets/
 
 xdfFile <- "AirOnTime2012.xdf"
 if (!file.exists(xdfFile))
@@ -115,8 +134,8 @@ testFunR <- function(nrows)
   system.time(
     glm(ARR_DEL15 ~ ORIGIN + DAY_OF_WEEK + DEP_TIME,
         data = df,
-        family = binomial))
-}[[3]] 
+        family = binomial))[[3]] # extract 3rd element (elapsed time)
+} 
 
 nrow_R <- c(10e3, 20e3, 50e3, 100e3) # number of rows in data
 timing_R <- sapply(nrow_R, testFunR)

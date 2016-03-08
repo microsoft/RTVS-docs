@@ -10,23 +10,14 @@ if (!require("checkpoint", quietly = TRUE))
 library("checkpoint")
 checkpoint("2016-01-01")
 
-(if (!require("rattle")) install.packages("rattle"))
-library("rattle")  			# for weather data set	
-(if (!require("rpart")) install.packages("rpart"))
-library("rpart")				# CART Decision Trees	
-(if (!require("colorspace")) install.packages("colorspace"))
-library("colorspace")		# used to generate colors for plots	
-(if (!require("randomForest")) install.packages("randomForest"))
-library("randomForest")	
-(if (!require("ROCR")) install.packages("ROCR"))
-library("ROCR")				  # ROC 	
-(if (!require("kernlab")) install.packages("kernlab"))
-library("kernlab")			# SVM library	
-(if (!require("e1071")) install.packages("e1071"))
-library("e1071")				# SVM library	
-(if (!require("ada")) install.packages("ada"))
-library("ada")          # Boosting library	
-
+library("rattle") # for weather data set	 
+library("rpart") # CART Decision Trees	 
+library("colorspace") # used to generate colors for plots	 
+library("randomForest")
+library("ROCR") # ROC 	 
+library("kernlab") # SVM library	 
+library("e1071") # SVM library	 
+library("ada") # Boosting library	 
 
 ### Some Convenience Functions	
 

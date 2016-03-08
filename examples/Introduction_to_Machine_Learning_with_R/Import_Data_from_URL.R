@@ -1,12 +1,11 @@
-# Import libraries.
+# Import packages.
 (if (!require("RCurl")) install.packages("RCurl"))
-(if (!require("foreign")) install.packages("foreign"))
 library("RCurl")
+(if (!require("foreign")) install.packages("foreign"))
 library("foreign")
 
-# An URL contains the raw data.
-inputDataURL <- "<an URL contains the raw data>"
-#inputDataURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Flight_Delays_Sample.csv"
+# A URL contains the raw data.
+inputDataURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Flight_Delays_Sample.csv"
 
 # Download data from the URL.
 inputData <- getURL(inputDataURL)
