@@ -84,5 +84,5 @@ R Tools for Visual Studio installs in this folder:
 
 Once you've installed RTVS, try some of the samples from github:
 
-![](samples.html)
+[Samples documentation](samples.html)
 
