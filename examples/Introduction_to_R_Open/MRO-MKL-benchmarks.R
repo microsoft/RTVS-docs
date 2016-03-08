@@ -5,16 +5,14 @@
 # The test uses the package "version.compare", available on github
 # Install this package first, if it is not already installed
 
-if(!require("version.compare")){
-  if (!require("devtools")) install.packages("devtools")
-  library(devtools)
+if (!require("version.compare")){
+  (if (!require("devtools")) install.packages("devtools"))
+  library("devtools") 
   devtools::install_github("andrie/version.compare")
 }
-
 library(version.compare)
 
 # Determine the local installation path
-
 r <- findRscript(
   version = as.character(getRversion())
 )

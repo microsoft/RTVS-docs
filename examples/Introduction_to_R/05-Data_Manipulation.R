@@ -4,10 +4,12 @@
 
 # The checkpoint function installs all required dependencies (i.e. CRAN packages)
 # you need to run the examples.
-if (!require(checkpoint, quietly = TRUE))
+if (!require("checkpoint", quietly = TRUE))
   install.packages("checkpoint")
-library(checkpoint)
+library("checkpoint")
 checkpoint("2016-01-01")
+library("compare")
+library("plyr")
 
 
 # In this script we will show some basic data wrangling. 	
@@ -17,11 +19,6 @@ checkpoint("2016-01-01")
 
 # Go to http://finance.yahoo.com/q/hp?s=IBM+Historical+Prices and copy the link to the table. Then read the data directly from the URL into an R data frame.	
 
-(if (!require("compare")) install.packages("compare"))
-library("compare")
-(if (!require("plyr")) install.packages("plyr"))
-library("plyr")
-	
 url <- "http://ichart.finance.yahoo.com/table.csv?s=IBM&a=00&b=2&c=1962&d=11&e=22&f=2011&g=d&ignore=.csv"	
 IBM.stock <- read.table(url,header=TRUE,sep=",")	
 head(IBM.stock)	

@@ -4,21 +4,17 @@
 
 # The checkpoint function installs all required dependencies (i.e. CRAN packages)
 # you need to run the examples.
-if (!require(checkpoint, quietly = TRUE))
+if (!require("checkpoint", quietly = TRUE))
   install.packages("checkpoint")
-library(checkpoint)
+library("checkpoint")
 checkpoint("2016-01-01")
-
+library("boot")
 
 ### Descriptive Statistics	
 
 # There are countless examples of doing simple, descriptive statistics with R on the web, for example:	
 # http://www.statmethods.net/stats/descriptives.html	
 # http://www.r-tutor.com/elementary-statistics	
-
-(if (!require("boot")) install.packages("boot"))
-library("boot")
-
 
 # Here are just a few examples:	
 

@@ -9,24 +9,17 @@ if (!require("checkpoint", quietly = TRUE))
 library("checkpoint")
 checkpoint("2016-01-01")
 
+library("car") # Load the library containing the sample data	 
+library("ggplot2")
+library("lattice")
 
 ### Basic R Graphics	
 
 # First, let's look at some simple scatter plots. The Duncan data frame has 45 rows and 4 columns. Data on the prestige and other characteristics of 45 U. S. occupations in 1950. 	
-
-(if (!require("car")) install.packages("car"))
-library("car") # Load the library containing the sample data	
-(if (!require("ggplot2")) install.packages("ggplot2"))
-library("ggplot2")
-(if (!require("lattice")) install.packages("lattice"))
-library("lattice")
-
 class(Duncan)		# What kind of data structure is Duncan?	
 dim(Duncan)			# How big is Duncan? 	
 Duncan[1:5,]		# Look at the first five rows of the data frame	
 plot(Duncan$education,Duncan$prestige)	
-
-
 
 # Now, here is a truly ugly scatter plot. As an exercise, play with the parameters to creating something that is more pleasing to the eye. Here are a few web pages that you may find helpful.	
 # http://www.statmethods.net/advgraphs/parameters.html	

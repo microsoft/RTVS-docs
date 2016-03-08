@@ -22,21 +22,19 @@
 
 
 #---------------------------Step 0: Get Started---------------------------
-# Check the "RevoScaleR" package is loaded in the current RTVS enivronment.
-tryCatch(
-  {
-    library("RevoScaleR")  # Load RevoScaleR package from Microsoft R Server.
-    message("RevoScaleR package is succesfully loaded. Please continue with the further steps.")
-  },
-  error=function(e) {
-    message("RevoScaleR package does not seem to exist...")
-    message("Here's the original error message:")
-    message(paste(e, "\n"))
-    message("If you have Mircrosoft R Server installed, please switch the R engine in R Tools for Visual Studio: R Tools -> Options -> R Engine.")
-    message("If Microsoft R Server is not installed, please download it from here: https://www.microsoft.com/en-us/server-cloud/products/r-server/.")
-    return(NA)
-  }
-)    
+# Check whether the "RevoScaleR" package is loaded in the current environment.
+if (require("RevoScaleR")) {
+    library("RevoScaleR") # Load RevoScaleR package from Microsoft R Server.
+    message("RevoScaleR package is succesfully loaded.")
+} else {
+    message("Can't find RevoScaleR package...")
+    message("If you have Microsoft R Server installed,")
+    message("please switch the R engine")
+    message("in R Tools for Visual Studio: R Tools -> Options -> R Engine.")
+    message("If Microsoft R Server is not installed,")
+    message("please download it from here:")
+    message("https://www.microsoft.com/en-us/server-cloud/products/r-server/.")
+}
 
 # Initial some variables.
 inputFileBikeURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Bike_Rental_UCI_Dataset.csv"
