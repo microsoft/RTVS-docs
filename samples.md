@@ -116,7 +116,7 @@ its packages.
 
 Note that these examples all use the `checkpoint` package to manage dependencies. At the start of each script, the `checkpoint()` function scans the project for dependencies and automaticall installs these dependencies. This can take quite some time the first time you run the script. However, the installation happens only once. On subsequent script execution, the packages do not get re-installed.
 
-![Scanning the project for dependencies](./media/samples/Introduction_to_R/1_a_checkpoint.png)
+![Scanning the project for dependencies](./media/samples/Introduction_to_R/1_a_checkpoint.PNG)
 
 Here are the topics that are covered:
 
@@ -135,8 +135,8 @@ Here are the topics that are covered:
 
 Example output from these tutorial scripts:
 
-![Classification](./media/samples/Introduction_to_R/10_classification.png)
-![Classification](./media/samples/Introduction_to_R/6_plots_ozone.png)
-![Classification](./media/samples/Introduction_to_R/8_data_exploration_2.png)
+![Classification](./media/samples/Introduction_to_R/10_classification.PNG)
+![Classification](./media/samples/Introduction_to_R/6_plots_ozone.PNG)
+![Classification](./media/samples/Introduction_to_R/8_data_exploration_2.PNG)
 
 
