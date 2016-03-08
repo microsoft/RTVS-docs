@@ -5,7 +5,7 @@ get started with R, Microsoft R Open, and Microsoft R Server.
 
 You can run all of these samples easily using [R Tools for Visual
 Studio](http://microsoft.github.io/RTVS-docs/), or your favorite R IDE / text
-editor. 
+editor.
 
 ## Introduction to R
 
@@ -30,12 +30,6 @@ want to check out the examples in the
 [Introduction_to_R_Server](https://github.com/Microsoft/RTVS-docs/tree/master/examples/Introduction_to_R_Server)
 directory.
 
-Questions to answer here (and the same for the others above this):
-
-1. What does this sample do?
-2. What happens when I run it (screenshot would be great)?
-3. What do I need to run it (dependencies etc.)?
-4. How do I run it?
 
 ## Machine Learning with R
 

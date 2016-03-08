@@ -1,19 +1,23 @@
 # ----------------------------------------------------------------------------
-# purpose:  fit a linear regressio model and deploy an Azure ML web service
+# purpose:  fit a linear regression model and deploy an Azure ML web service
 # audience: you are expected to have some prior experience with R
 # ----------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------
-# install a library if it's not already installed
+# NOTE: In order to run this script you'll need to have the an Azure ML
+# workspace, with its workspace ID and key.
+# For details about Azure ML, go to http://studio.azureml.net/
 # ----------------------------------------------------------------------------
-if (!('AzureML' %in% rownames(installed.packages()))) {
-  install.packages("AzureML")
-}
+# Enter your Azure ML Studio workspace info here before continuing.
+ws_id <- ""
+auth_token <- ""
 
 # ----------------------------------------------------------------------------
 # load libraries
 # ----------------------------------------------------------------------------
+(if (!require("MASS")) install.packages("MASS"))
 library("MASS") # to use the Boston dataset
+(if (!require("AzureML")) install.packages("AzureML"))
 library("AzureML") # load the library for deploying Azure ML web service
 
 # ----------------------------------------------------------------------------
@@ -43,13 +47,6 @@ print(paste("Relative Absolute Error: ",
 print(paste("Relative Squared Error: ", 
   as.character(round(rse, digit = 6)), sep = ""))
 
-# ----------------------------------------------------------------------------
-# deploy a web service: you'll need an Azure Machine Learnign workspace
-# for details about Azure ML, go to http://studio.azureml.net/
-# ----------------------------------------------------------------------------
-# enter your Azure ML Studio workspace info here before continuing
-ws_id <- ""
-auth_token <- ""
 
 # workspace information
 ws <- workspace(
