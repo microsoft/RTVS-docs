@@ -34,13 +34,13 @@ In the zip archive, there are a number of examples, grouped into different categ
 
 In the sections that follow, you'll find detailed abstracts for each example.
 
-### Microsoft R Server 
+## Microsoft R Server 
 
 These examples show off the power of [Microsoft R
 Server](https://www.microsoft.com/en-us/server-cloud/products/r-server/), which
 lets you work with datasets that are too large to fit in memory.
 
-#### rxGLM() benchmark
+### rxGLM() benchmark
 
 This example demonstrates the differences between CRAN R and R server.
 Specifically, it shows how the difference in performance between rxGlm() and
@@ -50,7 +50,7 @@ that is potentially much larger than available RAM.
 ![rxGlm benchmark](./media/samples/Introduction_to_R_Server/rxGLM_benchmark.png)
 
 
-#### Flight delay prediction
+### Flight delay prediction
 
 This example uses historical on-time performance and weather data to predict
 whether the arrival of a scheduled passenger flight will be delayed by more than
@@ -60,8 +60,30 @@ you can scale those datasets to whatever size makes sense for your application.
 
 ![Flight delay ROC curve](./media/samples/Introduction_to_R_Server/MRS_flight_delays_RocCurve.png)
 
+### R and R Server comparison
 
-#### Bike rental estimation
+The comparison of using R and R Server consists of three examples, each illustrating a slightly different aspect:
+
+* R_MRO_MRS_Comparison_Part_1_Functions.R
+
+  - Demonstrates how to do cluster analysis using `kmeans()` and `rxKmeans()`.
+  - The sample creates some simulated data in two overlapping groups, then finds the cluster allocation and cluster centres.
+  
+    ![Cluster allocation](./media/samples/Introduction_to_R_Server/Comparison_of_functions_clustering.png)
+  
+* R_MRO_MRS_Comparison_Part_2_Capacity.R
+
+  - This demonstrates the `rxKmeans()`, like all the `rx` functions, can handle much larger datasets than CRAN R functions.
+  
+* R_MRO_MRS_Comparison_Part_3_Speed.R
+
+  - This compares the execution speed of clustering using `kmeans()` and `rxKmeans()`, demonstrating that for this algorithm there is no inherent performance benefit of using `rxKmeans()`, but `rxKmeans()` can handle much larger datasets.
+  
+    ![Cluster allocation](./media/samples/Introduction_to_R_Server/Comparison_of_functions_clustering_speed.png)
+  
+
+
+### Bike rental estimation
 
 This example demonstrates the Feature Engineering process for building a
 regression model to predict bike rental demand using historical datasets.
@@ -69,7 +91,7 @@ Similar to the previous example, the datasets are relatively small (17,379 rows
 and 17 columns) for the purposes of illustration, but can be scaled to whatever
 size makes sense for your application.
 
-### Microsoft R Open (R with MKL) 
+## Microsoft R Open (R with MKL) 
 
 These examples show off the power of [Microsoft R
 Open](https://mran.revolutionanalytics.com/open/), Microsoft's distribution of R
@@ -86,7 +108,7 @@ which has two key differentiators over [CRAN R](https://cran.r-project.org/):
    ensures that the libraries that you built your R program with are always
    available to others that want to reproduce your work.
 
-#### Benchmarks
+### Benchmarks
 
 This example runs a number of compute-intensive benchmarks to show the
 performance gains that are possible through the use of the Intel Math Kernel
@@ -95,16 +117,16 @@ impact of running the same computation on multiple cores:
 
 ![](./media/sample_mro_benchmark_plot.png)
 
-#### Deploying an Azure Machine Learning web service
+### Deploying an Azure Machine Learning web service
 
 This example shows how you can create a linear regression model using R, and
 then publish it as an Azure Web Service using an [Azure Machine
 Learning](https://azure.microsoft.com/en-us/services/machine-learning/)
 workspace.
 
-### Introduction to R and Machine Learning
+## Introduction to R and Machine Learning
 
-#### Gradient Boosting Machine
+### Gradient Boosting Machine
 
 This example uses a Gradient Boosting machine to create a model that predicts
 [housing prices in the suburbs of
@@ -120,7 +142,7 @@ of each one on the model:
 
 ![](./media/sample_gradient_boosting_machine_plot.png)
 
-### Introduction to R
+## Introduction to R
 
 If you are new to R, this set of examples is a great introduction to the
 language and its packages. 
