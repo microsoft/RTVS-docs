@@ -1,7 +1,9 @@
 # R Tools for Visual Studio Examples
 
 This `master` branch of this repository contains a set of samples to help you
-get started with R, Microsoft R Open, and Microsoft R Server. 
+get started with R, Microsoft R Open, and Microsoft R Server. For a detailed
+description of the samples, please checkout the [samples documentation
+page](https://microsoft.github.io/RTVS-docs/samples.html).
 
 You can run all of these samples easily using [R Tools for Visual
 Studio](http://microsoft.github.io/RTVS-docs/), or your favorite R IDE / text
