@@ -32,6 +32,13 @@ These examples show off the power of [Microsoft R
 Server](https://www.microsoft.com/en-us/server-cloud/products/r-server/), which
 lets you work with datasets that are too large to fit in memory.
 
+#### rxGLM() benchmark
+
+This example demonstrates the differences between CRAN R and R server.  Specifically, it shows how the difference in performance between rxGlm() and glm(). The R server function rxGlm() fits a generalized linear model on data that is potentially much larger than available RAM.
+
+![rxGlm benchmark](./media/samples/Introduction_to_R_Server/rxGLM_benchmark.png)
+
+
 #### Flight delay prediction
 
 This example uses historical on-time performance and weather data to predict
@@ -39,6 +46,9 @@ whether the arrival of a scheduled passenger flight will be delayed by more than
 15 minutes. It uses datasets from the Github repository for the examples. While
 the datasets are relatively small for the purposes of illustration, in practice
 you can scale those datasets to whatever size makes sense for your application.
+
+![Flight delay ROC curve](./media/samples/Introduction_to_R_Server/MRS_flight_delays_RocCurve.png)
+
 
 #### Bike rental estimation
 
