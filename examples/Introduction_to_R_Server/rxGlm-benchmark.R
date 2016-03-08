@@ -134,8 +134,8 @@ testFunR <- function(nrows)
   system.time(
     glm(ARR_DEL15 ~ ORIGIN + DAY_OF_WEEK + DEP_TIME,
         data = df,
-        family = binomial))
-}[[3]] 
+        family = binomial))[[3]] # extract 3rd element (elapsed time)
+} 
 
 nrow_R <- c(10e3, 20e3, 50e3, 100e3) # number of rows in data
 timing_R <- sapply(nrow_R, testFunR)

@@ -7,16 +7,11 @@
 # http://statweb.stanford.edu/~tibs/lasso.html
 
 # ----------------------------------------------------------------------------
-# install a library if it's not already installed
+# load packages
 # ----------------------------------------------------------------------------
-if (!('glmnet' %in% rownames(installed.packages()))) {
-    install.packages("glmnet")
-}
-
-# ----------------------------------------------------------------------------
-# load libraries
-# ----------------------------------------------------------------------------
+(if (!require("glmnet")) install.packages("glmnet"))
 library("glmnet") # use this package to fit a glmnet model
+(if (!require("MASS")) install.packages("MASS"))
 library("MASS") # use the Boston dataset
 
 # ----------------------------------------------------------------------------

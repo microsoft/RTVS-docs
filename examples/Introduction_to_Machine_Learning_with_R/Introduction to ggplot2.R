@@ -3,7 +3,6 @@
 # audience: you are expected to have some prior experience with R
 # ----------------------------------------------------------------------------
 
-
 # R has a number of built-in datasets
 # In this example you use the dataset called quakes
 # This data contains locations of earthquakes off Fiji
@@ -14,14 +13,16 @@
 # Inspect the structure of the data (a data frame with 5 columns)
 str(quakes)
 
-# install the ggplot2 package if not available
+# install and load the packages
 if (!require("ggplot2"))
-  install.packages("ggplot2")
+    install.packages("ggplot2")
+library("ggplot2")
+if (!require("rgl"))
+    install.packages("rgl")
+library("rgl")
 if (!require("mapproj"))
   install.packages("mapproj") # required for map projections
-
-# Load the package
-library(ggplot2)
+library("mapproj")
 
 # ----------------------------------------------------------------------------
 # Starting to use the ggplot2 package
@@ -155,8 +156,6 @@ grid.draw(gt)
 # This window is interactive - you can click and drag in the window,
 # thus changing the orientation of the data in 3 dimensions.
 
-if(!require("rgl")) install.packages("rgl")
-library(rgl)
 with(quakes, plot3d(lat, long, -depth, col = mag))
 
 

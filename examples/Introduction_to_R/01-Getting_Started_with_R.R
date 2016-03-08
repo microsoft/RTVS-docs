@@ -9,6 +9,8 @@ if (!require("checkpoint", quietly = TRUE))
 library("checkpoint")
 checkpoint("2016-01-01")
 
+library("rattle")
+
 ## Getting Started  	
 
 ### Some Brief History	
@@ -101,15 +103,9 @@ checkpoint("2016-01-01")
 
 
 ### Looking at Packages	
-
 # library()                  # list all available installed packages	
 search() # list all "attached" or loaded packages	
-(if (!require("rattle")) install.packages("rattle"))
-# install the package rattle if necessary	
-library("rattle") # to load the package rattle	
-(if (!require("RGtk2")) install.packages("RGtk2"))
-library("RGtk2")
 data() # to see all of the data sets available in the packages you have loaded	
-data(package = "rattle") # to see all the data sets in the pakage rattle	
+data(package = "rattle") # to see all the data sets in the?Terminology packages not library pakage rattle	
 help(package = rattle) # to get help with the package rattle	
 # lsf.str("package:rattle")  # to list all of the functions in rattle	

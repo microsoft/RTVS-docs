@@ -4,18 +4,15 @@
 
 # The checkpoint function installs all required dependencies (i.e. CRAN packages)
 # you need to run the examples.
-if (!require(checkpoint, quietly = TRUE))
+if (!require("checkpoint", quietly = TRUE))
   install.packages("checkpoint")
-library(checkpoint)
+library("checkpoint")
 checkpoint("2016-01-01")
-
+library("ISwR")
 
 ### A Simple Regression Example	
 
 # This simple regression example comes from Peter Dalgaard's classic book: Statistics and Computing, Introductory Statistics with R (Springer 2002)  	
-
-(if (!require("ISwR")) install.packages("ISwR"))
-library(ISwR)             # Load the ISwR package written for the book	
 data(package="ISwR")      # Look at the data sets that come with the package	
 
 

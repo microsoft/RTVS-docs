@@ -13,10 +13,10 @@ ws_id <- ""
 auth_token <- ""
 
 # ----------------------------------------------------------------------------
-# load libraries
+# load packages
 # ----------------------------------------------------------------------------
 (if (!require("AzureML")) install.packages("AzureML"))
-library("AzureML") # load the library for deploying Azure ML web service
+library("AzureML") # load the package for deploying Azure ML web service
 (if (!require("MASS")) install.packages("MASS"))
 library("MASS") # to use the Boston dataset
 
