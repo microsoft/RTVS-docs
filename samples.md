@@ -69,7 +69,10 @@ which has two key differentiators over [CRAN R](https://cran.r-project.org/):
 
 This example runs a number of compute-intensive benchmarks to show the
 performance gains that are possible through the use of the Intel Math Kernel
-Libraries in Microsoft R Open.
+Libraries in Microsoft R Open. This sample produces a box plot showing the
+impact of running the same computation on multiple cores:
+
+![](./media/sample_mro_benchmark_plot.png)
 
 #### Deploying an Azure Machine Learning web service
 
@@ -82,7 +85,19 @@ workspace.
 
 #### Gradient Boosting Machine
 
-TODO
+This example uses a Gradient Boosting machine to create a model that predicts
+[housing prices in the suburbs of
+Boston](https://cran.r-project.org/web/packages/MASS/MASS.pdf) based on features
+such as per-capita crime statistics, number of rooms per dwelling and the
+property tax rate. Note that it takes quite some time to run this model, so
+don't expect immediate results. If you find that it takes too long, there is a
+commented out block of code that you can substitute that has a smaller parameter
+tuning grid.
+
+The output of this example is a plot of features showing the relative influence
+of each one on the model:
+
+![](./media/sample_gradient_boosting_machine_plot.png)
 
 ### A collection giving a gentle Introduction to R
 
@@ -101,4 +116,3 @@ its libraries. Here are the topics that are covered:
 1. Clustering
 1. Classification
 1. Working with SQLite
-
