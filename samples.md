@@ -47,7 +47,7 @@ Specifically, it shows how the difference in performance between rxGlm() and
 glm(). The R server function rxGlm() fits a generalized linear model on data
 that is potentially much larger than available RAM.
 
-![rxGlm benchmark](./media/samples/Introduction_to_R_Server/rxGLM_benchmark.png)
+![rxGlm benchmark](./media/samples/Introduction_to_R_Server/rxGLM_benchmark.PNG)
 
 
 ### Flight delay prediction
@@ -58,7 +58,7 @@ whether the arrival of a scheduled passenger flight will be delayed by more than
 the datasets are relatively small for the purposes of illustration, in practice
 you can scale those datasets to whatever size makes sense for your application.
 
-![Flight delay ROC curve](./media/samples/Introduction_to_R_Server/MRS_flight_delays_RocCurve.png)
+![Flight delay ROC curve](./media/samples/Introduction_to_R_Server/MRS_flight_delays_RocCurve.PNG)
 
 ### R and R Server comparison
 
@@ -115,7 +115,7 @@ performance gains that are possible through the use of the Intel Math Kernel
 Libraries in Microsoft R Open. This sample produces a box plot showing the
 impact of running the same computation on multiple cores:
 
-![](./media/sample_mro_benchmark_plot.png)
+![](./media/sample_mro_benchmark_plot.PNG)
 
 ### Deploying an Azure Machine Learning web service
 
@@ -140,7 +140,7 @@ tuning grid.
 The output of this example is a plot of features showing the relative influence
 of each one on the model:
 
-![](./media/sample_gradient_boosting_machine_plot.png)
+![](./media/sample_gradient_boosting_machine_plot.PNG)
 
 ## Introduction to R
 
