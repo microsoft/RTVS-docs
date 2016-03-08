@@ -18,27 +18,27 @@ if (require("RevoScaleR"))
 {
   # Load RevoScaleR package from Microsoft R Server.
   message("RevoScaleR package is succesfully loaded.\n",
-          "Please continue with the further steps.")
+  "Please continue with the further steps.")
 } else
 {
   message("RevoScaleR package does not seem to exist...\n", 
-          "If you have Microsoft R Server installed, please switch the R engine\n",
-          "Using R Tools for Visual Studio: R Tools -> Options -> R Engine.\n",
-          "If Microsoft R Server is not installed, please download it from\n",
-          "https://www.microsoft.com/en-us/server-cloud/products/r-server/.")
+  "If you have Microsoft R Server installed, please switch the R engine\n",
+  "Using R Tools for Visual Studio: R Tools -> Options -> R Engine.\n",
+  "If Microsoft R Server is not installed, please download it from\n",
+  "https://www.microsoft.com/en-us/server-cloud/products/r-server/.")
 }
-
+    
 
 # Initialize some variables.
+
 github <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/"
 inputFileFlightURL <- paste0(github, "Flight_Delays_Sample.csv")
 inputFileWeatherURL <- paste0(github, "Weather_Sample.csv")
-(if (!exists("tmp")) dir.create("tmp", showWarnings = FALSE))  # create a temporary folder to store the .xdf files.
-outFileFlight <- "tmp/flight.xdf"
-outFileWeather <- "tmp/weather.xdf"
-outFileOrigin <- "tmp/originData.xdf"
-outFileDest <- "tmp/destData.xdf"
-outFileFinal <- "tmp/finalData.xdf"
+outFileFlight <- "flight.xdf"
+outFileWeather <- "weather.xdf"
+outFileOrigin <- "originData.xdf"
+outFileDest <- "destData.xdf"
+outFileFinal <- "finalData.xdf"
 
 #---------------------------Step 1: Import Data--------------------------------
 
@@ -65,12 +65,12 @@ rxSummary(~., data = flight_mrs, blocksPerRead = 2)
 xform <- function(dataList) {
   # Create a function to normalize some numerical features.
   featureNames <- c(
-    "Visibility", 
-    "DryBulbCelsius", 
-    "DewPointCelsius", 
-    "RelativeHumidity", 
-    "WindSpeed", 
-    "Altimeter"
+  "Visibility", 
+  "DryBulbCelsius", 
+  "DewPointCelsius", 
+  "RelativeHumidity", 
+  "WindSpeed", 
+  "Altimeter"
   )
   dataList[featureNames] <- lapply(dataList[featureNames], scale)
   return(dataList)
@@ -92,7 +92,7 @@ weather_mrs <- rxImport(
     "RelativeHumidity", 
     "WindSpeed", 
     "Altimeter"
-  ),
+    ),
   overwrite = TRUE
 )
 
@@ -200,6 +200,6 @@ rxPredict(dTree2_mrs, data = test,
 # Calculate Area Under the Curve (AUC).
 rxAuc(rxRoc("ArrDel15", "ArrDel15_Pred_Tree", test))
 rxRocCurve("ArrDel15",
-           predVarNames = c("ArrDel15_Pred_Tree", "ArrDel15_Pred_Logit"),
-           data = test,
-           title = "ROC curve - Logistic regression")
+  predVarNames = c("ArrDel15_Pred_Tree", "ArrDel15_Pred_Logit"),
+  data = test,
+  title = "ROC curve - Logistic regression")
