@@ -18,8 +18,11 @@ tryCatch(
 inputDataURL <- "<an URL contains the raw data>"
 #inputDataURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Flight_Delays_Sample.csv"
 
+# Create a temporary folder to store the .xdf files.
+(if (!exists("tmp")) dir.create("tmp", showWarnings = FALSE))
+
 # Read a downloaded .csv file into a RxXdfData object.
-outFile <- 'data.xdf'
+outFile <- 'tmp/data.xdf'
 df_xdf <- rxImport(inData = inputDataURL, outFile = outFile,
                    missingValueString = "M", stringsAsFactors = FALSE)
 

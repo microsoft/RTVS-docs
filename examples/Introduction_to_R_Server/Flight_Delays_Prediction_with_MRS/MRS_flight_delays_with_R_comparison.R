@@ -30,31 +30,32 @@
 
 #---------------------------Step 0: Get Started---------------------------
 # Check the "RevoScaleR" package is loaded in the current RTVS enivronment.
-tryCatch(
-  {
-    library("RevoScaleR")  # Load RevoScaleR package from Microsoft R Server.
-    message("RevoScaleR package is succesfully loaded. Please continue with the further steps.")
-  },
-  error=function(e) {
-    message("RevoScaleR package does not seem to exist...")
-    message("Here's the original error message:")
-    message(paste(e, "\n"))
-    message("If you have Mircrosoft R Server installed, please switch the R engine in R Tools for Visual Studio: R Tools -> Options -> R Engine.")
-    message("If Microsoft R Server is not installed, please download it from here: https://www.microsoft.com/en-us/server-cloud/products/r-server/.")
-    return(NA)
-  }
-)    
+if (require("RevoScaleR"))
+{
+  # Load RevoScaleR package from Microsoft R Server.
+  message("RevoScaleR package is succesfully loaded.\n",
+          "Please continue with the further steps.")
+} else
+{
+  message("RevoScaleR package does not seem to exist...\n", 
+          "If you have Microsoft R Server installed, please switch the R engine\n",
+          "Using R Tools for Visual Studio: R Tools -> Options -> R Engine.\n",
+          "If Microsoft R Server is not installed, please download it from\n",
+          "https://www.microsoft.com/en-us/server-cloud/products/r-server/.")
+}
 
 # Initial some variables.
-inputFileFlightURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Flight_Delays_Sample.csv"
-inputFileWeatherURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Weather_Sample.csv"
-outFileFlight <- 'flight.xdf'
-outFileFlight2 <- 'flight2.xdf'
-outFileWeather <- 'weather.xdf'
-outFileWeather2 <- 'weather2.xdf'
-outFileOrigin <- 'originData.xdf'
-outFileDest <- 'DestData.xdf'
-outFileFinal <- 'finalData.xdf'
+github <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/"
+inputFileFlightURL <- paste0(github, "Flight_Delays_Sample.csv")
+inputFileWeatherURL <- paste0(github, "Weather_Sample.csv")
+(if (!exists("tmp")) dir.create("tmp", showWarnings = FALSE))  # create a temporary folder to store the .xdf files.
+outFileFlight <- 'tmp/flight2.xdf'
+outFileFlight2 <- 'tmp/flight2_2.xdf'
+outFileWeather <- 'tmp/weather2.xdf'
+outFileWeather2 <- 'tmp/weather2_2.xdf'
+outFileOrigin <- 'tmp/originData2.xdf'
+outFileDest <- 'tmp/DestData2.xdf'
+outFileFinal <- 'tmp/finalData2.xdf'
 
 #---------------------------Step 1: Import Data---------------------------
 # Import the flight data.
@@ -141,7 +142,7 @@ finalData_mrs <- rxDataStep(inData = destData_mrs, outFile = outFileFinal,
 #---------------------------Step 3: Prepare Training and Test Datasets---------------------------
 # Randomly split 80% data as training set and the remaining 20% as test set.
 rxSplit(inData = outFileFinal,
-        outFilesBase = "modelData",
+        outFilesBase = "tmp/modelData",
         outFileSuffixes = c("Train", "Test"),
         splitByFactor = "splitVar",
         overwrite = TRUE,
@@ -151,8 +152,8 @@ rxSplit(inData = outFileFinal,
         consoleOutput = TRUE)
 
 # Point to the .xdf files for the training and test set.
-train <- RxXdfData("modelData.splitVar.Train.xdf")
-test <- RxXdfData("modelData.splitVar.Test.xdf")
+train <- RxXdfData("tmp/modelData.splitVar.Train.xdf")
+test <- RxXdfData("tmp/modelData.splitVar.Test.xdf")
 
 #---------------------------Step 4A: Choose and apply a learning algorithm (Logistic Regression)---------------------------
 # Build the formula.
@@ -170,6 +171,8 @@ predictLogit_mrs <- rxPredict(logitModel_mrs, data = test, type = "response", pr
 
 # Calculate Area Under the Curve (AUC).
 rxAuc(rxRoc("ArrDel15", "ArrDel15_Pred_Logit", predictLogit_mrs))
+rxRocCurve("ArrDel15", "ArrDel15_Pred_Logit", data = test,
+           title = "ROC curve - Logistic regression")
 
 #---------------------------Step 4B: Choose and apply a learning algorithm (Decision Tree)---------------------------
 # Build a decision tree model.
@@ -187,3 +190,7 @@ predictTree_mrs <- rxPredict(dTree2_mrs, data = test, predVarNames = "ArrDel15_P
 
 # Calculate Area Under the Curve (AUC).
 rxAuc(rxRoc("ArrDel15", "ArrDel15_Pred_Tree", predictTree_mrs))
+rxRocCurve("ArrDel15",
+           predVarNames = c("ArrDel15_Pred_Tree", "ArrDel15_Pred_Logit"),
+           data = test,
+           title = "ROC curve - Logistic regression")
