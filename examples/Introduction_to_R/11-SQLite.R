@@ -14,9 +14,12 @@ checkpoint("2016-01-01")
 
 # This script creates a SQLite database from a csv file using the RSQlite library. Then a simple query is sent to the database.	
 
-library(DBI)	
-library(RSQLite)
-library(recommenderlab)
+(if (!require("DBI")) install.packages("DBI"))
+library("DBI")	
+(if (!require("RSQLite")) install.packages("RSQLite"))
+library("RSQLite")
+(if (!require("recommenderlab")) install.packages("recommenderlab"))
+library("recommenderlab")
 
 # Point to the file and read it in	
 

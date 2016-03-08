@@ -11,14 +11,20 @@ checkpoint("2016-01-01")
 
 
 # In this section we will show off some R features for exploring data using plots from various contributed packages.	
-	
-library(Hmisc) # for describe()	
-library(RGtk2)
-library(fBasics)			
-library(gplots)                       # for barplot	
-library(ggplot2)                      # for boxplots	
-library(ellipse)		                  # for correlation plot	
-library(rattle)                       # for the weather data set	
+(if (!require("Hmisc")) install.packages("Hmisc"))	
+library("Hmisc")  		                  # for describe()	
+(if (!require("RGtk2")) install.packages("RGtk2"))	
+library("RGtk2")
+(if (!require("fBasics")) install.packages("fBasics"))
+library("fBasics")			
+(if (!require("gplots")) install.packages("gplots"))
+library("gplots")                       # for barplot	
+(if (!require("ggplot2")) install.packages("ggplot2"))
+library("ggplot2")                      # for boxplots	
+(if (!require("ellipse")) install.packages("ellipse"))
+library("ellipse")		                  # for correlation plot	
+(if (!require("rattle")) install.packages("rattle"))
+library("rattle")                       # for the weather data set	
 
 
 ### The Weather Data	

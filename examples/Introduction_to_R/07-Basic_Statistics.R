@@ -16,6 +16,10 @@ checkpoint("2016-01-01")
 # http://www.statmethods.net/stats/descriptives.html	
 # http://www.r-tutor.com/elementary-statistics	
 
+(if (!require("boot")) install.packages("boot"))
+library("boot")
+
+
 # Here are just a few examples:	
 
 df <- iris  				# Fisher's famous iris data set	
@@ -101,7 +105,6 @@ mb$std.err
 
 # Now, we will use functions from the boot package. The first thing to do is to write a function to encapsulate the statistic to bootstrap.   	
 
-library(boot)	
 b.med <- function(data, indices) {	
   	d <- data[indices] # allows boot to select sample	
 		m <- median(d)	

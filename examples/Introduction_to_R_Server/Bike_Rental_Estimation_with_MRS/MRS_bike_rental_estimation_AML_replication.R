@@ -66,7 +66,7 @@ outFileLag <- "lagData"
 #---------------------------Step 1: Import Data---------------------------
 # Import the bike data.
 # Remove timestamps and all columns that are part of the label.
-bike_mrs <- rxImport(inData = inputFileBikeURL, outFile = outFileBike,
+bike_mrs <- rxImport(inData = inputFileBikeURL, outFile = outFileBike, overwrite = TRUE,
                      missingValueString = "M", stringsAsFactors = FALSE,
                      varsToDrop = c("instant", "dteday", "casual", "registered"))
 
@@ -262,7 +262,3 @@ measures <- data.frame(Features = features,
 
 # Review the measures.
 measures
-
-#---------------------------Close Up: Remove all .xdf files in the current directory---------------------------
-rmFiles <- list.files(pattern = "\\.xdf")
-file.remove(rmFiles)
