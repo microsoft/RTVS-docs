@@ -58,7 +58,7 @@ outFileFinal <- 'finalData.xdf'
 
 #---------------------------Step 1: Import Data---------------------------
 # Import the flight data.
-flight_mrs <- rxImport(inData = inputFileFlightURL, outFile = outFileFlight,
+flight_mrs <- rxImport(inData = inputFileFlightURL, outFile = outFileFlight, overwrite = TRUE,
                        missingValueString = "M", stringsAsFactors = FALSE)
 
 # Review the first 6 rows of flight data.
@@ -187,7 +187,3 @@ predictTree_mrs <- rxPredict(dTree2_mrs, data = test, predVarNames = "ArrDel15_P
 
 # Calculate Area Under the Curve (AUC).
 rxAuc(rxRoc("ArrDel15", "ArrDel15_Pred_Tree", predictTree_mrs))
-
-#---------------------------Close Up: Remove all .xdf files in the current directory---------------------------
-rmFiles <- list.files(pattern = "\\.xdf")
-file.remove(rmFiles)

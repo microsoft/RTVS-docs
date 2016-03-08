@@ -163,3 +163,6 @@ $RECYCLE.BIN/
 
 .sass-cache/
 _site/
+
+#Note we are excluding .xdf files
+*.xdf
