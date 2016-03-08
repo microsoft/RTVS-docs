@@ -25,7 +25,7 @@ Github](https://github.com/microsoft/rtvs-docs).
 
 ## Overview 
 
-In the zip archive, there are a number of examples, grouped into different categories:
+In the zip archive, there are examples grouped into different categories. Here are some of the highlights.
 
 * Microsoft R Server 
 * Microsoft R Open
@@ -85,7 +85,7 @@ The comparison of using R and R Server consists of three examples, each illustra
 
 ### Bike rental estimation
 
-This example demonstrates the Feature Engineering process for building a
+This example demonstrates the feature engineering process for building a
 regression model to predict bike rental demand using historical datasets.
 Similar to the previous example, the datasets are relatively small (17,379 rows
 and 17 columns) for the purposes of illustration, but can be scaled to whatever
@@ -101,7 +101,7 @@ which has two key differentiators over [CRAN R](https://cran.r-project.org/):
    performance](https://mran.revolutionanalytics.com/rro/#intelmkl1) when
    coupled with the [Intel Math Kernel
    Libraries](https://software.intel.com/en-us/intel-mkl) which are available as
-   a free download from Microsoft for use with Microsoft R Open. 
+   a free download from Microsoft for use with Microsoft R Open.
 
 1. [Reproducible R
    Toolkit](https://mran.revolutionanalytics.com/rro/#reproducibility), which
@@ -122,7 +122,8 @@ impact of running the same computation on multiple cores:
 This example shows how you can create a linear regression model using R, and
 then publish it as an Azure Web Service using an [Azure Machine
 Learning](https://azure.microsoft.com/en-us/services/machine-learning/)
-workspace.
+workspace that you can create for
+free.
 
 ## Introduction to R and Machine Learning
 
