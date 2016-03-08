@@ -1,11 +1,12 @@
-#################################################################################################################
-################################ Flight Delay Prediction with Microsoft R Server ################################
-#################################################################################################################
+#####################################################################################################################################
+################################ Flight Delay Prediction with Microsoft R Server ####################################################
+#####################################################################################################################################
 # 
 #
 # This example demostrates a step-by-step comparison of solving a Machine Learning use case using open
 # source R (a.k.a. CRAN R) and Microsoft R Server. The open source R script is available in a GitHub
-# repository: https://github.com/Microsoft/RTVS-docs/tree/master/R/Flight_Delays_Prediction_with_R.
+# repository: 
+# https://github.com/Microsoft/RTVS-docs/tree/master/examples/Introduction_to_Machine_Learning_with_R/Flight_Delays_Prediction_with_R.
 # 
 # In this example, we use historical on-time performance and weather data to predict whether the arrival 
 # of a scheduled passenger flight will be delayed by more than 15 minutes.
@@ -24,7 +25,7 @@
 # The following scripts include five basic steps of building this example using Microsoft R Server.
 #
 #
-#################################################################################################################
+#####################################################################################################################################
 
 
 #---------------------------Step 0: Get Started---------------------------
@@ -43,8 +44,8 @@ if (require("RevoScaleR")) {
 }
 
 # Initial some variables.
-inputFileFlightURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Introduction_to_R_Server/Flight_Delays_Prediction_with_MRS/Flight_Delays_Sample.csv"
-inputFileWeatherURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Introduction_to_R_Server/Flight_Delays_Prediction_with_MRS/Weather_Sample.csv"
+inputFileFlightURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Flight_Delays_Sample.csv"
+inputFileWeatherURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Weather_Sample.csv"
 outFileFlight <- 'flight.xdf'
 outFileFlight2 <- 'flight2.xdf'
 outFileWeather <- 'weather.xdf'
@@ -55,7 +56,7 @@ outFileFinal <- 'finalData.xdf'
 
 #---------------------------Step 1: Import Data---------------------------
 # Import the flight data.
-flight_mrs <- rxImport(inData = inputFileFlightURL, outFile = outFileFlight,
+flight_mrs <- rxImport(inData = inputFileFlightURL, outFile = outFileFlight, overwrite = TRUE,
                        missingValueString = "M", stringsAsFactors = FALSE)
 
 # Review the first 6 rows of flight data.
@@ -184,7 +185,3 @@ predictTree_mrs <- rxPredict(dTree2_mrs, data = test, predVarNames = "ArrDel15_P
 
 # Calculate Area Under the Curve (AUC).
 rxAuc(rxRoc("ArrDel15", "ArrDel15_Pred_Tree", predictTree_mrs))
-
-#---------------------------Close Up: Remove all .xdf files in the current directory---------------------------
-rmFiles <- list.files(pattern = "\\.xdf")
-file.remove(rmFiles)

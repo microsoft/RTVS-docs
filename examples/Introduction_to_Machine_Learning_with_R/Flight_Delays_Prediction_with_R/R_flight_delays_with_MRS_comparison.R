@@ -5,7 +5,8 @@
 #
 # This example demostrates a step-by-step comparison of solving a Machine Learning use case using open
 # source R (a.k.a. CRAN R) and Microsoft R Server. The Microsoft R Server script is available in a GitHub
-# repository: https://github.com/Microsoft/RTVS-docs/tree/master/R_Server/Flight_Delays_Prediction_with_MRS.
+# repository: 
+# https://github.com/Microsoft/RTVS-docs/tree/master/examples/Introduction_to_R_Server/Flight_Delays_Prediction_with_MRS.
 #
 # In this example, we use historical on-time performance and weather data to predict whether the arrival 
 # of a scheduled passenger flight will be delayed by more than 15 minutes.
@@ -29,8 +30,8 @@
 
 #---------------------------Step 0: Get Started---------------------------
 # Initial some variables.
-inputFileFlightURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Introduction_to_Machine_Learning_with_R/Flight_Delays_Prediction_with_R/Flight_Delays_Sample.csv"
-inputFileWeatherURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Introduction_to_Machine_Learning_with_R/Flight_Delays_Prediction_with_R/Weather_Sample.csv"
+inputFileFlightURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Flight_Delays_Sample.csv"
+inputFileWeatherURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Weather_Sample.csv"
 
 # Import libraries.
 (if (!require("RCurl")) install.packages("RCurl"))

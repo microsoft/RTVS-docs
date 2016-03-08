@@ -56,7 +56,7 @@ if (require("RevoScaleR")) {
 }
 
 # Initial some variables.
-inputFileBikeURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Introduction_to_R_Server/Bike_Rental_Estimation_with_MRS/Bike%20Rental%20UCI%20dataset.csv"
+inputFileBikeURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Bike_Rental_UCI_Dataset.csv"
 outFileBike <- "bike.xdf"
 outFileEdit <- "editData.xdf"
 outFileLag <- "lagData"
@@ -64,7 +64,7 @@ outFileLag <- "lagData"
 #---------------------------Step 1: Import Data---------------------------
 # Import the bike data.
 # Remove timestamps and all columns that are part of the label.
-bike_mrs <- rxImport(inData = inputFileBikeURL, outFile = outFileBike,
+bike_mrs <- rxImport(inData = inputFileBikeURL, outFile = outFileBike, overwrite = TRUE,
                      missingValueString = "M", stringsAsFactors = FALSE,
                      varsToDrop = c("instant", "dteday", "casual", "registered"))
 
@@ -260,7 +260,3 @@ measures <- data.frame(Features = features,
 
 # Review the measures.
 measures
-
-#---------------------------Close Up: Remove all .xdf files in the current directory---------------------------
-rmFiles <- list.files(pattern = "\\.xdf")
-file.remove(rmFiles)

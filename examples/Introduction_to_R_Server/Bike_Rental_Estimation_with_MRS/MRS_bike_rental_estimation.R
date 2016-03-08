@@ -3,7 +3,7 @@
 ##############################################################################################################
 # 
 #
-# This example demonstrates the Feature Engineering process for builing a regression model to predict 
+# This example demonstrates the Feature Engineering process for building a regression model to predict 
 # bike rental demand. 
 #
 # The dataset contains 17,379 rows and 17 columns, each row representing the number of bike rentals within 
@@ -37,12 +37,12 @@ if (require("RevoScaleR")) {
 }
 
 # Initial some variables.
-inputFileBikeURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Introduction_to_R_Server/Bike_Rental_Estimation_with_MRS/Bike%20Rental%20UCI%20dataset.csv"
+inputFileBikeURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Bike_Rental_UCI_Dataset.csv"
 outFileBike <- "bike.xdf"
 outFileLag <- "lagData.xdf"
 
 #---------------------------Step 1: Import the Bike Data---------------------------
-bike <- rxImport(inData = inputFileBikeURL, outFile = outFileBike,
+bike <- rxImport(inData = inputFileBikeURL, outFile = outFileBike, overwrite = TRUE,
                  missingValueString = "M", stringsAsFactors = FALSE,
                  # Remove timestamps and all columns that are part of the label.
                  varsToDrop = c("instant", "dteday", "casual", "registered"),
@@ -119,7 +119,3 @@ measures <- data.frame(MAE = sum[1, 2], RMSE = sqrt(sum[2, 2]), RAE = sum[3, 2])
 
 # Review the measures.
 measures
-
-#---------------------------Close Up: Remove all .xdf files in the current directory---------------------------
-rmFiles <- list.files(pattern = "\\.xdf")
-file.remove(rmFiles)

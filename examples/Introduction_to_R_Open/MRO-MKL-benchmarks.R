@@ -1,5 +1,6 @@
-# Microsoft R Open includes the Intel MKL for fast, parallel linear algebra computations
-# This script runs performance benchmarks using different numbers of threads
+# Microsoft R Open includes the Intel MKL for fast, parallel linear algebra 
+# computations. This script runs performance benchmarks using different 
+# numbers of threads
 
 # The test uses the package "version.compare", available on github
 # Install this package first, if it is not already installed

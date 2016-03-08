@@ -15,10 +15,10 @@ auth_token <- ""
 # ----------------------------------------------------------------------------
 # load libraries
 # ----------------------------------------------------------------------------
-(if (!require("MASS")) install.packages("MASS"))
-library("MASS") # to use the Boston dataset
 (if (!require("AzureML")) install.packages("AzureML"))
 library("AzureML") # load the library for deploying Azure ML web service
+(if (!require("MASS")) install.packages("MASS"))
+library("MASS") # to use the Boston dataset
 
 # ----------------------------------------------------------------------------
 # fit a model and check model performance
@@ -34,24 +34,24 @@ pred <- predict(lm1)
 mae <- mean(abs(pred - Boston$medv))
 rmse <- sqrt(mean((pred - Boston$medv) ^ 2))
 rae <- mean(abs(pred - Boston$medv)) / mean(abs(Boston$medv - 
-  mean(Boston$medv)))
+                                                    mean(Boston$medv)))
 rse <- mean((pred - Boston$medv) ^ 2) / mean((Boston$medv - 
-  mean(Boston$medv)) ^ 2)
+                                                  mean(Boston$medv)) ^ 2)
 
 print(paste("Mean Absolute Error: ", 
-  as.character(round(mae, digit = 6)), sep = ""))
+            as.character(round(mae, digit = 6)), sep = ""))
 print(paste("Root Mean Squared Error: ", 
-  as.character(round(rmse, digit = 6)), sep = ""))
+            as.character(round(rmse, digit = 6)), sep = ""))
 print(paste("Relative Absolute Error: ", 
-  as.character(round(rae, digit = 6)), sep = ""))
+            as.character(round(rae, digit = 6)), sep = ""))
 print(paste("Relative Squared Error: ", 
-  as.character(round(rse, digit = 6)), sep = ""))
+            as.character(round(rse, digit = 6)), sep = ""))
 
 
 # workspace information
 ws <- workspace(
-  id = ws_id,
-  auth = auth_token)
+    id = ws_id,
+    auth = auth_token)
 
 # define predict function
 mypredict <- function(newdata) {
@@ -65,7 +65,7 @@ print(mypredict(newdata))
 
 # Publish the service
 ep <- publishWebService(ws = ws, fun = mypredict, 
-  name = "HousePricePrediction", inputSchema = newdata)
+                        name = "HousePricePrediction", inputSchema = newdata)
 
 # ----------------------------------------------------------------------------
 # consume the web service
@@ -75,7 +75,7 @@ pred <- consume(ep, newdata)
 pred
 
 # consume web service - 2nd approach
-# retrieve web service information for laterr
+# retrieve web service information for later use
 service_id <- ep$WebServiceId
 # define endpoint
 ep_price_pred <- endpoints(ws, service_id)
@@ -93,10 +93,10 @@ mypredictnew <- function(newdata) {
 
 # update service with the new function
 ep_update <- updateWebService(
-  ws = ws,
-  fun = mypredictnew,
-  inputSchema = newdata,
-  serviceId = ep$WebServiceId)
+    ws = ws,
+    fun = mypredictnew,
+    inputSchema = newdata,
+    serviceId = ep$WebServiceId)
 
 # consume the updated web service
 consume(ep_price_pred, newdata)

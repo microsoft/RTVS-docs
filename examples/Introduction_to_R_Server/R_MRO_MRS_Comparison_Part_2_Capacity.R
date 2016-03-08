@@ -1,6 +1,6 @@
 # ----------------------------------------------------------------------------
-# purpose: 	to demonstrate that MRS's rxKmeans() function
-#  		   	  works successfully even when kmeans() does not for large datasets
+# purpose:  to demonstrate that MRS's rxKmeans() function works 
+#           successfully even when kmeans() does not for large datasets
 # audience: you are expected to have some prior experience with R
 #
 # NOTE: On a computer with less than 7GB of RAM available, this 
@@ -42,11 +42,11 @@ set.seed(0)
 
 # function to simulate data
 simulCluster <- function(nsamples, mean, dimension, group) {
-  Sigma <- diag(1, dimension, dimension)
-  x_a <- mvrnorm(n=nsamples, rep(mean, dimension), Sigma)
-  x_a_dataframe = as.data.frame(x_a)
-  x_a_dataframe$group = group
-  x_a_dataframe
+    Sigma <- diag(1, dimension, dimension)
+    x_a <- mvrnorm(n=nsamples, rep(mean, dimension), Sigma)
+    x_a_dataframe = as.data.frame(x_a)
+    x_a_dataframe$group = group
+    x_a_dataframe
 }
 
 # simulate data and append
@@ -57,6 +57,8 @@ nsamples <- 3*10^7
 group_a <- simulCluster(nsamples, -1, 2, "a")
 group_b <- simulCluster(nsamples, 1, 2, "b")
 group_all <- rbind(group_a, group_b)
+
+nclusters <- 2
 
 # save data
 mydata = group_all[,1:2]
@@ -69,11 +71,15 @@ rxImport(inData = dataCSV, outFile = dataXDF, overwrite = TRUE)
 # cluster analysis with kmeans(), it doesn't work when data is large enough
 # ----------------------------------------------------------------------------
 system_time_r <- system.time(fit <- kmeans(mydata, nclusters, 
-  iter.max = 1000, algorithm = "Lloyd")) # 2 cluster solution
+                                           iter.max = 1000, 
+                                           algorithm = "Lloyd")) 
 
 # ----------------------------------------------------------------------------
 # cluster analysis with rxKmeans(), it works even if kmeans() does not
 # ----------------------------------------------------------------------------
 system_time_rre <- system.time(clust <- rxKmeans(~ V1 + V2, data= dataXDF,
-         numClusters = nclusters, algorithm = "lloyd", 
-         outFile = dataXDF, outColName = "cluster", overwrite = TRUE))
+                                                 numClusters = nclusters, 
+                                                 algorithm = "lloyd", 
+                                                 outFile = dataXDF, 
+                                                 outColName = "cluster", 
+                                                 overwrite = TRUE))
