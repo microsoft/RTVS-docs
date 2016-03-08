@@ -69,7 +69,7 @@ The comparison of using R and R Server consists of three examples, each illustra
   - Demonstrates how to do cluster analysis using `kmeans()` and `rxKmeans()`.
   - The sample creates some simulated data in two overlapping groups, then finds the cluster allocation and cluster centres.
   
-    ![Cluster allocation](./media/samples/Introduction_to_R_Server/Comparison_of_functions_clustering.png)
+    ![Cluster allocation](./media/samples/Introduction_to_R_Server/Comparison_of_functions_clustering.PNG)
   
 * R_MRO_MRS_Comparison_Part_2_Capacity.R
 
@@ -79,7 +79,7 @@ The comparison of using R and R Server consists of three examples, each illustra
 
   - This compares the execution speed of clustering using `kmeans()` and `rxKmeans()`, demonstrating that for this algorithm there is no inherent performance benefit of using `rxKmeans()`, but `rxKmeans()` can handle much larger datasets.
   
-    ![Cluster allocation](./media/samples/Introduction_to_R_Server/Comparison_of_functions_clustering_speed.png)
+    ![Cluster allocation](./media/samples/Introduction_to_R_Server/Comparison_of_functions_clustering_speed.PNG)
   
 
 
