@@ -59,9 +59,10 @@ tryCatch(
 
 # Initial some variables.
 inputFileBikeURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Bike_Rental_UCI_Dataset.csv"
-outFileBike <- "bike.xdf"
-outFileEdit <- "editData.xdf"
-outFileLag <- "lagData"
+(if (!exists("tmp")) dir.create("tmp", showWarnings = FALSE))  # create a temporary folder to store the .xdf files.
+outFileBike <- "tmp/bike2.xdf"
+outFileEdit <- "tmp/editData.xdf"
+outFileLag <- "tmp/lagData"
 
 #---------------------------Step 1: Import Data---------------------------
 # Import the bike data.
@@ -154,19 +155,19 @@ finalDataLag_mrs <- RxXdfData(finalDataLag_dir)
 #---------------------------Step 3: Prepare Training and Test Datasets---------------------------
 ## Set A:
 # Split Data.
-rxSplit(inData = finalDataA_mrs, outFilesBase = "modelDataA", splitByFactor = "yr",
+rxSplit(inData = finalDataA_mrs, outFilesBase = "tmp/modelDataA", splitByFactor = "yr",
         overwrite = TRUE, reportProgress = 0, verbose = 0)
 # Point to the .xdf files for the training and test set.
-trainA_mrs <- RxXdfData("modelDataA.yr.0.xdf")
-testA_mrs <- RxXdfData("modelDataA.yr.1.xdf")
+trainA_mrs <- RxXdfData("tmp/modelDataA.yr.0.xdf")
+testA_mrs <- RxXdfData("tmp/modelDataA.yr.1.xdf")
 
 ## Set B, C & D:
 # Split Data.
-rxSplit(inData = finalDataLag_mrs, outFilesBase = "modelDataLag", splitByFactor = "yr",
+rxSplit(inData = finalDataLag_mrs, outFilesBase = "tmp/modelDataLag", splitByFactor = "yr",
         overwrite = TRUE, reportProgress = 0, verbose = 0)
 # Point to the .xdf files for the training and test set.
-train_mrs <- RxXdfData("modelDataLag.yr.0.xdf")
-test_mrs <- RxXdfData("modelDataLag.yr.1.xdf")
+train_mrs <- RxXdfData("tmp/modelDataLag.yr.0.xdf")
+test_mrs <- RxXdfData("tmp/modelDataLag.yr.1.xdf")
 
 #---------------------------Step 4: Choose and apply a learning algorithm (Decision Forest Regression)---------------------------
 newDayFeatures <- paste("demand", ".", seq(12), "day", sep = "")

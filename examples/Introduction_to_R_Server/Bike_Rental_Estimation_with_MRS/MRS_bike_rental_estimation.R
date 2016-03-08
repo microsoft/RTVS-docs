@@ -40,8 +40,9 @@ tryCatch(
 
 # Initial some variables.
 inputFileBikeURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Bike_Rental_UCI_Dataset.csv"
-outFileBike <- "bike.xdf"
-outFileLag <- "lagData.xdf"
+(if (!exists("tmp")) dir.create("tmp", showWarnings = FALSE))  # create a temporary folder to store the .xdf files.
+outFileBike <- "tmp/bike.xdf"
+outFileLag <- "tmp/lagData.xdf"
 
 #---------------------------Step 1: Import the Bike Data---------------------------
 bike <- rxImport(inData = inputFileBikeURL, outFile = outFileBike, overwrite = TRUE,
@@ -92,11 +93,11 @@ lagData <- rxDataStep(inData = bike, outFile = outFileLag, transformFunc = compu
 
 #---------------------------Step 3: Prepare Training and Test Datasets---------------------------
 # Split data by "yr" so that the training data contains records for the year 2011 and the test data contains records for 2012.
-rxSplit(inData = lagData, outFilesBase = "modelData", splitByFactor = "yr", overwrite = TRUE, reportProgress = 0, verbose = 0)
+rxSplit(inData = lagData, outFilesBase = "tmp/modelData", splitByFactor = "yr", overwrite = TRUE, reportProgress = 0, verbose = 0)
 
 # Point to the .xdf files for the training and test set.
-train <- RxXdfData("modelData.yr.0.xdf")
-test <- RxXdfData("modelData.yr.1.xdf")
+train <- RxXdfData("tmp/modelData.yr.0.xdf")
+test <- RxXdfData("tmp/modelData.yr.1.xdf")
 
 #---------------------------Step 4: Choose and apply a learning algorithm (Decision Forest Regression)---------------------------
 # Build a formula for the regression model and remove the "yr", which is used to split the training and test data.

@@ -30,15 +30,15 @@ if (require("RevoScaleR"))
     
 
 # Initialize some variables.
-
 github <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/"
 inputFileFlightURL <- paste0(github, "Flight_Delays_Sample.csv")
 inputFileWeatherURL <- paste0(github, "Weather_Sample.csv")
-outFileFlight <- "flight.xdf"
-outFileWeather <- "weather.xdf"
-outFileOrigin <- "originData.xdf"
-outFileDest <- "destData.xdf"
-outFileFinal <- "finalData.xdf"
+(if (!exists("tmp")) dir.create("tmp", showWarnings = FALSE))  # create a temporary folder to store the .xdf files.
+outFileFlight <- "tmp/flight.xdf"
+outFileWeather <- "tmp/weather.xdf"
+outFileOrigin <- "tmp/originData.xdf"
+outFileDest <- "tmp/destData.xdf"
+outFileFinal <- "tmp/finalData.xdf"
 
 #---------------------------Step 1: Import Data--------------------------------
 
@@ -141,7 +141,7 @@ rxFactors(inData = destData_mrs, outFile = outFileFinal, sortLevels = TRUE,
 # Randomly split 80% data as training set and the remaining 20% as test set.
 
 rxSplit(inData = outFileFinal,
-        outFilesBase = "modelData",
+        outFilesBase = "tmp/modelData",
         outFileSuffixes = c("Train", "Test"),
         splitByFactor = "splitVar",
         overwrite = TRUE,
@@ -155,8 +155,8 @@ rxSplit(inData = outFileFinal,
         consoleOutput = TRUE)
 
 # Point to the .xdf files for the training and test set.
-train <- RxXdfData("modelData.splitVar.Train.xdf")
-test <- RxXdfData("modelData.splitVar.Test.xdf")
+train <- RxXdfData("tmp/modelData.splitVar.Train.xdf")
+test <- RxXdfData("tmp/modelData.splitVar.Test.xdf")
 
 #- Step 4A: Choose and apply a learning algorithm (Logistic Regression) -------
 # Build the formula.
