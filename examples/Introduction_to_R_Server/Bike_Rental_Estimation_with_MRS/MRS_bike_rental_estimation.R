@@ -3,7 +3,7 @@
 ##############################################################################################################
 # 
 #
-# This example demonstrates the Feature Engineering process for builing a regression model to predict 
+# This example demonstrates the Feature Engineering process for building a regression model to predict 
 # bike rental demand. 
 #
 # The dataset contains 17,379 rows and 17 columns, each row representing the number of bike rentals within 
