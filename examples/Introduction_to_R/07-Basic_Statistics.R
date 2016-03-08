@@ -6,8 +6,13 @@
 # you need to run the examples.
 if (!require("checkpoint", quietly = TRUE))
   install.packages("checkpoint")
+
+# create checkpoint folder
+if (!file.exists("~/.checkpoint"))
+  dir.create("~/.checkpoint")
 library("checkpoint")
 checkpoint("2016-01-01")
+
 library("boot")
 
 ### Descriptive Statistics	
