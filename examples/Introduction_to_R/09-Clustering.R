@@ -12,16 +12,14 @@ checkpoint("2016-01-01")
 
 # In this script we will look at Kmeans and hierarchical clustering using the weather data.	
 
-set.seed(42)
-(if (!require("rattle")) install.packages("rattle"))
+set.seed(42)	
 library(rattle)	
-(if (!require("fpc")) install.packages("fpc"))
-library("fpc")  	                       # for the plotcluster function	
-(if (!require("Hmisc")) install.packages("Hmisc"))
-library("Hmisc")                         # for varclus function	
+library(fpc)  	                       # for the plotcluster function	
+library(Hmisc)                         # for varclus function	
 
 
 ### Weather Data	
+
 data(weather, package = "rattle")
 weather <- weather[,-c(1,2)]           # Drop the first two columns	
 head(weather)                          # Look at the data	
@@ -109,4 +107,10 @@ hcPlot(data="weather.num")           # Note: name of file must be in quotes!!
 vClus <- varclus(as.matrix(numdata))	
 vClus	
 plot(vClus)	
+
+
+
+
+
+
 

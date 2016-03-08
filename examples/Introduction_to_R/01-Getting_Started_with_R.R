@@ -4,24 +4,15 @@
 
 # The checkpoint function installs all required dependencies (i.e. CRAN packages)
 # you need to run the examples.
-if (!require("checkpoint", quietly = TRUE))
+if (!require(checkpoint, quietly = TRUE))
   install.packages("checkpoint")
-library("checkpoint")
+library(checkpoint)
 checkpoint("2016-01-01")
 
 ## Getting Started  	
 
 ### Some Brief History	
-# R followed S. The S language was conceived by John Chambers, Rick Becker,
-# Trevor Hastie, Allan Wilks and others at Bell Labs in the mid 1970s. 
-# S was made publically available in the early 1980’s. R, which is modeled
-# closely on S, was developed by Robert Gentleman and Ross Ihaka in the early 
-# 1990's while they were both faculty members at the University of Auckland. 
-# R was established as an open source project (www.r-project.org) in 1995. 
-# Since 1997 the R project has been managed by the R Core Group. 
-# When AT&T spun of Bell Labs in 1996, S was no longer freely available. 
-# S-PLUS is a commercial implementation of the S language developed by the 
-# Insightful corporation which is now sold by TIBCO software Inc.	
+# R followed S. The S language was conceived by John Chambers, Rick Becker, Trevor Hastie, Allan Wilks and others at Bell Labs in the mid 1970s. S was made publically available in the early 1980’s. R, which is modeled closely on S, was developed by Robert Gentleman and Ross Ihaka in the early 1990's while they were both faculty members at the University of Auckland. R was established as an open source project (www.r-project.org) in 1995. Since 1997 the R project has been managed by the R Core Group. When AT&T spun of Bell Labs in 1996, S was no longer freely available. S-PLUS is a commercial implementation of the S language developed by the Insightful corporation which is now sold by TIBCO software Inc.	
 
 # The R Core Group: http://www.r-project.org/contributors.html  	
 # Download R: http://cran.r-project.org/	
@@ -29,11 +20,7 @@ checkpoint("2016-01-01")
 
 ### How R is oganized	
 
-# R is an interpreted functional language with objects. The core of 
-# R language contains the the data manipulation and statistical functions. 
-# Most of R's capabilities are delivered as user contributed packages that 
-# may be downloaded from CRAN.R ships with the "base and recommended" 
-# packages:	
+# R is an interpreted functional language with objects. The core of R language contains the the data manipulation and statistical functions. Most of R's capabilities are delivered as user contributed packages that may be downloaded from CRAN.R ships with the "base and recommended" packages:	
 # http://cran.r-project.org/doc/FAQ/R-FAQ.html#Which-add_002don-packages-exist-for-R_003f  	
 
 
@@ -60,10 +47,7 @@ checkpoint("2016-01-01")
 
 ### Getting Help	
 
-# If you are looking for help with technical questions about the language 
-# please consult the community site (http://www.r-project.org) for frequently 
-# asked questions. Ask for help on one of the several R mailing lists  
-# http://www.r-project.org/mail.html or Stack Overflow http://stackoverflow.com/questions/tagged/r  	
+# If you are looking for help with technical questions about the language please consult the community site (http://www.r-project.org) for frequently asked questions. Ask for help on one of the several R mailing lists  http://www.r-project.org/mail.html or Stack Overflow http://stackoverflow.com/questions/tagged/r  	
 
 
 ### Packages used in this set of examples
@@ -103,13 +87,15 @@ checkpoint("2016-01-01")
 ### Looking at Packages	
 
 # library()                  # list all available installed packages	
-search() # list all "attached" or loaded packages	
-(if (!require("rattle")) install.packages("rattle"))
-# install the package rattle if necessary	
-library("rattle") # to load the package rattle	
-(if (!require("RGtk2")) install.packages("RGtk2"))
-library("RGtk2")
-data() # to see all of the data sets available in the packages you have loaded	
-data(package = "rattle") # to see all the data sets in the pakage rattle	
-help(package = rattle) # to get help with the package rattle	
+search()                     # list all "attached" or loaded packages	
+# install.packages("rattle") # to install the package rattle	
+library(RGtk2)
+library(rattle)              # to load the package rattle	
+data()                       # to see all of the data sets available in the packages you have loaded	
+data(package="rattle")       # to see all the data sets in the pakage rattle	
+help(package=rattle)         # to get help with the package rattle	
 # lsf.str("package:rattle")  # to list all of the functions in rattle	
+
+
+
+

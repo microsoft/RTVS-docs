@@ -7,7 +7,7 @@
 # install a library if it's not already installed
 # ----------------------------------------------------------------------------
 if (!('caret' %in% rownames(installed.packages()))) {
-    install.packages("caret")
+  install.packages("caret")
 }
 
 # ----------------------------------------------------------------------------
@@ -32,15 +32,15 @@ grid <- expand.grid(n.trees = c(5000, 10000, 15000),
                     shrinkage = c(0.001, 0.01, 0.1))
 
 # design the parameter tuning grid - smaller grid for testing purpose
-# grid <- expand.grid(n.trees = c(5000, 10000),
-#                     interaction.depth = c(2, 4),
-#                     n.minobsinnode = c(1, 2),
-#                     shrinkage = c(0.001, 0.01))
+grid <- expand.grid(n.trees = c(5000, 10000),
+                    interaction.depth = c(2, 4),
+                    n.minobsinnode = c(1, 2),
+                    shrinkage = c(0.001, 0.01))
 
 # tune the parameters
 gbm1 <- train(medv ~ ., data = Boston, method = "gbm", 
-              distribution = "gaussian", trControl = control, 
-              verbose = FALSE, tuneGrid = grid, metric = "RMSE")
+  distribution = "gaussian", trControl = control, 
+  verbose = FALSE, tuneGrid = grid, metric = "RMSE")
 
 # summarize the model
 print(gbm1)
@@ -71,4 +71,4 @@ f_imp <- summary(gbm2, n.trees = best.iter, plot = FALSE)
 
 # use a custom plot to show variable importance
 barplot(f_imp$rel.inf, names.arg = f_imp$var, xlab = "Feature", 
-        ylab = "Relative influence", cex.names = 0.8)
+  ylab = "Relative influence", cex.names = 0.8)
