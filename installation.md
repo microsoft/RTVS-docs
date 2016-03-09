@@ -45,7 +45,8 @@ them from for free from these locations:
 If you don't have an R distribution installed before you install RTVS, you will
 be prompted to install an R distribution during setup.
 
-Next download the Public Preview of R Tools for Visual Studio.
+Next [download the Public Preview of R Tools for Visual
+Studio](https://aka.ms/rtvs-current)
 
 Please note that if you had an earlier version of R Tools for Visual Studio
 installed on your machine, you must first uninstall it from Add / Remove
