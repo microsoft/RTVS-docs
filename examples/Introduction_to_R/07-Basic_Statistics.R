@@ -8,16 +8,17 @@ if (!require("checkpoint", quietly = TRUE))
   install.packages("checkpoint")
 library("checkpoint")
 checkpoint("2016-01-01")
+
 library("boot")
 
 ### Descriptive Statistics	
 
-# There are countless examples of doing simple, descriptive statistics with R on the web, for example:	
+# There are countless examples of doing simple, descriptive statistics 
+# with R on the web, for example:	
 # http://www.statmethods.net/stats/descriptives.html	
 # http://www.r-tutor.com/elementary-statistics	
 
 # Here are just a few examples:	
-
 df <- iris  				# Fisher's famous iris data set	
 plot(df)	
 head(df)	
@@ -26,25 +27,29 @@ pl <- iris$Petal.Length
 mean(sl)					# mean	
 var(sl)						# variance	
 sd(sl)						# standard deviation	
-median(sl)				# median	
-quantile(sl)			# quantiles at c(0,.25,.5,.75,1)	
+median(sl)				    # median	
+quantile(sl)			    # quantiles at c(0,.25,.5,.75,1)	
 min(sl)						# min	
 max(sl)						# max	
-cor(sl,pl)				# correlation	
-t.test(sl,mu=.5)	# one-sided t-test	
-t.test(sl,pl)			# two-sided t test   	
+cor(sl,pl)				    # correlation	
+t.test(sl,mu=.5)	        # one-sided t-test	
+t.test(sl,pl)			    # two-sided t test   	
 
 
 ### Simulation	
 
-# The basis for simulation and computational statistics is the ability to draw pweud0-random samples from various probability distributions. R has extensive capabilities to do this. For most distributions R provides four functions which are illustrated here for the Normal Distribution.	
-
-rnorm(10,0,1)           # generate 10 random numbers from a normal distribution with mean = 0 and sd = 1 	
+# The basis for simulation and computational statistics is the ability 
+# to draw pweud0-random samples from various probability distributions. 
+# R has extensive capabilities to do this. For most distributions R 
+# provides four functions which are illustrated here for the Normal Distribution.	
+rnorm(10, 0, 1)         # generate 10 random numbers from a normal distribution 
+                        # with mean = 0 and sd = 1 	
 pnorm(2)                # P(x <= 2) = the CDF for standard normal distribution	
 qnorm(.9772499)         # Find the quantile: q = qnorm(x) i.e. P(x <= q) = p	
 dnorm(0)                # The value of the density function at 0	
 
-# You can easily get randow draws from the following distributions in a manner similar to rnorm(10,0,1) above.	
+# You can easily get randow draws from the following distributions in 
+# a manner similar to rnorm(10,0,1) above.	
 
 # RANDOM DRAWS          | Distribution	
 # ----------------      | ------------	
@@ -60,8 +65,8 @@ dnorm(0)                # The value of the density function at 0
 # rgamma(x,shape,scale) | Gamma	
 # rbeta(x,a,b)          | Beta	
 
-# This next bit of code draws random numbers from a gamma distribution and plots the results.	
-
+# This next bit of code draws random numbers from a gamma distribution and 
+# plots the results.	
 par(mfrow=c(2,2))	
 n <- 10000	
 shape <- 2	
@@ -79,11 +84,15 @@ rug(y,col="red")
 
 ### Bootstrapping	
 
-# To get a flavor for what it is like to do statistics in R we will get a bootstrap estimate for the standard error of the median. First, we will wirte a simple function that computes the bootstrap from scratch, then we will use the boot package. The example comes from the UCLA online statistics pages which have many fine examples of doing statistics with R.	
+# To get a flavor for what it is like to do statistics in R we will get 
+# a bootstrap estimate for the standard error of the median. First, we will 
+# write a simple function that computes the bootstrap from scratch, 
+# then we will use the boot package. The example comes from the UCLA online 
+# statistics pages which have many fine examples of doing statistics with R.	
 # http://statistics.ats.ucla.edu/stat/r/library/bootstrap.htm	
 
-# This is an example of a non-parametric bootstrap procedure. We will use the Airquality data set again.
-
+# This is an example of a non-parametric bootstrap procedure. 
+# We will use the Airquality data set again.
 aq <- airquality[,1:4]                 # Get the first four columns									
 head(aq)	
 Oz <- as.vector(na.omit(aq$Ozone))     # Remove NAs	
@@ -99,8 +108,8 @@ hist(mb$medians,xlab="medians",ylab="Counts",main="Bootstrapped Medians",col="ye
 head(mb$medians)	
 mb$std.err	
 
-# Now, we will use functions from the boot package. The first thing to do is to write a function to encapsulate the statistic to bootstrap.   	
-
+# Now, we will use functions from the boot package. The first thing to do 
+# is to write a function to encapsulate the statistic to bootstrap.   	
 b.med <- function(data, indices) {	
   	d <- data[indices] # allows boot to select sample	
 		m <- median(d)	
@@ -110,8 +119,9 @@ b.med <- function(data, indices) {
 res.med <- boot(data=Oz, statistic=b.med,R=1000)	
 res.med	
 
-# For one final example, we use the boot function to bootstrap the standard of the R2 value in a linear regression. First, we do the regression to set the context and then get the standard error for R Squared.   	
-
+# For one final example, we use the boot function to bootstrap the standard 
+# of the R2 value in a linear regression. First, we do the regression to set 
+# the context and then get the standard error for R Squared.   	
 form <- formula(Ozone ~ Solar.R + Wind + Temp)	
 fit <- lm(form, data=aq)	
 summary(fit)	
@@ -127,10 +137,5 @@ results                       # Print results
 plot(results)                 # Plot the bootstrap values	
 boot.ci(results,type="bca")   # Calculate the 95% confidence interval	
 	
-
 # For more on bootstrapping have a look at:	
 # http://www.statmethods.net/advstats/bootstrapping.html	
-
-
-
-

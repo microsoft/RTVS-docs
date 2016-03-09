@@ -8,6 +8,7 @@ if (!require("checkpoint", quietly = TRUE))
   install.packages("checkpoint")
 library("checkpoint")
 checkpoint("2016-01-01")
+
 library("ISwR")
 
 ### A Simple Regression Example	

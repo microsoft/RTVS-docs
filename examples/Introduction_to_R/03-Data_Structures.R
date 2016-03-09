@@ -16,7 +16,10 @@ v
 
 ### Attributes	
 
-# Many R objects have a class attribute, a character vector giving the names of the classes from which the object inherits. If the object does not have a class attribute, it has an implicit class,  "matrix", "array" or the result of mode(x) except that integer vectors have implicit class "integer"  	
+# Many R objects have a class attribute, a character vector giving the names 
+# of the classes from which the object inherits. If the object does not have 
+# a class attribute, it has an implicit class,  "matrix", "array" or the result 
+# of mode(x) except that integer vectors have implicit class "integer"  	
 
 
 class(v)	
@@ -40,7 +43,7 @@ s
 p <- v1 * v2             # multiply element by element	
 p	
 
-s[v2 > 5]                # index into one vetor using a function on another vector	
+s[v2 > 5]              # index into one vector using a function on another vector	
 
 
 ### Character Vectors  	
@@ -80,20 +83,13 @@ m1[5,5]  					# index into the matrix
 
 
 ### Some Elementary Matrix Functions	
-
 m1^2						# square elements	
-
 sqrt(m1)	
-
 m2 <- matrix(1:100,nrow=10,ncol=10)	
 m2	
-
 m1 + m2						# add 2 matrices elementwise	
-
 m1 * m2						# multiply 2 matrices elementwise	
-
 m1 %*% m2					# matrix multiplication	
-
 c3 <- subset(letters,letters!="z")	
 c3	
 m3 <- matrix(c3,nrow=5)		# matrix of characters	
@@ -146,7 +142,6 @@ levels(dF$var2)   #    Factors are categorical variables with levels
 dF$var2 <- as.character(dF$var2)  	# force v2 to be character data	
 
 class(dF$var2)	
-
 attach(dF)						# Make Data Frame columns available as variables in the global environment	
 var2	
 
