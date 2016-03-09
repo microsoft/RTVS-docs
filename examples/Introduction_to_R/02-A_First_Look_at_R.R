@@ -12,6 +12,7 @@ if (!file.exists("~/.checkpoint"))
   dir.create("~/.checkpoint")
 library("checkpoint")
 checkpoint("2016-01-01")
+
 library("ISwR")
 
 ### A Simple Regression Example	

@@ -90,7 +90,7 @@ library("rattle")
 # gbm          | boosting models                          | 12	
 # gplots       | for barplot                              | 8	
 # ggplot2      | Plots                                    | 6, 8	
-# Hmisc 	     | for describe()                           | 8, 10	
+# Hmisc 	   | for describe()                           | 8, 10	
 # ISwR         | FOR DATA SET                             | 2	
 # kernlab      | svm                                      | 12	
 # lattice      | Graphics                                 | 6	
@@ -109,6 +109,6 @@ library("rattle")
 # library()                  # list all available installed packages	
 search() # list all "attached" or loaded packages	
 data() # to see all of the data sets available in the packages you have loaded	
-data(package = "rattle") # to see all the data sets in the?Terminology packages not library pakage rattle	
+data(package = "rattle") # to see all the data sets in the package rattle	
 help(package = rattle) # to get help with the package rattle	
 # lsf.str("package:rattle")  # to list all of the functions in rattle	

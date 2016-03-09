@@ -19,13 +19,17 @@ library("lattice")
 
 ### Basic R Graphics	
 
-# First, let's look at some simple scatter plots. The Duncan data frame has 45 rows and 4 columns. Data on the prestige and other characteristics of 45 U. S. occupations in 1950. 	
+# First, let's look at some simple scatter plots. The Duncan data frame 
+# has 45 rows and 4 columns. Data on the prestige and other characteristics 
+# of 45 U. S. occupations in 1950. 	
 class(Duncan)		# What kind of data structure is Duncan?	
 dim(Duncan)			# How big is Duncan? 	
 Duncan[1:5,]		# Look at the first five rows of the data frame	
 plot(Duncan$education,Duncan$prestige)	
 
-# Now, here is a truly ugly scatter plot. As an exercise, play with the parameters to creating something that is more pleasing to the eye. Here are a few web pages that you may find helpful.	
+# Now, here is a truly ugly scatter plot. As an exercise, play with 
+# the parameters to creating something that is more pleasing to the eye. 
+# Here are a few web pages that you may find helpful.	
 # http://www.statmethods.net/advgraphs/parameters.html	
 # http://www.statmethods.net/graphs/scatterplot.html 	
 # http://students.washington.edu/mclarkso/documents/line%20styles%20Ver2.pdf	
@@ -51,9 +55,11 @@ help(par)
 
 # Here is a nice example of putting multiple plots on a grid.   	
 
-# Build more complicated scatter plots	
-pairs(cbind(prestige,income,education),  	# pairs is function that produces a maatrix of scatter plots	
-	panel=function(x,y){					# define a function panel for the content of the matrix 	
+# Build more complicated scatter plots.
+# Pairs is function that produces a matrix of scatter plots.
+pairs(cbind(prestige, income, education),
+    # define a function panel for the content of the matrix 	
+	panel=function(x,y){						
 		points(x,y)							# plot the points	
 		abline(lm(y~x), lty=2,col="blue")	# add a linear regression 	
 		lines(lowess(x,y),col="red")		# add a nonlinear regression	
@@ -69,26 +75,25 @@ pairs(cbind(prestige,income,education),  	# pairs is function that produces a ma
 #     - a histogram with normal curve	
 #     - a boxplot 	
 #     - kernel density plot	
-
-par(mfrow=c(2,2))  						# set up to draw multiple plots on the same chart	
+par(mfrow=c(2,2))  						    # set multiple plots on the same chart	
 # basic histogram	
 hist(Duncan$prestige,xlab="prestige",col = "yellow",main="Histogram")	
 
 x <- rnorm(10000)							# random draw from normal distribution	
-                              # plot histogram	
-hist(x, freq = FALSE, col = "pink")				
-curve(dnorm,								  # plot normal density	
-	  col = "dark blue",				# set coor of curve	
-	  lwd=2,								    # fill in the area under the curve	
-	  add = TRUE)							  # add curve to existing plot	
+	
+hist(x, freq = FALSE, col = "pink")         # plot histogram		
+curve(dnorm,								# plot normal density	
+	  col = "dark blue",				    # set coor of curve	
+	  lwd=2,								# fill in the area under the curve	
+	  add = TRUE)							# add curve to existing plot	
 # 	
 boxplot(x,								  	# draw a boxplot	
 	    col="yellow",							
 		main="Box plot")							
 # 	
 plot(density(x),							# plot a kernel density estimate	
-	 col="blue",							  # set the color	
-	 type="h",								  # fill in the curve	
+	 col="blue",							# set the color	
+	 type="h",								# fill in the curve	
 	 main="Kernel Density Estimate")		# add a title	
 rug(x,col="red")                            	
 
@@ -196,7 +201,7 @@ detach()
 wireframe(volcano, shade = TRUE,	
           aspect = c(61/87, 0.4),	
           light.source = c(10,0,10))	
-#-------------------------------------------------------------------------------------------	
+#--------------------------------------------------------------------------------	
 # Wire Frame	
 g <- expand.grid(x = 1:10, y = 5:15, gr = 1:2)	
 g$z <- log((g$x^g$g + g$y^2) * g$gr)	
@@ -205,18 +210,19 @@ wireframe(z ~ x * y, data = g, groups = gr,
           drape = TRUE, colorkey = TRUE,	
           screen = list(z = 30, x = -60))	
 	
-#---------------------------------------------------------------------------------	
+#--------------------------------------------------------------------------------	
 ## cloud.table	
 cloud(prop.table(Titanic, margin = 1:3),	
       type = c("p", "h"), strip = strip.custom(strip.names = TRUE),	
       scales = list(arrows = FALSE, distance = 2), panel.aspect = 0.7,	
       zlab = "Proportion")[, 1]	
-#----------------------------------------------------------------------------------	
+#--------------------------------------------------------------------------------	
 	
 
 ### ggplot2 graphics
 
-# ggplot is the third major plotting system for R.It is based on Leland Wilkinson's grammar of graphics. Plots are built in layers.	
+# ggplot is the third major plotting system for R.It is based on 
+# Leland Wilkinson's grammar of graphics. Plots are built in layers.	
 
 # Some useful websites are:	
 # http://www.cs.uic.edu/~wilkinson/TheGrammarOfGraphics/GOG.html	
@@ -227,15 +233,19 @@ cloud(prop.table(Titanic, margin = 1:3),
 # Here we illustrate building up a multi-layer plot	
 
 # Scatter plot	
-p <- ggplot(Duncan, aes(income, prestige))  					# data to be plotted	
+p <- ggplot(Duncan, aes(income, prestige))  	# data to be plotted	
 # p		# This will produce an error since no layers are defined														
-layer1 <- geom_point(shape = 2,colour="red")					# First layer specifies kind of plot	
-p + layer1							
-layer2 <- facet_wrap(~ type)									        # Second layer builds facet plot	
-p + layer1 + layer2	
-layer3 <- geom_smooth(aes(group=type),method="lm",size=1,se=F)	# Third layer add a regression line	
-p + layer1 + layer2 + layer3	
-layer4 <- ggtitle("Duncan Prestige Data")						   # Fourth layer add a title	
+# First layer specifies kind of plot	
+layer1 <- geom_point(shape = 2,colour="red")	
+p + layer1
+# Second layer builds facet plot			
+layer2 <- facet_wrap(~ type)						
+p + layer1 + layer2
+# Third layer add a regression line	
+layer3 <- geom_smooth(aes(group=type),method="lm",size=1,se=F)	
+p + layer1 + layer2 + layer3
+# Fourth layer add a title	
+layer4 <- ggtitle("Duncan Prestige Data")
 p + layer1 + layer2 + layer3 + layer4	
 
 
@@ -257,9 +267,8 @@ p + geom_point() + stat_smooth()
 
 ### qplot examples	
 
-# The ggplot2 package also has a function called qplot which is often simpler to use	
-# However, it has a different syntax than the ggplot function.	
-
+# The ggplot2 package also has a function called qplot which is often simpler 
+# to use. However, it has a different syntax than the ggplot function.	
 qplot(carat, price, data = diamonds, geom = c("point", "smooth"))	
 	
 # Mapping point colour to diamond colour (left), and point shape to cut	

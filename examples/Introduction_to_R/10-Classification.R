@@ -2,7 +2,6 @@
 # title: "10 - Classification"	
 # ---	
 
-
 # The checkpoint function installs all required dependencies (i.e. CRAN packages)
 # you need to run the examples.
 if (!require("checkpoint", quietly = TRUE))
@@ -46,13 +45,13 @@ score <- function(model,target=data[testInd, 21],predict=pr){
 ### Read the Data and Prepare the Training and Test Sets	
 
 # Get the weather data and select the subset for modeling	
-
 data(weather, package = "rattle")
 # head(data)	
 # Select variables for the model	
 data <- subset(weather, select = c(MinTemp:RainToday,RainTomorrow))	
 set.seed(42)									# Set seed	
-ttIndex(data) # Pick out rows (index into data) for the training and test data sets	
+# Pick out rows (index into data) for the training and test data sets	
+ttIndex(data)
 
 ### Build a Tree Model with rpart   	
 
@@ -92,7 +91,8 @@ model
 # 5. the majority class at that node   	
 # 6. yprob: the distribution of classes at that node   	
 
-# So for the second line above: Pressure3pm >= 1011.9 204 16 No (0.92156863 0.07843137)   	
+# So for the second line above: Pressure3pm >= 1011.9 204 16 
+# No (0.92156863 0.07843137)   	
 # 1. node: 2)      	
 # 2. split: if Pressure3pm > 1011.9 go left down tree   	
 # 3. n: 204 obversations went down this branch      	
@@ -105,19 +105,18 @@ model
 printcp(model)	
 summary(model)	
 #rpart:::summary.rpart	
-leaf <- model$where						   # find out in which leaf each observation ended up	
+leaf <- model$where			# find out in which leaf each observation ended up	
 leaf	
 
 #### Plot Tree   	
-#  First a Basic R plot   	
 
-opar <- par(xpd=TRUE)							# Plotting is clipped to the figure region	
+#  First a Basic R plot   	
+opar <- par(xpd=TRUE)		# Plotting is clipped to the figure region	
 plot(model)	
 text(model)	
 par(opar)	
 
 #  Now, a Rattle style plot	
-
 drawTreeNodes(model)	
 title(main="Decision Tree weather.csv $ RainTomorrow")	
 
@@ -125,16 +124,13 @@ title(main="Decision Tree weather.csv $ RainTomorrow")
 ### Evaluate model performance on the test set 	
 
 # Run the tree model on the test set and generate an error matrix	
-
 pr <- predict(model, data[testInd, ], type="class")	
-
 score(model)                     # generate the confusion matrix      	
 
 
 ### Draw the ROC Curve	
 
 # First, create a prediction object.	
-
 pred <- prediction(as.vector(as.numeric(pr)), data[testInd,21])	
 perf <- performance(pred,"tpr","fpr")	
 plot(perf, main="ROC curve", colorize = TRUE)	
@@ -142,8 +138,10 @@ plot(perf, main="ROC curve", colorize = TRUE)
 
 ### Explore an unpruned tree	
 
-# The complexity parameter sets the minimum benefit that must be gained at each split of the decision tree. (default = .01) Typical behavior with cp=0 is to see the error reate decrease at first and then begin to increase.	
-
+# The complexity parameter sets the minimum benefit that must be gained 
+# at each split of the decision tree. (default = .01) Typical behavior 
+# with cp=0 is to see the error reate decrease at first and then begin 
+# to increase.	
 control <- rpart.control(minsplit=10,	
 						 minbucket=5,	
 						 maxdepth=20,	
