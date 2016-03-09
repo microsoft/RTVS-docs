@@ -43,17 +43,27 @@ print(coef(model1, s = "lambda.min"))
 # check how lambda impacts the estimated coefficients
 # ----------------------------------------------------------------------------
 model2 <- glmnet(x = train_X, y = train_y, alpha = 1, family = "gaussian")
-plot(model2, xvar = "lambda", label = TRUE)
 
-# add labels for variables
+# identify variable names
+vid <- as.character(seq(1,13))
 vn = colnames(train_X)
-par(mar = c(5, 4, 4, 2) + 0.1)
-vnat = coef(model2)
-# remove the intercept, and get the coefficients at the end of the path
-vnat = vnat[-1, ncol(vnat)] 
 
-axis(4, at = vnat, line = -.5, label = vn, las = 1, tick = FALSE, 
-     cex.axis = 0.5)
+# check and exclude the variables with coefficient value 0 
+vnat = coef(model2)
+vnat_f <- vnat[-1, ncol(vnat)] 
+vid <- vid[vnat_f != 0]
+vn <- vn[vnat_f != 0]
+
+#define the legend description, line type, and line color
+nvars <- length(vn)
+legend_desc <- paste(vid, vn, sep=": ")
+legend_desc
+mylty <- rep(1,nvars)
+mycl <- seq(1,nvars)
+
+# plot
+plot(model2, xvar = "lambda", label = TRUE, col = mycl, xlim = c(-5.5, 2))
+legend(-0.5,-2, legend_desc, lty = mylty, col = mycl, cex = 0.8) 
 
 # check coefficients from using glmnet() to compare with 
 # those from cv.glmnet(): the same
