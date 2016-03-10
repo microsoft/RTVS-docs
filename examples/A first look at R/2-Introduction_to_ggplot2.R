@@ -14,15 +14,13 @@
 str(quakes)
 
 # install and load the packages
-if (!require("ggplot2"))
+if (!require("ggplot2", quietly = TRUE))
     install.packages("ggplot2")
-library("ggplot2")
-if (!require("rgl"))
-    install.packages("rgl")
-library("rgl")
-if (!require("mapproj"))
+if (!suppressPackageStartupMessages(require("mapproj", quietly = TRUE)))
   install.packages("mapproj") # required for map projections
-library("mapproj")
+
+  library("ggplot2", quietly = TRUE)
+suppressPackageStartupMessages(library("mapproj", quietly = TRUE))
 
 # ----------------------------------------------------------------------------
 # Starting to use the ggplot2 package
@@ -105,57 +103,5 @@ grid.draw(cbind(
   ggplotGrob(p3),
   size = "last"
 ))
-
-
-# ----------------------------------------------------------------------------
-
-# The package "gtable" allows you to work with objects called grob tables.
-# A grob table captures all the information needed to layout grobs in a table
-# structure. It supports row and column spanning, offers some tools to
-# automatically figure out the correct dimensions, and makes it easy to align
-# and combine multiple tables. 
-
-if (!require("gtable")) install.packages("gtable")
-library(gtable)
-
-plonglat <- ggplot(quakes, aes(x = long, y = lat, size = mag, col = depth)) + 
-  geom_point(alpha = 0.5) + 
-  ggtitle("Top view")
-
-plongdep <- ggplot(quakes, aes(x = long, y = -depth, size = mag, col = depth)) + 
-  geom_point(alpha = 0.5) + 
-  ggtitle("Side view")
-
-platdep  <- ggplot(quakes, aes(x = depth, y = lat, size = mag, col = depth)) + 
-  geom_point(alpha = 0.5) + 
-  ggtitle("Side view")
-
-# Next, define a gtable and add grobs to the table
-
-gt <- gtable(widths = unit(rep(1,2), "null"),
-             heights = unit(rep(1,2), "null"))
-gt <- gtable_add_grob(gt, 
-                      grobs = list(
-                        ggplotGrob(plonglat),
-                        ggplotGrob(platdep),
-                        ggplotGrob(plongdep)
-                      ),
-                      l  =  c(1, 2, 1), # left extent of the grobs
-                      t  =  c(1, 1, 2)  # top extent of the grobs
-)
-plot.new()
-grid.draw(gt)
-
-
-# ----------------------------------------------------------------------------
-
-# Finally, you can plot the data in an interactive 3D plot, using package rgl
-# The rgl package is a wrapper around the 
-
-# Note this will open a seperate window with your plot.
-# This window is interactive - you can click and drag in the window,
-# thus changing the orientation of the data in 3 dimensions.
-
-with(quakes, plot3d(lat, long, -depth, col = mag))
 
 
