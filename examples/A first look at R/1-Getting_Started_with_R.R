@@ -1,9 +1,4 @@
-# ---	
-# title: "Introduction to R"	
-# ---	
-
-
-## Getting Started  	
+## Getting Started with R
 
 ### Some Brief History	
 # R followed S. The S language was conceived by John Chambers, Rick Becker,
@@ -57,7 +52,8 @@
 # If you are looking for help with technical questions about the language 
 # please consult the community site (http://www.r-project.org) for frequently 
 # asked questions. Ask for help on one of the several R mailing lists  
-# http://www.r-project.org/mail.html or Stack Overflow http://stackoverflow.com/questions/tagged/r  	
+# http://www.r-project.org/mail.html or 
+# Stack Overflow http://stackoverflow.com/questions/tagged/r  	
 
 
 ### Packages used in this set of examples
@@ -75,84 +71,86 @@
 # in addition to other repositors (e.g. BioConductor) and github
 # For a list of contributed packages on CRAN, see https://cran.r-project.org/
 
+# List all available installed packages on your machine.
+installed.packages()
 
-installed.packages() # list all available installed packages on your machine
-search() # list all "attached" or loaded packages	
+# List all "attached" or loaded packages.
+search() 	
 
-# You "attach" a package to make it's functions available, using the library() function
-# For example, the "foreign" package comes with R and contains functions to import data
-# from other systems
-
+# You "attach" a package to make it's functions available, 
+# using the library() function.
+# For example, the "foreign" package comes with R and contains 
+# functions to import data  from other systems.
 library(foreign)
 
 # You can get help on a package using:
 library(help = foreign)
 
 # To install a new package, use install.packages()
-# Install the ggplot2 package for it's plotting capability
-
+# Install the ggplot2 package for it's plotting capability.
 if (!require("ggplot2"))
   install.packages("ggplot2")
 
-# Then load the package
-
+# Then load the package.
 library("ggplot2")
-search() # notice that package:ggplot2 is now added to the search list
+search()
+# Notice that package:ggplot2 is now added to the search list.
 
 
 ### A Simple Regression Example	
 
-data(package = "ggplot2") # Look at the data sets that come with the package	
-# (Notice that the results in RTVS may pop up, or pop under, in a new window)
+# Look at the data sets that come with the package.
+data(package = "ggplot2") 	
+# Note that the results in RTVS may pop up, or pop under, in a new window.
 
-# ggplot2 contains a dataset called diamonds
-# make this dataset available using the data() function
-
+# ggplot2 contains a dataset called diamonds.
+# Make this dataset available using the data() function.
 data(diamonds, package = "ggplot2")
 
-# Create a listing of all objects in the "global environment"
-# Look for "diamonds" in the results
+# Create a listing of all objects in the "global environment".
+# Look for "diamonds" in the results.
 ls()
 str(diamonds)
 
-head(diamonds) # prints the first few rows
+# Print the first few rows.
+head(diamonds) 
 
+# Print the last 6 lines.	
+tail(diamonds)
 
-tail(diamonds) # print the last 6 lines	
+# Find out what kind of object it is.
+class(diamonds)
 
-class(diamonds) # Find out what kind of object it is
-
-dim(diamonds) # look at the dimension of the data frame	
-
-
+# Look at the dimension of the data frame.
+dim(diamonds)
 
 ### Vectorized Code	
-# This next bit of code shows off a very powerful feature of the R language: how many functions are "vectorized". The function sapply() takes the funcion class() that we just used on the data frame and applies it to all of the columns of the data frame.	
-
+# This next bit of code shows off a very powerful feature of the R language: 
+# how many functions are "vectorized". The function sapply() takes 
+# the function class() that we just used on the data frame and applies it 
+# to all of the columns of the data frame.	
 sapply(diamonds, class) # Find out what kind of animals the variables are	
 
 ### Plots in R	
 
-# Create a random sample of the diamonds data
+# Create a random sample of the diamonds data.
 diamondSample <- diamonds[sample(nrow(diamonds), 5000),]
 dim(diamondSample)
 
-# R has three systems for static graphics: base graphics, lattice and ggplot2. For now we will see how easy it is to produce bare bones plots with the base graphics system.	
+# R has three systems for static graphics: base graphics, lattice and ggplot2.  
+# For now we will see how easy it is to produce bare bones plots with 
+# the base graphics system.	
 
-# In this sample you use ggplot2
-
-
+# In this sample you use ggplot2.
 ggplot(diamondSample, aes(x = carat, y = price)) +
   geom_point(colour = "blue")
 
-# Add a log scale
-
+# Add a log scale.
 ggplot(diamondSample, aes(x = carat, y = price)) +
     geom_point(colour = "blue") +
     scale_x_log10()
 
-# Add a log scale for both scales
-
+# Add a log scale for both scales.
 ggplot(diamondSample, aes(x = carat, y = price)) +
         geom_point(colour = "blue") +
         scale_x_log10() +
@@ -160,16 +158,21 @@ ggplot(diamondSample, aes(x = carat, y = price)) +
 
 ### Linear Regression in R	
 
-# Now, let's build a simple regression model, examine the results of the model and plot the points and the regression line.	
+# Now, let's build a simple regression model, examine the results of 
+# the model and plot the points and the regression line.	
 
-model <- lm(log(price) ~ log(carat), data = diamondSample) # build the model	
-summary(model) # look at results 	
+# Build the model.
+model <- lm(log(price) ~ log(carat), data = diamondSample) 	
 
-# extract model coefficients
+# Look at the results. 	
+summary(model) 
+
+# Extract model coefficients.
 coef(model)
 coef(model)[1]
 exp(coef(model)[1])
 
+# Show the model in a plot.
 ggplot(diamondSample, aes(x = carat, y = price)) +
         geom_point(colour = "blue") +
         geom_smooth(method = "lm", colour = "red", size = 2) +
@@ -179,16 +182,22 @@ ggplot(diamondSample, aes(x = carat, y = price)) +
 
 ### Regression Diagnostics	
 
-# It is easy to get regression diagnostic plots. The same plot function that plots points either with a formula or with the coordinates also has a "method" for dealing with a model object.	
+# It is easy to get regression diagnostic plots. The same plot function 
+# that plots points either with a formula or with the coordinates also has 
+# a "method" for dealing with a model object.	
 
-par(mfrow = c(2, 2)) # Set up for multiple plots on the same figure	
-plot(model, col = "blue") # Look at some model diagnostics	
+# Set up for multiple plots on the same figure.
+par(mfrow = c(2, 2))
+
+# Look at some model diagnostics.
+plot(model, col = "blue") 
 
 
 ### The Model Object	
 
-# Finally, let's look at the model object. R packs everything that goes with the model, the fornula, and results into the object. You can pick out what you need by indexin into the model object.	
-
+# Finally, let's look at the model object. R packs everything that goes with 
+# the model, the fornula, and results into the object. You can pick out what 
+# you need by indexing into the model object.	
 str(model)
 model$coefficients
 coef(model)
