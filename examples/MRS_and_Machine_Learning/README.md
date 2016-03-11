@@ -8,7 +8,10 @@ functionality of Mircosoft R Server.
 ### Flight_Delays_Prediction_with_MRS
   
 ### Bike_Rental_Estimation_with_MRS
-  
+
+* **MRS_Bike_Rental_Estimation.R** 
+  A demand prediction model for bike rentals based on a historical data set.
+  It uses Microsoft R Server.
 ### R_MRO_MRS_Comparison  
   
 ### Benchmarks
