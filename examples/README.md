@@ -8,5 +8,4 @@ the interactive terminal.
 **MRS and Machine Learning** shows you how to use R and Microsoft R Server
 to create machine learning models and handle large data sets.
 
-The README files in each directory give more detail about each example.
-
+The README files in each directory give more detail about each example.
