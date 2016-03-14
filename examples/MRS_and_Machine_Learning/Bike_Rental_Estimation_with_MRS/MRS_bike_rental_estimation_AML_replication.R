@@ -1,6 +1,6 @@
-##############################################################################################################
-##################### Regression: Demand estimation with Microsoft R Server ##################################
-##############################################################################################################
+#-------------------------------------------------------------------------------------------------------------
+#-------------------------- Regression: Demand estimation with Microsoft R Server ----------------------------
+#-------------------------------------------------------------------------------------------------------------
 # 
 #
 # This example a replication of an existing Azure Machine Learning Experiment - Regression: Demand Estimation 
@@ -37,30 +37,35 @@
 # The following scripts include five basic steps of building this example using Microsoft R Server.
 #
 #
-##############################################################################################################
+#--------------------------------------------------------------------------------------------------------------
 
 
-#---------------------------Step 0: Get Started---------------------------
-# Check whether the "RevoScaleR" package is loaded in the current environment.
-if (require("RevoScaleR")) {
-    library("RevoScaleR") # Load RevoScaleR package from Microsoft R Server.
-    message("RevoScaleR package is succesfully loaded.")
-} else {
-    message("Can't find RevoScaleR package...")
-    message("If you have Microsoft R Server installed,")
-    message("please switch the R engine")
-    message("in R Tools for Visual Studio: R Tools -> Options -> R Engine.")
-    message("If Microsoft R Server is not installed,")
-    message("please download it from here:")
-    message("https://www.microsoft.com/en-us/server-cloud/products/r-server/.")
+#---------------------------Step 0: Get Started-------------------------------
+# ----------------------------------------------------------------------------
+# Check if Microsoft R Server (RRE 8.0) is installed
+# ----------------------------------------------------------------------------
+if (!require("RevoScaleR")) {
+    cat("RevoScaleR package does not seem to exist. 
+      \nThis means that the functions starting with 'rx' will not run. 
+      \nIf you have Microsoft R Server installed, please switch the R engine.
+      \nFor example, in R Tools for Visual Studio: 
+      \nR Tools -> Options -> R Engine. 
+      \nIf Microsoft R Server is not installed, you can download it from: 
+      \nhttps://www.microsoft.com/en-us/server-cloud/products/r-server/
+      \n")
+
+    quit()
 }
 
 # Initial some variables.
-inputFileBikeURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Bike_Rental_UCI_Dataset.csv"
-(if (!exists("tmp")) dir.create("tmp", showWarnings = FALSE))  # create a temporary folder to store the .xdf files.
-outFileBike <- "tmp/bike2.xdf"
-outFileEdit <- "tmp/editData.xdf"
-outFileLag <- "tmp/lagData"
+github <- "https://raw.githubusercontent.com/mezmicrosoft/RTVS-docs/master/examples/MRS_and_Machine_Learning/Datasets/"
+inputFileBikeURL <- paste0(github, "Bike_Rental_UCI_Dataset.csv")
+
+# Create a temporary directory to store the intermediate .xdf files.
+td <- tempdir()
+outFileBike <- paste0(td, "/bike.xdf")
+outFileEdit <- paste0(td, "/editData.xdf")
+outFileLag <- paste0(td, "/lagData")
 
 #---------------------------Step 1: Import Data---------------------------
 # Import the bike data.
@@ -153,19 +158,21 @@ finalDataLag_mrs <- RxXdfData(finalDataLag_dir)
 #---------------------------Step 3: Prepare Training and Test Datasets---------------------------
 ## Set A:
 # Split Data.
-rxSplit(inData = finalDataA_mrs, outFilesBase = "tmp/modelDataA", splitByFactor = "yr",
+rxSplit(inData = finalDataA_mrs,
+        outFilesBase = paste0(td, "/modelDataA"),
+        splitByFactor = "yr",
         overwrite = TRUE, reportProgress = 0, verbose = 0)
 # Point to the .xdf files for the training and test set.
-trainA_mrs <- RxXdfData("tmp/modelDataA.yr.0.xdf")
-testA_mrs <- RxXdfData("tmp/modelDataA.yr.1.xdf")
+trainA_mrs <- RxXdfData(paste0(td, "/modelDataA.yr.0.xdf"))
+testA_mrs <- RxXdfData(paste0(td, "/modelDataA.yr.1.xdf"))
 
 ## Set B, C & D:
 # Split Data.
-rxSplit(inData = finalDataLag_mrs, outFilesBase = "tmp/modelDataLag", splitByFactor = "yr",
+rxSplit(inData = finalDataLag_mrs, outFilesBase = paste0(td, "/modelDataLag"), splitByFactor = "yr",
         overwrite = TRUE, reportProgress = 0, verbose = 0)
 # Point to the .xdf files for the training and test set.
-train_mrs <- RxXdfData("tmp/modelDataLag.yr.0.xdf")
-test_mrs <- RxXdfData("tmp/modelDataLag.yr.1.xdf")
+train_mrs <- RxXdfData(paste0(td, "/modelDataLag.yr.0.xdf"))
+test_mrs <- RxXdfData(paste0(td, "/modelDataLag.yr.1.xdf"))
 
 #---------------------------Step 4: Choose and apply a learning algorithm (Decision Forest Regression)---------------------------
 newDayFeatures <- paste("demand", ".", seq(12), "day", sep = "")

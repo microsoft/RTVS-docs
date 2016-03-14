@@ -1,43 +1,52 @@
-#
-# Flight Delay Prediction with Microsoft R Server 
-#
+#------------------------------------------------------------------------------------------------------------------------------------
+#------------------------------------- Flight Delay Prediction with Microsoft R Server ----------------------------------------------
+#------------------------------------------------------------------------------------------------------------------------------------
 
 
-# In this example, we use historical on-time performance and weather data to predict whether the arrival of a scheduled passenger flight will be delayed by more than 15 minutes.
+# In this example, we use historical on-time performance and weather data to predict whether the arrival of a scheduled passenger 
+# flight will be delayed by more than 15 minutes.
 
-# We approach this problem as a classification problem, predicting two classes -- whether the flight will be delayed, or whether it will be on time. Broadly speaking, in machine learning and statistics, classification is the task of identifying the class or category to which a new observation belongs, on the basis of a training set of data containing observations with known categories. Classification is generally a supervised learning problem. Since this is a binary classification task, there are only two classes.
+# We approach this problem as a classification problem, predicting two classes -- whether the flight will be delayed, or whether it 
+# will be on time. Broadly speaking, in machine learning and statistics, classification is the task of identifying the class or category 
+# to which a new observation belongs, on the basis of a training set of data containing observations with known categories. 
+# Classification is generally a supervised learning problem. Since this is a binary classification task, there are only two classes.
 
-# In this example, we train a model using a large number of examples from historic flight data, along with an outcome measure that indicates the appropriate category or class for each example. The two classes are labeled 1 if a flight was delayed, and labeled 0 if the flight was on time.
+# In this example, we train a model using a large number of examples from historic flight data, along with an outcome measure that 
+# indicates the appropriate category or class for each example. The two classes are labeled 1 if a flight was delayed, and labeled 0 
+# if the flight was on time.
 
 # The following scripts include five basic steps of building this example using Microsoft R Server.
 
 
-#---------------------------Step 0: Get Started---------------------------
+#---------------------------Step 0: Get Started-------------------------------
 # ----------------------------------------------------------------------------
-# check if Microsoft R Server (RRE 8.0) is installed
+# Check if Microsoft R Server (RRE 8.0) is installed
 # ----------------------------------------------------------------------------
-if (require("RevoScaleR")) {
-    library("RevoScaleR") # Load RevoScaleR package from Microsoft R Server.
-    message("RevoScaleR package is succesfully loaded.")
-} else {
-    message("Can't find RevoScaleR package...")
-    message("If you have Microsoft R Server installed,")
-    message("please switch the R engine")
-    message("in R Tools for Visual Studio: R Tools -> Options -> R Engine.")
-    message("If Microsoft R Server is not installed,")
-    message("please download it from here:")
-    message("https://www.microsoft.com/en-us/server-cloud/products/r-server/.")
+if (!require("RevoScaleR")) {
+    cat("RevoScaleR package does not seem to exist. 
+      \nThis means that the functions starting with 'rx' will not run. 
+      \nIf you have Microsoft R Server installed, please switch the R engine.
+      \nFor example, in R Tools for Visual Studio: 
+      \nR Tools -> Options -> R Engine. 
+      \nIf Microsoft R Server is not installed, you can download it from: 
+      \nhttps://www.microsoft.com/en-us/server-cloud/products/r-server/
+      \n")
+
+    quit()
 }
 
 # Initial some variables.
 github <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/"
 inputFileFlightURL <- paste0(github, "Flight_Delays_Sample.csv")
 inputFileWeatherURL <- paste0(github, "Weather_Sample.csv")
-outFileFlight <- "flight.xdf"
-outFileWeather <- "weather.xdf"
-outFileOrigin <- "originData.xdf"
-outFileDest <- "destData.xdf"
-outFileFinal <- "finalData.xdf"
+
+# Create a temporary directory to store the intermediate .xdf files.
+td <- tempdir()
+outFileFlight <- paste0(td, "/flight.xdf")
+outFileWeather <- paste0(td, "/weather.xdf")
+outFileOrigin <- paste0(td, "/originData.xdf")
+outFileDest <- paste0(td, "/destData.xdf")
+outFileFinal <- paste0(td, "/finalData.xdf")
 
 #---------------------------Step 1: Import Data--------------------------------
 
@@ -140,7 +149,7 @@ rxFactors(inData = destData_mrs, outFile = outFileFinal, sortLevels = TRUE,
 # Randomly split 80% data as training set and the remaining 20% as test set.
 
 rxSplit(inData = outFileFinal,
-        outFilesBase = "tmp/modelData",
+        outFilesBase = paste0(td, "/modelData"),
         outFileSuffixes = c("Train", "Test"),
         splitByFactor = "splitVar",
         overwrite = TRUE,
@@ -154,8 +163,8 @@ rxSplit(inData = outFileFinal,
         consoleOutput = TRUE)
 
 # Point to the .xdf files for the training and test set.
-train <- RxXdfData("tmp/modelData.splitVar.Train.xdf")
-test <- RxXdfData("tmp/modelData.splitVar.Test.xdf")
+train <- RxXdfData(paste0(td, "/modelData.splitVar.Train.xdf"))
+test <- RxXdfData(paste0(td, "/modelData.splitVar.Test.xdf"))
 
 #- Step 4A: Choose and apply a learning algorithm (Logistic Regression) -------
 # Build the formula.
@@ -176,7 +185,10 @@ rxPredict(logitModel_mrs, data = test,
           overwrite = TRUE)
 
 # Calculate Area Under the Curve (AUC).
-rxAuc(rxRoc("ArrDel15", "ArrDel15_Pred_Logit", test))
+paste0("AUC of Logistic Regression Model:",
+      rxAuc(rxRoc("ArrDel15", "ArrDel15_Pred_Logit", test)))
+
+# Plot the ROC curve.
 rxRocCurve("ArrDel15", "ArrDel15_Pred_Logit", data = test,
            title = "ROC curve - Logistic regression")
 
@@ -197,7 +209,10 @@ rxPredict(dTree2_mrs, data = test,
           overwrite = TRUE)
 
 # Calculate Area Under the Curve (AUC).
-rxAuc(rxRoc("ArrDel15", "ArrDel15_Pred_Tree", test))
+paste0("AUC of Decision Tree Model:",
+      rxAuc(rxRoc(" ArrDel15 ", " ArrDel15_Pred_Tree ", test)))
+
+# Plot the ROC curve.
 rxRocCurve("ArrDel15",
   predVarNames = c("ArrDel15_Pred_Tree", "ArrDel15_Pred_Logit"),
   data = test,

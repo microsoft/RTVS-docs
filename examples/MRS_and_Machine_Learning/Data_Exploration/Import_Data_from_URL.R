@@ -1,11 +1,12 @@
-# Import packages.
-(if (!require("RCurl")) install.packages("RCurl"))
-library("RCurl")
-(if (!require("foreign")) install.packages("foreign"))
-library("foreign")
+# Install a package if it's not already installed.
+(if (!require("RCurl", quietly = TRUE)) install.packages("RCurl"))
+
+# Load packages.
+library("RCurl", quietly = TRUE)
 
 # A URL contains the raw data.
-inputDataURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Flight_Delays_Sample.csv"
+github <- "https://raw.githubusercontent.com/mezmicrosoft/RTVS-docs/master/examples/MRS_and_Machine_Learning/Datasets/"
+inputDataURL <- paste0(github, "Flight_Delays_Sample.csv")
 
 # Download data from the URL.
 inputData <- getURL(inputDataURL)
