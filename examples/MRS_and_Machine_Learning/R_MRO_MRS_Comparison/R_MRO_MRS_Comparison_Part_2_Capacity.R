@@ -68,23 +68,23 @@ rxImport(inData = dataCSV, outFile = dataXDF, overwrite = TRUE)
 # cluster analysis with kmeans(), it doesn't work when data is large enough
 # ----------------------------------------------------------------------------
 system_time_R <- 
-system.time(
-{
-  fit <- kmeans(mydata, nclusters,
-                iter.max = 1000,
-                algorithm = "Lloyd")
-})
+  system.time(
+    {
+      fit <- kmeans(mydata, nclusters,
+                    iter.max = 1000,
+                    algorithm = "Lloyd")
+    })
 
 # ----------------------------------------------------------------------------
 # cluster analysis with rxKmeans(), it works even if kmeans() does not
 # ----------------------------------------------------------------------------
 system_time_MRS <- 
-system.time(
-{
-  clust <- rxKmeans( ~ V1 + V2, data = dataXDF,
-                    numClusters = nclusters,
-                    algorithm = "lloyd",
-                    outFile = dataXDF,
-                    outColName = "cluster",
-                    overwrite = TRUE)
-})
+  system.time(
+    {
+      clust <- rxKmeans( ~ V1 + V2, data = dataXDF,
+                         numClusters = nclusters,
+                         algorithm = "lloyd",
+                         outFile = dataXDF,
+                         outColName = "cluster",
+                         overwrite = TRUE)
+    })
