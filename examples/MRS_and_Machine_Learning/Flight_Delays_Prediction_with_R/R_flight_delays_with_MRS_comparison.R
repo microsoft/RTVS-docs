@@ -1,6 +1,6 @@
-##########################################################################################################################
-################################### Flight Delay Prediction with Open Source R ###########################################
-##########################################################################################################################
+#-------------------------------------------------------------------------------------------------------------------------
+#---------------------------------- Flight Delay Prediction with Open Source R -------------------------------------------
+#-------------------------------------------------------------------------------------------------------------------------
 # 
 #
 # This example demostrates a step-by-step comparison of solving a Machine Learning use case using open
@@ -25,19 +25,20 @@
 # The following scripts include five basic steps of building this example using open source R.
 #
 #
-##########################################################################################################################
+#-------------------------------------------------------------------------------------------------------------------------
 
 
 #---------------------------Step 0: Get Started---------------------------
 # Initial some variables.
-inputFileFlightURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Flight_Delays_Sample.csv"
-inputFileWeatherURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Weather_Sample.csv"
+github <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/"
+inputFileFlightURL <- paste0(github, "Flight_Delays_Sample.csv")
+inputFileWeatherURL <- paste0(github, "Weather_Sample.csv")
 
 # Import packages.
-(if (!require("RCurl")) install.packages("RCurl"))
-library("RCurl") # Load RCurl package for importing files from a URL.
-(if (!require("rpart")) install.packages("rpart"))
-library("rpart")  # Load rpart package for building the decision tree model.
+(if (!require("RCurl", quietly = TRUE)) install.packages("RCurl"))
+library("RCurl", quietly = TRUE) # Load RCurl package for importing files from a URL.
+(if (!require("rpart", quietly = TRUE)) install.packages("rpart"))
+library("rpart", quietly = TRUE) # Load rpart package for building the decision tree model.
 
 # Download URLs of flight and weather data.
 inputFileFlight <- getURL(inputFileFlightURL)
@@ -161,7 +162,9 @@ auc <- function(outcome, prob) {
   df$above <- (1:N) - cumsum(df$out)
   return(1 - sum(df$above * df$out) / (N_pos * (N - N_pos)))
 }
-auc(testLogit$ArrDel15, testLogit$ArrDel15_Pred)
+
+paste0("AUC of Logistic Regression Model:",
+       auc(testLogit$ArrDel15, testLogit$ArrDel15_Pred))
 
 #---------------------------Step 4B: Choose and apply a learning algorithm (Decision Tree)---------------------------
 # Build a decision tree model.
@@ -182,4 +185,5 @@ predictTree_r <- predict(dTree2_r, newdata = test, type = 'prob')
 testDT <- cbind(test, data.frame(ArrDel15_Pred = predictTree_r[, 2]))
 
 # Calculate Area Under the Curve (AUC).
-auc(testDT$ArrDel15, testDT$ArrDel15_Pred)
+paste0("AUC of Decision Tree Model:",
+       auc(testDT$ArrDel15, testDT$ArrDel15_Pred))
