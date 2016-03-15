@@ -17,7 +17,7 @@ if (!require("RevoScaleR")) {
 } 
 
 # A URL contains the raw data.
-github <- "https://raw.githubusercontent.com/mezmicrosoft/RTVS-docs/master/examples/MRS_and_Machine_Learning/Datasets/"
+github <- "https://raw.githubusercontent.com/brohrer-ms/RTVS-docs/master/examples/MRS_and_Machine_Learning/Datasets/"
 inputDataURL <- paste0(github, "Flight_Delays_Sample.csv")
 
 # Create a temporary directory to store the intermediate .xdf files.

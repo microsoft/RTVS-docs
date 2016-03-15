@@ -7,7 +7,7 @@
 library("RCurl", quietly = TRUE)
 
 # A URL contains the raw data.
-github <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/MRS_and_Machine_Learning/Datasets/"
+github <- "https://raw.githubusercontent.com/brohrer-ms/RTVS-docs/master/examples/MRS_and_Machine_Learning/Datasets/"
 inputDataURL <- paste0(github, "Flight_Delays_Sample.csv")
 
 # Download data from the URL.

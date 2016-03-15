@@ -23,14 +23,14 @@
 # are labeled 1 if a flight was delayed, and labeled 0 if the flight was on time.
 #
 # The following scripts include five basic steps of building this example using open source R.
-#
+# This execution might require more than one minute.
 #
 #-------------------------------------------------------------------------------------------------------------------------
 
 
 #---------------------------Step 0: Get Started---------------------------
 # Initial some variables.
-github <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/"
+github <- "https://raw.githubusercontent.com/brohrer-ms/RTVS-docs/master/examples/MRS_and_Machine_Learning/Datasets/"
 inputFileFlightURL <- paste0(github, "Flight_Delays_Sample.csv")
 inputFileWeatherURL <- paste0(github, "Weather_Sample.csv")
 
