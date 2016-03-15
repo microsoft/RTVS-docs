@@ -12,7 +12,7 @@
 (if (!require("glmnet")) install.packages("glmnet"))
 library("glmnet") # use this package to fit a glmnet model
 (if (!require("MASS")) install.packages("MASS"))
-library("MASS") # use the Boston dataset
+library("MASS") # to use the Boston dataset
 
 # ----------------------------------------------------------------------------
 # identify the optimal value of lambda
@@ -45,8 +45,8 @@ print(coef(model1, s = "lambda.min"))
 model2 <- glmnet(x = train_X, y = train_y, alpha = 1, family = "gaussian")
 
 # identify variable names
-vid <- as.character(seq(1,13))
 vn = colnames(train_X)
+vid <- as.character(seq(1,length(vn)))
 
 # check and exclude the variables with coefficient value 0 
 vnat = coef(model2)
@@ -65,15 +65,13 @@ mycl <- seq(1,nvars)
 plot(model2, xvar = "lambda", label = TRUE, col = mycl, xlim = c(-5.5, 2))
 legend(-0.5,-2, legend_desc, lty = mylty, col = mycl, cex = 0.8) 
 
-# check coefficients from using glmnet() to compare with 
-# those from cv.glmnet(): the same
-coef(model2, s = model1$lambda.min)
-
 # ----------------------------------------------------------------------------
 # make predictions
 # ----------------------------------------------------------------------------
-# make predictions with model 1
+# data
 x_new <- data.matrix(train_X[1:2, - response_column])
+
+# make predictions with model 1
 predictions_train <- predict(model1, newx = x_new, s = "lambda.min")
 print(predictions_train)
 

@@ -34,9 +34,9 @@ pred <- predict(lm1)
 mae <- mean(abs(pred - Boston$medv))
 rmse <- sqrt(mean((pred - Boston$medv) ^ 2))
 rae <- mean(abs(pred - Boston$medv)) / mean(abs(Boston$medv - 
-                                                    mean(Boston$medv)))
+                                                  mean(Boston$medv)))
 rse <- mean((pred - Boston$medv) ^ 2) / mean((Boston$medv - 
-                                                  mean(Boston$medv)) ^ 2)
+                                                mean(Boston$medv)) ^ 2)
 
 print(paste("Mean Absolute Error: ", 
             as.character(round(mae, digit = 6)), sep = ""))
@@ -47,16 +47,18 @@ print(paste("Relative Absolute Error: ",
 print(paste("Relative Squared Error: ", 
             as.character(round(rse, digit = 6)), sep = ""))
 
-
+# ----------------------------------------------------------------------------
+# publish and consume a web service
+# ----------------------------------------------------------------------------
 # workspace information
 ws <- workspace(
-    id = ws_id,
-    auth = auth_token)
+  id = ws_id,
+  auth = auth_token)
 
 # define predict function
 mypredict <- function(newdata) {
-    res <- predict(lm1, newdata)
-    res
+  res <- predict(lm1, newdata)
+  res
 }
 
 # test the prediction function
@@ -67,9 +69,6 @@ print(mypredict(newdata))
 ep <- publishWebService(ws = ws, fun = mypredict, 
                         name = "HousePricePrediction", inputSchema = newdata)
 
-# ----------------------------------------------------------------------------
-# consume the web service
-# ----------------------------------------------------------------------------
 # consume web service - 1st approach
 pred <- consume(ep, newdata)
 pred
@@ -87,16 +86,16 @@ consume(ep_price_pred, newdata)
 # ----------------------------------------------------------------------------
 # define function for testing purpose
 mypredictnew <- function(newdata) {
-    res <- predict(lm1, newdata) + 100
-    res
+  res <- predict(lm1, newdata) + 100
+  res
 }
 
 # update service with the new function
 ep_update <- updateWebService(
-    ws = ws,
-    fun = mypredictnew,
-    inputSchema = newdata,
-    serviceId = ep$WebServiceId)
+  ws = ws,
+  fun = mypredictnew,
+  inputSchema = newdata,
+  serviceId = ep$WebServiceId)
 
 # consume the updated web service
 consume(ep_price_pred, newdata)
