@@ -141,6 +141,9 @@ dim(diamondSample)
 # For now we will see how easy it is to produce bare bones plots with 
 # the base graphics system.	
 
+# Set the font size so that it will be clearly legible.
+theme_set(theme_gray(base_size = 18))
+
 # In this sample you use ggplot2.
 ggplot(diamondSample, aes(x = carat, y = price)) +
   geom_point(colour = "blue")

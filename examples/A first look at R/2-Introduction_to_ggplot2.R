@@ -4,14 +4,18 @@
 # beautiful plots by describing the plot structure.
 
 # Install and load the packages.
+options(warn = -1)
 if (!require("ggplot2", quietly = TRUE))
-    install.packages("ggplot2")
+    install.packages("ggplot2", quiet = TRUE)
 # mapproj is required for map projections.
-if (!suppressPackageStartupMessages(require("mapproj", quietly = TRUE)))
-    install.packages("mapproj")
+#if (!suppressPackageStartupMessages(require("mapproj", quietly = TRUE)))
+#    install.packages("mapproj")
+if (!require("mapproj", quietly = TRUE))
+    install.packages("mapproj", quiet = TRUE)
+options(warn = 0)
 
 library("ggplot2", quietly = TRUE)
-suppressPackageStartupMessages(library("mapproj", quietly = TRUE))
+library("mapproj", quietly = TRUE)
 
 # R has a number of built-in datasets.
 # In this example you use the dataset called quakes.

@@ -2,8 +2,24 @@
 # computations. This script runs performance benchmarks using different 
 # numbers of threads
 
-# The test uses the package "version.compare", available on github
-# Install this package first, if it is not already installed
+# The test uses the package "version.compare", available on GitHub.
+# Install this package first, if it is not already installed.
+# It uses RevoMultiBenchmark, and so requires that Microsoft R Server be installed.
+
+# Check whether Microsoft R Server (RRE 8.0) is installed
+if (!require("RevoScaleR")) {
+    cat("RevoScaleR package does not seem to exist. 
+      \nThis means that the functions starting with 'rx' will not run. 
+      \nIf you have Microsoft R Server installed, please switch the R engine.
+      \nFor example, in R Tools for Visual Studio: 
+      \nR Tools -> Options -> R Engine. 
+      \nIf Microsoft R Server is not installed, you can download it from: 
+      \nhttps://www.microsoft.com/en-us/server-cloud/products/r-server/
+      \n")
+
+    quit()
+    }
+
 
 if (!require("version.compare")){
   (if (!require("devtools")) install.packages("devtools"))
@@ -29,6 +45,7 @@ threadsToTest <- if(exists("setMKLthreads")){
 } else {
   1
 }
+
 
 # Run the benchmark tests
 # Set scale.factor to 1 for the full tests, lower than 1 for tests on 
