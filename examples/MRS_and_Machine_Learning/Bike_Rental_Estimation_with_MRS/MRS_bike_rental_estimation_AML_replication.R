@@ -35,7 +35,7 @@
 # Training set 4: feature sets A+B+C+D
 #
 # The following scripts include five basic steps of building this example using Microsoft R Server.
-#
+# This execution might require more than two minutes.
 #
 #--------------------------------------------------------------------------------------------------------------
 
@@ -58,7 +58,7 @@ if (!require("RevoScaleR")) {
 }
 
 # Initial some variables.
-github <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/MRS_and_Machine_Learning/Datasets/"
+github <- "https://raw.githubusercontent.com/brohrer-ms/RTVS-docs/master/examples/MRS_and_Machine_Learning/Datasets/"
 inputFileBikeURL <- paste0(github, "Bike_Rental_UCI_Dataset.csv")
 
 # Create a temporary directory to store the intermediate .xdf files.
@@ -80,71 +80,69 @@ editData_mrs <- rxFactors(inData = bike_mrs, outFile = outFileEdit, sortLevels =
 
 #---------------------------Step 2: Feature Engineering---------------------------
 # Create a function to construct lag features for four different aspects. 
-computeLagFeatures <- function (dataList) {   
-  
-  numLags <- length(nLagsVector) # total number of lags that need to be added
-  for (iL in 1:numLags)
-  {
-    nlag <- nLagsVector[iL]
-    varLagName <- paste("demand.",nlag,unit,sep="")
-    numRowsInChunk <- length(dataList[[baseVar]])
-    numRowsToRead <- nlag * interval
-    numRowsPadding <- 0
-    if (numRowsToRead >= .rxStartRow)
-    {
-      numRowsToRead <- .rxStartRow - 1
-      numRowsPadding <- nlag * interval - numRowsToRead
-    }
-    startRow <- .rxStartRow - numRowsToRead  # determine the current row to start processing the data between chunks.
-    previousRowsDataList <- rxReadXdf(file = .rxReadFileName,
+computeLagFeatures <- function(dataList) {
+
+    numLags <- length(nLagsVector) # total number of lags that need to be added
+    for (iL in 1:numLags) {
+        nlag <- nLagsVector[iL]
+        varLagName <- paste("cnt_", nlag, unit, sep = "")
+        numRowsInChunk <- length(dataList[[baseVar]])
+        numRowsToRead <- nlag * interval
+        numRowsPadding <- 0
+        if (numRowsToRead >= .rxStartRow) {
+            numRowsToRead <- .rxStartRow - 1
+            numRowsPadding <- nlag * interval - numRowsToRead
+        }
+        startRow <- .rxStartRow - numRowsToRead # determine the current row to start processing the data between chunks.
+        previousRowsDataList <- rxReadXdf(file = .rxReadFileName,
                                       varsToKeep = baseVar,
                                       startRow = startRow, numRows = numRowsToRead,
                                       returnDataFrame = FALSE)
-    paddingRowsDataList <- rxReadXdf(file=.rxReadFileName,
+        paddingRowsDataList <- rxReadXdf(file = .rxReadFileName,
                                      varsToKeep = baseVar,
                                      startRow = 1, numRows = numRowsPadding,
                                      returnDataFrame = FALSE)
-    dataList[[varLagName]] <- c(paddingRowsDataList[[baseVar]], previousRowsDataList[[baseVar]], dataList[[baseVar]])[1:numRowsInChunk]	
-  }
-  return(dataList)
+        dataList[[varLagName]] <- c(paddingRowsDataList[[baseVar]], previousRowsDataList[[baseVar]], dataList[[baseVar]])[1:numRowsInChunk]
+    }
+    return(dataList)
 }
 
 # Create a function to add lag features a set of columns at a time.
 addLag <- function(inputData, outputFileBase) {
-  
-  inputFile <- inputData
-  outputFileHour <- paste(outputFileBase, "_hour",".xdf",sep="")
-  outputFileHourDay <- paste(outputFileBase, "_hour_day",".xdf",sep="")
-  outputFileHourDayWeek <- paste(outputFileBase, "_hour_day_week",".xdf",sep="")
-  
-  # Initialize some fix values.
-  hourInterval <- 1
-  dayInterval <- 24
-  weekInterval <- 168
-  previous <- 12
-  
-  # Add number of bikes that were rented in each of the previous 12 hours (for Set B).
-  rxDataStep(inData = inputFile,outFile = outputFileHour, transformFunc=computeLagFeatures,
-             transformObjects = list(baseVar = "cnt", unit = "hour",nLagsVector=seq(12), 
+
+    inputFile <- inputData
+    outputFileHour <- paste(outputFileBase, "_hour", ".xdf", sep = "")
+    outputFileHourDay <- paste(outputFileBase, "_hour_day", ".xdf", sep = "")
+    outputFileHourDayWeek <- paste(outputFileBase, "_hour_day_week", ".xdf", sep = "")
+
+    # Initialize some fix values.
+    hourInterval <- 1
+    dayInterval <- 24
+    weekInterval <- 168
+    previous <- 12
+
+    # Add number of bikes that were rented in each of the previous 12 hours (for Set B).
+    rxDataStep(inData = inputFile, outFile = outputFileHour, transformFunc = computeLagFeatures,
+             transformObjects = list(baseVar = "cnt", unit = "hour", nLagsVector = seq(12),
                                      interval = hourInterval),
-             transformVars = c("cnt"), overwrite=TRUE)
-  
-  # Add number of bikes that were rented in each of the previous 12 days at the same hour (for Set C).
-  rxDataStep(inData = outputFileHour,outFile = outputFileHourDay, transformFunc=computeLagFeatures,
-             transformObjects = list(baseVar = "cnt", unit = "day",nLagsVector=seq(12), 
+             transformVars = c("cnt"), overwrite = TRUE)
+
+    # Add number of bikes that were rented in each of the previous 12 days at the same hour (for Set C).
+    rxDataStep(inData = outputFileHour, outFile = outputFileHourDay, transformFunc = computeLagFeatures,
+             transformObjects = list(baseVar = "cnt", unit = "day", nLagsVector = seq(12),
                                      interval = dayInterval),
-             transformVars = c("cnt"), overwrite=TRUE)
-  
-  # Add number of bikes that were rented in each of the previous 12 weeks at the same hour and the same day (for Set D).
-  rxDataStep(inData = outputFileHourDay,outFile = outputFileHourDayWeek, transformFunc=computeLagFeatures,
-             transformObjects = list(baseVar = "cnt", unit = "week",nLagsVector=seq(12), 
+             transformVars = c("cnt"), overwrite = TRUE)
+
+    # Add number of bikes that were rented in each of the previous 12 weeks at the same hour and the same day (for Set D).
+    rxDataStep(inData = outputFileHourDay, outFile = outputFileHourDayWeek, transformFunc = computeLagFeatures,
+             transformObjects = list(baseVar = "cnt", unit = "week", nLagsVector = seq(12),
                                      interval = weekInterval),
-             transformVars = c("cnt"), overwrite=TRUE)
-  
-  file.remove(outputFileHour)
-  file.remove(outputFileHourDay)
-  
-  return(outputFileHourDayWeek)
+             transformVars = c("cnt"), overwrite = TRUE)
+
+    file.remove(outputFileHour)
+    file.remove(outputFileHourDay)
+
+    return(outputFileHourDayWeek)
 }
 
 # Set A = weather + holiday + weekday + weekend features for the predicted day.
@@ -175,32 +173,53 @@ train_mrs <- RxXdfData(paste0(td, "/modelDataLag.yr.0.xdf"))
 test_mrs <- RxXdfData(paste0(td, "/modelDataLag.yr.1.xdf"))
 
 #---------------------------Step 4: Choose and apply a learning algorithm (Decision Forest Regression)---------------------------
-newDayFeatures <- paste("demand", ".", seq(12), "day", sep = "")
-newWeekFeatures <- paste("demand", ".", seq(12), "week", sep = "")
+newDayFeatures <- paste("cnt_", seq(12), "day", sep = "")
+newWeekFeatures <- paste("cnt_",  seq(12), "week", sep = "")
 
 ## Set A:
 # Build a formula for the regression model and remove the "yr", which is used to split the training and test data.
 formA_mrs <- formula(trainA_mrs, depVars = "cnt", varsToDrop = c("RowNum", "yr"))
 # Fit Decision Forest Regression model.
-dForestA_mrs <- rxDForest(formA_mrs, data = trainA_mrs, importance = TRUE, seed = 123)
+dForestA_mrs <- rxDForest(formA_mrs, data = trainA_mrs,
+                          method = "anova", maxDepth = 10, nTree = 20,
+                          importance = TRUE, seed = 123)
 
 ## Set B:
 # Build a formula for the regression model and remove the "yr", which is used to split the training and test data, and lag features for Set C and D.
 formB_mrs <- formula(train_mrs, depVars = "cnt", varsToDrop = c("RowNum", "yr", newDayFeatures, newWeekFeatures))
 # Fit Decision Forest Regression model.
-dForestB_mrs <- rxDForest(formB_mrs, data = train_mrs, importance = TRUE, seed = 123)
+dForestB_mrs <- rxDForest(formB_mrs, data = train_mrs,
+                          method = "anova", maxDepth = 10, nTree = 20,
+                          importance = TRUE, seed = 123)
 
 ## Set C:
 # Build a formula for the regression model and remove the "yr", which is used to split the training and test data, and lag features for Set D.
 formC_mrs <- formula(train_mrs, depVars = "cnt", varsToDrop = c("RowNum", "yr", newWeekFeatures))
 # Fit Decision Forest Regression model.
-dForestC_mrs <- rxDForest(formC_mrs, data = train_mrs, importance = TRUE, seed = 123)
+dForestC_mrs <- rxDForest(formC_mrs, data = train_mrs,
+                          method = "anova", maxDepth = 10, nTree = 20,
+                          importance = TRUE, seed = 123)
 
 ## Set D:
 # Build a formula for the regression model and remove the "yr", which is used to split the training and test data.
 formD_mrs <- formula(train_mrs, depVars = "cnt", varsToDrop = c("RowNum", "yr"))
 # Fit Decision Forest Regression model.
-dForestD_mrs <- rxDForest(formD_mrs, data = train_mrs, importance = TRUE, seed = 123)
+dForestD_mrs <- rxDForest(formD_mrs, data = train_mrs,
+                          method = "anova", maxDepth = 10, nTree = 20,
+                          importance = TRUE, seed = 123)
+
+# Plot four dotchart of the variable importance as measured by the four decision forest models.
+par(mfrow = c(2, 2))
+rxVarImpPlot(dForestA_mrs, main = "Variable Importance of Set A")
+rxVarImpPlot(dForestB_mrs, main = "Variable Importance of Set B")
+rxVarImpPlot(dForestC_mrs, main = "Variable Importance of Set C")
+rxVarImpPlot(dForestD_mrs, main = "Variable Importance of Set D")
+
+# Plot Out-of-bag error rate comparing to the number of trees build in decision forest model.
+plot(dForestA_mrs, main = "OOB Error Rate vs Number of Trees: Set A")
+plot(dForestB_mrs, main = "OOB Error Rate vs Number of Trees: Set B")
+plot(dForestC_mrs, main = "OOB Error Rate vs Number of Trees: Set C")
+plot(dForestD_mrs, main = "OOB Error Rate vs Number of Trees: Set D")
 
 #---------------------------Step 5: Predict over new data---------------------------
 ## Set A:
@@ -238,7 +257,7 @@ sumA <- rxSummary(~ cnt_Resid_A_abs+cnt_Resid_A_2+cnt_rel_A, data = testA_mrs, s
                   transforms = list(cnt_Resid_A_abs = abs(cnt_Resid_A), 
                                     cnt_Resid_A_2 = cnt_Resid_A^2, 
                                     cnt_rel_A = abs(cnt_Resid_A)/cnt)
-)$sDataFrame
+                 )$sDataFrame
 
 ## Set B, C & D:
 sum <- rxSummary(~ cnt_Resid_B_abs+cnt_Resid_B_2+cnt_rel_B+cnt_Resid_C_abs+cnt_Resid_C_2+cnt_rel_C+cnt_Resid_D_abs+cnt_Resid_D_2+cnt_rel_D, 
