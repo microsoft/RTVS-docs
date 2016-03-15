@@ -10,9 +10,11 @@
 # ----------------------------------------------------------------------------
 # check if Microsoft R Server is installed and load libraries
 # ----------------------------------------------------------------------------
-if (!require("RevoScaleR"))
+# to check if RevoScaleR is available
+RRE <- require("RevoScaleR") 
+if (!RRE)
 {
-  stop(
+  message(
     "RevoScaleR package does not seem to exist. \n",
     "This means that the functions starting with 'rx' will not run. \n",
     "If you have Microsoft R Server installed, please switch the R engine.\n",
@@ -31,27 +33,10 @@ library("MASS") # to use the mvrnorm function
 library("ggplot2") # used for plotting
 
 # ----------------------------------------------------------------------------
-# glm (R, MRO, MRS) vs rxGlm (MRS)
-# ----------------------------------------------------------------------------
-# check the data
-head(mtcars)
-# fit a model with glm(), this can be run on R, MRO, or MRS
-# predict V engine vs straight engine with weight and displacement
-logistic1 <- glm(vs ~ wt + disp, data = mtcars, family = binomial)
-summary(logistic1)
-
-# check the data
-head(mtcars)
-# fit the same model with rxGlm(), this can be run on MRS only
-# predict V engine vs straight engine with weight and displacement
-logistic2 <- rxGlm(vs ~ wt + disp, data = mtcars, family = binomial)
-summary(logistic2)
-
-# ----------------------------------------------------------------------------
-# kmeans (R, MRO, MRS) vs rxKmeans (MRS)
+# simulate data, it works on R, MRO, or MRS
 # ----------------------------------------------------------------------------
 # make sure the results can be replicated
-set.seed(112)
+set.seed(121)
 
 # function to simulate data 
 simulCluster <- function(nsamples, mean, dimension, group)
@@ -83,42 +68,18 @@ ggplot(group_all, aes(x = V1, y = V2)) +
 # assign data 
 mydata <- group_all[, 1:2]
 
+# ----------------------------------------------------------------------------
+# kmeans 
+# ----------------------------------------------------------------------------
 # cluster analysis with kmeans(), it works on R, MRO, or MRS
 fit.kmeans <- kmeans(mydata, nclusters, iter.max = 1000, algorithm = "Lloyd")
 
-# cluster analysis with rxKmeans(), it works on MRS only
-fit.rxKmeans <- rxKmeans( ~ V1 + V2, data = mydata,
-                          numClusters = nclusters, algorithm = "lloyd")
-
-# ----------------------------------------------------------------------------
-# compare the cluster assignments between kmeans and rxKmeans (MRS): the same
-# ----------------------------------------------------------------------------
-
-# the code below should be run on MRS due to the use of "rx" commands
-
-# save a dataset in XDF format
-dataXDF = tempfile(fileext = ".xdf")
-rxImport(inData = mydata, outFile = dataXDF, overwrite = TRUE)
-# rxKmeans
-clust <- rxKmeans(~ V1 + V2, data = dataXDF, 
-                  numClusters = nclusters, algorithm = "lloyd",
-                  outFile = dataXDF, outColName = "cluster", 
-                  overwrite = TRUE)
-                    
-rxKmeans.cluster <- rxDataStep(dataXDF, varsToKeep = "cluster")
-
-# append cluster assignment from kmeans and rxKmeans
 mydata_clusters <- cbind(
   group_all,
-  kmeans.cluster = factor(fit.kmeans$cluster),
-  rxKmeans.cluster = factor(rxKmeans.cluster$cluster))
-
-# compare the cluster assignments between kmeans and rxKmeans
-with(mydata_clusters, table(kmeans.cluster, rxKmeans.cluster))
+  kmeans.cluster = factor(fit.kmeans$cluster))
 
 # get cluster means 
 clustermeans.kmeans <- fit.kmeans$centers
-clustermeans.rxKmeans <- fit.kmeans$centers
 
 # plot clusters from kmeans
 ggplot(mydata_clusters, aes(x = V1, y = V2)) +
@@ -129,11 +90,47 @@ ggplot(mydata_clusters, aes(x = V1, y = V2)) +
   geom_vline(xintercept = 0) +
   ggtitle("Clusters found by kmeans()")
 
-# plot clusters from rxKmeans
-ggplot(mydata_clusters, aes(x = V1, y = V2)) +
-  geom_point(aes(colour = rxKmeans.cluster)) +
-  geom_point(data = as.data.frame(clustermeans.kmeans), size = 5) +
-  xlim(-5, 5) + ylim(-5, 5) +
-  geom_hline(yintercept = 0) +
-  geom_vline(xintercept = 0) +
-  ggtitle("Clusters found by rxKmeans()")
+# ----------------------------------------------------------------------------
+# cluster analysis with rxKmeans(), it works on MRS only
+# ----------------------------------------------------------------------------
+
+# cluster analysis with rxKmeans() if RevoScaleR is installed
+if (RRE){
+  # save a dataset in XDF format
+  dataXDF = tempfile(fileext = ".xdf")
+  rxImport(inData = mydata, outFile = dataXDF, overwrite = TRUE)
+  
+  # rxKmeans
+  clust <- rxKmeans(~ V1 + V2, data = dataXDF, 
+                    numClusters = nclusters, algorithm = "lloyd",
+                    outFile = dataXDF, outColName = "cluster", 
+                    overwrite = TRUE)
+  
+  rxKmeans.cluster <- rxDataStep(dataXDF, varsToKeep = "cluster")
+  
+  # append cluster assignment from kmeans and rxKmeans
+  mydata_clusters <- cbind(
+    group_all,
+    kmeans.cluster = factor(fit.kmeans$cluster),
+    rxKmeans.cluster = factor(rxKmeans.cluster$cluster))
+  
+  # compare the cluster assignments between kmeans and rxKmeans
+  message("\nComparing cluster assignments between kmeans and rxKmeans:")
+  print(with(mydata_clusters, table(kmeans.cluster, rxKmeans.cluster)))
+  
+  # get cluster means 
+  clustermeans.rxKmeans <- fit.kmeans$centers
+  
+  # plot clusters from rxKmeans
+  ggplot(mydata_clusters, aes(x = V1, y = V2)) +
+    geom_point(aes(colour = rxKmeans.cluster)) +
+    geom_point(data = as.data.frame(clustermeans.kmeans), size = 5) +
+    xlim(-5, 5) + ylim(-5, 5) +
+    geom_hline(yintercept = 0) +
+    geom_vline(xintercept = 0) +
+    ggtitle("Clusters found by rxKmeans()")
+  
+} else{
+  print("rxKmeans was not run becauase the RevoScaleR package is not available")
+}
+

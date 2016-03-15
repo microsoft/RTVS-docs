@@ -10,9 +10,11 @@
 # ----------------------------------------------------------------------------
 # check if Microsoft R Server is installed and load libraries
 # ----------------------------------------------------------------------------
-if (!require("RevoScaleR"))
+# to check if RevoScaleR is available
+RRE <- require("RevoScaleR") 
+if (RRE)
 {
-  stop(
+  message(
     "RevoScaleR package does not seem to exist. \n",
     "This means that the functions starting with 'rx' will not run. \n",
     "If you have Microsoft R Server installed, please switch the R engine.\n",
@@ -23,12 +25,12 @@ if (!require("RevoScaleR"))
 }
 
 # install a package if it's not already installed
-
 if (!require("ggplot2", quietly = TRUE))
   install.packages("ggplot2")
 
 # load packages
 library("MASS") # to use the mvrnorm function
+library("ggplot2") # used for plotting
 
 # ----------------------------------------------------------------------------
 # simulate cluster data for analysis, run this on R, MRO, or MRS
@@ -50,6 +52,9 @@ simulCluster <- function(nsamples, mean, dimension, group)
 # modify the value for nsamples to test out the capacity limit for kmeans()
 # on a computer with 7 GB RAM, when nsamples is 3*10^7 kmeans() failed 
 # but rxKmeans() worked 
+message("If the sample size is large, it will take some time to finish. \n",
+        "You can use a smaller value for nsamples, say 1000, \n", 
+        "to test the program.")
 nsamples <- 3 * 10 ^ 7
 group_a <- simulCluster(nsamples, -1, 2, "a")
 group_b <- simulCluster(nsamples, 1, 2, "b")
@@ -57,16 +62,26 @@ group_all <- rbind(group_a, group_b)
 
 nclusters <- 2
 
+# plot sample data
+plot_data <- group_all[sample(nrow(group_all), 1000),] 
+ggplot(plot_data, aes(x = V1, y = V2)) +
+  geom_point(aes(colour = group)) +
+  geom_point(data = data.frame(V1 = c(-1, 1), V2 = c(-1, 1)), size = 5) +
+  xlim(-5, 5) + ylim(-5, 5) +
+  geom_hline(yintercept = 0) +
+  geom_vline(xintercept = 0) +
+  ggtitle("Simulated data in two overlapping groups")
+
 # save data
 mydata = group_all[, 1:2]
 dataCSV = tempfile(fileext = ".csv")
 dataXDF = tempfile(fileext = ".xdf")
 write.csv(group_all, dataCSV, row.names = FALSE)
-rxImport(inData = dataCSV, outFile = dataXDF, overwrite = TRUE)
 
 # ----------------------------------------------------------------------------
 # cluster analysis with kmeans(), it doesn't work when data is large enough
 # ----------------------------------------------------------------------------
+# this can be run on R, MRO, or MRS
 system_time_R <- 
   system.time(
     {
@@ -76,9 +91,12 @@ system_time_R <-
     })
 
 # ----------------------------------------------------------------------------
-# cluster analysis with rxKmeans(), it works even if kmeans() does not
+# cluster analysis with rxKmeans() on MRS, it works even if kmeans() does not
 # ----------------------------------------------------------------------------
-system_time_MRS <- 
+# cluster analysis with rxKmeans() if RevoScaleR is installed
+if (RRE){
+  rxImport(inData = dataCSV, outFile = dataXDF, overwrite = TRUE)
+  
   system.time(
     {
       clust <- rxKmeans( ~ V1 + V2, data = dataXDF,
@@ -88,3 +106,6 @@ system_time_MRS <-
                          outColName = "cluster",
                          overwrite = TRUE)
     })
+} else {
+  print("rxKmeans was not run becauase the RevoScaleR package is not available")
+}
