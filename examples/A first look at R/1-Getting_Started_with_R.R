@@ -89,7 +89,7 @@ library(help = foreign)
 # To install a new package, use install.packages()
 # Install the ggplot2 package for it's plotting capability.
 if (!require("ggplot2"))
-  install.packages("ggplot2")
+    install.packages("ggplot2")
 
 # Then load the package.
 library("ggplot2")
@@ -146,7 +146,7 @@ theme_set(theme_gray(base_size = 18))
 
 # In this sample you use ggplot2.
 ggplot(diamondSample, aes(x = carat, y = price)) +
-  geom_point(colour = "blue")
+    geom_point(colour = "blue")
 
 # Add a log scale.
 ggplot(diamondSample, aes(x = carat, y = price)) +
@@ -155,9 +155,9 @@ ggplot(diamondSample, aes(x = carat, y = price)) +
 
 # Add a log scale for both scales.
 ggplot(diamondSample, aes(x = carat, y = price)) +
-        geom_point(colour = "blue") +
-        scale_x_log10() +
-        scale_y_log10()
+    geom_point(colour = "blue") +
+    scale_x_log10() +
+    scale_y_log10()
 
 ### Linear Regression in R	
 
@@ -177,10 +177,10 @@ exp(coef(model)[1])
 
 # Show the model in a plot.
 ggplot(diamondSample, aes(x = carat, y = price)) +
-        geom_point(colour = "blue") +
-        geom_smooth(method = "lm", colour = "red", size = 2) +
-        scale_x_log10() +
-        scale_y_log10()
+    geom_point(colour = "blue") +
+    geom_smooth(method = "lm", colour = "red", size = 2) +
+    scale_x_log10() +
+    scale_y_log10()
 
 
 ### Regression Diagnostics	

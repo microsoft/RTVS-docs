@@ -1,4 +1,6 @@
-# Install a package if it's not already installed.
+# This script shows how to import data into R that is referenced by a URL.
+
+# Install the RCurl package if it's not already installed.
 (if (!require("RCurl", quietly = TRUE)) install.packages("RCurl"))
 
 # Load packages.

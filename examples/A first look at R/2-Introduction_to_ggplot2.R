@@ -36,8 +36,8 @@ theme_set(theme_gray(base_size = 18))
 # and lat to the y-axis.
 # Then you add a layer with points (geom_point) and a layer to plot maps.
 p0 <- ggplot(quakes, aes(x = long, y = lat)) + 
-  geom_point() + 
-  coord_map()
+    geom_point() + 
+    coord_map()
 p0 
 
 # You can use a number of different aesthetics, for example colour or size
@@ -45,14 +45,14 @@ p0
 
 # Map the depth column to the colour aesthetic.
 p1 <- ggplot(quakes, aes(x = long, y = lat)) + 
-  geom_point(aes(colour = depth)) + 
-  coord_map()
+    geom_point(aes(colour = depth)) + 
+    coord_map()
 p1
 
 # Add size for magnitude. The bigger the magnitude, the larger the point.
 p2 <- ggplot(quakes, aes(x = long, y = lat)) + 
-  geom_point(aes(colour = depth, size = mag)) + 
-  coord_map()
+    geom_point(aes(colour = depth, size = mag)) + 
+    coord_map()
 p2
 
 # You can control the transparancy of a plot object with the alpha aesthetic.
@@ -60,24 +60,24 @@ p2
 # are translucent.
 # Add alpha level to hide overplotting, thus revealing detail.
 p3 <- ggplot(quakes, aes(x = long, y = lat)) + 
-  geom_point(aes(colour = depth, size = mag), alpha = 0.25) + 
-  coord_map()
+    geom_point(aes(colour = depth, size = mag), alpha = 0.25) + 
+    coord_map()
 p3
 
 # Change colour gradient by adding a gradient scale.
 p4 <- ggplot(quakes, aes(x = long, y = lat)) + 
-  geom_point(aes(colour = depth, size = mag), alpha = 0.25) + 
-  coord_map() +
-  scale_colour_gradient(low = "blue", high = "red")
+    geom_point(aes(colour = depth, size = mag), alpha = 0.25) + 
+    coord_map() +
+    scale_colour_gradient(low = "blue", high = "red")
 p4
 
 # Add a plot title.
 p5 <- ggplot(quakes, aes(x = long, y = lat)) + 
-  geom_point(aes(colour = depth, size = mag), alpha = 0.25) + 
-  scale_colour_gradient(low = "blue", high = "red") + 
-  ggtitle("Distribution of earthquakes near Fiji") +
-  coord_map()  
-  p5
+    geom_point(aes(colour = depth, size = mag), alpha = 0.25) + 
+    scale_colour_gradient(low = "blue", high = "red") + 
+    ggtitle("Distribution of earthquakes near Fiji") +
+    coord_map()  
+p5
 
 # Now plot multiple plots on the same graphic.
 # The package "grid" is built into R and allows you to take control of the 
@@ -89,10 +89,10 @@ theme_set(theme_grey(12) + theme(legend.key.size  =  unit(0.5, "lines")))
 library(grid)
 plot.new()
 grid.draw(cbind(
-  ggplotGrob(p1), 
-  ggplotGrob(p2),
-  ggplotGrob(p3),
-  size = "last"
-))
+    ggplotGrob(p1), 
+    ggplotGrob(p2),
+    ggplotGrob(p3),
+    size = "last"
+    ))
 
 
