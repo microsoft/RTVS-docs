@@ -1,6 +1,6 @@
-#####################################################################################################################################
-################################ Flight Delay Prediction with Microsoft R Server ####################################################
-#####################################################################################################################################
+#------------------------------------------------------------------------------------------------------------------------------------
+#------------------------------------- Flight Delay Prediction with Microsoft R Server ----------------------------------------------
+#------------------------------------------------------------------------------------------------------------------------------------
 # 
 #
 # This example demostrates a step-by-step comparison of solving a Machine Learning use case using open
@@ -23,38 +23,42 @@
 # are labeled 1 if a flight was delayed, and labeled 0 if the flight was on time.
 #
 # The following scripts include five basic steps of building this example using Microsoft R Server.
+# This execution might require more than one minute.
 #
-#
-#####################################################################################################################################
+#------------------------------------------------------------------------------------------------------------------------------------
 
 
-#---------------------------Step 0: Get Started---------------------------
-# Check whether the "RevoScaleR" package is loaded in the current environment.
-if (require("RevoScaleR")) {
-    library("RevoScaleR") # Load RevoScaleR package from Microsoft R Server.
-    message("RevoScaleR package is succesfully loaded.")
-} else {
-    message("Can't find RevoScaleR package...")
-    message("If you have Microsoft R Server installed,")
-    message("please switch the R engine")
-    message("in R Tools for Visual Studio: R Tools -> Options -> R Engine.")
-    message("If Microsoft R Server is not installed,")
-    message("please download it from here:")
-    message("https://www.microsoft.com/en-us/server-cloud/products/r-server/.")
+#---------------------------Step 0: Get Started-------------------------------
+# ----------------------------------------------------------------------------
+# Check if Microsoft R Server (RRE 8.0) is installed
+# ----------------------------------------------------------------------------
+if (!require("RevoScaleR")) {
+    cat("RevoScaleR package does not seem to exist. 
+      \nThis means that the functions starting with 'rx' will not run. 
+      \nIf you have Microsoft R Server installed, please switch the R engine.
+      \nFor example, in R Tools for Visual Studio: 
+      \nR Tools -> Options -> R Engine. 
+      \nIf Microsoft R Server is not installed, you can download it from: 
+      \nhttps://www.microsoft.com/en-us/server-cloud/products/r-server/
+      \n")
+
+    quit()
 }
 
 # Initial some variables.
-github <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/"
+github <- "https://raw.githubusercontent.com/brohrer-ms/RTVS-docs/master/examples/MRS_and_Machine_Learning/Datasets/"
 inputFileFlightURL <- paste0(github, "Flight_Delays_Sample.csv")
 inputFileWeatherURL <- paste0(github, "Weather_Sample.csv")
-(if (!exists("tmp")) dir.create("tmp", showWarnings = FALSE))  # create a temporary folder to store the .xdf files.
-outFileFlight <- 'tmp/flight2.xdf'
-outFileFlight2 <- 'tmp/flight2_2.xdf'
-outFileWeather <- 'tmp/weather2.xdf'
-outFileWeather2 <- 'tmp/weather2_2.xdf'
-outFileOrigin <- 'tmp/originData2.xdf'
-outFileDest <- 'tmp/DestData2.xdf'
-outFileFinal <- 'tmp/finalData2.xdf'
+
+# Create a temporary directory to store the intermediate .xdf files.
+td <- tempdir()
+outFileFlight <- paste0(td, "/flight.xdf")
+outFileFlight2 <- paste0(td, "/flight2.xdf")
+outFileWeather <- paste0(td, "/weather.xdf")
+outFileWeather2 <- paste0(td, "/weather2.xdf")
+outFileOrigin <- paste0(td, "/originData.xdf")
+outFileDest <- paste0(td, "/DestData.xdf")
+outFileFinal <- paste0(td, "/finalData.xdf")
 
 #---------------------------Step 1: Import Data---------------------------
 # Import the flight data.
@@ -141,7 +145,7 @@ finalData_mrs <- rxDataStep(inData = destData_mrs, outFile = outFileFinal,
 #---------------------------Step 3: Prepare Training and Test Datasets---------------------------
 # Randomly split 80% data as training set and the remaining 20% as test set.
 rxSplit(inData = outFileFinal,
-        outFilesBase = "tmp/modelData",
+        outFilesBase = paste0(td, "/modelData"),
         outFileSuffixes = c("Train", "Test"),
         splitByFactor = "splitVar",
         overwrite = TRUE,
@@ -151,8 +155,8 @@ rxSplit(inData = outFileFinal,
         consoleOutput = TRUE)
 
 # Point to the .xdf files for the training and test set.
-train <- RxXdfData("tmp/modelData.splitVar.Train.xdf")
-test <- RxXdfData("tmp/modelData.splitVar.Test.xdf")
+train <- RxXdfData(paste0(td, "/modelData.splitVar.Train.xdf"))
+test <- RxXdfData(paste0(td, "/modelData.splitVar.Test.xdf"))
 
 #---------------------------Step 4A: Choose and apply a learning algorithm (Logistic Regression)---------------------------
 # Build the formula.
@@ -169,9 +173,12 @@ summary(logitModel_mrs)
 predictLogit_mrs <- rxPredict(logitModel_mrs, data = test, type = "response", predVarNames = "ArrDel15_Pred_Logit", overwrite = TRUE)
 
 # Calculate Area Under the Curve (AUC).
-rxAuc(rxRoc("ArrDel15", "ArrDel15_Pred_Logit", predictLogit_mrs))
+paste0("AUC of Logistic Regression Model:",
+        rxAuc(rxRoc("ArrDel15", "ArrDel15_Pred_Logit", test)))
+
+# Plot the ROC curve.
 rxRocCurve("ArrDel15", "ArrDel15_Pred_Logit", data = test,
-           title = "ROC curve - Logistic regression")
+            title = "ROC curve - Logistic regression")
 
 #---------------------------Step 4B: Choose and apply a learning algorithm (Decision Tree)---------------------------
 # Build a decision tree model.
@@ -188,11 +195,11 @@ dTree2_mrs <- prune.rxDTree(dTree1_mrs, cp = treeCp_mrs)
 predictTree_mrs <- rxPredict(dTree2_mrs, data = test, predVarNames = "ArrDel15_Pred_Tree", overwrite = TRUE)
 
 # Calculate Area Under the Curve (AUC).
-rxAuc(rxRoc("ArrDel15", "ArrDel15_Pred_Tree", predictTree_mrs))
-<<<<<<< HEAD
+paste0("AUC of Decision Tree Model:",
+      rxAuc(rxRoc(" ArrDel15 ", " ArrDel15_Pred_Tree ", test)))
+
+# Plot the ROC curve.
 rxRocCurve("ArrDel15",
-           predVarNames = c("ArrDel15_Pred_Tree", "ArrDel15_Pred_Logit"),
-           data = test,
-           title = "ROC curve - Logistic regression")
-=======
->>>>>>> 5677fd41eb8011dae8e1c0ecf626df3d11cd3dc4
+  predVarNames = c("ArrDel15_Pred_Tree", "ArrDel15_Pred_Logit"),
+  data = test,
+  title = "ROC curve - Logistic regression")

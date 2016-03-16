@@ -1,9 +1,9 @@
-##############################################################################################################
-##################### Regression: Demand estimation with Microsoft R Server ##################################
-##############################################################################################################
+#-------------------------------------------------------------------------------------------------------------
+#-------------------------- Regression: Demand estimation with Microsoft R Server ----------------------------
+#-------------------------------------------------------------------------------------------------------------
 # 
 #
-# This example demonstrates the Feature Engineering process for building a regression model to predict 
+# This example demonstrates the feature engineering process for building a regression model to predict 
 # bike rental demand. 
 #
 # The dataset contains 17,379 rows and 17 columns, each row representing the number of bike rentals within 
@@ -16,31 +16,36 @@
 # were rented in each of the previous 12 hours, which caputures the very recent demand for the bikes.
 #
 # The following scripts include five basic steps of building this example using Microsoft R Server.
+# This execution might require more than one minute.
 #
-#
-##############################################################################################################
+#--------------------------------------------------------------------------------------------------------------
 
 
-#---------------------------Step 0: Get Started---------------------------
-# Check whether the "RevoScaleR" package is loaded in the current environment.
-if (require("RevoScaleR")) {
-    library("RevoScaleR") # Load RevoScaleR package from Microsoft R Server.
-    message("RevoScaleR package is succesfully loaded.")
-} else {
-    message("Can't find RevoScaleR package...")
-    message("If you have Microsoft R Server installed,")
-    message("please switch the R engine")
-    message("in R Tools for Visual Studio: R Tools -> Options -> R Engine.")
-    message("If Microsoft R Server is not installed,")
-    message("please download it from here:")
-    message("https://www.microsoft.com/en-us/server-cloud/products/r-server/.")
+#---------------------------Step 0: Get Started-------------------------------
+# ----------------------------------------------------------------------------
+# Check if Microsoft R Server (RRE 8.0) is installed
+# ----------------------------------------------------------------------------
+if (!require("RevoScaleR")) {
+  cat("RevoScaleR package does not seem to exist. 
+      \nThis means that the functions starting with 'rx' will not run. 
+      \nIf you have Microsoft R Server installed, please switch the R engine.
+      \nFor example, in R Tools for Visual Studio: 
+      \nR Tools -> Options -> R Engine. 
+      \nIf Microsoft R Server is not installed, you can download it from: 
+      \nhttps://www.microsoft.com/en-us/server-cloud/products/r-server/
+      \n")
+  
+  quit()
 }
 
 # Initial some variables.
-inputFileBikeURL <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/Datasets/Bike_Rental_UCI_Dataset.csv"
-(if (!exists("tmp")) dir.create("tmp", showWarnings = FALSE))  # create a temporary folder to store the .xdf files.
-outFileBike <- "tmp/bike.xdf"
-outFileLag <- "tmp/lagData.xdf"
+github <- "https://raw.githubusercontent.com/brohrer-ms/RTVS-docs/master/examples/MRS_and_Machine_Learning/Datasets/"
+inputFileBikeURL <- paste0(github, "Bike_Rental_UCI_Dataset.csv")
+
+# Create a temporary directory to store the intermediate .xdf files.
+td <- tempdir()
+outFileBike <- paste0(td, "/bike.xdf")
+outFileLag <- paste0(td, "/lagData.xdf")
 
 #---------------------------Step 1: Import the Bike Data---------------------------
 bike <- rxImport(inData = inputFileBikeURL, outFile = outFileBike, overwrite = TRUE,
@@ -57,14 +62,14 @@ bike <- rxImport(inData = inputFileBikeURL, outFile = outFileBike, overwrite = T
 computeLagFeatures <- function (dataList) {  # function for computing lag features.
   
   numLags <- length(nLagsVector)   # total number of lags that need to be added
-  varLagNameVector <- paste("lag", nLagsVector, sep="")  # lag feature names as lagN
+  varLagNameVector <- paste("cnt_", nLagsVector, "hour", sep="")  # lag feature names as lagN
   
   # Set the value of an object "storeLagData" in the transform environment.
   if (!exists("storeLagData")) 
   {              
     lagData <- mapply(rep, dataList[[varName]][1], times = nLagsVector)
     names(lagData) <- varLagNameVector
-    .rxSet("storeLagData",lagData)
+    .rxSet("storeLagData", lagData)
   }
   
   if (!.rxIsTestChunk)
@@ -73,7 +78,7 @@ computeLagFeatures <- function (dataList) {  # function for computing lag featur
     {
       numRowsInChunk <- length(dataList[[varName]])  # number of rows in the current chunk
       nlags <- nLagsVector[iL]  
-      varLagName <- paste("lag", nlags, sep="")
+      varLagName <- paste("cnt_", nlags, "hour", sep="")
       lagData <- .rxGet("storeLagData")   # retrieve lag data from the previous chunk
       allData <- c(lagData[[varLagName]], dataList[[varName]])  # concatenate lagData and the "cnt" feature 
       dataList[[varLagName]] <- allData[1:numRowsInChunk]  # take the first N rows of allData, where N is the total number of rows in the original dataList
@@ -87,22 +92,30 @@ computeLagFeatures <- function (dataList) {  # function for computing lag featur
 # Apply the "computeLagFeatures" on the bike data.
 lagData <- rxDataStep(inData = bike, outFile = outFileLag, transformFunc = computeLagFeatures,
                       transformObjects = list(varName = "cnt", nLagsVector = seq(12)),
-                      transformVars = "cnt", overwrite=TRUE)
+                      transformVars = "cnt", overwrite = TRUE)
 
 #---------------------------Step 3: Prepare Training and Test Datasets---------------------------
 # Split data by "yr" so that the training data contains records for the year 2011 and the test data contains records for 2012.
-rxSplit(inData = lagData, outFilesBase = "tmp/modelData", splitByFactor = "yr", overwrite = TRUE, reportProgress = 0, verbose = 0)
+rxSplit(inData = lagData, outFilesBase = paste0(td, "/modelData"), splitByFactor = "yr", overwrite = TRUE, reportProgress = 0, verbose = 0)
 
 # Point to the .xdf files for the training and test set.
-train <- RxXdfData("tmp/modelData.yr.0.xdf")
-test <- RxXdfData("tmp/modelData.yr.1.xdf")
+train <- RxXdfData(paste0(td, "/modelData.yr.0.xdf"))
+test <- RxXdfData(paste0(td, "/modelData.yr.1.xdf"))
 
 #---------------------------Step 4: Choose and apply a learning algorithm (Decision Forest Regression)---------------------------
 # Build a formula for the regression model and remove the "yr", which is used to split the training and test data.
 modelFormula <- formula(train, depVars = "cnt", varsToDrop = c("RowNum", "yr"))
 
 # Fit a Decision Forest Regression model on the training data.
-dForest <- rxDForest(modelFormula, data = train, importance = TRUE, seed = 123)
+dForest <- rxDForest(modelFormula, data = train,
+                     method = "anova", maxDepth = 10, nTree = 50,
+                     importance = TRUE, seed = 123)
+
+# Plot a dotchart of the variable importance as measured by the decision forest.
+rxVarImpPlot(dForest, main = "Variable Importance of Decision Forest")
+
+# Plot Out-of-bag error rate comparing to the number of trees build in decision forest model.
+plot(dForest, main = "OOB Error Rate vs Number of Trees")
 
 #---------------------------Step 5: Predict over new data and review the model performance---------------------------
 # Predict the probability on the test dataset.
@@ -113,7 +126,7 @@ sum <- rxSummary(~ cnt_Resid_abs+cnt_Resid_2+cnt_rel, data = predict, summarySta
                  transforms = list(cnt_Resid_abs = abs(cnt_Resid), 
                                    cnt_Resid_2 = cnt_Resid^2, 
                                    cnt_rel = abs(cnt_Resid)/cnt)
-)$sDataFrame
+                )$sDataFrame
 
 # List all measures in a data frame.
 measures <- data.frame(MAE = sum[1, 2], RMSE = sqrt(sum[2, 2]), RAE = sum[3, 2])
