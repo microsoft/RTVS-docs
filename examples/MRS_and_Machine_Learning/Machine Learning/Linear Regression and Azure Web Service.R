@@ -15,10 +15,13 @@ auth_token <- ""
 # ----------------------------------------------------------------------------
 # load packages
 # ----------------------------------------------------------------------------
-(if (!require("AzureML")) install.packages("AzureML"))
+# install packages if they are not already installed
+(if (!require("AzureML", quietly = TRUE)) install.packages("AzureML"))
 library("AzureML") # load the package for deploying Azure ML web service
-(if (!require("MASS")) install.packages("MASS"))
+(if (!require("MASS", quietly = TRUE)) install.packages("MASS"))
 library("MASS") # to use the Boston dataset
+if (!require("ggplot2", quietly = TRUE)) install.packages("ggplot2")
+library("ggplot2") # used for plotting
 
 # ----------------------------------------------------------------------------
 # fit a model and check model performance
@@ -26,7 +29,7 @@ library("MASS") # to use the Boston dataset
 # check the data
 head(Boston)
 ggplot(Boston, aes(x=medv)) + 
-  geom_histogram(binwidth=5) +
+  geom_histogram(binwidth=2) +
   ggtitle("Histogram of Response Variable")
 
 # fit a model using medv as response and others as predictors 

@@ -38,7 +38,12 @@ group_all <- rbind(group_a, group_b)
 nclusters <- 2
 
 mydata = group_all[, 1:2]
+
+message("It might take a while for this to finish if nsamples is large.")
 # K-Means Cluster Analysis
 system_time_r <- system.time(fit <- kmeans(mydata, nclusters,
                                            iter.max = 1000,
                                            algorithm = "Lloyd"))
+system_time_r
+
+message("Save the time and run the code on R, MRO and MRS to compare speed.")

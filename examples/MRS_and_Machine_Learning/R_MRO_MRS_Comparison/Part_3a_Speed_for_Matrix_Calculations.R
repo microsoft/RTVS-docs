@@ -51,3 +51,5 @@ k <- round(m / 2)
 A <- data.frame(A, fac = sample(LETTERS[1:g], m, replace = TRUE))
 train <- sample(1:m, k)
 system.time(L <- lda(fac ~ ., data = A, prior = rep(1, g) / g, subset = train))
+
+message("Save the time and run the code on R, MRO and MRS to compare speed.")

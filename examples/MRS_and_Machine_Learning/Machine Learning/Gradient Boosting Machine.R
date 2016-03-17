@@ -6,9 +6,9 @@
 # ----------------------------------------------------------------------------
 # load packages
 # ----------------------------------------------------------------------------
-(if (!require("MASS")) install.packages("MASS"))
+(if (!require("MASS", quietly = TRUE)) install.packages("MASS"))
 library("MASS") # to use the Boston dataset
-(if (!require("gbm")) install.packages("gbm"))
+(if (!require("gbm", quietly = TRUE)) install.packages("gbm"))
 library("gbm") # Gradient Boosting Machine package
 
 # ----------------------------------------------------------------------------
