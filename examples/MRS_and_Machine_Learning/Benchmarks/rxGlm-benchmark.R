@@ -9,17 +9,17 @@
 # If your machine has less, this script will crash.
 
 # Check whether the "RevoScaleR" package is loaded in the current environment.
-if (require("RevoScaleR")) {
-    library("RevoScaleR") # Load RevoScaleR package from Microsoft R Server.
-    message("RevoScaleR package is succesfully loaded.")
-} else {
-    message("Can't find RevoScaleR package...")
-    message("If you have Microsoft R Server installed,")
-    message("please switch the R engine")
-    message("in R Tools for Visual Studio: R Tools -> Options -> R Engine.")
-    message("If Microsoft R Server is not installed,")
-    message("please download it from here:")
-    message("https://www.microsoft.com/en-us/server-cloud/products/r-server/.")
+if (!require("RevoScaleR")) {
+    cat("RevoScaleR package does not seem to exist. 
+      \nThis means that the functions starting with 'rx' will not run. 
+      \nIf you have Microsoft R Server installed, please switch the R engine.
+      \nFor example, in R Tools for Visual Studio: 
+      \nR Tools -> Options -> R Engine. 
+      \nIf Microsoft R Server is not installed, you can download it from: 
+      \nhttps://www.microsoft.com/en-us/server-cloud/products/r-server/
+      \n")
+
+    quit()
 }
 
 # ---- Using CRAN R functions -------------------------------------------------

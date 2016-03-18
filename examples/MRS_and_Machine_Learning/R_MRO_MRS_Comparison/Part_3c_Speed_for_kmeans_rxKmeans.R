@@ -1,16 +1,10 @@
-# ----------------------------------------------------------------------------
-# purpose:  to compare the speed of kmeans() with that of rxKmeans()  
-#           on Microsoft R Server (MRS)
-# audience: you are expected to have some prior experience with R
-# ----------------------------------------------------------------------------
+# This script compares the speed of kmeans() with that of rxKmeans()  
+# on Microsoft R Server (MRS).
 
-# to learn more about the differences among R, MRO and MRS, refer to:
+# To learn more about the differences among R, MRO and MRS, refer to:
 # https://github.com/lixzhang/R-MRO-MRS
 
-# ----------------------------------------------------------------------------
-# check if Microsoft R Server is installed and load libraries
-# ----------------------------------------------------------------------------
-# to check if RevoScaleR is available
+# Check whether Microsoft R Server is installed and load libraries.
 RRE <- require("RevoScaleR") 
 if (!RRE)
 {
@@ -24,11 +18,13 @@ if (!RRE)
     "https://www.microsoft.com/en-us/server-cloud/products/r-server/")
 }
 
-# install a package if it's not already installed
+# Install a package if it's not already installed.
+if (!require("MASS", quietly = TRUE))
+    install.packages("MASS")
 if (!require("ggplot2", quietly = TRUE))
-  install.packages("ggplot2")
+    install.packages("ggplot2")
 
-# load libraries
+# Load libraries.
 library("MASS") # to use the mvrnorm function
 library("ggplot2") # used for plotting
 
