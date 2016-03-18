@@ -25,10 +25,7 @@ if (!RRE)
 }
 
 # install a package if it's not already installed
-if (!require("ggplot2", quietly = TRUE))
-  install.packages("ggplot2")
-
-# load libraries
+if (!require("ggplot2", quietly = TRUE)) install.packages("ggplot2")
 library("ggplot2") # used for plotting
 
 # ----------------------------------------------------------------------------

@@ -25,8 +25,7 @@ if (!RRE)
 }
 
 # install a package if it's not already installed
-if (!require("ggplot2", quietly = TRUE))
-  install.packages("ggplot2")
+if (!require("ggplot2", quietly = TRUE)) install.packages("ggplot2")
 
 # load packages
 library("MASS") # to use the mvrnorm function
@@ -63,7 +62,7 @@ ggplot(group_all, aes(x = V1, y = V2)) +
   xlim(-5, 5) + ylim(-5, 5) +
   geom_hline(yintercept = 0) +
   geom_vline(xintercept = 0) +
-  ggtitle("Simulated data in two overlapping groups")
+  ggtitle("Simulated Data in Two Overlapping Groups")
 
 # assign data 
 mydata <- group_all[, 1:2]
@@ -88,7 +87,7 @@ ggplot(mydata_clusters, aes(x = V1, y = V2)) +
   xlim(-5, 5) + ylim(-5, 5) +
   geom_hline(yintercept = 0) +
   geom_vline(xintercept = 0) +
-  ggtitle("Clusters found by kmeans()")
+  ggtitle("Clusters Found by kmeans()")
 
 # ----------------------------------------------------------------------------
 # cluster analysis with rxKmeans(), it works on MRS only
@@ -128,7 +127,7 @@ if (RRE){
     xlim(-5, 5) + ylim(-5, 5) +
     geom_hline(yintercept = 0) +
     geom_vline(xintercept = 0) +
-    ggtitle("Clusters found by rxKmeans()")
+    ggtitle("Clusters Found by rxKmeans()")
   
 } else{
   print("rxKmeans was not run becauase the RevoScaleR package is not available")

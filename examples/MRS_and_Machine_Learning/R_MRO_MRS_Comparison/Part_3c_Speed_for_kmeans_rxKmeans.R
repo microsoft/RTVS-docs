@@ -50,6 +50,9 @@ simulCluster <- function(nsamples, mean, dimension, group)
   z
 }
 
+message("It might take a while for this to finish if any of the elements in ", 
+  "nsamples_list is large.")
+
 for (nsamples in nsamples_list)
 {
   # simulate data and append
@@ -68,7 +71,8 @@ for (nsamples in nsamples_list)
   # kmeans with MRS
   
   if (RRE){
-    system_time_rre <- system.time(clust <- rxKmeans( ~ V1 + V2, data = mydata,
+    system_time_rre <- system.time(clust <- rxKmeans( ~ V1 + V2, 
+                                                      data = mydata,
                                                       numClusters = nclusters,
                                                       algorithm = "lloyd"))
   }
@@ -95,10 +99,12 @@ if (RRE){
     geom_point(aes(y = time_rre, colour = "rxKmeans")) +
     geom_line(aes(y = time_rre, colour = "rxKmeans")) +
     scale_x_continuous(breaks = seq(2, 8, by = 1)) +
-    scale_colour_manual("Function", values = c(kmeans = "red", rxKmeans = "blue")) +
+    scale_colour_manual("Function", 
+                        values = c(kmeans = "red", rxKmeans = "blue")) +
     xlab("log10(number of samples)") +
     ylab("time in seconds") +
-    ggtitle("If data fits in memory, kmeans() and rxKmeans() are equally performant")
+    ggtitle(paste("If data fits in memory,", 
+                  "kmeans() and rxKmeans() are equally performant"))
 } else {
   ggplot(data = mydata, aes(x = nsamples_log)) +
     geom_point(aes(y = time_r, colour = "kmeans")) +
@@ -107,5 +113,6 @@ if (RRE){
     scale_colour_manual("Function", values = c(kmeans = "red")) +
     xlab("log10(number of samples)") +
     ylab("time in seconds") +
-    ggtitle("Time for kmeans. To add time for rxKmean, use the RRE engine")
+    ggtitle(paste("Time for kmeans \n", 
+                  "To add time for rxKmeans, use the R Server engine"))
 }

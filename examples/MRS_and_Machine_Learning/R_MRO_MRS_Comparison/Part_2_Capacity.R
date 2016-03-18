@@ -25,8 +25,7 @@ if (RRE)
 }
 
 # install a package if it's not already installed
-if (!require("ggplot2", quietly = TRUE))
-  install.packages("ggplot2")
+if (!require("ggplot2", quietly = TRUE)) install.packages("ggplot2")
 
 # load packages
 library("MASS") # to use the mvrnorm function
@@ -63,14 +62,14 @@ group_all <- rbind(group_a, group_b)
 nclusters <- 2
 
 # plot sample data
-plot_data <- group_all[sample(nrow(group_all), 1000),] 
+plot_data <- group_all[sample(2 * nsamples, min(1000, 2 * nsamples)),] 
 ggplot(plot_data, aes(x = V1, y = V2)) +
   geom_point(aes(colour = group)) +
   geom_point(data = data.frame(V1 = c(-1, 1), V2 = c(-1, 1)), size = 5) +
   xlim(-5, 5) + ylim(-5, 5) +
   geom_hline(yintercept = 0) +
   geom_vline(xintercept = 0) +
-  ggtitle("Simulated data in two overlapping groups")
+  ggtitle("Simulated Data in Two Overlapping Groups")
 
 # save data
 mydata = group_all[, 1:2]
