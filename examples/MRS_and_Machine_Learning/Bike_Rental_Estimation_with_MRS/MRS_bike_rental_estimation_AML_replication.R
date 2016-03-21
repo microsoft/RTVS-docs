@@ -220,6 +220,7 @@ plot(dForestA_mrs, main = "OOB Error Rate vs Number of Trees: Set A")
 plot(dForestB_mrs, main = "OOB Error Rate vs Number of Trees: Set B")
 plot(dForestC_mrs, main = "OOB Error Rate vs Number of Trees: Set C")
 plot(dForestD_mrs, main = "OOB Error Rate vs Number of Trees: Set D")
+par(mfrow = c(1, 1))
 
 #---------------------------Step 5: Predict over new data---------------------------
 ## Set A:
