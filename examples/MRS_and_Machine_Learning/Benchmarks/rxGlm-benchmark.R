@@ -11,16 +11,20 @@
 # Check whether the "RevoScaleR" package is loaded in the current environment.
 if (!require("RevoScaleR")) {
     cat("RevoScaleR package does not seem to exist. 
-      \nThis means that the functions starting with 'rx' will not run. 
-      \nIf you have Microsoft R Server installed, please switch the R engine.
-      \nFor example, in R Tools for Visual Studio: 
-      \nR Tools -> Options -> R Engine. 
-      \nIf Microsoft R Server is not installed, you can download it from: 
-      \nhttps://www.microsoft.com/en-us/server-cloud/products/r-server/
-      \n")
+        \nThis means that the functions starting with 'rx' will not run. 
+        \nIf you have Microsoft R Server installed, 
+        \nplease switch the R engine.
+        \nFor example, in R Tools for Visual Studio: 
+        \nR Tools -> Options -> R Engine. 
+        \nIf Microsoft R Server is not installed, you can download it from: 
+        \nhttps://www.microsoft.com/en-us/server-cloud/products/r-server/
+        \n")
 
     quit()
 }
+
+# Load "ggplot2" package for visualization.
+library("ggplot2")
 
 # ---- Using CRAN R functions -------------------------------------------------
 
@@ -31,8 +35,9 @@ if (!require("RevoScaleR")) {
 csvFile <- "airOT201201.csv"
 if (!file.exists(csvFile))
 {
-  url <- "https://packages.revolutionanalytics.com/datasets/AirOnTimeCSV2012/airOT201201.csv"
-  download.file(url, destfile = csvFile)
+    url <- "https://packages.revolutionanalytics.com/datasets/AirOnTimeCSV2012/airOT201201.csv"
+    print("A large file is downloading. It may take several seconds to complete. Please wait.\n")
+    download.file(url, destfile = csvFile)
 }
 
 # Import data into memory
@@ -49,6 +54,9 @@ names(df)
 # NOTE:
 # On a system with limited memory this operation could run out of memory.
 # If it completes, it may take several minutes.
+cat("Please note:
+On a system with limited memory, the following operation could run out of memory.
+If it completes, it may take several minutes. \n")
 system.time(
   model1 <- glm(ARR_DEL15 ~ ORIGIN + DAY_OF_WEEK + DEP_TIME,
                 data = df,
@@ -63,7 +71,6 @@ system.time(
                 data = sampledata,
                 family = binomial))
 
-
 # Print information about the model.
 summary(model1)
 
@@ -77,8 +84,9 @@ summary(model1)
 xdfFile <- "AirOnTime2012.xdf"
 if (!file.exists(xdfFile))
 {
-  url <- "https://packages.revolutionanalytics.com/datasets/AirOnTime2012.xdf"
-  download.file(url, destfile = xdfFile, mode = "wb")
+    url <- "https://packages.revolutionanalytics.com/datasets/AirOnTime2012.xdf"
+    print("A large file is downloading. It may take several seconds to complete. Please wait.\n")
+    download.file(url, destfile = xdfFile, mode = "wb")
 }
 xdf <- RxXdfData(xdfFile)
 
@@ -125,12 +133,13 @@ summary(model3)
 # several seconds to complete.
 # This can take several minutes to complete the entire cycle
 
-
+cat("Please note:
+The following process may take serveral minutes to complete.
+Please wait. \n")
+# Get elapsed time for building glm models with different number of rows in data.
 testFunR <- function(nrows)
 {
-  df <- read.csv(csvFile,
-  colClasses = c("DAY_OF_WEEK" = "factor"),
-  nrows = nrows)
+  df <- read.csv(csvFile, colClasses = c("DAY_OF_WEEK" = "factor"), nrows = nrows)
   system.time(
     glm(ARR_DEL15 ~ ORIGIN + DAY_OF_WEEK + DEP_TIME,
         data = df,
@@ -143,8 +152,11 @@ timing_R <- data.frame(
   R = "CRAN R glm()",
   nrows = nrow_R,
   time = timing_R)
+
+# Output elapsed time for glm models.
 timing_R
 
+# Get elapsed time for building rxLogit models with different number of rows in data if RevoScaleR is installed
 testFunMRS <- function(nrows)
 {
   xdf_subset <- tempfile(fileext = ".xdf")
@@ -166,10 +178,12 @@ timing_MRS <- data.frame(
   R = "R Server rxLogit()",
   nrows = nrow_MRS,
   time = timing_MRS)
+
+# Output elapsed time for rxLogit models.
 timing_MRS
 
+# Visualize the timing comparison using ggplot2.
 timings <- rbind(timing_R, timing_MRS)
-library(ggplot2)
 ggplot(timings, aes(x = nrows, y = time, col = R)) +
   geom_line() +
   geom_point() +
