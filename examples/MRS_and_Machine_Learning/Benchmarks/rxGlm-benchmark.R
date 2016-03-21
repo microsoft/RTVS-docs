@@ -36,7 +36,7 @@ csvFile <- "airOT201201.csv"
 if (!file.exists(csvFile))
 {
     url <- "https://packages.revolutionanalytics.com/datasets/AirOnTimeCSV2012/airOT201201.csv"
-    print("A large file is downloading. It may take several seconds to complete. Please wait.\n")
+    cat("A large file is downloading. It may take several minutes to complete. Please wait.\n")
     download.file(url, destfile = csvFile)
 }
 
@@ -85,7 +85,7 @@ xdfFile <- "AirOnTime2012.xdf"
 if (!file.exists(xdfFile))
 {
     url <- "https://packages.revolutionanalytics.com/datasets/AirOnTime2012.xdf"
-    print("A large file is downloading. It may take several seconds to complete. Please wait.\n")
+    cat("A large file is downloading. It may take several minutes to complete. Please wait.\n")
     download.file(url, destfile = xdfFile, mode = "wb")
 }
 xdf <- RxXdfData(xdfFile)
@@ -133,10 +133,7 @@ summary(model3)
 # several seconds to complete.
 # This can take several minutes to complete the entire cycle
 
-cat("Please note:
-The following process may take serveral minutes to complete.
-Please wait. \n")
-# Get elapsed time for building glm models with different number of rows in data.
+# Get elapsed time for building Logistic Regression models with different number of rows in data.
 testFunR <- function(nrows)
 {
   df <- read.csv(csvFile, colClasses = c("DAY_OF_WEEK" = "factor"), nrows = nrows)
@@ -147,6 +144,9 @@ testFunR <- function(nrows)
 } 
 
 nrow_R <- c(10e3, 20e3, 50e3, 100e3) # number of rows in data
+cat("Please note:
+The following process may take serveral minutes to complete.
+Please wait. \n")
 timing_R <- sapply(nrow_R, testFunR)
 timing_R <- data.frame(
   R = "CRAN R glm()",
@@ -156,7 +156,7 @@ timing_R <- data.frame(
 # Output elapsed time for glm models.
 timing_R
 
-# Get elapsed time for building rxLogit models with different number of rows in data if RevoScaleR is installed
+# Get elapsed time for building rxLogit models with different number of rows in data if RevoScaleR is installed.
 testFunMRS <- function(nrows)
 {
   xdf_subset <- tempfile(fileext = ".xdf")
