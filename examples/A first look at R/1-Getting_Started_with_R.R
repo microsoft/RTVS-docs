@@ -21,7 +21,7 @@
 # R is an interpreted functional language with objects. The core of 
 # R language contains the the data manipulation and statistical functions. 
 # Most of R's capabilities are delivered as user contributed packages that 
-# may be downloaded from CRAN.R ships with the "base and recommended" 
+# may be downloaded from CRAN. R ships with the "base and recommended" 
 # packages:	
 # http://cran.r-project.org/doc/FAQ/R-FAQ.html#Which-add_002don-packages-exist-for-R_003f  	
 
@@ -71,8 +71,25 @@
 # in addition to other repositors (e.g. BioConductor) and github
 # For a list of contributed packages on CRAN, see https://cran.r-project.org/
 
-# List all available installed packages on your machine.
-installed.packages()
+# Ways to run a script in Visual Studio:
+# 1) Line by line: with the cursor at the line, press CTRL-Enter
+# 2) Multile lines: select the lines you want to run and press CTRL-Enter
+# 3) Entire file: press CTRL-A to select all lines and press CTRL-Enter
+
+# Simple calculation.
+2 + 3
+
+# Print a message.
+print('Hello, World!')
+
+# To get help on a function, use help(function_name) or ?function_name.
+?help
+?print
+
+# Save all available installed packages on your machine to variable "packages"
+# The varialbe's values can be viewed in Visual Studio's Variable Explorer
+# by clicking on the magnifying button in the Value column 
+packages <- installed.packages()
 
 # List all "attached" or loaded packages.
 search() 	
@@ -87,7 +104,7 @@ library(foreign)
 library(help = foreign)
 
 # To install a new package, use install.packages()
-# Install the ggplot2 package for it's plotting capability.
+# Install the ggplot2 package for its plotting capability.
 if (!require("ggplot2"))
     install.packages("ggplot2")
 
@@ -95,7 +112,6 @@ if (!require("ggplot2"))
 library("ggplot2")
 search()
 # Notice that package:ggplot2 is now added to the search list.
-
 
 ### A Simple Regression Example	
 
@@ -107,21 +123,30 @@ data(package = "ggplot2")
 # Make this dataset available using the data() function.
 data(diamonds, package = "ggplot2")
 
-# Create a listing of all objects in the "global environment".
+# The following command returns all objects in the "global environment".
 # Look for "diamonds" in the results.
+# These objects also show up in Visual Studio's Variable Explorer.
 ls()
+
+# The str command displays the internal structure of the diamonds dataframe
+# You can also view the internal structure 
+# in Visual Studio's Variable Explorer.
 str(diamonds)
 
 # Print the first few rows.
+# Complete data can be viewed in Visual Studio's Variable Explorer
+# by clicking on the magnifying button in the Value column 
 head(diamonds) 
 
 # Print the last 6 lines.	
 tail(diamonds)
 
 # Find out what kind of object it is.
+# The class info also shows up in Visual Studio's Variable Explorer.
 class(diamonds)
 
 # Look at the dimension of the data frame.
+# The dim info also shows up in Visual Studio's Variable Explorer.
 dim(diamonds)
 
 ### Vectorized Code	
@@ -129,6 +154,7 @@ dim(diamonds)
 # how many functions are "vectorized". The function sapply() takes 
 # the function class() that we just used on the data frame and applies it 
 # to all of the columns of the data frame.	
+# The class info also shows up in Visual Studio's Variable Explorer.
 sapply(diamonds, class) # Find out what kind of animals the variables are	
 
 ### Plots in R	
@@ -154,6 +180,8 @@ ggplot(diamondSample, aes(x = carat, y = price)) +
     scale_x_log10()
 
 # Add a log scale for both scales.
+# The relationship between price and carat looks to be linear at the log scale
+# Similar tricks can be applied in many situations
 ggplot(diamondSample, aes(x = carat, y = price)) +
     geom_point(colour = "blue") +
     scale_x_log10() +
@@ -164,7 +192,7 @@ ggplot(diamondSample, aes(x = carat, y = price)) +
 # Now, let's build a simple regression model, examine the results of 
 # the model and plot the points and the regression line.	
 
-# Build the model.
+# Build the model to predict price using carat
 model <- lm(log(price) ~ log(carat), data = diamondSample) 	
 
 # Look at the results. 	
@@ -204,3 +232,8 @@ plot(model, col = "blue")
 str(model)
 model$coefficients
 coef(model)
+
+### Make prediction for the first several data points
+pred_data <- diamonds[1:10,]
+pred <- predict(model, pred_data)
+pred
