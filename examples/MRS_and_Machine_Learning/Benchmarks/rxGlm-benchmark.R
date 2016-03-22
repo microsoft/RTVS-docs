@@ -24,7 +24,8 @@ if (!require("RevoScaleR")) {
 }
 
 # Load "ggplot2" package for visualization.
-library("ggplot2")
+if (!require("ggplot2", quietly = TRUE)) install.packages("ggplot2")
+library("ggplot2") 
 
 # ---- Using CRAN R functions -------------------------------------------------
 
