@@ -23,7 +23,7 @@
 # are labeled 1 if a flight was delayed, and labeled 0 if the flight was on time.
 #
 # The following scripts include five basic steps of building this example using open source R.
-# This execution might require more than one minute.
+# This execution may require serveral minutes.
 #
 #-------------------------------------------------------------------------------------------------------------------------
 
@@ -163,7 +163,7 @@ auc <- function(outcome, prob) {
   return(1 - sum(df$above * df$out) / (N_pos * (N - N_pos)))
 }
 
-paste0("AUC of Logistic Regression Model:",
+paste0("AUC of Logistic Regression Model: ",
        auc(testLogit$ArrDel15, testLogit$ArrDel15_Pred))
 
 #---------------------------Step 4B: Choose and apply a learning algorithm (Decision Tree)---------------------------
@@ -185,5 +185,5 @@ predictTree_r <- predict(dTree2_r, newdata = test, type = 'prob')
 testDT <- cbind(test, data.frame(ArrDel15_Pred = predictTree_r[, 2]))
 
 # Calculate Area Under the Curve (AUC).
-paste0("AUC of Decision Tree Model:",
+paste0("AUC of Decision Tree Model: ",
        auc(testDT$ArrDel15, testDT$ArrDel15_Pred))
