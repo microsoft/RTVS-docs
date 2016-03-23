@@ -1,30 +1,34 @@
-#------------------------------------------------------------------------------------------------------------------------------------
-#------------------------------------- Flight Delay Prediction with Microsoft R Server ----------------------------------------------
-#------------------------------------------------------------------------------------------------------------------------------------
+## Flight Delay Prediction with Microsoft R Server
 
-
-# In this example, we use historical on-time performance and weather data to predict whether the arrival of a scheduled passenger 
+# In this example, we use historical on-time performance and 
+# weather data to predict whether the arrival of a scheduled passenger 
 # flight will be delayed by more than 15 minutes.
 
-# We approach this problem as a classification problem, predicting two classes -- whether the flight will be delayed, or whether it 
-# will be on time. Broadly speaking, in machine learning and statistics, classification is the task of identifying the class or category 
-# to which a new observation belongs, on the basis of a training set of data containing observations with known categories. 
-# Classification is generally a supervised learning problem. Since this is a binary classification task, there are only two classes.
+# We approach this problem as a classification problem, 
+# predicting two classes -- whether the flight will be delayed, 
+# or whether it 
+# will be on time. Broadly speaking, in machine learning and 
+# statistics, classification is the task of identifying 
+# the class or category 
+# to which a new observation belongs, on the basis of 
+# a training set of data containing observations with known categories. 
+# Classification is generally a supervised learning problem. 
+# Since this is a binary classification task, there are only two classes.
 
-# In this example, we train a model using a large number of examples from historic flight data, along with an outcome measure that 
-# indicates the appropriate category or class for each example. The two classes are labeled 1 if a flight was delayed, and labeled 0 
+# In this example, we train a model using a large number of examples 
+# from historic flight data, along with an outcome measure that 
+# indicates the appropriate category or class for each example. 
+# The two classes are labeled 1 if a flight was delayed, and labeled 0 
 # if the flight was on time.
 
-# The following scripts include five basic steps of building this example using Microsoft R Server.
-# This execution might require more than one minute.
-#
-#------------------------------------------------------------------------------------------------------------------------------------
+# The following scripts include five basic steps of building 
+# this example using Microsoft R Server.
+# This execution might require several minutes.
 
 
-#---------------------------Step 0: Get Started-------------------------------
-# ----------------------------------------------------------------------------
-# Check if Microsoft R Server (RRE 8.0) is installed
-# ----------------------------------------------------------------------------
+### Step 0: Get Started
+
+# Check if Microsoft R Server (RRE 8.0) is installed.
 if (!require("RevoScaleR")) {
     cat("RevoScaleR package does not seem to exist. 
       \nThis means that the functions starting with 'rx' will not run. 
@@ -34,7 +38,6 @@ if (!require("RevoScaleR")) {
       \nIf Microsoft R Server is not installed, you can download it from: 
       \nhttps://www.microsoft.com/en-us/server-cloud/products/r-server/
       \n")
-
     quit()
 }
 
@@ -51,7 +54,8 @@ outFileOrigin <- paste0(td, "/originData.xdf")
 outFileDest <- paste0(td, "/destData.xdf")
 outFileFinal <- paste0(td, "/finalData.xdf")
 
-#---------------------------Step 1: Import Data--------------------------------
+
+### Step 1: Import Data
 
 # Import the flight data.
 flight_mrs <- rxImport(
@@ -59,7 +63,7 @@ flight_mrs <- rxImport(
   missingValueString = "M", stringsAsFactors = FALSE,
   # Remove columns that are possible target leakers from the flight data.
   varsToDrop = c("DepDelay", "DepDel15", "ArrDelay", "Cancelled", "Year"),
-  # Definite "Carrier" as categorical.
+  # Define "Carrier" as categorical.
   colInfo = list(Carrier = list(type = "factor")),
   # Round down scheduled departure time to full hour.
   transforms = list(CRSDepTime = floor(CRSDepTime/100)),  
@@ -91,7 +95,8 @@ weather_mrs <- rxImport(
   inData = inputFileWeatherURL, outFile = outFileWeather,
   missingValueString = "M", stringsAsFactors = FALSE,
   # Eliminate some features due to redundance.
-  varsToDrop = c("Year", "Timezone", "DryBulbFarenheit", "DewPointFarenheit"),
+  varsToDrop = c("Year", "Timezone", 
+                 "DryBulbFarenheit", "DewPointFarenheit"),
   # Create a new column "DestAirportID" in weather data.
   transforms = list(DestAirportID = AirportID),
   # Apply the normalization function.
@@ -110,7 +115,8 @@ weather_mrs <- rxImport(
 # Review the variable information of weather data.
 rxGetVarInfo(weather_mrs)
 
-#---------------------------Step 2: Pre-process Data---------------------------
+
+### Step 2: Pre-process Data
 
 # Rename some column names in the weather data to prepare it for merging.
 newVarInfo <- list(
@@ -122,9 +128,8 @@ newVarInfo <- list(
 rxSetVarInfo(varInfo = newVarInfo, data = weather_mrs)
 
 # Concatenate/Merge flight records and weather data.
-
-# 1). Join flight records and weather data at origin of the flight (OriginAirportID).
-
+# 1). Join flight records and weather data at origin of the flight 
+#     (OriginAirportID).
 originData_mrs <- rxMerge(
   inData1 = flight_mrs, inData2 = weather_mrs, outFile = outFileOrigin,
   type = "inner", autoSort = TRUE, 
@@ -133,8 +138,8 @@ originData_mrs <- rxMerge(
   overwrite = TRUE
 )
 
-# 2). Join flight records and weather data using the destination of the flight (DestAirportID).
-
+# 2). Join flight records and weather data using the destination of 
+#     the flight (DestAirportID).
 destData_mrs <- rxMerge(
   inData1 = originData_mrs, inData2 = weather_mrs, outFile = outFileDest,
   type = "inner", autoSort = TRUE, 
@@ -144,13 +149,16 @@ destData_mrs <- rxMerge(
   overwrite = TRUE
 )
 
-# Call "rxFactors" function to convert "OriginAirportID" and "DestAirportID" as categorical.
+# Call "rxFactors" function to convert "OriginAirportID" and 
+# "DestAirportID" as categorical.
 rxFactors(inData = destData_mrs, outFile = outFileFinal, sortLevels = TRUE,
-          factorInfo = c("OriginAirportID", "DestAirportID"), overwrite = TRUE)
+          factorInfo = c("OriginAirportID", "DestAirportID"),
+          overwrite = TRUE)
 
-#- Step 3: Prepare Training and Test Datasets ---------------------------------
+
+### Step 3: Prepare Training and Test Datasets
+
 # Randomly split 80% data as training set and the remaining 20% as test set.
-
 rxSplit(inData = outFileFinal,
         outFilesBase = paste0(td, "/modelData"),
         outFileSuffixes = c("Train", "Test"),
@@ -169,7 +177,9 @@ rxSplit(inData = outFileFinal,
 train <- RxXdfData(paste0(td, "/modelData.splitVar.Train.xdf"))
 test <- RxXdfData(paste0(td, "/modelData.splitVar.Test.xdf"))
 
-#- Step 4A: Choose and apply a learning algorithm (Logistic Regression) -------
+
+### Step 4A: Choose and apply a learning algorithm (Logistic Regression)
+
 # Build the formula.
 modelFormula <- formula(train, depVars = "ArrDel15",
                         varsToDrop = c("RowNum", "splitVar"))
@@ -180,7 +190,9 @@ logitModel_mrs <- rxLogit(modelFormula, data = train)
 # Review the model results.
 summary(logitModel_mrs)
 
-#- Step 5A: Predict over new data (Logistic Regression) -----------------------
+
+### Step 5A: Predict over new data (Logistic Regression)
+
 # Predict the probability on the test dataset.
 rxPredict(logitModel_mrs, data = test,
           type = "response",
@@ -195,7 +207,9 @@ paste0("AUC of Logistic Regression Model:",
 rxRocCurve("ArrDel15", "ArrDel15_Pred_Logit", data = test,
            title = "ROC curve - Logistic regression")
 
-#- Step 4B: Choose and apply a learning algorithm (Decision Tree) -------------
+
+### Step 4B: Choose and apply a learning algorithm (Decision Tree)
+
 # Build a decision tree model.
 dTree1_mrs <- rxDTree(modelFormula, data = test, reportProgress = 1)
 
@@ -205,7 +219,9 @@ treeCp_mrs <- rxDTreeBestCp(dTree1_mrs)
 # Prune a decision tree created by rxDTree and return the smaller tree.
 dTree2_mrs <- prune.rxDTree(dTree1_mrs, cp = treeCp_mrs)
 
-#- Step 5B: Predict over new data (Decision Tree) -----------------------------
+
+### Step 5B: Predict over new data (Decision Tree)
+
 # Predict the probability on the test dataset.
 rxPredict(dTree2_mrs, data = test,
           predVarNames = "ArrDel15_Pred_Tree",
@@ -213,10 +229,10 @@ rxPredict(dTree2_mrs, data = test,
 
 # Calculate Area Under the Curve (AUC).
 paste0("AUC of Decision Tree Model:",
-      rxAuc(rxRoc(" ArrDel15 ", " ArrDel15_Pred_Tree ", test)))
+       rxAuc(rxRoc(" ArrDel15 ", " ArrDel15_Pred_Tree ", test)))
 
 # Plot the ROC curve.
 rxRocCurve("ArrDel15",
-  predVarNames = c("ArrDel15_Pred_Tree", "ArrDel15_Pred_Logit"),
-  data = test,
-  title = "ROC curve - Logistic regression")
+           predVarNames = c("ArrDel15_Pred_Tree", "ArrDel15_Pred_Logit"),
+           data = test,
+           title = "ROC curve - Logistic regression")

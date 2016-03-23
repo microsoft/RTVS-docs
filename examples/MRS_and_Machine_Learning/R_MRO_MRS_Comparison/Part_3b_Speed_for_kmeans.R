@@ -1,24 +1,17 @@
-# ----------------------------------------------------------------------------
-# purpose:  to demonstrate the speed similarities for kmeans across 
-#           R, Microsoft R Open (MRO), and Microsoft R Server (MRS)
-# audience: you are expected to have some prior experience with R
-# ----------------------------------------------------------------------------
+## Demonstrates the speed differences in matrix calculations
+## across R, Microsoft R Open (MRO), and Microsoft R Server (MRS).
 
-# to learn more about the differences among R, MRO and MRS, refer to:
+# To learn more about the differences among R, MRO and MRS, refer to:
 # https://github.com/lixzhang/R-MRO-MRS
 
-# ----------------------------------------------------------------------------
-# load libraries
-# ----------------------------------------------------------------------------
+# Load libraries.
 library("MASS") # to use the mvrnorm function
 
-# ----------------------------------------------------------------------------
-# run the following analysis that does not involve matrix manipulation 
-# to observe that the speed is similar on R, MRO and MRS 
-# ----------------------------------------------------------------------------
+# Run the following analysis that does not involve matrix manipulation 
+# to observe that the speed is similar on R, MRO and MRS.
 set.seed(0)
 
-# function to simulate data
+# Function to simulate data.
 simulCluster <- function(nsamples, mean, dimension, group)
 {
   Sigma <- diag(1, dimension, dimension)
@@ -28,9 +21,9 @@ simulCluster <- function(nsamples, mean, dimension, group)
   z
 }
 
-# simulate data 
-nsamples <- 10 ^ 7 # this was used on different platforms
-# nsamples <- 1000 # for testing purpose
+# Simulate data. 
+nsamples <- 10 ^ 7
+# nsamples <- 1000 # for testing purposes
 group_a <- simulCluster(nsamples, -1, 2, "a")
 group_b <- simulCluster(nsamples, 1, 2, "b")
 group_all <- rbind(group_a, group_b)
@@ -40,6 +33,7 @@ nclusters <- 2
 mydata = group_all[, 1:2]
 
 message("It might take a while for this to finish if nsamples is large.")
+
 # K-Means Cluster Analysis
 system_time_r <- system.time(fit <- kmeans(mydata, nclusters,
                                            iter.max = 1000,

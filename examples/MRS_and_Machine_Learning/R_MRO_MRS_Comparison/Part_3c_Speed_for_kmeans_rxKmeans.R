@@ -1,5 +1,7 @@
-# This script compares the speed of kmeans() with that of rxKmeans()  
-# on Microsoft R Server (MRS).
+## Demonstrates the speed differences in matrix calculations
+## across R, Microsoft R Open (MRO), and Microsoft R Server (MRS).
+## This script compares the speed of kmeans() with that of rxKmeans()  
+## on Microsoft R Server (MRS).
 
 # To learn more about the differences among R, MRO and MRS, refer to:
 # https://github.com/lixzhang/R-MRO-MRS
@@ -28,19 +30,20 @@ if (!require("ggplot2", quietly = TRUE))
 library("MASS") # to use the mvrnorm function
 library("ggplot2") # used for plotting
 
-# ----------------------------------------------------------------------------
-# compare the speed of kmeans with that of rxKmeans on MRS
-# for different data sizes
-# ----------------------------------------------------------------------------
-# to save timing results
+
+### Compare the speed of kmeans with that of rxKmeans on MRS
+### for different data sizes
+
+# To save timing results.
 myresult <- data.frame(nsamples = integer(), time_r = double(),
                        time_rre = double())
 
-# list of sample sizes
-nsamples_list <- c(5 * 10 ^ 2, 10 ^ 3, 5 * 10 ^ 3, 10 ^ 4, 5 * 10 ^ 4, 10 ^ 5,
+# List of sample sizes.
+nsamples_list <- c(5 * 10 ^ 2, 10 ^ 3, 5 * 10 ^ 3,
+                   10 ^ 4, 5 * 10 ^ 4, 10 ^ 5,
                    5 * 10 ^ 5, 10 ^ 6, 5 * 10 ^ 6, 10 ^ 7)
 
-# function to simulate data
+# Function to simulate data.
 simulCluster <- function(nsamples, mean, dimension, group)
 {
   Sigma <- diag(1, dimension, dimension)
@@ -55,7 +58,7 @@ message("It might take a while for this to finish if any of the elements in ",
 
 for (nsamples in nsamples_list)
 {
-  # simulate data and append
+  # Simulate data and append.
   group_a <- simulCluster(nsamples, -1, 2, "a")
   group_b <- simulCluster(nsamples, 1, 2, "b")
   group_all <- rbind(group_a, group_b)
@@ -91,7 +94,7 @@ mydata <- myresult
 mydata$nsamples_log <- log10(mydata$nsamples)
 mydata
 
-# generate plot
+# Generate plot.
 if (RRE){
   ggplot(data = mydata, aes(x = nsamples_log)) +
     geom_point(aes(y = time_r, colour = "kmeans")) +

@@ -1,10 +1,16 @@
 # Microsoft R Server vs. Open Source R Comparison: Flight Delay Prediction
 
-This example is aiming to compare the performance and model accuracies between Microsoft R Server (MRS) and Open Source R (obtained from CRAN) by using a previous example ([Flight Delay Prediction with Microsoft R Server]) that we built.
+This example is aiming to compare the performance and model accuracies 
+between Microsoft R Server (MRS) and Open Source R (obtained from CRAN) 
+by using a previous example 
+([Flight Delay Prediction with Microsoft R Server]) that we built.
 
-In the previous example, we use historical on-time performance and weather data to predict whether the arrival of a scheduled passenger flight will be delayed by more than 15 minutes.
+In the previous example, we use historical on-time performance and 
+weather data to predict whether the arrival of a scheduled passenger 
+flight will be delayed by more than 15 minutes.
 
-The comparison is worked on a [Microsoft Data Science Virtual Machine] and here are some System Configuration Information:
+The comparison is worked on a [Microsoft Data Science Virtual Machine] 
+and here are some System Configuration Information:
 - Operating System: Windows
 - System Type: 64-bit
 - Cores: 4
@@ -12,7 +18,8 @@ The comparison is worked on a [Microsoft Data Science Virtual Machine] and here 
 - Microsoft R Server Version: 8.0.0
 - R Version: 3.2.2
 
-In this example, we build a step-by-step comparison on the five steps in _Flight Delay Prediction with Microsoft R Server_ example:
+In this example, we build a step-by-step comparison on the five steps 
+in _Flight Delay Prediction with Microsoft R Server_ example:
 - [Step 1: Import Data](#anchor-1)
 - [Step 2: Pre-process Data](#anchor-2)
 - [Step 3: Prepare Training and Test Datasets](#anchor-3)
@@ -21,7 +28,9 @@ In this example, we build a step-by-step comparison on the five steps in _Flight
 - [Step 5A: Predict over new data (Logistic Regression)](#anchor-5A)
 - [Step 5B: Predict over new data (Decision Tree)](#anchor-5B)
 
-Also, we compare the model accuracies for both Logistic Regression and Decision Tree models by using the `Area Under the Curve (AUC)` as the measure.
+Also, we compare the model accuracies for both 
+Logistic Regression and Decision Tree models by using the 
+`Area Under the Curve (AUC)` as the measure.
 - [Model Accuracies Comparison](#anchor-6)
 
 Data and R Scripts we will use in this example:
@@ -30,7 +39,8 @@ Data and R Scripts we will use in this example:
 - **MRS_flight_delays.R**
 - **R_flight_delays.R**
 
-Objective conclusions will be made purely based on the performance and model accuracies comparison as below.
+Objective conclusions will be made purely based on 
+the performance and model accuracies comparison as below.
 - [Conclusions](#anchor-7)
 
 

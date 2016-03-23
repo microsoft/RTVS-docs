@@ -1,21 +1,14 @@
-# ----------------------------------------------------------------------------
-# purpose:  fit a gradient boosting machine model
-# audience: you are expected to have some prior experience with R
-# ----------------------------------------------------------------------------
+## This script shows how to fit a gradient boosting machine model.
 
-# ----------------------------------------------------------------------------
-# load packages
-# ----------------------------------------------------------------------------
+# Load packages.
 (if (!require("MASS", quietly = TRUE)) install.packages("MASS"))
 library("MASS") # to use the Boston dataset
 (if (!require("gbm", quietly = TRUE)) install.packages("gbm"))
 library("gbm") # Gradient Boosting Machine package
 
-# ----------------------------------------------------------------------------
-# fit the model and draw some plots
-# ----------------------------------------------------------------------------
-# the four hyper-parameters used here - n.trees, interaction.depth, 
-# n.minobsinnode, and shrinkage - were selected from cross-validation 
+# Fit the model and draw some plots.
+# The four hyper-parameters used here - n.trees, interaction.depth, 
+# n.minobsinnode, and shrinkage - were selected from cross-validation.
 fit_gbm <- gbm(medv ~ .,
                distribution = "gaussian",
                n.trees = 5000,
@@ -25,15 +18,15 @@ fit_gbm <- gbm(medv ~ .,
                cv.folds = 5,
                data = Boston)
 
-# print the model
+# Print the model.
 print(fit_gbm)
 
-# check performance using 5-fold cross-validation
+# Check performance using 5-fold cross-validation.
 best.iter <- gbm.perf(fit_gbm, method = "cv")
 
-# check variable importance
+# Check variable importance.
 f_imp <- summary(fit_gbm, n.trees = best.iter, plot = FALSE)
 
-# use a custom plot to show variable importance
+# Use a custom plot to show variable importance.
 barplot(f_imp$rel.inf, names.arg = f_imp$var, xlab = "Feature", 
         ylab = "Relative influence", cex.names = 0.8)
