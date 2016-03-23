@@ -29,7 +29,8 @@ uses MRS best practices and syntax, which can differ substantially from those of
 
 * **MRS Bike Rental Estimation.R** 
   This sample creates a demand prediction model for bike rentals based on 
-a historical data set, using Microsoft R Server.
+a historical data set, using Microsoft R Server. 
+
 
 ### R MRO MRS Comparison
 These samples show where the commands, syntax, constructs and performance of 
@@ -43,25 +44,49 @@ They include
 * **R MRO MRS Comparison Part 3b Speed for kmeans.R**
 * **R MRO MRS Comparison Part 3c Speed for kmneans rxKmeans.R**
 
+    ![Cluster allocation](./media/samples/Introduction_to_R_Server/Comparison_of_functions_clustering_speed.PNG)
+
 ### Comparisons
 
 * **MRO MKL benchmarks.R** 
 Microsoft R Open includes the Intel Math Kernel Library (MKL) 
 for fast, parallel linear algebra 
-computations. This script runs performance benchmarks using different 
-numbers of threads. It requires MRS to be installed.
+computations. This example runs a number of compute-intensive benchmarks to show the
+performance gains that are possible through the use of MKL.
+This sample produces a box plot showing the
+impact of running the same computation on multiple cores:
+
+![](./media/sample_mro_benchmark_plot.PNG)
 
 * **rxGlm benchmark.R**
-This sample demonstrates how to fit a logistic regression using CRAN R,
-and how the rxGlm() function is dramatically faster and more scalable
+This example demonstrates the differences between CRAN R and R server.
+Specifically, it shows how the difference in performance between rxGlm() and
+glm(). The R server function rxGlm() fits a generalized linear model on data
+that is potentially much larger than available RAM.
 NOTE: The CRAN portion of this comparison requires about 7GB of RAM.
 If your machine has less, this script will crash.
-  
+
+![rxGlm benchmark](./media/samples/Introduction_to_R_Server/rxGLM_benchmark.PNG)
+
 ### Machine Learning  
   
 * **Gradient Boosting Machine.R**
 This sample shows how to create, train and evaluate
 a gradient boosting machine model in R.
+This example uses a Gradient Boosting machine to create a model that predicts
+[housing prices in the suburbs of
+Boston](https://cran.r-project.org/web/packages/MASS/MASS.pdf) based on features
+such as per-capita crime statistics, number of rooms per dwelling and the
+property tax rate. Note that it takes quite some time to run this model, so
+don't expect immediate results. If you find that it takes too long, there is a
+commented out block of code that you can substitute that has a smaller parameter
+tuning grid.
+
+The output of this example is a plot of features showing the relative influence
+of each one on the model:
+
+![](./media/sample_gradient_boosting_machine_plot.PNG)
+
 
 * **LASSO Model.R**
 This sample shows how to create, train and evaluate
@@ -70,7 +95,10 @@ a LASSO model in R.
 * **Linear Regression and Azure Web Service.R**
 This sample shows how to create, train and evaluate
 a linear regression model in R. It also shows how to deploy 
-that model as a web service in Azure Machine Learning.
+that model as an Azure Web Service using an [Azure Machine
+Learning](https://azure.microsoft.com/en-us/services/machine-learning/)
+workspace.
+
 
 ### Data_Exploration
   
@@ -84,3 +112,7 @@ This sample shows how to load a URL-identified data file into R.
 * **Import Data from URL to xdf.R**
 This sample shows how to load a URL-identified data file into MRS as an xdf.
 It requires that MRS be installed.
+
+
+
+
