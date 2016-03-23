@@ -1,6 +1,6 @@
 ## MRS and Machine Learning
 This collection of examples shows how to use R and MRS to create 
-machine learning models and showcases how to take advantage of the
+machine learning models and how to take advantage of the
 functionality of Mircosoft R Server. In order to run scripts with 
 `MRS` in the title, it will be necessary to first [install MRS]
 (https://www.microsoft.com/en-us/server-cloud/products/r-server/). 
@@ -8,7 +8,7 @@ functionality of Mircosoft R Server. In order to run scripts with
 ### Flight Delays Prediction with R 
 
 * **R Flight Delays with MRS Comparison.R**
-This sample shows how to predict flight delays longer than 15 minutes using R, machine learning
+This sample shows how to predict flight delays using R, machine learning
 and historical on-time performance and weather data . 
 When paired with `MRS Flight Delays with R Comparison.R`, it provides a step-by-step comparison 
 of the functionality of open source R (a.k.a. CRAN R) and Microsoft R Server. 
@@ -16,7 +16,7 @@ of the functionality of open source R (a.k.a. CRAN R) and Microsoft R Server.
 ### Flight Delays Prediction with MRS
 
 * **MRS Flight Delays with R comparison.R**
-This sample shows how to predict flight delays longer than 15 minutes using R, machine learning
+This sample shows how to predict flight delays using R, machine learning
 and historical on-time performance and weather data . 
 When paired with `MRS Flight Delays with MRS Comparison.R`, it provides a step-by-step comparison 
 of the functionality of open source R (a.k.a. CRAN R) and Microsoft R Server. 
@@ -28,18 +28,21 @@ uses MRS best practices and syntax, which can differ substantially from those of
 ### Bike Rental Estimation with MRS
 
 * **MRS Bike Rental Estimation.R** 
-  This sample creates a demand prediction model for bike rentals based on a historical data set.
-  It uses Microsoft R Server.
+  This sample creates a demand prediction model for bike rentals based on 
+a historical data set, using Microsoft R Server.
 
 ### R MRO MRS Comparison
-
-* **R MRO MRS Comparison Part 1 Functions.R**
-* **R MRO MRS Comparison Part 2 Capacity.R**
-* **R MRO MRS Comparison Part 3 Speed.R**
-
 These samples show where the commands, syntax, constructs and performance of 
 R, Microsoft R Open and Microsoft R Server are similar, and where they differ.
- 
+They include
+
+* **R MRO MRS Comparison Part 1a Functions glm rxGlm.R**
+* **R MRO MRS Comparison Part 1b Functions kmeans rxKmeans.R**
+* **R MRO MRS Comparison Part 2 Capacity.R**
+* **R MRO MRS Comparison Part 3a Speed for Matrix Calculations.R**
+* **R MRO MRS Comparison Part 3b Speed for kmeans.R**
+* **R MRO MRS Comparison Part 3c Speed for kmneans rxKmeans.R**
+
 ### Comparisons
 
 * **MRO MKL benchmarks.R** 
