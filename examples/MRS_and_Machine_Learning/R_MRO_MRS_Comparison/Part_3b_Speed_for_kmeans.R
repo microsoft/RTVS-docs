@@ -32,7 +32,8 @@ nclusters <- 2
 
 mydata = group_all[, 1:2]
 
-cat("It might take a while for this to finish if nsamples is large.")
+cat("-----------------------------------------------------------------\n",
+    "It might take a while for this to finish if nsamples is large. \n")
 
 # K-Means Cluster Analysis
 system_time_r <- system.time(fit <- kmeans(mydata, nclusters,
@@ -40,4 +41,5 @@ system_time_r <- system.time(fit <- kmeans(mydata, nclusters,
                                            algorithm = "Lloyd"))
 system_time_r
 
-cat("Save the time and run the code on R, MRO and MRS to compare speed.")
+cat("-----------------------------------------------------------------\n",
+    "Save the time and run the code on R, MRO and MRS to compare speed. \n")

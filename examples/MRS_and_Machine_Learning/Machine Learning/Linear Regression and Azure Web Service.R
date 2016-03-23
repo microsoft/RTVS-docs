@@ -1,9 +1,10 @@
 ## This script shows hpw to fit a linear regression model and 
 ## deploy an Azure ML web service.
 
-cat(" NOTE: In order to run the last part of the script you'll need to have
-# the an Azure ML workspace, with its workspace ID and key.
-# For details about Azure ML, go to http://studio.azureml.net/ \n")
+cat("-----------------------------------------------------------------\n",
+    "NOTE:In order to run the last part of the script you 'll need to have \n",
+    "the an Azure ML workspace, with its workspace ID and key. \n",
+    "For details about Azure ML, go to http://studio.azureml.net/ \n")
 
 # Enter your Azure ML Studio workspace info here before continuing.
 ws_id <- ""
@@ -28,7 +29,7 @@ library("ggplot2")
 head(Boston)
 ggplot(Boston, aes(x=medv)) + 
   geom_histogram(binwidth=2) +
-  ggtitle("Histogram of Response Variable")
+  ggtitle("Histogram of Response Variable \n")
 
 # Fit a model using medv as response and others as predictors. 
 lm1 <- lm(medv ~ ., data = Boston)
@@ -64,7 +65,8 @@ tryCatch(
     AML <- 1
   },
   error = function(cond){
-    cat("Azure ML workspace information was not valid.")
+    cat("-----------------------------------------------------------------\n", 
+      "Azure ML workspace information is invalid. \n")
   }
 )
 
@@ -113,6 +115,7 @@ if (AML) {
   # Consume the updated web service.
   consume(ep_price_pred, newdata)
 } else {
-  cat("Azure ML webservice is not deployed because ", 
-          "the workspace information is invalid")
+    cat("-----------------------------------------------------------------\n",
+    "Azure ML webservice was not deployed because",
+    "the workspace information is invalid. \n")
 }

@@ -10,14 +10,14 @@
 suppressWarnings(RRE <- require("RevoScaleR"))
 if (!RRE)
 {
-  cat(
+  cat("-----------------------------------------------------------------\n",
     "RevoScaleR package does not seem to exist. \n",
     "This means that the functions starting with 'rx' will not run. \n",
     "If you have Microsoft R Server installed, please switch the R engine.\n",
     "For example, in R Tools for Visual Studio: \n",
     "R Tools -> Options -> R Engine. \n",
     "If Microsoft R Server is not installed, you can download it from: \n",
-    "https://www.microsoft.com/en-us/server-cloud/products/r-server/")
+    "https://www.microsoft.com/en-us/server-cloud/products/r-server/ \n")
 }
 
 # Install ggplot2 if it's not already installed.
@@ -49,5 +49,6 @@ if (RRE){
   logistic2 <- rxGlm(vs ~ wt + disp, data = mtcars, family = binomial)
   summary(logistic2)
 } else {
-  print("rxGlm was not run becauase the RevoScaleR package is not available")
+    cat("-----------------------------------------------------------------\n",
+    "rxGlm was not run becauase the RevoScaleR package is not available.")
 }

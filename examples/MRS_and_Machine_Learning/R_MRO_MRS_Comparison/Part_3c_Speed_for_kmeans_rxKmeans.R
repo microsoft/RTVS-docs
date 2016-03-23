@@ -10,14 +10,14 @@
 suppressWarnings(RRE <- require("RevoScaleR"))
 if (!RRE)
 {
-  cat(
+  cat("-----------------------------------------------------------------\n",
     "RevoScaleR package does not seem to exist. \n",
     "This means that the functions starting with 'rx' will not run. \n",
     "If you have Microsoft R Server installed, please switch the R engine.\n",
     "For example, in R Tools for Visual Studio: \n",
     "R Tools -> Options -> R Engine. \n",
     "If Microsoft R Server is not installed, you can download it from: \n",
-    "https://www.microsoft.com/en-us/server-cloud/products/r-server/")
+    "https://www.microsoft.com/en-us/server-cloud/products/r-server/ \n")
 }
 
 # Install a package if it's not already installed.
@@ -53,8 +53,9 @@ simulCluster <- function(nsamples, mean, dimension, group)
   z
 }
 
-cat("It might take a while for this to finish if any of the elements in ", 
-  "nsamples_list is large.")
+cat("-----------------------------------------------------------------\n",
+    "It might take a while for this to finish if any of the elements in", 
+    "nsamples_list is large.")
 
 for (nsamples in nsamples_list)
 {

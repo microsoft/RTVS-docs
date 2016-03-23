@@ -10,14 +10,14 @@
 suppressWarnings(RRE <- require("RevoScaleR"))
 if (!RRE)
 {
-  cat(
+  cat("-----------------------------------------------------------------\n",
     "RevoScaleR package does not seem to exist. \n",
     "This means that the functions starting with 'rx' will not run. \n",
     "If you have Microsoft R Server installed, please switch the R engine.\n",
     "For example, in R Tools for Visual Studio: \n",
     "R Tools -> Options -> R Engine. \n",
     "If Microsoft R Server is not installed, you can download it from: \n",
-    "https://www.microsoft.com/en-us/server-cloud/products/r-server/")
+    "https://www.microsoft.com/en-us/server-cloud/products/r-server/ \n")
 }
 
 # Install ggplot2 if it's not already installed.
@@ -47,9 +47,10 @@ simulCluster <- function(nsamples, mean, dimension, group)
 # Modify the value for nsamples to test out the capacity limit for kmeans().
 # On a computer with 7 GB RAM, nsamples of 3*10^7 causes kmeans() to fail, 
 # but rxKmeans() worked. 
-cat("If the sample size is large, it will take some time to finish. \n",
-        "You can use a smaller value for nsamples, say 1000, \n", 
-        "to test the program.")
+cat("-----------------------------------------------------------------\n",
+    "If the sample size is large, it will take a while to finish. \n",
+    "You can use a smaller value for nsamples, say 1000, \n", 
+    "to test the program.\n")
 nsamples <- 3 * 10 ^ 7
 # For quick tests, set nsamples to 3000
 #nsamples <- 3 * 10 ^ 3
@@ -87,24 +88,25 @@ system_time_R <-
                     iter.max = 1000,
                     algorithm = "Lloyd")
     })
-
+print(system_time_R)
 
 ### Cluster analysis with rxKmeans() on MRS.
 
 # This works even if kmeans() does not.
 # Perform cluster analysis with rxKmeans() if RevoScaleR is installed.
-if (RRE){
-  rxImport(inData = dataCSV, outFile = dataXDF, overwrite = TRUE)
-  
-  system.time(
-    {
-      clust <- rxKmeans( ~ V1 + V2, data = dataXDF,
+if (RRE) {
+    rxImport(inData = dataCSV, outFile = dataXDF, overwrite = TRUE)
+
+    system_time_RRE <- system.time({
+        clust <- rxKmeans( ~ V1 + V2, data = dataXDF,
                          numClusters = nclusters,
                          algorithm = "lloyd",
                          outFile = dataXDF,
                          outColName = "cluster",
                          overwrite = TRUE)
     })
+    print(system_time_RRE)
 } else {
-  cat("rxKmeans was not run because the RevoScaleR package is not available")
+    cat("-----------------------------------------------------------------\n",
+    "rxKmeans was not run becauase the RevoScaleR package is not available.")
 }
