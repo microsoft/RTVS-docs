@@ -10,11 +10,23 @@
 # The code in this section can be found at the following address:
 # https://mran.revolutionanalytics.com/documents/rro/multithread/#mt-bench
 
-# Print the default number of threads if MKL library is installed.
-if (require("RevoUtilsMath"))
-{
-  print(paste("The number of threads is:", getMKLthreads()))
-}
+# Check whether RevoScaleR is available.
+suppressWarnings(RRE <- require("RevoScaleR"))
+if (!RRE) {
+    cat(
+    "RevoScaleR package does not seem to exist. \n",
+    "This means that the functions starting with 'rx' will not run. \n",
+    "If you have Microsoft R Server installed, please switch the R engine.\n",
+    "For example, in R Tools for Visual Studio: \n",
+    "R Tools -> Options -> R Engine. \n",
+    "If Microsoft R Server is not installed, you can download it from: \n",
+    "https://www.microsoft.com/en-us/server-cloud/products/r-server/")
+    } else {
+    # Print the default number of threads if MKL library is installed.
+    print(paste("The number of threads is:", getMKLthreads()))
+    }
+
+cat("This is a big calculation and may take a few minutes to run.")
 
 # Initialization
 set.seed(1)
@@ -48,4 +60,4 @@ A <- data.frame(A, fac = sample(LETTERS[1:g], m, replace = TRUE))
 train <- sample(1:m, k)
 system.time(L <- lda(fac ~ ., data = A, prior = rep(1, g) / g, subset = train))
 
-message("Save the time and run the code on R, MRO and MRS to compare speed.")
+cat("Save the time and run the code on R, MRO and MRS to compare speed.")

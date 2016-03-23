@@ -8,18 +8,19 @@
 # Microsoft R Server be installed.
 
 # Check whether Microsoft R Server (RRE 8.0) is installed.
-if (!require("RevoScaleR")) {
-    cat("RevoScaleR package does not seem to exist. 
-      \nThis means that the functions starting with 'rx' will not run. 
-      \nIf you have Microsoft R Server installed, please switch the R engine.
-      \nFor example, in R Tools for Visual Studio: 
-      \nR Tools -> Options -> R Engine. 
-      \nIf Microsoft R Server is not installed, you can download it from: 
-      \nhttps://www.microsoft.com/en-us/server-cloud/products/r-server/
-      \n")
+suppressWarnings(
+  if (!require("RevoScaleR")) {
+    cat(
+        "RevoScaleR package does not seem to exist. \n",
+        "This means that the functions starting with 'rx' will not run. \n",
+        "If you have Microsoft R Server installed, please switch the R engine.\n",
+        "For example, in R Tools for Visual Studio: \n",
+        "R Tools -> Options -> R Engine. \n",
+        "If Microsoft R Server is not installed, you can download it from: \n",
+        "https://www.microsoft.com/en-us/server-cloud/products/r-server/")
 
     quit()
-    }
+    })
 
 if (!require("version.compare")){
   (if (!require("devtools")) install.packages("devtools"))

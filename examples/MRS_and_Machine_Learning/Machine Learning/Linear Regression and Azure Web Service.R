@@ -64,7 +64,7 @@ tryCatch(
     AML <- 1
   },
   error = function(cond){
-    message("Azure ML workspace information was not valid.")
+    cat("Azure ML workspace information was not valid.")
   }
 )
 
@@ -113,6 +113,6 @@ if (AML) {
   # Consume the updated web service.
   consume(ep_price_pred, newdata)
 } else {
-  message("Azure ML webservice is not deployed because ", 
+  cat("Azure ML webservice is not deployed because ", 
           "the workspace information is invalid")
 }

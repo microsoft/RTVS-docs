@@ -7,10 +7,10 @@
 # Check whether Microsoft R Server is installed and load libraries.
 
 # Check whether RevoScaleR is available.
-RRE <- require("RevoScaleR") 
-if (RRE)
+suppressWarnings(RRE <- require("RevoScaleR"))
+if (!RRE)
 {
-  message(
+  cat(
     "RevoScaleR package does not seem to exist. \n",
     "This means that the functions starting with 'rx' will not run. \n",
     "If you have Microsoft R Server installed, please switch the R engine.\n",
@@ -47,10 +47,12 @@ simulCluster <- function(nsamples, mean, dimension, group)
 # Modify the value for nsamples to test out the capacity limit for kmeans().
 # On a computer with 7 GB RAM, nsamples of 3*10^7 causes kmeans() to fail, 
 # but rxKmeans() worked. 
-message("If the sample size is large, it will take some time to finish. \n",
+cat("If the sample size is large, it will take some time to finish. \n",
         "You can use a smaller value for nsamples, say 1000, \n", 
         "to test the program.")
 nsamples <- 3 * 10 ^ 7
+# For quick tests, set nsamples to 3000
+#nsamples <- 3 * 10 ^ 3
 group_a <- simulCluster(nsamples, -1, 2, "a")
 group_b <- simulCluster(nsamples, 1, 2, "b")
 group_all <- rbind(group_a, group_b)
@@ -74,7 +76,7 @@ dataXDF = tempfile(fileext = ".xdf")
 write.csv(group_all, dataCSV, row.names = FALSE)
 
 
-### cluster analysis with kmeans().
+### Cluster analysis with kmeans().
 
 # This doesn't work when data is large enough.
 # This can be run on R, MRO, or MRS
@@ -104,6 +106,5 @@ if (RRE){
                          overwrite = TRUE)
     })
 } else {
-  print("rxKmeans was not run becauase the RevoScaleR package 
-         is not available")
+  cat("rxKmeans was not run because the RevoScaleR package is not available")
 }

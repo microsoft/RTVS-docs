@@ -4,9 +4,11 @@
 # http://statweb.stanford.edu/~tibs/lasso.html
 
 # Load packages.
-(if (!require("glmnet", quietly = TRUE)) install.packages("glmnet"))
+suppressWarnings(if (!require("glmnet", quietly = TRUE))
+    install.packages("glmnet"))
 library("glmnet") # use this package to fit a glmnet model
-(if (!require("MASS", quietly = TRUE)) install.packages("MASS"))
+suppressWarnings(if (!require("MASS", quietly = TRUE))
+    install.packages("MASS"))
 library("MASS") # to use the Boston dataset
 
 # Identify the optimal value of lambda.

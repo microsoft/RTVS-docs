@@ -14,15 +14,23 @@
 str(quakes)
 
 # install and load the packages
-if (!require("ggplot2"))
-    install.packages("ggplot2")
+suppressWarnings(if (!require("ggplot2"))
+    install.packages("ggplot2"))
 library("ggplot2")
-if (!require("rgl"))
-    install.packages("rgl")
+suppressWarnings(if (!require("rgl"))
+    install.packages("rgl"))
 library("rgl")
-if (!require("mapproj"))
-  install.packages("mapproj") # required for map projections
+suppressWarnings(if (!require("mapproj"))
+    install.packages("mapproj")) # required for map projections
 library("mapproj")
+# The package "gtable" allows you to work with objects called grob tables.
+# A grob table captures all the information needed to layout grobs in a table
+# structure. It supports row and column spanning, offers some tools to
+# automatically figure out the correct dimensions, and makes it easy to align
+# and combine multiple tables. 
+suppressWarnings(if (!require("gtable"))
+    install.packages("gtable"))
+library(gtable)
 
 # Plot longitude and latitude of quakes.
 # To create a plot, you have to specify the data, then map aesthetics to 
@@ -90,15 +98,6 @@ grid.draw(cbind(
     size = "last"
     ))
 
-
-# The package "gtable" allows you to work with objects called grob tables.
-# A grob table captures all the information needed to layout grobs in a table
-# structure. It supports row and column spanning, offers some tools to
-# automatically figure out the correct dimensions, and makes it easy to align
-# and combine multiple tables. 
-if (!require("gtable"))
-    install.packages("gtable")
-library(gtable)
 
 plonglat <- ggplot(quakes, aes(x = long, y = lat, size = mag, col = depth)) +
     geom_point(alpha = 0.5) + 

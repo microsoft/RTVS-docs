@@ -7,10 +7,10 @@
 
 # Check whether Microsoft R Server is installed and load libraries.
 # Check whether RevoScaleR is available.
-RRE <- require("RevoScaleR") 
+suppressWarnings(RRE <- require("RevoScaleR"))
 if (!RRE)
 {
-  message(
+  cat(
     "RevoScaleR package does not seem to exist. \n",
     "This means that the functions starting with 'rx' will not run. \n",
     "If you have Microsoft R Server installed, please switch the R engine.\n",
@@ -107,7 +107,7 @@ if (RRE){
     rxKmeans.cluster = factor(rxKmeans.cluster$cluster))
   
   # Compare the cluster assignments between kmeans and rxKmeans.
-  message("\nComparing cluster assignments between kmeans and rxKmeans:")
+  cat("\nComparing cluster assignments between kmeans and rxKmeans:")
   print(with(mydata_clusters, table(kmeans.cluster, rxKmeans.cluster)))
   
   # Get cluster means.

@@ -101,9 +101,9 @@ library(help = foreign)
 
 # To install a new package, use install.packages()
 # Install the ggplot2 package for its plotting capability.
-if (!require("ggplot2"))
-    install.packages("ggplot2")
-
+suppressWarnings(
+    if (!require("ggplot2"))
+        install.packages("ggplot2"))
 # Then load the package.
 library("ggplot2")
 

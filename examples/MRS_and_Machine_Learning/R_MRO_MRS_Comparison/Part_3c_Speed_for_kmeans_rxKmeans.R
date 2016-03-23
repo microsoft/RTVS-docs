@@ -7,10 +7,10 @@
 # https://github.com/lixzhang/R-MRO-MRS
 
 # Check whether Microsoft R Server is installed and load libraries.
-RRE <- require("RevoScaleR") 
+suppressWarnings(RRE <- require("RevoScaleR"))
 if (!RRE)
 {
-  message(
+  cat(
     "RevoScaleR package does not seem to exist. \n",
     "This means that the functions starting with 'rx' will not run. \n",
     "If you have Microsoft R Server installed, please switch the R engine.\n",
@@ -53,7 +53,7 @@ simulCluster <- function(nsamples, mean, dimension, group)
   z
 }
 
-message("It might take a while for this to finish if any of the elements in ", 
+cat("It might take a while for this to finish if any of the elements in ", 
   "nsamples_list is large.")
 
 for (nsamples in nsamples_list)
