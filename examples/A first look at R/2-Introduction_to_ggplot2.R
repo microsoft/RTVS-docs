@@ -8,8 +8,6 @@ options(warn = -1)
 if (!require("ggplot2", quietly = TRUE))
     install.packages("ggplot2", quiet = TRUE)
 # mapproj is required for map projections.
-#if (!suppressPackageStartupMessages(require("mapproj", quietly = TRUE)))
-#    install.packages("mapproj")
 if (!require("mapproj", quietly = TRUE))
     install.packages("mapproj", quiet = TRUE)
 options(warn = 0)

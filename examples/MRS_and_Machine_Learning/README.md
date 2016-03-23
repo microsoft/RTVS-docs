@@ -8,7 +8,7 @@ functionality of Mircosoft R Server. In order to run scripts with
 ### Flight Delays Prediction with R 
 
 * **R Flight Delays with MRS Comparison.R**
-This sample shows how to predict flight delays longer than 15 minutes using R, machine learning
+This sample shows how to predict flight delays using R, machine learning
 and historical on-time performance and weather data . 
 When paired with `MRS Flight Delays with R Comparison.R`, it provides a step-by-step comparison 
 of the functionality of open source R (a.k.a. CRAN R) and Microsoft R Server. 

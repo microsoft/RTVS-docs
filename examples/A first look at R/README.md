@@ -3,7 +3,7 @@
 These scripts let you take R for a test drive.
 
 #### 1 Getting Started with R.R
-The comments of this script give helpful information about R and how to use it.
+The comments in this script give helpful information about R and how to use it.
 To get the most out of it, set the cursor at the top of the script and press
 CTRL-Enter to scroll through it line by line. This will let you see the output of
 each command. Getting Started shows you some R fundamentals, like installing
