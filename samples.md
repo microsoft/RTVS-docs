@@ -2,39 +2,28 @@
 layout: default
 ---
 
-# Examples for how to use R Tools for Visual Studio
+# R Tools for Visual Studio Sample Projects
 
-These examples will give you a running start using R Tools for Visual Studio.
-There are examples that give you an introduction to R, examples on how to make
-your code run fast, and examples on how to use Microsoft R Server for big
-datasets on multi-core machines. Watch this 3-minute video to get a quick
-overview of the examples:
+This collection of samples will get you started on R, Microsoft R Server and 
+R Tools for Visual Studio. To get them:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/5Z30_Qpc8j0" frameborder="0" allowfullscreen></iframe>
+1. Download [the zip file](https://github.com/Microsoft/RTVS-docs/archive/master.zip).
+2. Unzip.
+3. Open `examples/Examples.sln`.
 
-## Downloading and launching the examples
+`README` files will help you navigate the samples.
 
-1. [Download the examples](https://github.com/Microsoft/RTVS-docs/archive/master.zip).
+At the top level, ** A First Look at R ** gives a gentle introduction
+for newcomers to R. ** MRS and Machine Learning ** gives examples of how to
+use R and Microsoft R Server for machine learning.
 
-1. Unzip the archive, and open the solution by double-clicking on the
-   `examples\Examples.sln` file.
 
-If you prefer to work with the examples via Github, they are all available in
-the `master` branch of the [RTVS-docs repository on
-Github](https://github.com/microsoft/rtvs-docs).
+For a technical comparison of R with MRS, check out [Lixun Zhang's
+detailed discussion](http://htmlpreview.github.io/?https://github.com/lixzhang/R-MRO-MRS/blob/master/Introduction_to_MRO_and_MRS.html) on the topic. 
 
-## Overview 
+![benchmark](./media/samples/speed_comparison.png)
 
-In the zip archive, there are a number of examples, grouped into different categories:
-
-* Microsoft R Server 
-* Microsoft R Open
-* Machine Learning 
-* Introduction to R
-
-In the sections that follow, you'll find detailed abstracts for each example.
-
-## Microsoft R Server 
+## Microsoft R Server
 
 These examples show off the power of [Microsoft R
 Server](https://www.microsoft.com/en-us/server-cloud/products/r-server/), which
@@ -142,36 +131,4 @@ of each one on the model:
 
 ![](./media/sample_gradient_boosting_machine_plot.PNG)
 
-## Introduction to R
 
-If you are new to R, this set of examples is a great introduction to the
-language and its packages. 
-
-Note that these examples all use the `checkpoint` package to manage
-dependencies. At the start of each script, the `checkpoint()` function scans the
-project for dependencies and automatically installs them. This can take quite
-some time the first time you run the script. However, the installation happens
-only once. On subsequent script execution, the packages do not get re-installed.
-
-![Scanning the project for dependencies](./media/samples/Introduction_to_R/1_a_checkpoint.PNG)
-
-Here are the topics that are covered:
-
-1. Getting Started
-1. A first look at R
-1. Data structures
-1. Functions
-1. More functions
-1. Data manipulation
-1. Plots
-1. Basic statistics
-1. Data exploration
-1. Clustering
-1. Classification
-1. Working with SQLite
-
-Example output from these tutorial scripts:
-
-![Classification](./media/samples/Introduction_to_R/10_classification.PNG)
-![Classification](./media/samples/Introduction_to_R/6_plots_ozone.PNG)
-![Classification](./media/samples/Introduction_to_R/8_data_exploration_2.PNG)

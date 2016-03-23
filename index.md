@@ -14,6 +14,10 @@ to address your feedback.  As such, there are bugs and missing features, so
 please beware!  This release is meant for evaluation purposes only and not for
 production use.
 
+If you **already** have VS2015 with Update 1 installed and R installed, you can download RTVS from the link below - but we highly recommend following the [Installation guide](installation.html):
+
+* [Download R Tools for Visual Studio](https://aka.ms/rtvs-current)
+
 ## Key features in Version 0.2
 
 * [Editor](editing.html) - full edit experience including tabbed windows, syntax highlighting, and more
@@ -31,7 +35,7 @@ production use.
 
 ## A quick video overview 
 
-<iframe width="560" height="315" align="middle" src="https://www.youtube.com/embed/VEOhaP4x7LE" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" align="middle" src="https://www.youtube.com/embed/KPS0ytrt9SA" frameborder="0" allowfullscreen></iframe>
 
 <br>
 
@@ -54,16 +58,21 @@ Once installed, create a project and code away!
 
 ## Feedback, bugs, etc.
 
-To send us feedback on the Public Preview, please use the Send a Smile and Send
-a Frown commands under the R Tools menu, or send email to
-[rtvsuserfeedback@microsoft.com](mailto:rtvsuserfeedback@microsoft.com).
+Please file bugs and feature requests directly on:
 
-In the future, when we Open Source RTVS, you will be able to use Github to look
-up our open issues, and file bug reports and feature requests.
+* [RTVS on Github](https://github.com/Microsoft/RTVS)
 
+To send us bug repros (which are highly appreciated) try the built in Smile/Frown feature:
+
+* Go to:  R Tools / Send a frown (or smile)
+
+This will collect logs, start your mail client and attach the log file.  You can then examine the contents and click Send. The logs are zipped into %TEMP%/RTVSlogs.zip in case you want to send it yourself.
+
+Finally you can send direct feedback to the team at [rtvsuserfeedback@microsoft.com](mailto:rtvsuserfeedback@microsoft.com).
+
+<br>
 <hr>
-<hr>
-<hr>
+
 
 <br>
 
