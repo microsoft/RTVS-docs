@@ -21,7 +21,7 @@ use R and Microsoft R Server for machine learning.
 For a technical comparison of R with MRS, check out [Lixun Zhang's
 detailed discussion](http://htmlpreview.github.io/?https://github.com/lixzhang/R-MRO-MRS/blob/master/Introduction_to_MRO_and_MRS.html) on the topic. 
 
-![benchmark](./media/samples/speed_comparison.png)
+![benchmark](./media/speed_comparison.png)
 
 ## Microsoft R Server
 
