@@ -29,7 +29,7 @@ library("ggplot2")
 head(Boston)
 ggplot(Boston, aes(x=medv)) + 
   geom_histogram(binwidth=2) +
-  ggtitle("Histogram of Response Variable \n")
+  ggtitle("Histogram of Response Variable")
 
 # Fit a model using medv as response and others as predictors. 
 lm1 <- lm(medv ~ ., data = Boston)
