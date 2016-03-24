@@ -12,7 +12,7 @@ This collection of samples will get you started on R, [Microsoft R Server](https
 
 `README` files will help you navigate the samples.
 
-At the top level, ** A First Look at R ** gives a gentle introduction for newcomers to R. ** MRS and Machine Learning ** gives examples of how to use R and Microsoft R Server for machine learning.
+At the top level, **A First Look at R** gives a gentle introduction for newcomers to R. **MRS and Machine Learning** gives examples of how to use R and Microsoft R Server for machine learning.
 
 
 ## What's special about Microsoft R Open and Microsoft R Server?
@@ -41,14 +41,14 @@ detailed discussion](http://htmlpreview.github.io/?https://github.com/lixzhang/R
 
 ## Samples highlights
 
-* R MRO MRS Comparison
+* **R MRO MRS Comparison**
 	This six-part comparison shows where the commands, syntax, constructs and performance of R, Microsoft R Open and Microsoft R Server are similar, and where they differ.
 
-* Machine learning
+* **Machine learning**
 	Samples learning to predict flight delays, housing prices and bike rentals show how to solve real world problems with both R and MRS. They also show you how to use several popular machine learning models and how to deploy them as an Azure Web Service using an [Azure Machine Learning](https://azure.microsoft.com/en-us/services/machine-learning/) workspace.
 
-* Benchmarks
-    Microsoft R Open includes the Intel Math Kernel Library (MKL) for fast, parallel linear algebra computations. This example runs a number of compute-intensive benchmarks to show the performance gains that are possible through the use of MKL. This sample produces a box plot showing the impact of running the same computation on multiple cores:
+* **Benchmarks**
+    Microsoft R Open includes the Intel Math Kernel Library (MKL) for fast, parallel linear algebra computations. This example runs a number of compute-intensive benchmarks to show the performance gains that are possible through the use of MKL.
 
     ![](./media/sample_mro_benchmark_plot.PNG)
 
