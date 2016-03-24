@@ -44,7 +44,6 @@ They include
 * **R MRO MRS Comparison Part 3b Speed for kmeans.R**
 * **R MRO MRS Comparison Part 3c Speed for kmneans rxKmeans.R**
 
-    ![Cluster allocation](./media/samples/Introduction_to_R_Server/Comparison_of_functions_clustering_speed.PNG)
 
 ### Comparisons
 
