@@ -53,10 +53,6 @@ Microsoft R Open includes the Intel Math Kernel Library (MKL)
 for fast, parallel linear algebra 
 computations. This example runs a number of compute-intensive benchmarks to show the
 performance gains that are possible through the use of MKL.
-This sample produces a box plot showing the
-impact of running the same computation on multiple cores:
-
-![](./media/sample_mro_benchmark_plot.PNG)
 
 * **rxGlm benchmark.R**
 This example demonstrates the differences between CRAN R and R server.
@@ -65,8 +61,6 @@ glm(). The R server function rxGlm() fits a generalized linear model on data
 that is potentially much larger than available RAM.
 NOTE: The CRAN portion of this comparison requires about 7GB of RAM.
 If your machine has less, this script will crash.
-
-![rxGlm benchmark](./media/samples/Introduction_to_R_Server/rxGLM_benchmark.PNG)
 
 ### Machine Learning  
   
@@ -81,12 +75,6 @@ property tax rate. Note that it takes quite some time to run this model, so
 don't expect immediate results. If you find that it takes too long, there is a
 commented out block of code that you can substitute that has a smaller parameter
 tuning grid.
-
-The output of this example is a plot of features showing the relative influence
-of each one on the model:
-
-![](./media/sample_gradient_boosting_machine_plot.PNG)
-
 
 * **LASSO Model.R**
 This sample shows how to create, train and evaluate
