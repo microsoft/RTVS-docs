@@ -29,6 +29,9 @@ if (!require("version.compare")){
 }
 library(version.compare)
 
+cat("This script can take several minutes to run.\n")
+cat("Make yourself comfortable.\n")
+
 # Determine the local installation path.
 r <- findRscript(
   version = as.character(getRversion())
