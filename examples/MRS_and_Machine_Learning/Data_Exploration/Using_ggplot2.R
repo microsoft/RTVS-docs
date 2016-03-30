@@ -14,17 +14,25 @@
 str(quakes)
 
 # install and load the packages
-if (!require("ggplot2"))
-    install.packages("ggplot2")
+suppressWarnings(if (!require("ggplot2"))
+    install.packages("ggplot2"))
 library("ggplot2")
-if (!require("rgl"))
-    install.packages("rgl")
+suppressWarnings(if (!require("rgl"))
+    install.packages("rgl"))
 library("rgl")
-if (!require("mapproj"))
-  install.packages("mapproj") # required for map projections
+suppressWarnings(if (!require("mapproj"))
+    install.packages("mapproj")) # required for map projections
 library("mapproj")
+# The package "gtable" allows you to work with objects called grob tables.
+# A grob table captures all the information needed to layout grobs in a table
+# structure. It supports row and column spanning, offers some tools to
+# automatically figure out the correct dimensions, and makes it easy to align
+# and combine multiple tables. 
+suppressWarnings(if (!require("gtable"))
+    install.packages("gtable"))
+library(gtable)
 
-# Plot longitude and latitude of quakes
+# Plot longitude and latitude of quakes.
 # To create a plot, you have to specify the data, then map aesthetics to 
 # columns in your data. In this example, you map the column long to the x-axis
 # and lat to the y-axis.
@@ -37,28 +45,28 @@ p0
 # You can use a number of different aesthetics, for example colour or size
 # of the points.
 
-# Map the depth column to the colour aesthetic
+# Map the depth column to the colour aesthetic.
 p1 <- ggplot(quakes, aes(x = long, y = lat)) + 
     geom_point(aes(colour = depth)) + 
     coord_map()
 p1
 
-# Add size for magnitude. The bigger the magnitude, the larger the point
+# Add size for magnitude. The bigger the magnitude, the larger the point.
 p2 <- ggplot(quakes, aes(x = long, y = lat)) + 
     geom_point(aes(colour = depth, size = mag)) + 
     coord_map()
 p2
 
-# You can control the transparancy of a plot object with the alpha aesthetic
+# You can control the transparancy of a plot object with the alpha aesthetic.
 # High values of alpha (close to 1) are opaque, while low values (close to 0)
-# are translucent
-# Add alpha level to hide overplotting, thus revealing detail
+# are translucent.
+# Add alpha level to hide overplotting, thus revealing detail.
 p3 <- ggplot(quakes, aes(x = long, y = lat)) + 
     geom_point(aes(colour = depth, size = mag), alpha = 0.25) + 
     coord_map()
 p3
 
-# Change colour gradient by adding a gradient scale
+# Change colour gradient by adding a gradient scale.
 p4 <- ggplot(quakes, aes(x = long, y = lat)) + 
     geom_point(aes(colour = depth, size = mag), alpha = 0.25) + 
     coord_map() +
@@ -91,15 +99,6 @@ grid.draw(cbind(
     ))
 
 
-# The package "gtable" allows you to work with objects called grob tables.
-# A grob table captures all the information needed to layout grobs in a table
-# structure. It supports row and column spanning, offers some tools to
-# automatically figure out the correct dimensions, and makes it easy to align
-# and combine multiple tables. 
-if (!require("gtable"))
-    install.packages("gtable")
-library(gtable)
-
 plonglat <- ggplot(quakes, aes(x = long, y = lat, size = mag, col = depth)) +
     geom_point(alpha = 0.5) + 
     ggtitle("Top view")
@@ -128,15 +127,10 @@ plot.new()
 grid.draw(gt)
 
 
-# ----------------------------------------------------------------------------
-
-# Finally, you can plot the data in an interactive 3D plot, using package rgl
-# The rgl package is a wrapper around the 
-
+# Finally, you can plot the data in an interactive 3D plot, using package rgl.
 # Note this will open a seperate window with your plot.
 # This window is interactive - you can click and drag in the window,
 # thus changing the orientation of the data in 3 dimensions.
-
 with(quakes, plot3d(lat, long, -depth, col = mag))
 
 

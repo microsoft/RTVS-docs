@@ -1,24 +1,22 @@
-# ----------------------------------------------------------------------------
-# purpose:  to demonstrate the speed differences across 
-#           R, Microsoft R Open (MRO), and Microsoft R Server (MRS)
-# audience: you are expected to have some prior experience with R
-# ----------------------------------------------------------------------------
+## Demonstrates the speed differences in matrix calculations
+## across R, Microsoft R Open (MRO), and Microsoft R Server (MRS).
 
-# to learn more about the differences among R, MRO and MRS, refer to:
+# To learn more about the differences among R, MRO and MRS, refer to:
 # https://github.com/lixzhang/R-MRO-MRS
 
-# ----------------------------------------------------------------------------
-# run the following code on R, MRO, and MRS and 
-# notice the speed improvement with MRO and MRS over R
-# ----------------------------------------------------------------------------
-# the code in this section can be found at the following address
+# Run the following code on R, MRO, and MRS and 
+# notice the speed improvement with MRO and MRS over R.
+
+# The code in this section can be found at the following address:
 # https://mran.revolutionanalytics.com/documents/rro/multithread/#mt-bench
 
+cat("-----------------------------------------------------------------\n",
+    "This is a big calculation and may take a few minutes to run. \n")
+
 # print the default number of threads if MKL library is installed
-if (require("RevoUtilsMath"))
-{
-  print(paste("The number of threads is:", getMKLthreads()))
-}
+if (require("RevoUtilsMath")) {
+    print(paste("The number of threads is:", getMKLthreads()))
+    }
 
 # Initialization
 set.seed(1)
@@ -51,3 +49,6 @@ k <- round(m / 2)
 A <- data.frame(A, fac = sample(LETTERS[1:g], m, replace = TRUE))
 train <- sample(1:m, k)
 system.time(L <- lda(fac ~ ., data = A, prior = rep(1, g) / g, subset = train))
+
+cat("-----------------------------------------------------------------\n",
+    "Save the time and run the code on R, MRO and MRS to compare speed.")

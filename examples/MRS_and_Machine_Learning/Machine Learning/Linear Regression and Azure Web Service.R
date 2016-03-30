@@ -1,38 +1,40 @@
-# ----------------------------------------------------------------------------
-# purpose:  fit a linear regression model and deploy an Azure ML web service
-# audience: you are expected to have some prior experience with R
-# ----------------------------------------------------------------------------
+## This script shows hpw to fit a linear regression model and 
+## deploy an Azure ML web service.
 
-# ----------------------------------------------------------------------------
-# NOTE: In order to run the last part of the script you'll need to have
-# the an Azure ML workspace, with its workspace ID and key.
-# For details about Azure ML, go to http://studio.azureml.net/
-# ----------------------------------------------------------------------------
+cat("-----------------------------------------------------------------\n",
+    "NOTE:In order to run the last part of the script you 'll need to have \n",
+    "the an Azure ML workspace, with its workspace ID and key. \n",
+    "For details about Azure ML, go to http://studio.azureml.net/ \n")
+
 # Enter your Azure ML Studio workspace info here before continuing.
 ws_id <- ""
 auth_token <- ""
 
-# ----------------------------------------------------------------------------
-# load packages
-# ----------------------------------------------------------------------------
-(if (!require("AzureML")) install.packages("AzureML"))
-library("AzureML") # load the package for deploying Azure ML web service
-(if (!require("MASS")) install.packages("MASS"))
-library("MASS") # to use the Boston dataset
+# Load packages.
+# Install packages if they are not already installed.
+# Load the package for deploying Azure ML web service.
+(if (!require("AzureML", quietly = TRUE)) install.packages("AzureML"))
+library("AzureML")
+# To use the Boston dataset.
+(if (!require("MASS", quietly = TRUE)) install.packages("MASS"))
+library("MASS")
+# Used for plotting.
+if (!require("ggplot2", quietly = TRUE)) install.packages("ggplot2")
+library("ggplot2") 
 
-# ----------------------------------------------------------------------------
-# fit a model and check model performance
-# ----------------------------------------------------------------------------
-# check the data
+
+### Fit a model and check model performance.
+
+# Check the data.
 head(Boston)
 ggplot(Boston, aes(x=medv)) + 
-  geom_histogram(binwidth=5) +
+  geom_histogram(binwidth=2) +
   ggtitle("Histogram of Response Variable")
 
-# fit a model using medv as response and others as predictors 
+# Fit a model using medv as response and others as predictors. 
 lm1 <- lm(medv ~ ., data = Boston)
 
-# check model performance
+# Check model performance.
 summary(lm1)
 
 pred <- predict(lm1)
@@ -52,12 +54,10 @@ print(paste("Relative Absolute Error: ",
 print(paste("Relative Squared Error: ", 
             as.character(round(rse, digit = 6)), sep = ""))
 
-# ----------------------------------------------------------------------------
-# publish and consume a web service
-# ----------------------------------------------------------------------------
-# the following works only with valid AzureML workspace information 
+### Publish and consume a web service.
 
-# get workspace information
+# The following works only with valid AzureML workspace information: 
+# Get workspace information.
 AML <- 0
 tryCatch(
   {
@@ -65,53 +65,57 @@ tryCatch(
     AML <- 1
   },
   error = function(cond){
-    message("Azure ML workspace information was not valid.")
+    cat("-----------------------------------------------------------------\n", 
+      "Azure ML workspace information is invalid. \n")
   }
 )
 
 if (AML) {
-  # define predict function
+  # Define predict function.
   mypredict <- function(newdata) {
     res <- predict(lm1, newdata)
     res
   }
   
-  # test the prediction function
+  # Test the prediction function.
   newdata <- Boston[1, 1:13]
   print(mypredict(newdata))
   
-  # Publish the service
-  ep <- publishWebService(ws = ws, fun = mypredict, 
-                          name = "HousePricePrediction", inputSchema = newdata)
+  # Publish the service.
+  ep <- publishWebService(ws = ws,
+                          fun = mypredict, 
+                          name = "HousePricePrediction",
+                          inputSchema = newdata)
   
-  # consume web service - 1st approach
+  # Consume web service - 1st approach:
   pred <- consume(ep, newdata)
   pred
   
-  # consume web service - 2nd approach
-  # retrieve web service information for later use
+  # Consume web service - 2nd approach:
+  # Retrieve web service information for later use.
   service_id <- ep$WebServiceId
-  # define endpoint
+  # Define endpoint.
   ep_price_pred <- endpoints(ws, service_id)
-  # consume
+  # Consume.
   consume(ep_price_pred, newdata)
   
-  # define function for testing purpose
+  # Define function for testing purposes.
   mypredictnew <- function(newdata) {
     res <- predict(lm1, newdata) + 100
     res
   }
   
-  # update service with the new function
+  # Update service with the new function.
   ep_update <- updateWebService(
     ws = ws,
     fun = mypredictnew,
     inputSchema = newdata,
     serviceId = ep$WebServiceId)
   
-  # consume the updated web service
+  # Consume the updated web service.
   consume(ep_price_pred, newdata)
 } else {
-  message("Azure ML webservice is not deployed because ", 
-          "the workspace information is invalid")
+    cat("-----------------------------------------------------------------\n",
+    "Azure ML webservice was not deployed because",
+    "the workspace information is invalid. \n")
 }

@@ -4,15 +4,15 @@
 # beautiful plots by describing the plot structure.
 
 # Install and load the packages.
-options(warn = -1)
-if (!require("ggplot2", quietly = TRUE))
-    install.packages("ggplot2", quiet = TRUE)
+#options(warn = -1)
+suppressWarnings(
+    if (!require("ggplot2", quietly = TRUE))
+        install.packages("ggplot2", quiet = TRUE))
 # mapproj is required for map projections.
-#if (!suppressPackageStartupMessages(require("mapproj", quietly = TRUE)))
-#    install.packages("mapproj")
-if (!require("mapproj", quietly = TRUE))
-    install.packages("mapproj", quiet = TRUE)
-options(warn = 0)
+suppressWarnings(
+    if (!require("mapproj", quietly = TRUE))
+        install.packages("mapproj", quiet = TRUE))
+#options(warn = 0)
 
 library("ggplot2", quietly = TRUE)
 library("mapproj", quietly = TRUE)
