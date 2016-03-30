@@ -6,6 +6,9 @@
     border-bottom: 1px solid $grey-color-light;
     min-height: 56px;
 
+    background-color: black;
+    color: white;
+
     // Positioning context for the mobile navigation icon
     position: relative;
 }
@@ -20,7 +23,7 @@
 
     &,
     &:visited {
-        color: $grey-color-dark;
+        color: white;
     }
 }
 
@@ -98,6 +101,9 @@
  * Site footer
  */
 .site-footer {
+    background-color: black;
+    color: white;
+
     border-top: 1px solid $grey-color-light;
     padding: $spacing-unit 0;
 }
