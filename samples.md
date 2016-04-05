@@ -4,7 +4,7 @@ layout: default
 
 # R Tools for Visual Studio Sample Projects
 
-This collection of samples will get you started on R, [Microsoft R Server](https://www.microsoft.com/en-us/server-cloud/products/r-server/) and R Tools for Visual Studio. To get them:
+This collection of samples will get you started on R, [Microsoft R Server](http://aka.ms/rtvs-msft-r) and R Tools for Visual Studio. To get them:
 
 1. Download [this zip file](https://github.com/Microsoft/RTVS-docs/archive/master.zip).
 2. Unzip.
@@ -17,14 +17,14 @@ At the top level, **A First Look at R** gives a gentle introduction for newcomer
 
 ## What's special about Microsoft R Open and Microsoft R Server?
 
-[Microsoft R Open](https://mran.revolutionanalytics.com/open/), Microsoft's distribution of R, is different from [CRAN R](https://cran.r-project.org/) in two important ways:
+[Microsoft R Open](http://aka.ms/rtvs-r-open), Microsoft's distribution of R, is different from [CRAN R](https://cran.r-project.org/) in two important ways:
 
 1. [Better computation performance](https://mran.revolutionanalytics.com/rro/#intelmkl1) when used with the [Intel Math Kernel Libraries](https://software.intel.com/en-us/intel-mkl). These are available as a free download from Microsoft for use with Microsoft R Open.
 
 1. [Reproducible R Toolkit](https://mran.revolutionanalytics.com/rro/#reproducibility), which ensures that the libraries you used to build your R program are always available to others that want to reproduce your work.
 
 
-[Microsoft R Server](https://www.microsoft.com/en-us/server-cloud/products/r-server/) is an extension of R that allows you to handle more data and handle it faster. It gives R two powerful capabilities:
+[Microsoft R Server](http://aka.ms/rtvs-msft-r) is an extension of R that allows you to handle more data and handle it faster. It gives R two powerful capabilities:
 
 1. Larger data sets. MRS can process out-of-memory data from a variety of sources including Hadoop clusters, databases and data warehouses. You never have to be limited by your RAM again.
 
