@@ -102,7 +102,7 @@ search()
 ### A Simple Regression Example   
 
 # Look at the data sets that come with the package.
-data(package = "ggplot2") 
+data(package = "ggplot2")$results
 # Note that the results in RTVS may pop up, or pop under, in a new window.
 
 # ggplot2 contains a dataset called diamonds. Make this dataset available using the data() function.
