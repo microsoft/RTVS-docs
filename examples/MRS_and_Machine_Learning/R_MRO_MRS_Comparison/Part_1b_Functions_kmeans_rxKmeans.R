@@ -65,23 +65,24 @@ mydata <- group_all[, 1:2]
 ### kmeans 
 
 # Perform cluster analysis with kmeans(). This works on R, MRO, or MRS.
-fit.kmeans <- kmeans(mydata, nclusters, iter.max = 1000, algorithm = "Lloyd")
+fit_kmeans <- kmeans(mydata, nclusters, iter.max = 1000, algorithm = "Lloyd")
 
 mydata_clusters <- cbind(
   group_all,
-  kmeans.cluster = factor(fit.kmeans$cluster))
+  kmeans_cluster = factor(fit_kmeans$cluster))
 
-# Get cluster means. 
-clustermeans.kmeans <- fit.kmeans$centers
+# Get cluster centroids. 
+cluster_centroid_kmeans <- fit_kmeans$centers
 
 # Plot clusters from kmeans.
 ggplot(mydata_clusters, aes(x = V1, y = V2)) +
-  geom_point(aes(colour = kmeans.cluster)) +
-  geom_point(data = as.data.frame(clustermeans.kmeans), size = 5) +
+  geom_point(aes(colour = kmeans_cluster)) +
+  geom_point(data = as.data.frame(cluster_centroid_kmeans), size = 5) +
   xlim(-5, 5) + ylim(-5, 5) +
   geom_hline(yintercept = 0) +
   geom_vline(xintercept = 0) +
-  ggtitle("Clusters Found by kmeans()")
+  ggtitle("Clusters Found by kmeans()") + 
+  theme(legend.title=element_blank())
 
 
 ### Perform cluster analysis with rxKmeans(). This works on MRS only.
@@ -93,37 +94,38 @@ if (RRE){
   rxImport(inData = mydata, outFile = dataXDF, overwrite = TRUE)
   
   # rxKmeans
-  clust <- rxKmeans(~ V1 + V2, data = dataXDF, 
+  fit_rxKmeans <- rxKmeans(~ V1 + V2, data = dataXDF, 
                     numClusters = nclusters, algorithm = "lloyd",
                     outFile = dataXDF, outColName = "cluster", 
                     overwrite = TRUE)
   
-  rxKmeans.cluster <- rxDataStep(dataXDF, varsToKeep = "cluster")
+  cluster_rxKmeans <- rxDataStep(dataXDF, varsToKeep = "cluster")
   
   # Append cluster assignment from kmeans and rxKmeans.
   mydata_clusters <- cbind(
     group_all,
-    kmeans.cluster = factor(fit.kmeans$cluster),
-    rxKmeans.cluster = factor(rxKmeans.cluster$cluster))
+    cluster_kmeans = factor(fit_kmeans$cluster),
+    cluster_rxKmeans = factor(cluster_rxKmeans$cluster))
   
   # Compare the cluster assignments between kmeans and rxKmeans.
   cat("\nComparing cluster assignments between kmeans and rxKmeans:")
-  print(with(mydata_clusters, table(kmeans.cluster, rxKmeans.cluster)))
+  print(with(mydata_clusters, table(cluster_kmeans, cluster_rxKmeans)))
   
   # Get cluster means.
-  clustermeans.rxKmeans <- fit.kmeans$centers
+  cluster_centroid_rxKmeans <- fit_rxKmeans$centers
   
   # Plot clusters from rxKmeans.
   ggplot(mydata_clusters, aes(x = V1, y = V2)) +
-    geom_point(aes(colour = rxKmeans.cluster)) +
-    geom_point(data = as.data.frame(clustermeans.kmeans), size = 5) +
+    geom_point(aes(colour = cluster_rxKmeans)) +
+    geom_point(data = as.data.frame(cluster_centroid_rxKmeans), size = 5) +
     xlim(-5, 5) + ylim(-5, 5) +
     geom_hline(yintercept = 0) +
     geom_vline(xintercept = 0) +
-    ggtitle("Clusters Found by rxKmeans()")
+    ggtitle("Clusters Found by rxKmeans()") + 
+    theme(legend.title=element_blank())
   
 } else {
     cat("-----------------------------------------------------------------\n",
-    "rxKmeans was not run becauase the RevoScaleR package is not available.")
+    "rxKmeans was not run because the RevoScaleR package is not available.\n")
 }
 
