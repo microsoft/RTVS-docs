@@ -36,7 +36,7 @@ Figure 1. MRS and MRO with MKL have significantly better computation performance
 detailed discussion](http://htmlpreview.github.io/?https://github.com/lixzhang/R-MRO-MRS/blob/master/Introduction_to_MRO_and_MRS.html) on the topic.
 
 ![rxGlm benchmark](./media/samples/Introduction_to_R_Server/rxGLM_benchmark.PNG)
-Figure 2. This figure compares elapsed time in seconds used in building Logistic Regression models to predict whether the arrival of scheduled passenger flights will be delayed by more than 15 minutes. Elapsed time used in CRAN R increases dramatically when increasing a small number of rows, while MRS only increases by approximately 2 times.
+Figure 2. This figure compares elapsed time in seconds used in building Logistic Regression models to predict whether the arrival of scheduled passenger flights will be delayed by more than 15 minutes. Elapsed time used in CRAN R increases dramatically when increasing a small number of rows, while MRS only increases by approximately 2 times. For details of this benchmark, check out `rxGlm_benchmark.R` example.
 
 
 ## Samples highlights
@@ -51,4 +51,4 @@ Figure 2. This figure compares elapsed time in seconds used in building Logistic
     Microsoft R Open includes the Intel Math Kernel Library (MKL) for fast, parallel linear algebra computations. This example runs a number of compute-intensive benchmarks to show the performance gains that are possible through the use of MKL.
 
     ![](./media/sample_mro_benchmark_plot.PNG)
-Figure 3. With simulated data, using 2 threads tends to give better performance than using 1 thread for certain matrix related calculations.   
+Figure 3. With simulated data, using 2 threads tends to give better performance than using 1 thread for certain matrix related calculations. Check out `MRO-MKL-benchmarks.R` example for more details.   
