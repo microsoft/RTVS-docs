@@ -132,13 +132,9 @@ Studio Code, which is the new cross-platform IDE from Microsoft.
 
 **Q. Can I contribute to RTVS?**
 
-A. Absolutely! We will release the source in the near future, and pull requests
-are very welcome. For now, the most important contribution is feedback and bug
-reports.
-
-**Q. I want to save my plots as PDFs. What software do I need for that?**
-
-A. See above.
+A. Absolutely! The source code lives on
+[Github](https://github.com/microsoft/RTVS). Please use our issue tracker to
+submit / comment on bugs!
 
 **Q. Does RTVS work with my source control system?**
 
