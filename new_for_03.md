@@ -100,21 +100,34 @@ operator:
 
 ![](media/code_snippet_example.png)
 
+### Code Navigation
 
--	IntelliSense and parameter help for user-defined functions (single file)
--	Completion for function arguments and variables declared in the file
--	Code snippets (type if[tab][tab] or seq[tab][tab]), supports Insert Snippet… and Surround With…
--	GoTo Definition 
--	Peek Definition
+You can now navigate to the definition of another function within the same file
+using the GoTo Definition command from the context menu, or by placing your
+cursor over a call to the function and pressing F12. Note that this feature only
+works today within the same file; send us feedback if you feel multi-file
+navigation is an important feature and we will prioritize and add to a future
+release.
+
+If you would prefer instead to _peek_ at the definition of a function, you can
+do so by using the Peek Definition command from the context menu, or by placing
+your cursor over a call to the function and pressing ALT+F12:
+
+![](media/peek_definition.gif)
+
+### Code formatting
+
 -	Insert Roxygen comment block (via context menu or type ###)
 -	Reworked smart indentation, now support aligning function arguments
 -	Correct word selection via double-click or Shift-Arrow or Ctrl+F3
 
 ## Debugger
+
 -	Data tooltip when you hover over variable in the editor
 -	Cleaned up call stack display
 
 ## Variable Explorer
+
 -	Allows opening data frames and vectors in Excel
 -	Displays information on functions in packages
 -	Supports stack frames during debugging
