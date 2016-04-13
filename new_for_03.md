@@ -117,14 +117,29 @@ your cursor over a call to the function and pressing ALT+F12:
 
 ### Code formatting
 
--	Insert Roxygen comment block (via context menu or type ###)
--	Reworked smart indentation, now support aligning function arguments
--	Correct word selection via double-click or Shift-Arrow or Ctrl+F3
+We have added a few additional features to make it easier to format / select
+your code. 
+
+You can insert a Roxygen comment block by typing ### at the start of a line:
+
+![](media/roxygen_comments.gif)
+
+Auto-formatting of parameters lets you align based on function arguments:
+
+![](media/autoformat_aligned_parameters.gif)
+
+We have also fixed the behavior of double-click to correctly select words within
+the editor.
 
 ## Debugger
 
--	Data tooltip when you hover over variable in the editor
--	Cleaned up call stack display
+We have now enabled tooltips in the debugger. This lets you hover over a
+variable that you want to inspect, and then drill down into the objects within
+that variable. This lets you inspect arbitrary variables in-place while stopped
+in the debugger without having to resort to using other windows like the locals
+window.
+
+![](media/debugger_tooltips.gif)
 
 ## Variable Explorer
 
@@ -133,6 +148,7 @@ your cursor over a call to the function and pressing ALT+F12:
 -	Supports stack frames during debugging
 
 ## IDE
+
 -	Dedicated R Toolbar simplifying publishing and running Shiny apps
 -	Data Science popular keyboard shortcuts are now default
 -	Context menu in the project system with convenient commands
