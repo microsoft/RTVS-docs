@@ -13,9 +13,6 @@ The Package Manager is a UI for working with packages. It has three tabs, which
 lety you browse, install, and visualize the list of loaded packages in your R
 session.
 
-TODO: discussion of where the package manager looks for packages and how to
-configure this.
-
 ### Installed Packages 
 
 ![](media/package_manager_installed.png)
@@ -143,7 +140,18 @@ window.
 
 ## Variable Explorer
 
--	Allows opening data frames and vectors in Excel
+The variable explorer also has numerous improvements in this release. While the
+data table viewer is a great tool, sometimes you want to be able to take your
+data frame and *export* it to Excel. We've made it easy to do that in this
+release by adding a small Excel icon to the variable explorer:
+
+![](media/variable_explorer_icon.png)
+
+When you click on it, it will take your data frame and export it to a new Excel
+Workbook:
+
+![](media/variable_explorer_excel_view.png)
+
 -	Displays information on functions in packages
 -	Supports stack frames during debugging
 
