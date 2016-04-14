@@ -1,17 +1,17 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'jekyll serve'. If you change this file, please restart the server process.
+# Dependencies
+markdown:       kramdown
 
-# Site settings
-title: R Tools for Visual Studio Documentation 
-email: rtvsuserfeedback@microsoft.com
-description: > # this means to ignore newlines until "baseurl:"
-    Please send us your feedback!
-baseurl: "/RTVS-docs" # the subpath of your site, e.g. /blog
-url: "https://microsoft.github.io" # the base hostname & protocol for your site
+# Setup
+title:          R Tools for Visual Studio Documentation 
+tagline:        'Awesome documentation'
+description:    'Documentation and examples for R Tools for Visual Studio'
+email:          rtvsuserfeedback@microsoft.com
+url:            "https://microsoft.github.io"
+baseurl:        "/RTVS-docs"
 
-# Build settings
-markdown: kramdown
+author:
+    name:       'John Lam'
+    url:        https://twitter.com/john_lam
+
+github:
+    repo:       https://github.com/microsoft/RTVS-docs
