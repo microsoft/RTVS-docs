@@ -2,12 +2,12 @@
 markdown:       kramdown
 
 # Setup
-title:          R Tools for Visual Studio Documentation 
+title:          R Tools for Visual Studio
 tagline:        'Awesome documentation'
 description:    'Documentation and examples for R Tools for Visual Studio'
 email:          rtvsuserfeedback@microsoft.com
 url:            "https://microsoft.github.io"
-baseurl:        "/RTVS-docs"
+baseurl:        "/RTVS-docs/"
 
 author:
     name:       'John Lam'
