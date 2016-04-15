@@ -162,5 +162,4 @@ $RECYCLE.BIN/
 
 #Exclude generated knitr files
 *.docx
-*.html
 *.pdf
