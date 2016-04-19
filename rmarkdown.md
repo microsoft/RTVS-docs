@@ -4,8 +4,9 @@ layout: default
 
 # R Markdown
 
-
-To use R Markdown, you should first install pandoc:
+To use R Markdown, you should first install pandoc. Make sure to shut down
+Visual Studio before installing pandoc to ensure that Visual Studio will pick up
+the path to the pandoc installation when you run it after the installation.
 
 [Install Pandoc from pandoc.org](http://pandoc.org/installing.html)
 
