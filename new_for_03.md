@@ -10,7 +10,7 @@ give us feedback on, in addition to numerous bug fixes.
 ## Package Manager
 
 The Package Manager is a UI for working with packages. It has three tabs, which
-lety you browse, install, and visualize the list of loaded packages in your R
+let you browse, install, and visualize the list of loaded packages in your R
 session.
 
 ### Installed Packages 
@@ -18,7 +18,7 @@ session.
 ![](media/package_manager_installed.png)
 
 The default tab is the Installed Packages tab, which provides a list of all installed and
-loaded packages. If there is a a green dot next to a package, it indicates that
+loaded packages. If there is a green dot next to a package, it indicates that
 the package is also loaded into your R session. 
 
 Installed packages can also be uninstalled by clicking on the red "x" to the
