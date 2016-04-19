@@ -2,7 +2,7 @@
 layout: default
 ---
 
-Thanks for downloading the 0.3 release of RTVS!
+## Thanks for downloading the 0.3 release of RTVS! (April, 2016)
 
 There are a number of new features in 0.3 that we would like you to try out and
 give us feedback on, in addition to numerous bug fixes.
@@ -10,7 +10,7 @@ give us feedback on, in addition to numerous bug fixes.
 ## Package Manager
 
 The Package Manager is a UI for working with packages. It has three tabs, which
-lety you browse, install, and visualize the list of loaded packages in your R
+let you browse, install, and visualize the list of loaded packages in your R
 session.
 
 ### Installed Packages 
@@ -18,7 +18,7 @@ session.
 ![](media/package_manager_installed.png)
 
 The default tab is the Installed Packages tab, which provides a list of all installed and
-loaded packages. If there is a a green dot next to a package, it indicates that
+loaded packages. If there is a green dot next to a package, it indicates that
 the package is also loaded into your R session. 
 
 Installed packages can also be uninstalled by clicking on the red "x" to the
@@ -152,13 +152,46 @@ Workbook:
 
 ![](media/variable_explorer_excel_view.png)
 
--	Displays information on functions in packages
--	Supports stack frames during debugging
+We now let you pick different _scopes_ for the variables in the variable
+explorer; previously you could only examine variables at global scope. Now, with
+package level scope, we give you a view over all of the variables (including
+functions, which are just functions bound to variables) defined within a
+package:
+
+![](media/variable_explorer_package_contents.png)
+
+When you are debugging, variable explorer also recognizes the current execution
+scope (i.e., when you are debugging code within a function). Here, local
+variables that you define within that function can now be inspected using
+variable explorer. In the picture below, you can see that the current execution
+scope is within a function called `renderUI`, and that there are two
+local variables defined at the current execution point: `country_data` and
+`max_destinations`:
+
+![](media/variable_explorer_view_locals.png)
 
 ## IDE
 
--	Dedicated R Toolbar simplifying publishing and running Shiny apps
--	Data Science popular keyboard shortcuts are now default
--	Context menu in the project system with convenient commands
--	Files and projects can be opened via Open With… in Windows Explorer
--	Improved command shortcut availability in various contexts
+Finally, we have a bunch of additional small improvements in the IDE:
+
+A dedicated toolbar with buttons for: 
+   * Executing selection in R interactive window
+   * Source current script
+   * Run/Stop Shiny app
+   * Import data from a web URI
+   * Import data from a text file
+   * Preview HTML
+   * Preview PDF
+
+   ![](media/ide_toolbar.png)
+
+We've made the shortcuts that users are familiar with from other IDEs the
+default key bindings in RTVS (e.g., CTRL+8 maps to Variable Explorer):
+
+   ![](media/ide_shortcuts.png)
+
+We've added some additional commands to the context menu in the Solution
+Explorer so that you can quickly source the selected file or set the current
+working directory.
+
+   ![](media/ide_solution_explorer_context_menu.png)
