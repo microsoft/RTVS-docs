@@ -2,7 +2,7 @@
 layout: default
 ---
 
-Thanks for downloading the 0.3 release of RTVS!
+## Thanks for downloading the 0.3 release of RTVS! (April, 2016)
 
 There are a number of new features in 0.3 that we would like you to try out and
 give us feedback on, in addition to numerous bug fixes.
