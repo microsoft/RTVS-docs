@@ -152,6 +152,11 @@ Workbook:
 
 ![](media/variable_explorer_excel_view.png)
 
+We also added toolbar buttons to the variable explorer to make it easier to
+import data from either a local file or from a web URI:
+
+![](media/variable_explorer_import.png)
+
 We now let you pick different _scopes_ for the variables in the variable
 explorer; previously you could only examine variables at global scope. Now, with
 package level scope, we give you a view over all of the variables (including
