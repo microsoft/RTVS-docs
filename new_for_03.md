@@ -160,8 +160,8 @@ import data from either a local file or from a web URI:
 We now let you pick different _scopes_ for the variables in the variable
 explorer; previously you could only examine variables at global scope. Now, with
 package level scope, we give you a view over all of the variables (including
-functions, which are just functions bound to variables) defined within a
-package:
+functions, which are just values of type function that are bound to variables)
+defined within a package:
 
 ![](media/variable_explorer_package_contents.png)
 
