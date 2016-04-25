@@ -64,6 +64,15 @@ Environment Browser prompt in the R Interactive Window.  From there, you can
 also issue Environment Browser commands (e.g., n for next command, or c to
 continue execution). 
 
+## Debugger Tooltips
+
+Debugger tooltips let you hover over a variable that you want to inspect, and
+then drill down into the objects within that variable. This lets you inspect
+arbitrary variables in-place while stopped in the debugger without having to
+resort to using other windows like the locals window.
+
+![](media/debugger_tooltips.gif)
+
 ### Known Issues in the Debugger:
 
 * Setting a breakpoint on the first line of a function declaration doesn't
@@ -77,7 +86,6 @@ f <- function(x) {
 
 * We are working on adding data tips (hover over a variable to see information
 display the value of the variable) for a future release.
-
 
 * If you are stopped on a breakpoint you may need to press **F10** multiple
 times to step over the line that contains the breakpoint. This is a known
