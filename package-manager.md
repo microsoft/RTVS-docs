@@ -2,7 +2,7 @@
 layout: default
 ---
 
-## Package Manager
+# Package Manager
 
 The Package Manager is a UI for working with packages. It has three tabs, which
 let you browse, install, and visualize the list of loaded packages in your R
