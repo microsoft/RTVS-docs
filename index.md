@@ -25,8 +25,7 @@ download RTVS from the link below - but we highly recommend following the
 For an overview of what is new in 0.3, please see [our What's New in 0.3
 page](new_for_03.html).
 
-
-### Completely new features
+### Completely New Features for 0.3
 
 * [Package Manager](package-manager.html) - Graphical package manager
 * [Code Snippets](code-snippets.html) - Insert code snippets with simple
@@ -34,13 +33,20 @@ page](new_for_03.html).
 * [Code Navigation](code-navigation.html) - Quickly navigate to different
     functions within your project
 
-### Existing improved features
+### Existing and Improved Features
 
-* [IntelliSense](intellisense.html) - IntelliSense now works for user-defined
-    functions within the same file
-* [Debugging](debugging.html) - Debugger tooltips 
-* [Variable Explorer](variable-explorer.html) - Excel integration and support
-    for browsing variables in different scopes
+* [Editor](editing.html) - full edit experience including tabbed windows, syntax highlighting, and more
+* [History window](history.html) - see all of the commands that you have entered in a scrollable window
+* [R Interactive Window](interactive-repl.html) - work with the R console directly from within Visual Studio
+* [IntelliSense](intellisense.html) - (aka Completion) available in both the editor and the Interactive R window
+* [Variable Explorer](variable-explorer.html) - lets you drill into your R data structures and examine their values
+* [Plotting](plotting.html) - see all of your R plots in a Visual Studio tool window
+* [Debugging](debugging.html) -  breakpoints, stepping, watch windows, call stacks and more!
+* [R Markdown](rmarkdown.html) - R Markdown/knitter support with export to Word and HTML
+* [Git](git.html) - Source code control via Git and Github
+* [Extensions](extensions.html) - over 6,000 Extensions from Data to Languages to Productivity
+* [Polyglot IDE](polyglot.html) - VS supports R, Python, C++, C#, Node.js, SQL, … projects simultaneously
+* [Help](help.html) - use ? and ?? to view R documentation within Visual Studio
 
 ## A quick video overview 
 
