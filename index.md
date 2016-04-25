@@ -14,11 +14,16 @@ to address your feedback.  As such, there are bugs and missing features, so
 please beware!  This release is meant for evaluation purposes only and not for
 production use.
 
-If you **already** have VS2015 with Update 1 installed and R installed, you can download RTVS from the link below - but we highly recommend following the [Installation guide](installation.html):
+If you **already** have VS2015 with Update 1 installed and R installed, you can
+download RTVS from the link below - but we highly recommend following the
+[Installation guide](installation.html):
 
 * [Download R Tools for Visual Studio](https://aka.ms/rtvs-current)
 
-## Key features in Version 0.2
+## Key features in Version 0.3
+
+* [Package Manager](package-manager.html) - Graphical package manager
+* [Code Snippets](code-snippets.html) - Support for 
 
 * [Editor](editing.html) - full edit experience including tabbed windows, syntax highlighting, and more
 * [History window](history.html) - see all of the commands that you have entered in a scrollable window
