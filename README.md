@@ -6,6 +6,8 @@ description of the samples, please checkout the [samples documentation
 page](https://microsoft.github.io/RTVS-docs/samples.html) or the `README` files 
 in each directory.
 
+Click [here to view the documentation for RTVS](https://microsoft.github.io/RTVS-docs).
+
 You can run all of these samples easily using [R Tools for Visual
 Studio](http://microsoft.github.io/RTVS-docs/), or your favorite R IDE / text
 editor.
