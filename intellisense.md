@@ -49,3 +49,20 @@ If you type a named parameter name with pop-up help showing, we will boldface
 and display additional information about that parameter name in the help:
 
 ![](./media/RTVS-REPL-auto-complete-function-parameters.png)
+
+You can get IntelliSense for user-defined functions in the same file:
+
+![](media/intellisense_same_file_functions.png)
+
+IntelliSense also assists in named parameter completion for functions defined in
+the same file:
+
+![](media/intellisense_parameter_completion.png)
+
+This also works for variables defined in the file:
+
+![](media/intellisense_variable_completion.png)
+
+It's important to note that today, we only support IntelliSense for functions
+_in the same file_. In the future, we will be adding support for IntelliSense
+across your entire project.
