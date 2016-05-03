@@ -1,4 +1,4 @@
----
+﻿---
 layout: default
 ---
 ![R and VS](./media/r.plus.vs.png)
@@ -18,7 +18,7 @@ Are you in the NYC area on May 12th? The
 [PTVS](https://github.com/microsoft/PTVS) engineering teams will be giving a
 half day seminar on the current and future tooling for R, Python and Azure.  We
 also have the afternoon reserved to answer your questions and listen to your
-feature requests. We�d love to see and meet you in person!   
+feature requests. We’d love to see and meet you in person!   
 
 If interested, please [sign up
 here](https://www.microsoftevents.com/profile/form/index.cfm?PKformID=0x1864298cc3).
