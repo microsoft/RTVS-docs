@@ -7,7 +7,7 @@ layout: default
 There are new features in 0.3 that we would like you to try out and give us
 feedback on, in addition to numerous bug fixes. This page summarizes what's new.
 
-[Download 0.3 now](https://aka.ms/rtvs-current)
+[Download RTVS 0.3 now](https://aka.ms/rtvs-current)
 
 ## Meet the RTVS Engineering Team in New York City on May 12!
 
