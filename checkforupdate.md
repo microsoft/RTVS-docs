@@ -6,7 +6,7 @@ layout: default
 
 The latest version of RTVS is:
 
-## 0.2.20304.1341  (Recommended)
+## 0.3.20427.2043  (Recommended)
 
 This is the Public Preview version of RTVS, which is available from here.
 
