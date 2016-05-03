@@ -1,4 +1,4 @@
-﻿---
+---
 layout: default
 ---
 ![R and VS](./media/r.plus.vs.png)
