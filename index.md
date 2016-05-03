@@ -8,22 +8,34 @@ layout: default
 
 ## About this release
 
-**THANK YOU** for checking out this early version of R Tools for Visual Studio
-(RTVS).  We've decided to make it available early so that we'll have more time
-to address your feedback.  As such, there are bugs and missing features, so
-please beware!  This release is meant for evaluation purposes only and not for
-production use.
+**THANK YOU** for trying out this second preview release of R Tools for Visual
+Studio (RTVS)! We welcome your feedback and comments; we're actively monitoring
+our [Github issue tracker](https://github.com/microsoft/RTVS/issues) and triage
+new incoming issues every Friday.
 
-If you **already** have VS2015 with Update 1 installed and R installed, you can
-download RTVS from the link below - but we highly recommend following the
-[Installation guide](installation.html):
+Of course, we remind you that this release is meant for evaluation purposes only
+and not for production use.
+
+If you **already** have VS2015 with Update 1 (or higher) installed and R
+installed, you can download RTVS from the link below - but we highly recommend
+following the [Installation guide](installation.html):
 
 * [Download R Tools for Visual Studio](https://aka.ms/rtvs-current)
 
 ## Key features in Version 0.3
 
+For an overview of what is new in 0.3, please see [our What's New in 0.3
+page](new_for_03.html).
+
+### Completely New Features for 0.3
+
 * [Package Manager](package-manager.html) - Graphical package manager
-* [Code Snippets](code-snippets.html) - Support for 
+* [Code Snippets](code-snippets.html) - Insert code snippets with simple
+    keystrokes to write code faster
+* [Code Navigation](code-navigation.html) - Quickly navigate to different
+    functions within your project
+
+### Existing and Improved Features
 
 * [Editor](editing.html) - full edit experience including tabbed windows, syntax highlighting, and more
 * [History window](history.html) - see all of the commands that you have entered in a scrollable window
@@ -49,8 +61,8 @@ download RTVS from the link below - but we highly recommend following the
 The pre-requisites for RTVS are: 
 
 * Visual Studio 2015 Community, Professional or Enterprise
-* Visual Studio 2015 Update 1 
-* An R interpreter
+* Visual Studio 2015 Update 1 or Update 2
+* An R interpreter: CRAN-R or Microsoft R Open
 
 Please check out the installation steps, *especially* if you are new to Visual
 Studio
@@ -67,40 +79,50 @@ Please file bugs and feature requests directly on:
 
 * [RTVS on Github](https://github.com/Microsoft/RTVS)
 
-To send us bug repros (which are highly appreciated) try the built in Smile/Frown feature:
+To send us bug repros (which are highly appreciated) try the built in
+Smile/Frown feature:
 
-* Go to:  R Tools / Send a frown (or smile)
+* Go to: R Tools / Send a frown (or smile)
 
-This will collect logs, start your mail client and attach the log file.  You can then examine the contents and click Send. The logs are zipped into %TEMP%/RTVSlogs.zip in case you want to send it yourself.
+This will collect logs, start your mail client and attach the log file.  You can
+then examine the contents and click Send. The logs are zipped into
+%TEMP%/RTVSlogs.zip in case you want to send it yourself.
 
-Finally you can send direct feedback to the team at [rtvsuserfeedback@microsoft.com](mailto:rtvsuserfeedback@microsoft.com).
+Finally you can send direct feedback to the team at
+[rtvsuserfeedback@microsoft.com](mailto:rtvsuserfeedback@microsoft.com).
 
 <br>
 <hr>
-
-
 <br>
 
 ## FAQ
 
 **Q. Should I use RTVS in production?**
 
-A. No. This is the very first public preview.  As such, there are bugs and
-missing features which will be addressed in the next few months.  This release
-is only recommended for evaluation purposes and usage in production is strongly
-advised against.
+A. No. This is the second public preview. As such, there are bugs and missing
+features which will be addressed in the next few months. This release is only
+recommended for evaluation purposes and usage in production is strongly advised
+against.
 
 **Q. Is RTVS going to be free?**
 
-A. Yes! RTVS when combined with Visual Studio Community Edition is a complete
-and perpetually free IDE. RTVS itself will also be Open Source. We will
-release the code on Github when it is ready. Parts of the source code that link
-to R are already available under GPLv2 at the [R-Host repository on
-Github](https://github.com/microsoft/R-Host).
+A. Yes! RTVS when combined with free Visual Studio Community Edition is a complete
+and perpetually free IDE. Please make sure that you [read the software license terms 
+to see if you qualify for using the free edition of Visual Studio Community Edition](https://www.visualstudio.com/support/legal/mt171547).
+
+**Q. Is RTVS Open Source?**
+
+A. Yes! The source code for RTVS is [available on
+Github](https://github.com/microsoft/RTVS) and is released under the terms of
+the MIT license. There is a second component of RTVS, called RHost, which links
+to the R Interpreter binaries. Its source code is also [available on
+Github](https://github.com/microsoft/R-Host) and is released under the terms of
+the GNU Public License V2.
 
 **Q. What versions of Visual Studio does RTVS run on?**
 
-A. Visual Studio 2015 Update 1. Community, Pro, and Enterprise Editions.
+A. Visual Studio 2015 Update 1 and higher. Community, Pro, and Enterprise
+Editions.
 
 **Q. Does RTVS work with Visual Studio Express editions?**
 
@@ -112,10 +134,10 @@ A. CRAN R, Microsoft R Open, and Microsoft R Server.
 
 **Q. Where can I download these interpreters?**
 
-A. See the [installation](installation.html) instructions.
+A. See the [installation instructions](installation.html).
 
-**Q. Since RTVS is in VS, does it mean that R can be easily used with C#, C++ and
-other Microsoft languages?**
+**Q. Since RTVS is in VS, does it mean that R can be easily used with C#, C++
+and other Microsoft languages?**
 
 A. No. RTVS is a tool for developing R code, and uses the standard native R
 interpreters. We do not have any support currently for interop between R and
@@ -125,8 +147,8 @@ other languages.
 
 A. RStudio is a fantastic and mature IDE for R that's been under development for
 years. RTVS is a long way from RStudio, because we've only been developing it
-for months. We hope to have all the critical features that you need to be
-successful in the coming year. Please help us prioritize the TODO list by taking
+since July, 2015. We hope to have all the critical features that you need to be
+successful this summer. Please help us prioritize the TODO list by taking
 the [RTVS survey](https://www.surveymonkey.com/r/RTVS1).
 
 **Q. Will RTVS work on MacOS / Linux?**
@@ -139,7 +161,7 @@ Studio Code, which is the new cross-platform IDE from Microsoft.
 
 A. Absolutely! The source code lives on
 [Github](https://github.com/microsoft/RTVS). Please use our issue tracker to
-submit / comment on bugs!
+submit / vote / comment on bugs!
 
 **Q. Does RTVS work with my source control system?**
 
@@ -163,15 +185,12 @@ A. No. RTVS only supports 64-bit editions of R.
 
 **Q. What are the key missing features of RTVS currently?** 
 
-A. There a number of these.  For example:
+A. There a number of these. For example:
 
-* There is no UI for package installation or creation
-* Variable Explorer does not allow edit, search, sort and supports global scope only
-* Refactoring in the Editor
-* Rendering Shiny apps in a VS window. We currently render using the default
-  browser
-* Interactive ggviz plots in a VS window. We currently render using the default
-  browser
+* Variable Explorer does not allow edit, search, sort.
+* Refactoring in the Editor 
+* Rendering Shiny apps or `ggviz` plots in a VS window. We currently
+    render using the default browser
 * Customization options when saving plots as PDF or bitmaps
 
 We'll be addressing these in the near future.
@@ -180,13 +199,14 @@ We'll be addressing these in the near future.
 new Data Science settings. What should I do?**
 
 A. You can always save your current Visual Studio settings through Tools ->
-Import and Export Settings... command. You can also use this command to
-restore one of the default Visual Studio settings (e.g., C++ or General).
+Import and Export Settings... command. You can also use this command to restore
+one of the default Visual Studio settings (e.g., C++ or General).
 
 **Q. What is the recommended `.gitignore` settings for an RTVS project?**
 
 A. Github maintains a master repository of recommended `.gitignore` files. You
-can see it here: [R .gitignore](https://github.com/github/gitignore/blob/master/R.gitignore)
+can see it here: [R
+.gitignore](https://github.com/github/gitignore/blob/master/R.gitignore)
 
 **Q. Can I store my Visual Studio project on a network share?**
 
