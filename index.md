@@ -1,4 +1,4 @@
----
+﻿---
 layout: default
 ---
 
@@ -29,7 +29,7 @@ Are you in the NYC area on May 12th? The
 [PTVS](https://github.com/microsoft/PTVS) engineering teams will be giving a
 half day seminar on the current and future tooling for R, Python and Azure.  We
 also have the afternoon reserved to answer your questions and listen to your
-feature requests. We�d love to see and meet you in person!   
+feature requests. We’d love to see and meet you in person!   
 
 If interested, please [sign up
 here](https://www.microsoftevents.com/profile/form/index.cfm?PKformID=0x1864298cc3).
@@ -61,7 +61,7 @@ page](new_for_03.html).
 * [R Markdown](rmarkdown.html) - R Markdown/knitter support with export to Word and HTML
 * [Git](git.html) - Source code control via Git and Github
 * [Extensions](extensions.html) - over 6,000 Extensions from Data to Languages to Productivity
-* [Polyglot IDE](polyglot.html) - VS supports R, Python, C++, C#, Node.js, SQL, … projects simultaneously
+* [Polyglot IDE](polyglot.html) - VS supports R, Python, C++, C#, Node.js, SQL, â€¦ projects simultaneously
 * [Help](help.html) - use ? and ?? to view R documentation within Visual Studio
 
 ## A quick video overview 
