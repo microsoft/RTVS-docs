@@ -11,20 +11,6 @@ THANK YOU for checking out this early version for RTVS! Please check it out and
 let us know what you think. This release is meant for evaluation purposes only
 and not for production use.
 
-## Meet the RTVS Engineering Team in New York City on May 12!
-
-Are you in the NYC area on May 12th? The
-[RTVS](https://github.com/microsoft/RTVS) and
-[PTVS](https://github.com/microsoft/PTVS) engineering teams will be giving a
-half day seminar on the current and future tooling for R, Python and Azure.  We
-also have the afternoon reserved to answer your questions and listen to your
-feature requests. We’d love to see and meet you in person!   
-
-If interested, please [sign up
-here](https://www.microsoftevents.com/profile/form/index.cfm?PKformID=0x1864298cc3).
-PLEASE share this link with anyone in the NYC area that you think might be
-interested.
-
 ### Resources
 
 * For general overview of the features, please see the [documentation.](./index.html)

@@ -9,20 +9,6 @@ feedback on, in addition to numerous bug fixes. This page summarizes what's new.
 
 [Download RTVS 0.3 now](https://aka.ms/rtvs-current)
 
-## Meet the RTVS Engineering Team in New York City on May 12!
-
-Are you in the NYC area on May 12th? The
-[RTVS](https://github.com/microsoft/RTVS) and
-[PTVS](https://github.com/microsoft/PTVS) engineering teams will be giving a
-half day seminar on the current and future tooling for R, Python and Azure.  We
-also have the afternoon reserved to answer your questions and listen to your
-feature requests. We’d love to see and meet you in person!   
-
-If interested, please [sign up
-here](https://www.microsoftevents.com/profile/form/index.cfm?PKformID=0x1864298cc3).
-PLEASE share this link with anyone in the NYC area that you think might be
-interested.
-
 ## Package Manager
 
 The Package Manager is a UI for working with packages. It has three tabs, which
