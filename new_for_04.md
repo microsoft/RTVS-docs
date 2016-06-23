@@ -4,10 +4,11 @@ layout: default
 
 ## What's new in R Tools for Visual Studio 0.4 (June, 2016 release)
 
-There are new features in 0.3 that we would like you to try out and give us
-feedback on, in addition to numerous bug fixes. This page summarizes what's new.
+There are new features in 0.4 that we would like you to try out and give us
+feedback on, in addition to numerous bug fixes. This page contains highlights of
+new features that we have added in this release!
 
-[Download RTVS 0.4 now](https://aka.ms/rtvs-current)
+[Download RTVS 0.4 now NOTE this will only be live at 0.4 public launch](http://)
 
 ## Microsoft R Client Integration with RTVS
 
