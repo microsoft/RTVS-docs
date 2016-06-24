@@ -10,25 +10,6 @@ new features that we have added in this release!
 
 [Download RTVS 0.4 now NOTE this will only be live at 0.4 public launch](http://)
 
-## Microsoft R Client Integration with RTVS
-
-Microsoft R Client is [Microsoft's enhanced distribution of the R
-programming
-language](https://msdn.microsoft.com/en-us/microsoft-r/install-r-client-windows).
-In 0.4, we have made it even easier for you to download and get started with
-Microsoft R Client.
-
-* If you don't have any R Interpreter installed on your computer, RTVS will
-    offer to install Microsoft R Client the first time you run RTVS.
-* If you want to install Microsoft R Client, we have also included a menu
-    command that will download and install it.
-* If you have just installed Microsoft R Client, we will ask you once, the next
-    time you start RTVS, to switch to Microsoft R Client.
-* If you want to installed Microsoft R Client and want to switch your active R
-    installation to it, we have added a menu command to make it easier.
-
-![](media/04_install_r_client.png)
-
 ## Variable Explorer and the Data Table Viewer
 
 You can now view multiple data frames in separate Data Table Viewer tabs. Using
@@ -145,8 +126,6 @@ search with an arbitrary search clause in the Options dialog for RTVS:
 
 ![](media/04_f1_options.png)
 
-
-
 ## Streamlining the experience
 
 To give you an improved experience with auto-formatting and single line
@@ -177,6 +156,10 @@ There are two new toolbar icons within the R Interactive Window that are also
 run these commands for folks who are like to use the mouse:
 
 ![](media/04_working_directory.png)
+
+Code snippets now work in both the editor and the R Interactive Window:
+
+
 
 ## Plotting
 
@@ -212,6 +195,25 @@ window) are available within the SQL Database project.
 
 ![](media/04_sql_scripts.png)
 
+## Microsoft R Client Integration with RTVS
+
+Microsoft R Client is [Microsoft's enhanced distribution of the R
+programming
+language](https://msdn.microsoft.com/en-us/microsoft-r/install-r-client-windows).
+In 0.4, we have made it even easier for you to download and get started with
+Microsoft R Client.
+
+* If you don't have any R Interpreter installed on your computer, RTVS will
+    offer to install Microsoft R Client the first time you run RTVS.
+* If you want to install Microsoft R Client, we have also included a menu
+    command that will download and install it.
+* If you have just installed Microsoft R Client, we will ask you once, the next
+    time you start RTVS, to switch to Microsoft R Client.
+* If you want to installed Microsoft R Client and want to switch your active R
+    installation to it, we have added a menu command to make it easier.
+
+![](media/04_install_r_client.png)
+
 ## Let us know what you think!
 
 As always, please feel free to send us feedback using our Send a Smile (we like
@@ -220,5 +222,3 @@ _highlights_ of the new features in 0.4. However, we have closed 205 Github
 Issues since the last release. Feel free to take a closer look using this
 [Github Issues
 query](https://github.com/Microsoft/RTVS/issues?utf8=%E2%9C%93&q=is%3Aclosed+milestone%3A%22Preview+0.4%22).
-
-
