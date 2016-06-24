@@ -4,9 +4,16 @@ layout: default
 
 ## What's new in R Tools for Visual Studio 0.4 (June, 2016 release)
 
-There are new features in 0.4 that we would like you to try out and give us
-feedback on, in addition to numerous bug fixes. This page contains highlights of
-new features that we have added in this release!
+Thank you for trying out R Tools for Visual Studio (RTVS) 0.4!
+
+We've been listening to your feedback, and we've fixed many of the issues that
+you have reported in 0.3. Thanks for your feedback, and please take a look at
+[our Github Issues tracker](https://github.com/Microsoft/RTVS/issues?utf8=%E2%9C%93&q=is%3Aclosed+milestone%3A%22Preview+0.4%22) 
+for a complete list of all of the bugs that we have fixed, as well as for a
+detailed list of all of the new features in this release.
+
+The rest of this document takes you on a tour of the new features in 0.4. Please
+try them out and let us know what you think!
 
 [Download RTVS 0.4 now NOTE this will only be live at 0.4 public launch](http://)
 
@@ -157,9 +164,10 @@ run these commands for folks who are like to use the mouse:
 
 ![](media/04_working_directory.png)
 
-Code snippets now work in both the editor and the R Interactive Window:
+Code snippets now work in both the editor and the R Interactive Window. Below,
+I'm typing = and then pressing TAB to perform the completion.
 
-
+![](media/04_repl_snippets.gif)
 
 ## Plotting
 
