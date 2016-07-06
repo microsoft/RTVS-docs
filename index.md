@@ -8,7 +8,7 @@ layout: default
 
 ## About this release
 
-**THANK YOU** for trying out this second preview release of R Tools for Visual
+**THANK YOU** for trying out this third preview release of R Tools for Visual
 Studio (RTVS)! We welcome your feedback and comments; we're actively monitoring
 our [Github issue tracker](https://github.com/microsoft/RTVS/issues) and triage
 new incoming issues every Friday.
@@ -22,35 +22,41 @@ following the [Installation guide](installation.html):
 
 * [Download R Tools for Visual Studio](https://aka.ms/rtvs-current)
 
-## Key features in Version 0.3
+## Key features in Version 0.4
 
-For an overview of what is new in 0.3, please see [our What's New in 0.3
+For an overview of what is new in 0.4, please see [our What's New in 0.4
+page](new_for_04.html).
+
+If you want to see what we added in 0.3, please see [our What's New in 0.3
 page](new_for_03.html).
-
-### Completely New Features for 0.3
-
-* [Package Manager](package-manager.html) - Graphical package manager
-* [Code Snippets](code-snippets.html) - Insert code snippets with simple
-    keystrokes to write code faster
-* [Code Navigation](code-navigation.html) - Quickly navigate to different
-    functions within your project
 
 ### Existing and Improved Features
 
-* [Editor](editing.html) - full edit experience including tabbed windows, syntax highlighting, and more
-* [History window](history.html) - see all of the commands that you have entered in a scrollable window
+* [Variable Explorer](variable-explorer.html) - we now support multiple Data
+    Table Viewer windows, and sorting. We also support viewing variables in
+    different scopes, as well as searching within Variable Explorer.
+* [Editor](editing.html) - we added support for light bulbs in the editor
+    window, and now support go-to-definition and peek for library functions in
+    addition to user-defined functions. Collapsible code regions are also
+    available now.
+* [History window](history.html) - we have added support for generating PDFs
+    from RMarkdown documents as well as IntelliSense within RMarkdown code
+    blocks.
+* [Help](help.html) - you can now search for help online by placing your cursor
+    on top of a token in the editor and pressing F1.
+* [Plotting](plotting.html) - plot windows respect global DPI settings, and the
+    locator API.
 * [R Interactive Window](interactive-repl.html) - work with the R console directly from within Visual Studio
 * [IntelliSense](intellisense.html) - (aka Completion) available in both the editor and the Interactive R window
-* [Variable Explorer](variable-explorer.html) - lets you drill into your R data structures and examine their values
-* [Plotting](plotting.html) - see all of your R plots in a Visual Studio tool window
 * [Debugging](debugging.html) -  breakpoints, stepping, watch windows, call stacks and more!
 * [R Markdown](rmarkdown.html) - R Markdown/knitter support with export to Word and HTML
 * [Git](git.html) - Source code control via Git and Github
 * [Extensions](extensions.html) - over 6,000 Extensions from Data to Languages to Productivity
-* [Polyglot IDE](polyglot.html) - VS supports R, Python, C++, C#, Node.js, SQL, â€¦ projects simultaneously
-* [Help](help.html) - use ? and ?? to view R documentation within Visual Studio
+* [Polyglot IDE](polyglot.html) - VS supports R, Python, C++, C#, Node.js, SQL projects simultaneously
 
-## A quick video overview 
+## A quick video overview (for 0.3)
+
+Video coming soon for 0.4!
 
 <iframe width="560" height="315" align="middle" src="https://www.youtube.com/embed/KPS0ytrt9SA" frameborder="0" allowfullscreen></iframe>
 
@@ -130,7 +136,7 @@ A. No.
 
 **Q. What R interpreters does RTVS work with?**
 
-A. CRAN R, Microsoft R Open, and Microsoft R Server.
+A. CRAN R, Microsoft R Client, and Microsoft R Server.
 
 **Q. Where can I download these interpreters?**
 
@@ -187,10 +193,10 @@ A. No. RTVS only supports 64-bit editions of R.
 
 A. There a number of these. For example:
 
-* Variable Explorer does not allow edit, search, sort.
 * Refactoring in the Editor 
 * Rendering Shiny apps or `ggviz` plots in a VS window. We currently
     render using the default browser
+* Running your R session on another computer
 * Customization options when saving plots as PDF or bitmaps
 
 We'll be addressing these in the near future.
