@@ -15,7 +15,7 @@ detailed list of all of the new features in this release.
 The rest of this document takes you on a tour of the new features in 0.4. Please
 try them out and let us know what you think!
 
-[Download RTVS 0.4 now NOTE this will only be live at 0.4 public launch](http://)
+[Download RTVS 0.4 now!](http://aka.ms/rtvs-current)
 
 ## Variable Explorer and the Data Table Viewer
 
