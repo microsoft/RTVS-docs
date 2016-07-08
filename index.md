@@ -54,9 +54,13 @@ page](new_for_03.html).
 * [Extensions](extensions.html) - over 6,000 Extensions from Data to Languages to Productivity
 * [Polyglot IDE](polyglot.html) - VS supports R, Python, C++, C#, Node.js, SQL projects simultaneously
 
-## A quick video overview (for 0.3)
+## Video feature walk-throughs
 
-Video coming soon for 0.4!
+Here's the video for 0.4:
+
+<iframe width="560" height="315" align="middle" src="https://www.youtube.com/embed/k1_6XLyhHbo" frameborder="0" allowfullscreen></iframe>
+
+Here's the video for 0.3:
 
 <iframe width="560" height="315" align="middle" src="https://www.youtube.com/embed/KPS0ytrt9SA" frameborder="0" allowfullscreen></iframe>
 
