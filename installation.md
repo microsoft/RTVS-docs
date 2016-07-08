@@ -11,7 +11,7 @@ experience for R and Visual Studio users. Please send us feedback!
 
 ## Prerequisites
 
-RTVS Preview can **only** be installed on Visual Studio 2015 Update 1 and
+RTVS Preview can **only** be installed on Visual Studio 2015 Update 2 and
 higher. We support the following editions of Visual Studio:
 
 * [Visual Studio 2015 Community](https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx) (free)
@@ -19,7 +19,7 @@ higher. We support the following editions of Visual Studio:
 * Visual Studio 2015 Enterprise
 
 Please go to Help / About to check your version of Visual Studio.  It should be
-VS 2015 or VS 2015 with Update 1 and higher.
+VS 2015 or VS 2015 with Update 2 and higher.
 
 While installing Visual Studio 2015, please make sure that you have the Web
 Developer Tools option checked. This is checked by default, so if you're

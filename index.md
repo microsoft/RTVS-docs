@@ -16,7 +16,7 @@ new incoming issues every Friday.
 Of course, we remind you that this release is meant for evaluation purposes only
 and not for production use.
 
-If you **already** have VS2015 with Update 1 (or higher) installed and R
+If you **already** have VS2015 with Update 2 (or higher) installed and R
 installed, you can download RTVS from the link below - but we highly recommend
 following the [Installation guide](installation.html):
 
@@ -71,7 +71,7 @@ Here's the video for 0.3:
 The pre-requisites for RTVS are: 
 
 * Visual Studio 2015 Community, Professional or Enterprise
-* Visual Studio 2015 Update 1 or Update 2
+* Visual Studio 2015 Update 2
 * An R interpreter: CRAN-R or Microsoft R Open
 
 Please check out the installation steps, *especially* if you are new to Visual
@@ -109,10 +109,9 @@ Finally you can send direct feedback to the team at
 
 **Q. Should I use RTVS in production?**
 
-A. No. This is the second public preview. As such, there are bugs and missing
-features which will be addressed in the next few months. This release is only
-recommended for evaluation purposes and usage in production is strongly advised
-against.
+A. No. This is a public preview. As such, there are bugs and missing features
+which will be addressed in the next few months. This release is only recommended
+for evaluation purposes and usage in production is strongly advised against.
 
 **Q. Is RTVS going to be free?**
 
@@ -131,7 +130,7 @@ the GNU Public License V2.
 
 **Q. What versions of Visual Studio does RTVS run on?**
 
-A. Visual Studio 2015 Update 1 and higher. Community, Pro, and Enterprise
+A. Visual Studio 2015 Update 2 and higher. Community, Pro, and Enterprise
 Editions.
 
 **Q. Does RTVS work with Visual Studio Express editions?**
@@ -201,7 +200,7 @@ A. There a number of these. For example:
 * Rendering Shiny apps or `ggviz` plots in a VS window. We currently
     render using the default browser
 * Running your R session on another computer
-* Customization options when saving plots as PDF or bitmaps
+* R scripts in SQL Server Integration
 
 We'll be addressing these in the near future.
 
