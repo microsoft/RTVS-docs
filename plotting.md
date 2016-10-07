@@ -5,7 +5,11 @@ layout: default
 # Plotting
 
 Plotting is a key part of the inner loop of the workflow for a data scientist.
-In RTVS, all plotting activity centers around one or more plot windows. 
+In RTVS, all plotting activity centers around one or more plot windows, and
+we've designed a number of features to improve your productivity in this key
+activity.
+
+![Plotting Hero Image](./media/plotting-hero-image.png)
 
 ## The Plot Window
 

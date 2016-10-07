@@ -17,7 +17,7 @@ SQL statements are typically written interactively, by gradually refining the
 query until the correct results are returned. To make it easier to work with SQL
 Server, RTVS lets you add SQL queries to your existing projects. This lets you
 work in a separate SQL-only file, focusing only on your query and the results it
-generates until you get the query that you want.
+generates until you end up with the query that you want.
 
 Adding a new SQL query file is easy: just right-click on your project in
 Solution Explorer, and select SQL Query from the Add New Item command. This
@@ -57,15 +57,15 @@ greatly help you diagnose why a query is running slowly:
 
 ![SQL Window Execution Query Plan](./media/sql-query-plan.png)
 
-For more details on the many features of the Transact-SQL editor, see the
-[Transact-SQL Editor Documentation on
+For more details on the many features of the T-SQL editor, see the
+[T-SQL Editor Documentation on
 MSDN](https://msdn.microsoft.com/en-us/library/hh272706(v=vs.103).aspx).
 
 ## Working with SQL Server Stored Procedures
 
 A new feature in SQL Server 2016, [SQL Server R
 Services](https://msdn.microsoft.com/en-us/library/mt604845.aspx), lets you
-embed and run R code from your Transact-SQL stored procedures. R code can now
+embed and run R code from your T-SQL stored procedures. R code can now
 execute on the SQL Server machine, operating on data returned from a SQL query,
 and generate a SQL result set that can be processed by further SQL or returned
 to the client. However, this feature requires combining SQL code and R code
@@ -75,7 +75,7 @@ error-prone as you can see below:
 
 
 RTVS has a number of features that make it easier to use this feature than just
-copying and pasting your R code into your Transact-SQL editor. To understand how
+copying and pasting your R code into your T-SQL editor. To understand how
 this works, let's break down RTVS features into several categories, and walk
 through each one in turn:
 
@@ -153,11 +153,13 @@ When you write and test your R code, you will want to test it using data from
 SQL. We generate a small test script in the comments of the `StoredProcedure.R`
 file that uses the [RODBC
 package](https://cran.r-project.org/web/packages/RODBC/index.html) to transmit a
-SQL statement to SQL Server, run it, and retrieve its result set as an R dataframe. You can uncomments the test code to interactively write your R code against the result set that you got from SQL Server.
+SQL statement to SQL Server, run it, and retrieve its result set as an R
+dataframe. You can uncomment the test code to interactively write your R code
+against the result set that you got from SQL Server.
 
 `StoredProcedure.Query.sql` is the file where you write and test the SQL query
 that generates the data for `InputDataSet`. Since this is a `.sql` file, you
-have all of the Transact-SQL editing / execution features available to you, as
+have all of the T-SQL editing / execution features available to you, as
 described in the section above on Creating and Running SQL query. Once you are
 happy with your SQL code, you can integrate it with your R code in
 `StoredProcedure.R`. 
@@ -173,8 +175,9 @@ you should see something that looks like the highlighted code when you are done:
 ![Reading SQL File into R String Variable](./media/sql-reference-sql-file-from-r.png)
 
 Now you can interactively write your R code that manipulates the `InputDataSet`
-dataframe until you get it right. Remember that you can always just select the
-R code that you run interactively in the editor and send it to the R Interactive window by pressing CTRL+ENTER.
+dataframe until you are happy with it. Remember that you can always just select
+the R code that you run interactively in the editor and send it to the R
+Interactive window by pressing CTRL+ENTER.
 
 `StoredProcedure.Template.sql` is the file that contains the _template_ for
 generating your SQL Stored Procedure. The `_RCODE_` placeholder will be replaced
