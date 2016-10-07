@@ -11,6 +11,11 @@ you will need to first download the [SQL Server Data
 Tools](https://msdn.microsoft.com/en-us/library/mt204009.aspx) package before
 you can use the R and SQL integration features described in this page.
 
+Here's a quick 3 minute highlight video of some of the features that are
+described in this document:
+
+<iframe width="854" height="480" src="https://www.youtube.com/embed/n4AYr0QIwdQ" frameborder="0" allowfullscreen></iframe>
+
 ## Support for creating and running SQL Queries
 
 SQL statements are typically written interactively, by gradually refining the
