@@ -85,10 +85,9 @@ test and debug your SQL code and your R code _independently_. Here's a quick
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/dFKIT2OitWQ" frameborder="0" allowfullscreen></iframe>
 
-RTVS has a number of features that make it easier to use this feature than just
-copying and pasting your R code into your T-SQL editor. To understand how
-this works, let's break down RTVS features into several categories, and walk
-through each one in turn:
+RTVS has a number of features that together greatly simplify this process. To
+understand how this works, let's break down RTVS features into several
+categories, and walk through each one in turn:
 
 1. Add a database connection to your project
 1. Add a SQL stored procedure file to your project
