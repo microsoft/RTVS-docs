@@ -8,15 +8,15 @@ layout: default
 
 ## About this release
 
-**THANK YOU** for trying out this third preview release of R Tools for Visual
-Studio (RTVS)! We welcome your feedback and comments; we're actively monitoring
-our [Github issue tracker](https://github.com/microsoft/RTVS/issues) and triage
-new incoming issues every Friday.
+**THANK YOU** for trying out R Tools for Visual Studio 0.5 (RTVS)! We welcome
+your feedback and comments; we're actively monitoring our [Github issue
+tracker](https://github.com/microsoft/RTVS/issues) and triage new incoming
+issues every Friday.
 
 Of course, we remind you that this release is meant for evaluation purposes only
 and not for production use.
 
-If you **already** have VS2015 with Update 2 (or higher) installed and R
+If you **already** have VS2015 with Update 3 (or higher) installed and R
 installed, you can download RTVS from the link below - but we highly recommend
 following the [Installation guide](installation.html):
 
