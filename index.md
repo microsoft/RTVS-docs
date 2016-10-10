@@ -22,7 +22,19 @@ following the [Installation guide](installation.html):
 
 * [Download R Tools for Visual Studio](https://aka.ms/rtvs-current)
 
-## Key features in Version 0.4
+## Key features in Version 0.5
+
+RTVS 0.5 adds two significant features: plotting enhancements and SQL
+integration. We've created two new help topics to get you up to speed quickly.
+Be sure to look at the feature videos for those help topics as well to get an
+overview of the feature.
+
+* [Plotting](plotting.html) - multi-window plotting, and graphical plot history
+
+* [SQL tooling](sqlserver.html) - SQL editor with IntelliSense, writing and
+running R code on SQL Server 2016
+
+## Key features from earlier Preview Releases
 
 For an overview of what is new in 0.4, please see [our What's New in 0.4
 page](new_for_04.html).
@@ -30,29 +42,21 @@ page](new_for_04.html).
 If you want to see what we added in 0.3, please see [our What's New in 0.3
 page](new_for_03.html).
 
-### Existing and Improved Features
+### Table of contents for the documentation
 
-* [Variable Explorer](variable-explorer.html) - we now support multiple Data
-    Table Viewer windows, and sorting. We also support viewing variables in
-    different scopes, as well as searching within Variable Explorer.
-* [Editor](editing.html) - we added support for light bulbs in the editor
-    window, and now support go-to-definition and peek for library functions in
-    addition to user-defined functions. Collapsible code regions are also
-    available now.
-* [History window](history.html) - we have added support for generating PDFs
-    from RMarkdown documents as well as IntelliSense within RMarkdown code
-    blocks.
-* [Help](help.html) - you can now search for help online by placing your cursor
-    on top of a token in the editor and pressing F1.
-* [Plotting](plotting.html) - plot windows respect global DPI settings, and the
-    locator API.
-* [R Interactive Window](interactive-repl.html) - work with the R console directly from within Visual Studio
-* [IntelliSense](intellisense.html) - (aka Completion) available in both the editor and the Interactive R window
-* [Debugging](debugging.html) -  breakpoints, stepping, watch windows, call stacks and more!
-* [R Markdown](rmarkdown.html) - R Markdown/knitter support with export to Word and HTML
-* [Git](git.html) - Source code control via Git and Github
-* [Extensions](extensions.html) - over 6,000 Extensions from Data to Languages to Productivity
-* [Polyglot IDE](polyglot.html) - VS supports R, Python, C++, C#, Node.js, SQL projects simultaneously
+* [Variable Explorer](variable-explorer.html)
+* [Editor](editing.html)
+* [History window](history.html)
+* [Help](help.html)
+* [Plotting](plotting.html)
+* [SQL tooling](sqlserver.html)
+* [R Interactive Window](interactive-repl.html)
+* [IntelliSense](intellisense.html)
+* [Debugging](debugging.html)
+* [R Markdown](rmarkdown.html)
+* [Git](git.html)
+* [Extensions](extensions.html)
+* [Polyglot IDE](polyglot.html)
 
 ## Video feature walk-throughs
 
@@ -71,7 +75,7 @@ Here's the video for 0.3:
 The pre-requisites for RTVS are: 
 
 * Visual Studio 2015 Community, Professional or Enterprise
-* Visual Studio 2015 Update 2
+* Visual Studio 2015 Update 3
 * An R interpreter: CRAN-R or Microsoft R Open
 
 Please check out the installation steps, *especially* if you are new to Visual
@@ -130,7 +134,7 @@ the GNU Public License V2.
 
 **Q. What versions of Visual Studio does RTVS run on?**
 
-A. Visual Studio 2015 Update 2 and higher. Community, Pro, and Enterprise
+A. Visual Studio 2015 Update 3 and higher. Community, Pro, and Enterprise
 Editions.
 
 **Q. Does RTVS work with Visual Studio Express editions?**
@@ -200,7 +204,6 @@ A. There a number of these. For example:
 * Rendering Shiny apps or `ggviz` plots in a VS window. We currently
     render using the default browser
 * Running your R session on another computer
-* R scripts in SQL Server Integration
 
 We'll be addressing these in the near future.
 
