@@ -70,14 +70,20 @@ MSDN](https://msdn.microsoft.com/en-us/library/hh272706(v=vs.103).aspx).
 
 A new feature in SQL Server 2016, [SQL Server R
 Services](https://msdn.microsoft.com/en-us/library/mt604845.aspx), lets you
-embed and run R code from your T-SQL stored procedures. R code can now
-execute on the SQL Server machine, operating on data returned from a SQL query,
-and generate a SQL result set that can be processed by further SQL or returned
-to the client. However, this feature requires combining SQL code and R code
+embed and run R code from a T-SQL stored procedure. R code can now execute on
+the SQL Server machine, operate on data returned from a SQL query, and
+generate a SQL result set that can be processed by further SQL or returned to
+the client. However, this feature requires combining SQL code and R code
 together inside of a single SQL statement, a process that is unwieldy and
-error-prone as you can see below:
+error-prone, since it involves copying and pasting functional R code into your
+SQL code.
 
+We've added a number of features in RTVS to improve the inner loop of the
+experience of writing your R and SQL code. Collectively, they let you write,
+test and debug your SQL code and your R code _independently_. Here's a quick
+6 minute video that shows you the SQL R Stored Procedure workflow in RTVS:
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dFKIT2OitWQ" frameborder="0" allowfullscreen></iframe>
 
 RTVS has a number of features that make it easier to use this feature than just
 copying and pasting your R code into your T-SQL editor. To understand how
@@ -137,7 +143,7 @@ In Solution Explorer, you see these three files as a single node called
 `StoredProcedure.R`. Click on the chevron to the left of the filename to see all
 three files:
 
-![Solution Explorer Expanded View Of Sql Stored Procedure](./media/sql-solution-explorer-expanded.png)
+![Solution Explorer Expanded View Of SQL Stored Procedure](./media/sql-solution-explorer-expanded.png)
 
 `StoredProcedure.R` is the file where you write and test the R code that you
 want to run inside your SQL Stored Procedure. In the generated code, your R code
