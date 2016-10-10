@@ -18,8 +18,8 @@ higher. We support the following editions of Visual Studio:
 * Visual Studio 2015 Professional 
 * Visual Studio 2015 Enterprise
 
-Please go to Help / About to check your version of Visual Studio.  It should be
-VS 2015 or VS 2015 with Update 3 and higher.
+Please go to Help / About to check your version of Visual Studio. It should say
+Visual Studio 2015 with Update 3 and higher.
 
 The current version of Visual Studio 2015 is Update 3, and contains important
 bug fixes that RTVS uses. If you do not have Update 3, you can install it from
