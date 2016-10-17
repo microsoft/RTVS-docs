@@ -4,7 +4,7 @@ layout: default
 
 ## Welcome to R Tools for Visual Studio Preview!
 
-![](./media/RTVS-screenshot.png)
+![](./media/installer_screenshot.png)
 
 ## About this release
 

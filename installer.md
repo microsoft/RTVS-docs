@@ -5,6 +5,8 @@ layout: default
 
 ## Thank you for installing RTVS Public Preview!
 
+![RTVS Screenshot](media\installer_screenshot.png)
+
 ### About this release
 
 THANK YOU for checking out this early version for RTVS! Please check it out and
