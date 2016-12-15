@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 ## Workspaces
 
 Workspaces is a feature in RTVS that lets you control _where_ your R code runs. The Workspaces tool window lets you choose between two types of places where your code can run: Local and Remote.
