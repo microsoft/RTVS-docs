@@ -32,5 +32,15 @@ All you need to do to switch between Workspaces is click on the right arrow icon
 
 Since it is possible that the Workspace that you want to switch to is not available (i.e., you have uninstalled it, or in the case of a remote Workspace the computer is not reachable) you may wind up in a state where _no workspace is bound to your RTVS project_. You will realize this right away if you try to type a command into the REPL and it reports that no R interpreter is available to service your request. To fix this problem, simply select another Workspace from the list available, or in the unlikely event that _no workspaces are available_, you will need to install another R Interpreter.
 
+### Differences between Local and Remote Workspaces
 
+The promise of Local and Remote Workspaces is this: anything you can do locally, you can also do remotely and with a comparable user experience. However, Remote Workspaces is currently in Preview, and there are a number of known issues in the implementation. You can view the full list of issues by using [this query on Github](). There is one significant issue that I do want to make sure that you understand, and that is how RTVS deals with local and remote files. 
+
+When you open a project (or, more typically a solution) using Visual Studio, the assumption is that the project and all of its associated files _reside on the same machine as Visual Studio_. This is a key design decision in Visual Studio, and it is unlikely to change anytime soon. What this means for RTVS is that we must first copy any files that you want to use on the remote machine before you can use them. 
+
+There are a number of places where we automatically copy files on your behalf.
+
+There are a number of places where _you must copy files explicitly to the remote machine_.
+
+Clearly, this is not an ideal solution, but it was one that let us ship a Preview release to you earlier to get feedback on the overall Remote Workspaces feature. We are working on a better implementation of the file sync problem for a future release and welcome your ideas and feedback about how to make that a better experience for you.
 
