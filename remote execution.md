@@ -62,19 +62,30 @@ But on the remote machine (and assuming I am using the same login name), I'm goi
 
 What this means is that if you have any absolute paths in your R scripts, your code will likely not work as you might expect, unless you take care to ensure that your remote files are stored in exactly the same paths as on your local machine. A smart move would be to ensure that any file paths are relative paths in your project (e.g., `.\otherfile.dat` or `..\peer\otherfile.dat`). 
 
-### Differences between Local and Remote Workspaces
+### Projects and Remote Workspaces
 
-The promise of Local and Remote Workspaces is this: anything you can do locally, you can also do remotely and with a comparable user experience. However, Remote Workspaces is currently in Preview, and there are a number of known issues in the implementation. You can view the full list of issues by using [this query on Github](). There is one significant issue that I do want to make sure that you understand, and that is how RTVS deals with local and remote files. 
+Here's a helpful mental model to help you understand how Projects and Remote Workspaces interact. The computer running RTVS always has the latest files in the project. The Remote Workspace computer is effectively a `temp` directory that will hold the files to run your project, as well as any output that your code generates. While writing your code you will either explicilty or implicitly copy files to the Remote Workspace `temp` directory in the course of your work.
 
-When you open a project (or, more typically a solution) using Visual Studio, the assumption is that the project and all of its associated files _reside on the same machine as Visual Studio_. This is a key design decision in Visual Studio, and it is unlikely to change anytime soon. What this means for RTVS is that we must first copy any files that you want to use on the remote machine before you can use them. 
+When you open a project (or, more typically a solution) using Visual Studio, the assumption is that the project and all of its associated files _reside on the same machine as Visual Studio_. This is a key design decision in Visual Studio, and it is unlikely to change anytime soon. 
 
-There are a number of places where we automatically copy files on your behalf. For example, if you want to _source_ an R file, and you invoke it by right-clicking on that file in Solution Explorer, we will copy that file to the remote machine _and_ source it on your behalf. If you press F5 to run the project, we will copy executable files from your project to your remote machine, and create any directories that are required to contain them.
+When you connect to a Remote Workspace using the Workspaces Window, we do nothing to copy those files there on your behalf. You must explicitly tell RTVS to copy a file, or the project, to the remote machine.
 
-TODO: screenshot of Properties Window
+Understanding this is key to not being surprised by the behavior of RTVS when working with Remote Workspaces. For example, if you want to `source` a file by typing the `source` command into the R Interactive Window, two conditions must be true:
 
-By default the filter that controls which files in your project that are copied to the server copies `.R`, and `.Rmd` files. You can customize the filter by 
+1. The latest copy of the R file that you want to source must be present on the remote machine
+1. The current working directory of the remote R interpreter (which you can set via the `setwd()` function) must be the same as the directory that contains the latest copy of the R file, or you have passed the correct path from your current working directory to the location of that R file.
 
-There are a number of places where _you must copy files explicitly to the remote machine_.
+So, how do you copy a files to the remote machine? You can right click on a file in Solution Explorer, and run the `Send to Remote` command from the context menu. You can also right click on the project in Solution Explorer and run the `Send to Remote` command. This will copy the entire project to the server, including creating a directory with the same name as the project to contain the files. You can also press F5 to run the project, and we will do a `Send to Remote` on the project before we start running the startup file for your project.
+
+When copying projects to the remote machine, it's important to understand that we apply a filter to the files being copied (this filter is not applied when you copy a single file). By default we only copy `.R`, and `.Rmd` files to the server. You can customize the filter by adding additional expressions to the filter properties in the R Project Properties dialog. We do this to avoid inadvertently copying large data files to the server each time you want to run the project. Today we don't try to do any clever optimizations when copying; we will just copy files to the server, with the side effect of overwriting any file on the server that has the same name. 
+
+TODO: screenshot of the dialog.
+
+You even have the option of disabling auto-copying of files in the project to the server if you want to manually control the copying process yourself. 
+
+### The long term goal of Local and Remote Workspaces
+
+The promise of Local and Remote Workspaces is this: anything you can do locally, you can also do remotely and with a comparable user experience. However, Remote Workspaces is currently in Preview, and there are a number of known issues in the implementation. You can view the full list of issues by using [this query on Github](). 
 
 Clearly, this is not an ideal solution, but it was one that let us ship a Preview release to you earlier to get feedback on the overall Remote Workspaces feature. We are working on a better implementation of the file sync problem for a future release and welcome your ideas and feedback about how to make that a better experience for you.
 
