@@ -6,7 +6,7 @@ layout: default
 
 Workspaces is a feature in RTVS that lets you control _where_ your R code runs. The Workspaces tool window lets you choose between two types of places where your code can run: Local and Remote.
 
-TODO: screenshot of Workspaces Window
+![](./media/workspace-window.png)
 
 ### Local Workspaces
 
@@ -38,7 +38,7 @@ All you need to do to switch between Workspaces is click on the right arrow icon
 
 Since it is possible that the Workspace that you want to switch to is not available (i.e., you have uninstalled it, or in the case of a remote Workspace the computer is not reachable) you may wind up in a state where _no workspace is bound to your RTVS project_. You will realize this right away if you try to type a command into the REPL and it reports that no R interpreter is available to service your request. To fix this problem, simply select another Workspace from the list available, or in the unlikely event that _no workspaces are available_, you will need to install another R Interpreter.
 
-TODO: screenshot of error message in R Interactive Window when there is no active Workspace.
+![](./media/disconnected-interactive-window.png)
 
 ### Switching to a Remote Workspace
 
@@ -46,7 +46,7 @@ When you connect to a Remote Workspace, you will need credentials to log on; thi
 
 RTVS transmits those credentials to the Remote Workspace via the HTTPS protocol. This guarantees that your credentials (and subsequent code and the results of running that code) are not viewed or tampered with while in transit. However, depending on how your system administrator set up the computer running your Remote Workspace, you may be presented with this dialog box when you connect:
 
-TODO: screenshot of the scary dialog box.
+![](./media/self-signed-certificate-warning.png)
 
 What this means is that your system administrator used a _self-signed certificate_ to enable the HTTPS protocol on the remote machine. The certificate is a document that is presented to RTVS by the machine that you are trying to connect to. The certificate contains a field that identifies the URI of that machine, and RTVS checks to make sure that those two values match exactly. 
 
@@ -83,7 +83,7 @@ So, how do you copy a files to the remote machine? You can right click on a file
 
 When copying projects to the remote machine, it's important to understand that we apply a filter to the files being copied (this filter is not applied when you copy a single file). By default we only copy `.R`, and `.Rmd` files to the server. You can customize the filter by adding additional expressions to the filter properties in the R Project Properties dialog. We do this to avoid inadvertently copying large data files to the server each time you want to run the project. Today we don't try to do any clever optimizations when copying; we will just copy files to the server, with the side effect of overwriting any file on the server that has the same name. 
 
-TODO: screenshot of the dialog.
+![](./media/file-transfer-filter-settings.png)
 
 You even have the option of disabling auto-copying of files in the project to the server if you want to manually control the copying process yourself. 
 
