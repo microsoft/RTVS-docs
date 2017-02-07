@@ -57,7 +57,7 @@ Remote workspaces are _not_ auto-detected by RTVS.
 The active Workspace that RTVS is bound to is clearly indicated by a green icon
 next to the name of the Workspace. In most cases, when you start RTVS, you
 should always see a green icon next to a Workspace. By default, we will always
-bind to the last Workspace that you had open in a previous RTVS session.
+bind to the last local Workspace that you had open in a previous RTVS session.
 
 All you need to do to switch between Workspaces is click on the right arrow icon
 of the Workspace that you would like to switch to. This will immediately
@@ -109,8 +109,9 @@ However, if your administrator had obtained a certificate from an issuer that
 RTVS trusts (and that list of trusted issuers is [provided by the operating
 system](https://technet.microsoft.com/en-us/library/cc751157.aspx)), then that
 means that RTVS will trust certificates issued by that issuer as well. In that
-case you won't see the dialog box warning you of an untrusted certificate. This
-is *strongly recommended* for any production deployments of Remote Workspaces.
+case you won't see the dialog box warning you of an untrusted certificate. It is
+*strongly recommended* that you use certificates signed by a trusted issuer for
+any production deployments of Remote Workspaces.
 
 ### Directories on Local and Remote machines
 
@@ -123,9 +124,9 @@ onto that machine. Each time that you re-connect to the same Remote Workspace
 you will be directed to the same location, and the contents of that directory
 will be unchanged across connections.
 
-The reason why I mention this is that this likely to not be the same path as
-where your local files are stored. For example, imagine that I stored my
-`TestProject` files here on my local machine:
+This is important because it is likely to not be the same path as where your
+local files are stored. For example, imagine that I stored my `TestProject`
+files here on my local machine:
 
 `c:\users\jflam\src\TestProject`
 
@@ -152,7 +153,8 @@ copy files to the Remote Workspace `temp` directory in the course of your work.
 When you open a project (or, more typically a solution) using Visual Studio, the
 assumption is that the project and all of its associated files _reside on the
 same machine as Visual Studio_. This is a key design decision in Visual Studio,
-and it is unlikely to change anytime soon. 
+which RTVS depends on for its project system, and it is unlikely to change
+anytime soon. 
 
 When you connect to a Remote Workspace using the Workspaces Window, we do
 nothing to copy those files there on your behalf. You must explicitly tell RTVS
@@ -207,4 +209,3 @@ Preview release to you earlier to get feedback on the overall Remote Workspaces
 feature. We are working on a better implementation of the file sync problem for
 a future release and welcome your ideas and feedback about how to make that a
 better experience for you.
-
