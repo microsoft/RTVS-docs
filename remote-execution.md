@@ -42,7 +42,7 @@ case of remote Workspaces), and its command line parameters.
 
 Remote workspaces let you run your R session on a remote computer. Typically,
 that remote computer is setup by your administrator, or you can [setup a remote
-Workspace yourself](). 
+Workspace yourself](./setup-remote.html). 
 
 Remote workspaces are identified by a URI. That URI *must use the HTTPS
 protocol* to ensure the privacy and the integrity of the code that you are
