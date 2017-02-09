@@ -31,17 +31,17 @@ requestor) and optionally the payment of fees.
 
 We provide instructions below on creating a self-signed certificate. If you
 install a self-signed certificate on your R server, we will always show a
-warning that tells you that the certificate wasn't issued from a trusted 3rd
-party.
+warning that tells your users that the certificate wasn't issued from a trusted
+3rd party.
 
 ![Self-signed certificate warning dialog](./media/self-signed-certificate-warning.png)
 
 We present this warning because an attacker can substitute their own certificate
 for the unsigned certificate and capture all of the traffic between the client
 and the server. This is why self-signed certificate should only ever be used for
-testing scenarios and never in production.
+testing scenarios, on a trusted network, and never in production.
 
-To issue a self-signed certificate, you will first need to log onto the server
+To issue a self-signed certificate, you will first need to log onto the R server
 computer using an administrator account. Open a new administrator PowerShell
 command prompt and issue the following command, replacing
 `"remote-machine-name"` with the fully qualified domain name of your server
@@ -51,20 +51,20 @@ computer.
 New-SelfSignedCertificate -CertStoreLocation Cert:\LocalMachine\My -DnsName "remote-machine-name"
 ```
 
-If you have never run Powershell before on the server computer, you will need to
-enable running of commands explicitly:
+If you have never run Powershell before on the R server computer, you will need to
+run the following command to enable running of commands explicitly:
 
 ```
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 ```
 
-### Installing a certificate
+### Granting permissions to read the SSL certificate's private key
 
-Now that the certificate has been created, you will need to grant permission to
-read the certificate's private key to the `NETWORK SERVICE` account. This is the
-account that is used to run the R Services broker, which is the service that
-terminates incoming SSL connections to the server computer. To do this, type
-`certlm.msc` in your Powershell administrator command prompt.
+Now that the certificate has been created, you will need to grant the `NETWORK
+SERVICE` account permission to read the certificate's private key. This is the account that is used to run the R
+Services broker, which is the service that terminates incoming SSL connections
+to the server computer. To do this, type `certlm.msc` in your Powershell
+administrator command prompt.
 
 1. Navigate to your certificate; you will find it under the
    `Personal\Certificates` folder
@@ -90,9 +90,17 @@ certificate authority that you have the authority to create a new server for the
 domain to which your server belongs to.
 
 Once you have a certificate (which must also contain the private encryption key)
-you can must install it on your computer.
+you can must install it on your computer. You can do so by opening the
+certificate manager by typing `certlm.msc` from a command prompt. Right click on
+the Personal folder, click on All Tasks, and run the Import command.
 
-TODO: steps
+![Import certificate](./media/import_certificate.png)
+
+Navigate to where your certificate is stored on your computer, and import it
+into the Personal store. Once you have done so, you will need to grant the
+`NETWORK SERVICE` account permissions to read the private key from the
+certificate. Follow the instructions in the section above on `Granting
+permissions to read the SSL certificate's private key` to complete this step.
 
 ## Installing R Services
 
@@ -129,11 +137,31 @@ when a new user first logs onto the R server machine.
 
 ## Configuring R Services
 
+### User accounts
+
 Now that you have installed R services on the machine, you'll need to create
 some user accounts for your users. You can either create standard
 (non-privileged) local user accounts for your users, or you can join your R
 server machine to your domain and add the appropriate security groups to the
 `Users` security group on your R server.
+
+### Firewall rules
+
+By default, the `R Host Broker` listens on TCP port 5444. Therefore, you must
+ensure that there are Windows firewall rules enabled that will let traffic in
+(and enable outbound traffic as well for scenarios like installing packages).
+The installer for R services will do this automatically for you. However, if you
+are using 3rd party firewall software, you will need to configure it to allow R
+Host Broker traffic to pass through. 
+
+### Azure configuration
+
+Azure networking also implements its own firewall that is independently
+configured from the Windows firewall. You will need to make sure that you have
+the appropriate set of rules in place to allow incoming traffic through. You
+will need to configure an [Azure network security
+group](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-nsg)
+and add a new inbound security rule that lets TCP traffic on port 5444 pass.
 
 ## Troubleshooting
 
@@ -142,21 +170,21 @@ server machine to your domain and add the appropriate security groups to the
 Check if you can ping the remote machine from the command line: `ping
 <remote-machine-name>` If the ping fails make sure the machine is running.
 
-**Q. The R interactive window says the remote machine is on but service is not
+**Q. The R interactive window says the remote machine is on, but service is not
 running?**
 
 There are three possible reasons for this:
 
 *	`.Net 4.6.1` or greater was not installed on the remote machine. Check for that.
-*	Firewall exception might have failed: update the firewall rules for
- 	`Microsoft.R.Host.Broker` and `Microsoft.R.Host` by re-adding the programs.
+*	Ensure that the firewall rules for `Microsoft.R.Host.Broker` and
+ 	`Microsoft.R.Host` are enabled for both incoming and outgoing connections.
 *	SSL certificate with `CN=<remote-machine-name>` was not installed
 
 Restart the OS after doing any of the above changes. Make sure that
 `RHostBrokerService` and `RUserPofileService` are running, from either Task
 Manager (services tab) or `services.msc`.
 
-**Q. The R interactive window says `401 Access denied` while connecting to the R
+**Q. Why does the R interactive window say `401 Access denied` while connecting to the R
 server?**
 
 There are two possible reasons:
@@ -167,20 +195,21 @@ There are two possible reasons:
 *	Make sure that `seclogon` service is running. Use `services.msc` to configure
  	`seclogon` to start automatically.                                                         
 
-**Q. The R interactive window says `404 Not found` while connecting to the R
+**Q. Why does the R interactive window say `404 Not found` while connecting to the R
 server?**
 
-This is probably due to missing VC++ redistributable. Check the REPL to see if
-there is a message regarding missing library(DLL).
+This is probably due to missing Visual C++ redistributable libraries. Check the
+R interactive window to see if there is a message regarding missing library(DLL).
 
 *	Check to make sure vc 2015 redistributable is installed. 
 *	Make sure that you have installed R as well. 
 
-**Q. Cannot access internet/resource from the REPL, what do I do?**
+**Q. Cannot access internet/resource from the R interactive window, what do I
+do?**
 
-Firewall exception might have failed: update the firewall rules for
-Microsoft.R.Host.Broker and Microsoft.R.Host by re-adding the programs. Restart
-the OS after applying these changes.
+Ensure that the firewall rules for `Microsoft.R.Host.Broker` and
+`Microsoft.R.Host` allow outbound access. Restart the OS after applying these
+changes.
 
 **Q. I've tried all the above, and it still doesn't work now what?**
 
