@@ -168,7 +168,7 @@ and add a new inbound security rule that lets TCP traffic on port 5444 pass.
 **Q. The R server machine is not responding, what do I do?**
 
 Check if you can ping the remote machine from the command line: `ping
-<remote-machine-name>` If the ping fails make sure the machine is running.
+remote-machine-name` If the ping fails make sure the machine is running.
 
 **Q. The R interactive window says the remote machine is on, but service is not
 running?**
