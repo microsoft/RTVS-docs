@@ -61,10 +61,10 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 ### Granting permissions to read the SSL certificate's private key
 
 Now that the certificate has been created, you will need to grant the `NETWORK
-SERVICE` account permission to read the certificate's private key. This is the account that is used to run the R
-Services broker, which is the service that terminates incoming SSL connections
-to the server computer. To do this, type `certlm.msc` in your Powershell
-administrator command prompt.
+SERVICE` account permission to read the certificate's private key. This is the
+account that is used to run the R Services broker, which is the service that
+terminates incoming SSL connections to the server computer. To do this, type
+`certlm.msc` in your Powershell administrator command prompt.
 
 1. Navigate to your certificate; you will find it under the
    `Personal\Certificates` folder
