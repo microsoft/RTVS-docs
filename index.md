@@ -8,7 +8,7 @@ layout: default
 
 ## About this release
 
-**THANK YOU** for trying out R Tools for Visual Studio 0.5 (RTVS)! We welcome
+**THANK YOU** for trying out R Tools for Visual Studio (RTVS)! We welcome
 your feedback and comments; we're actively monitoring our [Github issue
 tracker](https://github.com/microsoft/RTVS/issues) and triage new incoming
 issues every Friday.
@@ -22,17 +22,9 @@ following the [Installation guide](installation.html):
 
 * [Download R Tools for Visual Studio](https://aka.ms/rtvs-current)
 
-## Key features in Version 0.5
+## Key features in Version 1.0
 
-RTVS 0.5 adds two significant features: plotting enhancements and SQL
-integration. We've created two new help topics to get you up to speed quickly.
-Be sure to look at the feature videos for those help topics as well to get an
-overview of the feature.
-
-* [Plotting](plotting.html) - multi-window plotting, and graphical plot history
-
-* [SQL tooling](sqlserver.html) - SQL editor with IntelliSense, writing and
-running R code on SQL Server 2016
+RTVS 1.0 adds 
 
 ## Key features from earlier Preview Releases
 
@@ -57,6 +49,7 @@ page](new_for_03.html).
 * [Git](git.html)
 * [Extensions](extensions.html)
 * [Polyglot IDE](polyglot.html)
+* [Remote Execution](remote-execution.html)
 
 ## Video feature walk-throughs
 
