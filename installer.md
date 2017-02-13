@@ -9,9 +9,8 @@ layout: default
 
 ### About this release
 
-THANK YOU for trying R Tools for Visual Studio! Please check it out and let us
-know what you think. This release is meant for evaluation purposes only and not
-for production use.
+Thank you for installing R Tools for Visual Studio! Please check it out and let
+us know what you think. 
 
 ### Resources
 
