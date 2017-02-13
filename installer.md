@@ -14,18 +14,17 @@ us know what you think.
 
 ### Resources
 
-* For general overview of the features, please see the
+* For a general overview of the features, please see the
   [documentation.](./index.html)
 * To install RTVS, especially if you are new to Visual Studio, please see
   [Installation steps.](./installation.html)
-* For a quick overview, please watch this [short
-  video.](https://www.youtube.com/watch?v=KPS0ytrt9SA)
 * For a list of existing bugs and feature requests please visit our [Github
-  repo](https://github.com/Microsoft/RTVS/issues)
+  issue tracker.](https://github.com/Microsoft/RTVS/issues)
 * If you'd like to check out the source code, license and contribute, please see
   the [contribution
-  guide](https://github.com/Microsoft/RTVS/blob/master/LICENSE).
-* To send feedback, please use the menu R Tools / Feedback.
+  guide.](https://github.com/Microsoft/RTVS/blob/master/LICENSE)
+* To send feedback without using Github (which is preferred), please use the
+  menu R Tools / Feedback.
 
 ## Microsoft R offerings
 
