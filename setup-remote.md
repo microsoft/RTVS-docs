@@ -163,6 +163,38 @@ will need to configure an [Azure network security
 group](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-nsg)
 and add a new inbound security rule that lets TCP traffic on port 5444 pass.
 
+### Configuring your SSL certificate
+
+You will need to tell the R Host Broker which SSL certificate to load when it
+starts up. If you are installing the certificate on an Intranet server, it is
+likely that the fully qualified domain name of your server is the same as its
+NETBIOS name. In this case there is nothing that you need to do, as this is the
+default certificate that is loaded.
+
+However, if you are installing your certificate on an Internet facing server (as
+would be the case for a server that is hosted by Azure), you will need to
+configure the R Host Broker to load the certificate with the Fully Qualified
+Domain Name (FQDN) of your server. This is because the FQDN of an
+Internet-facing server will never be the same as its NETBIOS name.
+
+To do this, you must first open an Administrative Command Prompt and navigate to
+where R Services is installed. By default, it is installed in `%PROGRAM FILES%\R
+Remote Service for Visual Studio\1.0`. Once there, you need to open the
+`Microsoft.R.Host.Broker.Config.json` file using a text editor. Replace the
+contents of the file with the following; make sure that you assign CN to 
+whatever the FQDN of your server is (e.g., `foo.westus.cloudapp.azure.com`)
+
+```
+{
+  "server.urls": "https://0.0.0.0:5444",
+  "security": {
+    "X509CertificateName": "CN=your-server-fully-qualified-domain-name"
+  }
+}
+```
+
+You will need to restart your computer to see this change take effect.
+
 ## Troubleshooting
 
 **Q. The R server machine is not responding, what do I do?**
