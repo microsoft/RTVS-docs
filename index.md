@@ -8,15 +8,11 @@ layout: default
 
 ## About this release
 
-**THANK YOU** for trying out R Tools for Visual Studio (RTVS)! We welcome
-your feedback and comments; we're actively monitoring our [Github issue
-tracker](https://github.com/microsoft/RTVS/issues) and triage new incoming
-issues every Friday.
+This is our final release on the road to 1.0! Please try this release in all of
+your data science scenarios and [send us your
+feedback](https://github.com/Microsoft/RTVS/issues).
 
-Of course, we remind you that this release is meant for evaluation purposes only
-and not for production use.
-
-If you **already** have VS2015 with Update 3 (or higher) installed and R
+If you **already** have Visual Studio 2015 with Update 3 (or higher) and R
 installed, you can download RTVS from the link below - but we highly recommend
 following the [Installation guide](installation.html):
 
@@ -24,15 +20,14 @@ following the [Installation guide](installation.html):
 
 ## Key features in Version 1.0
 
-RTVS 1.0 adds 
+The key new feature in RTVS 1.0 is our [Remote Execution](remote-execution.html)
+feature. You can [configure a secure server](setup-remote.html) that your data
+scientists can share. This server lets you:
 
-## Key features from earlier Preview Releases
-
-For an overview of what is new in 0.4, please see [our What's New in 0.4
-page](new_for_04.html).
-
-If you want to see what we added in 0.3, please see [our What's New in 0.3
-page](new_for_03.html).
+* Make more powerful computing resources (CPU, GPU, memory) available to your
+  data scientsts.
+* Lock down sensitive data to a secure, IT-managed server. Data scientists must
+  bring their code to the data, not the other way around.
 
 ### Table of contents for the documentation
 
@@ -53,7 +48,7 @@ page](new_for_03.html).
 
 ## Video feature walk-throughs
 
-Here's the video for 0.4:
+Here's the most recent walk-through video for RTVS 0.4:
 
 <iframe width="560" height="315" align="middle" src="https://www.youtube.com/embed/k1_6XLyhHbo" frameborder="0" allowfullscreen></iframe>
 
@@ -104,17 +99,12 @@ Finally you can send direct feedback to the team at
 
 ## FAQ
 
-**Q. Should I use RTVS in production?**
-
-A. No. This is a public preview. As such, there are bugs and missing features
-which will be addressed in the next few months. This release is only recommended
-for evaluation purposes and usage in production is strongly advised against.
-
 **Q. Is RTVS going to be free?**
 
-A. Yes! RTVS when combined with free Visual Studio Community Edition is a complete
-and perpetually free IDE. Please make sure that you [read the software license terms 
-to see if you qualify for using the free edition of Visual Studio Community Edition](https://www.visualstudio.com/support/legal/mt171547).
+A. Yes! RTVS when combined with free Visual Studio Community Edition is a
+complete and perpetually free IDE. Please make sure that you [read the software
+license terms to see if you qualify for using the free edition of Visual Studio
+Community Edition](https://www.visualstudio.com/support/legal/mt171547).
 
 **Q. Is RTVS Open Source?**
 
@@ -136,7 +126,8 @@ A. No.
 
 **Q. What R interpreters does RTVS work with?**
 
-A. CRAN R, Microsoft R Client, and Microsoft R Server.
+A. [CRAN R](https://cran.r-project.org/), [Microsoft R Client and Microsoft R
+Server](https://msdn.microsoft.com/en-us/microsoft-r/)
 
 **Q. Where can I download these interpreters?**
 
@@ -152,16 +143,16 @@ other languages.
 **Q. Feature X is missing, but RStudio has it!**
 
 A. RStudio is a fantastic and mature IDE for R that's been under development for
-years. RTVS is a long way from RStudio, because we've only been developing it
-since July, 2015. We hope to have all the critical features that you need to be
-successful this summer. Please help us prioritize the TODO list by taking
-the [RTVS survey](https://www.surveymonkey.com/r/RTVS1).
+many years. We hope to have all the critical features that you need to be
+successful. Please help us prioritize the TODO list by taking the [RTVS
+survey](https://www.surveymonkey.com/r/RTVS1).
 
 **Q. Will RTVS work on MacOS / Linux?**
 
 A. No. RTVS is built on top of Visual Studio, which is a Windows-only
-implementation. However, we are looking at porting RTVS to run on top of Visual
-Studio Code, which is the new cross-platform IDE from Microsoft.
+implementation. However, we are looking at building a new set of tools that run
+on top of [Visual Studio Code](https://code.visualstudio.com/), which is the
+wildly popular cross-platform editor from Microsoft.
 
 **Q. Can I contribute to RTVS?**
 
@@ -176,11 +167,11 @@ Studio. e.g., TFS, git, SVN, hg etc.
 
 **Q. I don't use a US English locale in Windows or in VS. Will RTVS work?**
 
-A. It should. However, we haven't done extensive testing in non-US English
-locales. For the best experience with the Preview bits, please set your local to
-English in Visual Studio. You can do so through Tools / Options dialog box,
-setting International Settings Language to English. If English is not available
-in the drop-down, you'll need to install the [Visual Studio Language
+A. The 1.0 release of RTVS will be English-only. The 1.1 release will be
+localized to the same set of languages that Visual Studio itself is. In the
+meantime, we recommend using the English language pack for Visual Studio. If
+English is not available in the drop-down, you'll need to install the [Visual
+Studio Language
 pack](https://www.microsoft.com/en-us/download/details.aspx?id=48157).
 
 ![](./media/FAQ-international-settings.png)
@@ -196,7 +187,6 @@ A. There a number of these. For example:
 * Refactoring in the Editor 
 * Rendering Shiny apps or `ggviz` plots in a VS window. We currently
     render using the default browser
-* Running your R session on another computer
 
 We'll be addressing these in the near future.
 
