@@ -42,7 +42,7 @@ case of remote Workspaces), and its command line parameters.
 
 Remote workspaces let you run your R session on a remote computer. Typically,
 that remote computer is setup by your administrator, or you can [setup a remote
-Workspace yourself](). 
+Workspace yourself](./setup-remote.html). 
 
 Remote workspaces are identified by a URI. That URI *must use the HTTPS
 protocol* to ensure the privacy and the integrity of the code that you are
@@ -181,15 +181,19 @@ files. You can also press F5 to run the project, and we will do a `Send to
 Remote` on the project before we start running the startup file for your
 project.
 
-When copying projects to the remote machine, it's important to understand that
+When copying *projects* to the remote machine, it's important to understand that
 we apply a filter to the files being copied (this filter is not applied when you
-copy a single file). By default we only copy `.R`, and `.Rmd` files to the
-server. You can customize the filter by adding additional expressions to the
-filter properties in the R Project Properties dialog. We do this to avoid
-inadvertently copying large data files to the server each time you want to run
-the project. Today we don't try to do any clever optimizations when copying; we
-will just copy files to the server, with the side effect of overwriting any file
-on the server that has the same name. 
+copy a single file). By default we only copy `.R`, `.Rmd`, `.sql`, `.md`, and
+`.cpp` files to the server. You can customize the filter by adding additional
+expressions to the filter properties in the R Project Properties dialog. We do
+this to avoid inadvertently copying large data files to the server each time you
+want to run the project. Today we don't try to do any clever optimizations when
+copying; we will just copy files to the server, with the side effect of
+overwriting any file on the server that has the same name.
+
+You can always copy individual *files* to the remote machine by right-clicking
+on the file in Solution Explorer and running the `Send to Remote` command from
+the context menu.
 
 ![](./media/file-transfer-filter-settings.png)
 
