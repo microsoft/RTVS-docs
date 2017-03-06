@@ -4,16 +4,27 @@ layout: default
 
 # Code Navigation
 
-You can now navigate to the definition of another function within the same file
-using the GoTo Definition command from the context menu, or by placing your
-cursor over a call to the function and pressing F12. Note that this feature only
-works today within the same file; send us feedback if you feel multi-file
-navigation is an important feature and we will prioritize and add to a future
-release.
+When you are writing code, you often want to quickly look up the definition of a
+function that you are calling. In RTVS, we give you two different ways of doing
+this. The first is the straightforward `Go To Definition` command, that you can
+invoke one of two ways:
 
-If you would prefer instead to _peek_ at the definition of a function, you can
-do so by using the Peek Definition command from the context menu, or by placing
-your cursor over a call to the function and pressing ALT+F12:
+1. Right click on the function that you want to navigate and select the `Go To
+   Definition` command from the popup menu. 
+1. Place your cursor on the function name and press F12
+
+This command will open up a new editor window containing the source code for the
+function, and with the cursor conveniently positioned at the start of the
+function definition.
+
+The second is the `Peek Definition` command, which inserts a read-only
+scrollable region containing the source code of the function below the function
+call, as you can see from the animated GIF below:
 
 ![](media/peek_definition.gif)
 
+You can run the `Peek Definition` command one of two ways:
+
+1. Right click on the function that you want to navigate and select the `Peek
+   Definition` command from the popup menu. 
+1. Place your cursor on the function name and press ALT+F12
