@@ -45,7 +45,7 @@ the drop-down to see all of the snippets that we've defined for R.
 You can create your own Code Snippets as well; this is well-documented in [this
 MSDN article](https://msdn.microsoft.com/en-us/library/ms165394.aspx).
 
-Note that a code snippet is just an XML file; here's the Code Snippet for the pipe
+Note that a Code Snippet is just an XML file; here's the Code Snippet for the pipe
 operator:
 
 ![](media/code_snippet_example.png)

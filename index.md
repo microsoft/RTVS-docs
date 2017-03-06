@@ -34,6 +34,7 @@ scientists can share. This server lets you:
 * [Variable Explorer](variable-explorer.html)
 * [Editor](editing.html)
 * [Code Navigation](code-navigation.html)
+* [Code Snippets](code-snippets.html)
 * [History window](history.html)
 * [Help](help.html)
 * [Plotting](plotting.html)
