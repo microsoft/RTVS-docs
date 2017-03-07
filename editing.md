@@ -15,7 +15,7 @@ from the Visual Studio gallery.
 ## Editing window
 
 When you are writing code in the editor, we will pop up IntelliSense for
-both library functions: 
+library functions: 
  
 ![](./media/RTVS-Editing-auto-completion.png)
  
@@ -101,9 +101,6 @@ There are a number of configurable options here:
 
 - **CRAN Mirror** controls which CRAN mirror to download packages from by default.
 
-- **R Engine** is set to the directory of your R installation. If you change
-  this setting, please restart Visual Studio.
-
 - **Send to R Console shortcut** lets the user redefine what keyboard shortcut
 sends the current editor selection to the REPL.
 
@@ -114,3 +111,5 @@ this option is set to *Yes*, it will automatically load the Workspace file
 - **Save workspace when the project closes** will automatically write the R
 execution context to the .RData file when the project closes. Other options
 are *No* and *Ask*.
+
+- TODO: document all of the options here.
