@@ -2,7 +2,7 @@
 layout: default
 ---
 
-# Install R Tools for Visual Studio
+# Installation and Getting Started
 
 R Tools for Visual Studio is a free extension for Visual Studio 2015 that brings
 the Visual Studio IDE experience to R users. This is a release candidate
@@ -40,8 +40,8 @@ from for free from these locations:
 If you don't have an R distribution installed before you install RTVS, you will
 be prompted to install an R distribution during setup.
 
-Next [download R Tools for Visual Studio](https://aka.ms/rtvs-current), and run
-the installer.
+Next [download R Tools for Visual Studio Release
+Candidate](https://aka.ms/rtvs-current), and run the installer.
 
 ## Window Layout for Data Scientists in Visual Studio
 
@@ -55,12 +55,13 @@ so we leave things this way by default. However, for those of you who want our
 tailored experience, enabling it is really easy to do. Just run the Data Science
 Settings from the R Tools menu:
 
-**IMPORTANT NOTE: you should save your current settings if you want to revert
-back to them: Tools / Import and Export Settings.**
-
 ![](./media/RTVS-Installation-data-scientist-layout.png)
 		
-After it is done, you'll have a Visual Studio layout that resembles this:
+**IMPORTANT NOTE:** you should save your current settings if you want to revert
+back to them using this command: Tools -> Import and Export Settings.
+
+After running this command, you'll have a Visual Studio layout that resembles
+this:
 
 ![](./media/RTVS-Installation-data-scientist-layout-result.png)
 
@@ -68,11 +69,10 @@ After it is done, you'll have a Visual Studio layout that resembles this:
 
 R Tools for Visual Studio installs in this folder:
 
-	%ProgramFiles(x86)%\Microsoft Visual Studio <VS version>\Common7\IDE\Extensions\Microsoft\R Tools for Visual Studio
+`%ProgramFiles(x86)%\Microsoft Visual Studio <VS version>\Common7\IDE\Extensions\Microsoft\R Tools for Visual Studio`
 
 ## Try the samples
 
 Once you've installed RTVS, try some of the samples from Github:
 
 [Samples documentation](samples.html)
-
