@@ -6,6 +6,25 @@ layout: default
 
 ![](./media/installer_screenshot.png)
 
+## Installation and Getting Started
+
+The pre-requisites for RTVS are: 
+
+* Visual Studio 2015 Community, Professional or Enterprise
+* Visual Studio 2015 Update 3
+* An R interpreter: CRAN-R or Microsoft R Open
+* Note that the Visual Studio 2017 release of RTVS is not quite ready yet, but
+  will ship soon.
+
+Please check out the installation steps, *especially* if you are new to Visual
+Studio
+
+* [RTVS Installation](installation.html) 
+
+Once installed, create a project and code away!
+
+* [How to start a new project in RTVS](start-project.html)
+
 ## About this release
 
 This is our final release on the road to 1.0! Please try this release in all of
@@ -20,12 +39,13 @@ following the [Installation guide](installation.html):
 
 ## Key features in Version 1.0
 
-The key new feature in RTVS 1.0 is our [Remote Execution](remote-execution.html)
+TODO: write a comprehensive summary of the feature set of RTVS. Highlights:
+
 feature. You can [configure a secure server](setup-remote.html) that your data
 scientists can share. This server lets you:
 
 * Make more powerful computing resources (CPU, GPU, memory) available to your
-  data scientsts.
+  data scientists.
 * Lock down sensitive data to a secure, IT-managed server. Data scientists must
   bring their code to the data, not the other way around.
 
@@ -50,6 +70,8 @@ scientists can share. This server lets you:
 
 ## Video feature walk-throughs
 
+TODO: update videos
+
 Here's the most recent walk-through video for RTVS 0.4:
 
 <iframe width="560" height="315" align="middle" src="https://www.youtube.com/embed/k1_6XLyhHbo" frameborder="0" allowfullscreen></iframe>
@@ -60,46 +82,25 @@ Here's the video for 0.3:
 
 <br>
 
-## Installation and first steps
+## Send us your feedback!
 
-The pre-requisites for RTVS are: 
+We have three different ways you can send feedback to the team:
 
-* Visual Studio 2015 Community, Professional or Enterprise
-* Visual Studio 2015 Update 3
-* An R interpreter: CRAN-R or Microsoft R Open
+1. **Via Github**: This is the preferred way to send us feedback. You can use
+   [this link](https://github.com/Microsoft/RTVS/issues), or the built-in
+   shortcut in the RTools -> Feedback menu.
 
-Please check out the installation steps, *especially* if you are new to Visual
-Studio
+1. **Send a Smile / Frown**: This is a quick way to send feedback **and** attach
+RTVS log files to assist in the diagnosis of your issue. You can find this
+command under the R Tools -> Feedback menu. This command will collect logs,
+start your mail client and attach the log file. You have the opportunity to
+examine the contents of those files before you click Send. The logs are written
+into `%TEMP%/RTVSlogs.zip` in case you want to send it yourself.
 
-* [RTVS Installation](installation.html) 
-
-Once installed, create a project and code away!
-
-* [How to start a new project in RTVS](start-project.html)
-
-## Feedback, bugs, etc.
-
-Please file bugs and feature requests directly on:
-
-* [RTVS on Github](https://github.com/Microsoft/RTVS)
-
-To send us bug repros (which are highly appreciated) try the built in
-Smile/Frown feature:
-
-* Go to: R Tools / Send a frown (or smile)
-
-This will collect logs, start your mail client and attach the log file.  You can
-then examine the contents and click Send. The logs are zipped into
-%TEMP%/RTVSlogs.zip in case you want to send it yourself.
-
-Finally you can send direct feedback to the team at
+1. **Via email**: You can send direct feedback to the team at
 [rtvsuserfeedback@microsoft.com](mailto:rtvsuserfeedback@microsoft.com).
 
-<br>
-<hr>
-<br>
-
-## FAQ
+## Frequently Asked Questions
 
 **Q. Is RTVS going to be free?**
 
@@ -120,7 +121,7 @@ the GNU Public License V2.
 **Q. What versions of Visual Studio does RTVS run on?**
 
 A. Visual Studio 2015 Update 3 and higher. Community, Pro, and Enterprise
-Editions.
+Editions. Visual Studio 2017 support will be released shortly.
 
 **Q. Does RTVS work with Visual Studio Express editions?**
 
@@ -152,9 +153,9 @@ survey](https://www.surveymonkey.com/r/RTVS1).
 **Q. Will RTVS work on MacOS / Linux?**
 
 A. No. RTVS is built on top of Visual Studio, which is a Windows-only
-implementation. However, we are looking at building a new set of tools that run
-on top of [Visual Studio Code](https://code.visualstudio.com/), which is the
-wildly popular cross-platform editor from Microsoft.
+implementation. However, we are investigating building a new set of tools based
+on [Visual Studio Code](https://code.visualstudio.com/), the wildly popular
+cross-platform editor from Microsoft.
 
 **Q. Can I contribute to RTVS?**
 
@@ -182,16 +183,6 @@ pack](https://www.microsoft.com/en-us/download/details.aspx?id=48157).
 
 A. No. RTVS only supports 64-bit editions of R.
 
-**Q. What are the key missing features of RTVS currently?** 
-
-A. There a number of these. For example:
-
-* Refactoring in the Editor 
-* Rendering Shiny apps or `ggviz` plots in a VS window. We currently
-    render using the default browser
-
-We'll be addressing these in the near future.
-
 **Q. I really like my current Visual Studio settings, but I want to try out the
 new Data Science settings. What should I do?**
 
@@ -199,7 +190,7 @@ A. You can always save your current Visual Studio settings through Tools ->
 Import and Export Settings... command. You can also use this command to restore
 one of the default Visual Studio settings (e.g., C++ or General).
 
-**Q. What is the recommended `.gitignore` settings for an RTVS project?**
+**Q. What are the recommended `.gitignore` settings for an RTVS project?**
 
 A. Github maintains a master repository of recommended `.gitignore` files. You
 can see it here: [R
@@ -209,12 +200,7 @@ can see it here: [R
 
 A. No. This is not a supported scenario for Visual Studio.
 
-## Feedback
-
-We're looking for your feedback! Please use the R Tools / Feedback menu to send
-us smiles and frowns!
-
-## Contributing
+## Contributing to the docs and samples
 
 If you're interested in contributing to the docs or samples, feel free to clone
 the repository and submit a pull request. More instructions can be found in our
