@@ -29,7 +29,7 @@ us know what you think.
 ## Microsoft R distributions
 
 RTVS supports CRAN R, and Microsoft R distributions. See the links below for
-more information on the different Microsoft R distributions,
+more information on the different Microsoft R distributions:
 
 * [Microsoft R Open](https://mran.microsoft.com/download/)
 * [Microsoft R Client](https://msdn.microsoft.com/en-us/microsoft-r/r-client-get-started)
