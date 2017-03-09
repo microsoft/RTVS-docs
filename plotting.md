@@ -14,6 +14,7 @@ activity.
 This page contains the documentation for the plotting features of RTVS. Below is
 a quick video overview of the plotting features:
 
+TODO: update
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ZTbKmz5RSgY" frameborder="0" allowfullscreen></iframe>
 
 ## The Plot Window
@@ -25,22 +26,23 @@ Here's a simple example that plots a series of plots at (1,1), (2,2) ...
 `> plot(1:100)`
 
 When the command runs, it creates a new R Plot window if one wasn't created
-already. 
+already.
 
 ![1 to 100 Linear plot](./media/plotting-1to100.png)
 
-If there was already a plot window, it will add the new plot to the
-series of plots in that existing plot window. For example, if you now execute
-the following command, you will now see a new plot replace the existing plot in the window:
+If there was already a plot window, it will add the new plot to the series of
+plots in that existing plot window. For example, if you now execute the
+following command, you will now see a new plot replace the existing plot in the
+window:
  
 `> plot(100:1)`
 
 ## The Plot History
 
 When you run a new plot command, RTVS adds that command to your plot history.
-This ensures that all of your previous plots within a session are preserved.
-You can use the back and forward arrows (outlined in red) in the plot window
-toolbar to navigate the set of plots that were plotted in that window.
+This ensures that all of your previous plots within a session are preserved. You
+can use the back and forward arrows (outlined in red) in the plot window toolbar
+to navigate the set of plots that were plotted in that window.
 
 ![100 to 1 Linear plot](./media/plotting-100to1.png)
 
@@ -64,7 +66,7 @@ plot history will be reset.
 You can also _edit_ your plot history. You can remove the current plot from the
 plot window (and its history) by clicking on the toolbar icon to remove the
 plot. You can also right-click on any plot in the plot history and run the
-Remove Plot command to remove it from the plot window's history. This lets you
+`Remove Plot` command to remove it from the plot window's history. This lets you
 quickly remove a plot from the history without needing to re-render it in the
 main plot window first. 
 
@@ -77,7 +79,7 @@ is tearing off the plot window into its own top level window:
 
 ![Tear off window](./media/RTVS-plotting-tear-off-window.png)
  
-You can dock it into different windows within Visual Studio:
+You can dock it into different locations within Visual Studio:
 
 ![Docking window](./media/RTVS-plotting-dock-window.png)
  
@@ -98,11 +100,12 @@ representation of the plot as you resize the window.
 
 Plots can also be exported in a number of different formats. You can use the
 toolbar buttons in the plot window to copy the current plot to the clipboard as
-a bitmap, or as a Windows metafile. The latter is the standard Windows vector
-graphics format, which lets you resize a plot to an arbitrary number of pixels
-without any loss of fidelity. You can use the toolbar buttons in the plot window
-to save a copy of the plot as a bitmap, or as a PDF (Portable Document Format)
-to a file. 
+a bitmap, or as a [Windows
+metafile](https://en.wikipedia.org/wiki/Windows_Metafile). The latter is the
+standard Windows vector graphics format, which lets you resize a plot to an
+arbitrary number of pixels without any loss of fidelity. You can use the toolbar
+buttons in the plot window to save a copy of the plot as a bitmap, or as a PDF
+(Portable Document Format) to a file.
 
 ## Multiple Plot Windows
 
@@ -120,10 +123,18 @@ plot window. At any point in time, you can choose to make another plot window
 the active plot window by clicking on the Activate Plot Window command on its
 toolbar.
 
-You can also move plots _between_ plot windows. Simply right click on a plot
-that you want to copy or move, and select Cut (if you want to move the plot) or
-Copy (if you want to copy the plot). Then right click on the plot window that
-you want to copy or move that plot to and select Paste.
+You can also copy or move plots _between_ plot windows. Simply right click on a
+plot that you want to copy or move, and select Cut (if you want to move the
+plot) or Copy (if you want to copy the plot). Then right click on the plot
+window that you want to copy or move that plot to and select Paste. 
+
+You can also copy or move plots between plot windows by dragging and dropping
+the plot using a mouse. The default behavior, just like File Explorer, is to
+copy the plot if you drag it between plot windows. If you hold down the SHIFT
+key while dragging and dropping, you be moving the plot between the windows
+(i.e., it is removed from the source window, and added to the target window).
+You will also see a visual indication of the change in mode when you press the
+SHIFT key, as the "+" symbol next to the mouse pointer will vanish.
 
 ![Moving plots](./media/plotting-move-plots.png)
 
@@ -156,4 +167,3 @@ You can set the active graphics device to one of the ones on the list:
 Finally, you can delete the active device:
 
 `> dev.off()`
-
