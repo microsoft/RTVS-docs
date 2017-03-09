@@ -6,7 +6,7 @@ layout: default
 
 Workspaces is a feature in RTVS that lets you control _where_ your R code runs.
 The Workspaces tool window lets you choose between two types of places where
-your code can run: Local and Remote.
+your code can run: Local and Remote. 
 
 ![](./media/workspace-window.png)
 
@@ -33,6 +33,8 @@ and the path to the R root directory (i.e., the directory that contains the
 `bin` directory where your interpreter is located), and any optional command
 line parameters that you would like to pass to your R interpreter when RTVS
 starts it up.
+
+![](./media/add-new-workspace.png)
 
 If you want to change an existing Workspace entry, you can always click on the
 wheel icon next to the Workspace, and change its name, the path (or URI in the
@@ -63,6 +65,14 @@ All you need to do to switch between Workspaces is click on the right arrow icon
 of the Workspace that you would like to switch to. This will immediately
 terminate your current Workspace (but it will prompt whether you want to save
 your current session before you exit), before switching to the new Workspace. 
+
+The dialog boxes that warn you that you are switching workspaces, or prompting
+you to save your existing session before switching workspaces are
+_configurable_. Under the R Tools -> Options dialog, you will find options for
+enabling or disabling these dialog boxes.
+
+![](./media/workspace-options.png)
+
 
 Since it is possible that the Workspace that you want to switch to is not
 available (i.e., you have uninstalled it, or in the case of a remote Workspace
