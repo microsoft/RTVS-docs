@@ -1,28 +1,29 @@
 ---
 layout: default
 ---
-
 # Git and Github support
 
-You can use several source code control systems with RTVS. When creating your project (Ctrl-shift-N), on the bottom right corner, select the git option:
+Visual Studio supports many source code control systems. Git is an extremely
+popular source control system, and Visual Studio makes it easy to create a new
+git repository to hold your new R projects. Just check the Create new Git
+repository checkbox when creating your new R project:
 
-![Git](./media/git.create.png)
+![File New Project with Create new Git repository checkbox](./media/git-file-new-project.png)
 
-If you right click on your Solution and open the directory, you'll see that git support files have been created:
+Once you've edited a file, you can right click on it and commit your changes as
+shown below.  This will bring the git commit dialog with the usual options:
 
-![Git Explorer](./media/git.explorer.png)
+![Committing a change using git](./media/git-commit.png)
 
-Once you've edited a file, you can right click on it and commit your changes as shown below.  This will bring the git commit dialog with the usual options:
-
-![Git commit](./media/git.commit.png)
-
-For further information on using Git, please see the main VS documentation.
+For further information on using Git, please see the [Visual Studio git
+documentation](https://www.visualstudio.com/learn-git/).
 
 # Github 
 
-You can also use Github directly from RTVS.  You need to install a plug-in that provides this support.  This is covered on https://visualstudio.github.com/ page in detail.
+You can also use [Github](https://github.com) directly from RTVS. First, you
+must install the [Github for Visual Studio
+extension](https://visualstudio.github.com/).
 
-![Github](./media/git.github.png)
+![Github](./media/git-github.png)
 
-This extension provides support for creation, authentication, cloing, publishing, etc. your work on github.
-
+This extension enhances your git experience in Visual Studio by bring branch management and pull request creation directly into your Visual Studio workflow.
