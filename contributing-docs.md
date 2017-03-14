@@ -56,8 +56,8 @@ git checkout gh-pages
 ## Editing the documents
 
 You can use any editor to write markdown documents. However, beware that Windows
-Notepad will insert a BOM that will cause the Jekyll document generator to
-crash. _So don't use Notepad :)_
+Notepad will insert a [BOM](https://en.wikipedia.org/wiki/Byte_order_mark) that
+will cause the Jekyll document generator to crash. _So don't use Notepad :)_
 
 I've been successful using [vim](http://www.vim.org/) and these plugins which
 you can install by adding to your .vimrc file:
@@ -75,7 +75,9 @@ can install by navigating to your home directory and typing:
 git clone https://github.com/VundleVim/Vundle.vim.git .vim\bundle\Vundle.vim
 ```
 
-If WYSIWYG with live preview is more your thing, I highly recommend [Visual
-Studio Code](https://code.visualstudio.com/). There is a live, side-by-side
-preview window that updates as you edit your Markdown. Also, there is an
-excellent vim key binding extension if that's your thing as well.
+[Visual Studio Code](https://code.visualstudio.com/) is an excellent editor with
+live preview of your markdown documents, and is what I currently use to edit
+these documents.
+
+[Visual Studio Web Extensions](http://vswebessentials.com/) is a Visual Studio
+extension that also offers live preview of Markdown documents.
