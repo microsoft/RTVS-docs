@@ -124,16 +124,20 @@ using your default web browser.
 
 **F1 Web Search String** Controls how search terms are passed to your search
 engine when you press CTRL+F1 on a term in the editor. By default the string is
-`R site:stackoverflow.com`, which replaces `R` with your search term. The
+`R site:stackoverflow.com`, which appends `R` to your search term. The
 `site:stackoverflow.com` is a directive to the search engine which tells it to
-scope the search to pages within the `stackoverflow.com` domain. You can edit
-this string to contain whatever you want; however you must retain the `R` token
-somewhere within your search string.
+scope the search to pages within the `stackoverflow.com` domain. 
 
 **R Help Browser** Controls how help is displayed when you are searching the R
-documentation using F1, `?` or `??`. When set to `Automatic`, you will see help
-rendered within a tool window in Visual Studio. When set to `External`, you will
-see help rendered using your default web browser.
+documentation using F1, `?` or `??`. 
+
+When set to `Automatic`, you will see help rendered using the appropriate
+window. For example, if you are rendering HTML help, it will appear within a
+tool window in Visual Studio. If you are rendering a PDF, it will render using
+the default PDF viewer on your computer.
+
+When set to `External`, you will see help rendered using your default web
+browser.
 
 ### History
 
