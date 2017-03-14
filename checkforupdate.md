@@ -6,7 +6,7 @@ layout: default
 
 The latest version of RTVS is:
 
-## 1.0.30228.1316 RC2  (Recommended)
+## 1.0.30307.1918 RC3  (Recommended)
 
 This is the 1.0 Release Candidate version of RTVS, which is available from
 [here](https://aka.ms/rtvs-current).
