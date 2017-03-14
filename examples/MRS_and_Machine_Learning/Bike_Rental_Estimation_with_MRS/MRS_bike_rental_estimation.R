@@ -39,7 +39,7 @@ if (!require("RevoScaleR")) {
 }
 
 # Initialize some variables.
-github <- "https://raw.githubusercontent.com/brohrer-ms/RTVS-docs/master/examples/MRS_and_Machine_Learning/Datasets/"
+github <- "https://raw.githubusercontent.com/Microsoft/RTVS-docs/master/examples/MRS_and_Machine_Learning/Datasets/"
 inputFileBikeURL <- paste0(github, "Bike_Rental_UCI_Dataset.csv")
 
 # Create a temporary directory to store the intermediate .xdf files.
