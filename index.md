@@ -25,7 +25,7 @@ feature. You can [configure a secure server](setup-remote.html) that your data
 scientists can share. This server lets you:
 
 * Make more powerful computing resources (CPU, GPU, memory) available to your
-  data scientsts.
+  data scientists.
 * Lock down sensitive data to a secure, IT-managed server. Data scientists must
   bring their code to the data, not the other way around.
 
