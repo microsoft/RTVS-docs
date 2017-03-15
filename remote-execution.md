@@ -240,8 +240,6 @@ cannot reliably intercept all R functions, calling functions such as `source()`
 or `runApp()` (for Shiny applications) from the Interactive Window will **not**
 copy any files from your computer to the remote workspace.
 
-TODO: document rtvs::fetch_file
-
 ### The long term goal of Local and Remote Workspaces
 
 The promise of Local and Remote Workspaces is this: anything you can do locally,
