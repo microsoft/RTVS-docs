@@ -16,6 +16,12 @@ The pre-requisites for RTVS are:
 * Note that the Visual Studio 2017 release of RTVS is not quite ready yet, but
   will ship soon.
 
+Note that there are software packages that ship with the _Visual Studio Shell_,
+e.g., Test Professional and SQL Management Studio. The Visual Studio Shell lacks
+several components that are required by RTVS, so we explicitly block the
+installation of RTVS if it detects the presence of the Visual Studio Shell.
+Install one of the supported versions of Visual Studio before you install RTVS.
+
 Please check out the installation steps, *especially* if you are new to Visual
 Studio
 
@@ -96,6 +102,10 @@ command under the R Tools -> Feedback menu. This command will collect logs,
 start your mail client and attach the log file. You have the opportunity to
 examine the contents of those files before you click Send. The logs are written
 into `%TEMP%/RTVSlogs.zip` in case you want to send it yourself.
+
+Note that the above logging functionality will not be available if you have
+explicitly opted out of Visual Studio telemetry through the Help -> Feedback ->
+Settings menu command, or during installation.
 
 1. **Via email**: You can send direct feedback to the team at
 [rtvsuserfeedback@microsoft.com](mailto:rtvsuserfeedback@microsoft.com).
