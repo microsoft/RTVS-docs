@@ -75,8 +75,17 @@ package:
 
 ![](media/RTVS-REPL-variable-explorer-package-scopes.png)
 
-TODO: investigate this further with simple example and caveats and benefits
-(e.g., export to Excel)
+If you are stopped at a breakpoint in the debugger, you can use the Variable
+Explorer to inspect runtime variables in your program. You can inspect complex
+variables such as data frames, and even export them to Excel. All you need to do
+is change the scope of the Variable Explorer to the current function that you
+are stopped at (it won't do this automatically for you). In the example below, I
+have set the Variable Explorer's scope to the `foo` function where the debugger
+is currently stopped on a breakpoint. You can inspect the `df` data frame
+variable directly in the Variable Explorer, or even send it to Excel to snapshot
+the current state of the data frame.
+
+![](media/variable-explorer-as-locals-window.png)
 
 When you are debugging, variable explorer also recognizes the current execution
 scope (i.e., when you are debugging code within a function). Here, local
@@ -88,4 +97,18 @@ local variables defined at the current execution point: `country_data` and
 
 ![](media/RTVS-REPL-variable-explorer-view-locals.png)
 
-## TODO: Importing data into Variable Explorer
+## Importing data into Variable Explorer
+
+Another way to bring data sets into your project is to use the Import Dataset
+command in the Variable Explorer. Click either the Import from Web or Import
+from File toolbar button to specify the location of the CSV file that you want
+to import:
+
+![](media/variable-explorer-toolbar.png)
+
+Once you've specified the location of the file, you will see the Import Dataset
+dialog box which gives you options that control how that data file is parsed.
+You can even see a preview of the imported data frame and the original data
+file.
+
+![](media/variable-explorer-import-dataset-dialog.png)
