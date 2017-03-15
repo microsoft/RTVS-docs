@@ -62,7 +62,7 @@ this:
 
 ![](./media/RTVS-Installation-data-scientist-layout-result.png)
 
-## Where is RTVS Preview installed?
+## Where is RTVS installed?
 
 R Tools for Visual Studio installs in this folder:
 
