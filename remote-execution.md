@@ -223,6 +223,13 @@ the context menu.
 You even have the option of disabling auto-copying of files in the project to
 the server if you want to manually control the copying process yourself. 
 
+If your R script generates files on the server, you can copy those files back to
+the client using the `rtvs::fetch_file` function. This function accepts, at a
+minimum, the remote path to the file that you want to copy to your machine, and
+optionally the path on your machine where you want that file to be copied to. If
+you don't specify a path, the file will be copied into your
+`%USERPROFILE%\Downloads` directory.
+
 If you invoke an R command through an explicit Visual Studio command, we will
 ensure that files get copied to the remote machine. For example, right-clicking
 on a file in Solution Explorer and running the Source Selected File(s) command
