@@ -5,21 +5,18 @@ layout: default
 # Installation and Getting Started
 
 R Tools for Visual Studio is a free extension for Visual Studio 2015 that brings
-the Visual Studio IDE experience to R users. This is a release candidate
-release, that is intended for early adopters who are eager to try out our new
-data science experience for R and Visual Studio users. Please [send us
-feedback!](https://github.com/Microsoft/RTVS/issues)
+the Visual Studio IDE experience to R users. 
 
 ## Prerequisites
 
-RTVS Release Candidate 1 can **only** be installed on Visual Studio 2015 Update
-3 and higher. We support the following editions of Visual Studio:
+RTVS 1.0 can **only** be installed on Visual Studio 2015 Update 3 and higher. We
+support the following editions of Visual Studio:
 
 * [Visual Studio 2015 Community](https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx) (free)
 * Visual Studio 2015 Professional 
 * Visual Studio 2015 Enterprise
 
-To check what version of Visual Studio 2015 you currently have, go to Help /
+To check what version of Visual Studio 2015 you currently have, go to Help -> 
 About. It should say Visual Studio 2015 with Update 3 and higher.
 
 The current version of Visual Studio 2015 is Update 3, and contains important
