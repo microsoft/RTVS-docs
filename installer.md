@@ -28,8 +28,9 @@ us know what you think.
 
 ## Microsoft R distributions
 
-RTVS supports CRAN R, and Microsoft R distributions. See the links below for
-more information on the different Microsoft R distributions:
+RTVS supports CRAN R, and Microsoft R distributions, including the version of R
+that is distributed with SQL Server 2016. See the links below for more
+information on the different Microsoft R distributions:
 
 * [Microsoft R Open](https://mran.microsoft.com/download/)
 * [Microsoft R Client](https://msdn.microsoft.com/en-us/microsoft-r/r-client-get-started)
