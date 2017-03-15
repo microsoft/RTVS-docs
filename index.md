@@ -112,7 +112,7 @@ Settings menu command, or during installation.
 
 ## Frequently Asked Questions
 
-**Q. Is RTVS going to be free?**
+**Q. Is RTVS free?**
 
 A. Yes! RTVS when combined with free Visual Studio Community Edition is a
 complete and perpetually free IDE. Please make sure that you [read the software
