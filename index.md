@@ -191,7 +191,8 @@ pack](https://www.microsoft.com/en-us/download/details.aspx?id=48157).
 
 **Q. Will RTVS work with 32-bit editions of R?**
 
-A. No. RTVS only supports 64-bit editions of R.
+A. No. RTVS only supports 64-bit editions of R running on 64-bit editions of
+Windows.
 
 **Q. I really like my current Visual Studio settings, but I want to try out the
 new Data Science settings. What should I do?**
