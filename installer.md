@@ -24,14 +24,15 @@ us know what you think.
   the [contribution
   guide.](https://github.com/Microsoft/RTVS/blob/master/LICENSE)
 * To send feedback without using Github (which is preferred), please use the
-  menu R Tools / Feedback.
+  menu R Tools -> Feedback.
 
-## Microsoft R offerings
+## Microsoft R distributions
 
-RTVS supports CRAN R, Microsoft R Open and Microsoft R Server.  Information
-about Microsoft's enhanced R interpreters can be found here:
+RTVS supports CRAN R, and Microsoft R distributions, including the version of R
+that is distributed with SQL Server 2016. See the links below for more
+information on the different Microsoft R distributions:
 
-* [Microsoft R Open](https://mran.revolutionanalytics.com/rro/) overview
+* [Microsoft R Open](https://mran.microsoft.com/download/)
+* [Microsoft R Client](https://msdn.microsoft.com/en-us/microsoft-r/r-client-get-started)
 * [Microsoft R
   Server](https://www.microsoft.com/en-us/server-cloud/products/r-server/)
-  overview
