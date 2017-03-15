@@ -37,8 +37,8 @@ from for free from these locations:
 If you don't have an R distribution installed before you install RTVS, you will
 be prompted to install an R distribution during setup.
 
-Next [download R Tools for Visual Studio Release
-Candidate](https://aka.ms/rtvs-current), and run the installer.
+Next [download R Tools for Visual Studio 1.0](https://aka.ms/rtvs-current), and
+run the installer.
 
 ## Window Layout for Data Scientists in Visual Studio
 
