@@ -133,6 +133,12 @@ the GNU Public License V2.
 A. Visual Studio 2015 Update 3 and higher. Community, Pro, and Enterprise
 Editions. Visual Studio 2017 support will be released shortly.
 
+Note that there are software packages that ship with the _Visual Studio Shell_,
+e.g., Test Professional and SQL Management Studio. The Visual Studio Shell lacks
+several components that are required by RTVS, so we explicitly block the
+installation of RTVS if it detects the presence of the Visual Studio Shell.
+Install one of the supported versions of Visual Studio before you install RTVS.
+
 **Q. Does RTVS work with Visual Studio Express editions?**
 
 A. No.
@@ -210,6 +216,10 @@ can see it here: [R
 **Q. Can I store my Visual Studio project on a network share?**
 
 A. No. This is not a supported scenario for Visual Studio.
+
+**Q. My computer does not have access to the Internet. How can I install RTVS?**
+
+Follow the [offline installation instructions](installation.html).
 
 ## Contributing to the docs and samples
 

@@ -40,6 +40,34 @@ be prompted to install an R distribution during setup.
 Next [download R Tools for Visual Studio 1.0](https://aka.ms/rtvs-current), and
 run the installer.
 
+## Offline installation of Visual Studio and RTVS
+
+Some customers want to install RTVS onto air-gapped computers that do not have
+access to the Internet. To do this, you'll need two things:
+
+1. An ISO image of the Visual Studio 2015 edition that you want to use (e.g.,
+   Community, Professional or Enterprise). To download an ISO image of Visual
+   Studio 2015, you have a couple of options:
+
+    * If you are an MSDN subscriber [click
+here](https://msdn.microsoft.com/en-us/subscriptions/hh442898.aspx) to go to the
+MSDN subscribers download site to download an ISO of the edition of Visual
+Studio 2015 that you want to use.
+
+    * If you aren't an MSDN subscriber [click
+here](https://www.microsoft.com/en-us/download/details.aspx?id=48146) to
+download an ISO of Visual Studio 2015 Community Edition.
+
+1. A zip file containing all of the RTVS installation files. Click
+   [here](https://aka.ms/rtvs-current-zip) to download a zip file containing
+   RTVS.
+
+1. Copy all of these files to your air-gapped computer. 
+1. Mount the Visual Studio ISO image and run the installer `setup.exe` from the
+   root directory.
+1. When Visual Studio is done installing, unzip the contents of the RTVS zip
+   file into its own directory, and run the `EXE` from that directory.
+
 ## Window Layout for Data Scientists in Visual Studio
 
 Visual Studio is a fantastic *developer tool*, and its user interface is
