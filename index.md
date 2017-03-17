@@ -45,6 +45,25 @@ following the [Installation guide](installation.html):
 
 ## Key features in Version 1.0
 
+R Tools for Visual Studio 1.0 is our first release of tools for the R
+programming language. This section gives you an overview of some of the key
+features of the product, through the lens of _scenarios_. Below, you'll see
+descriptions of key scenarios in the product, and an accompanying video that
+walks you through the features that light up that scenario.
+
+### Highly Productive Inner Loop
+
+### Extensive debugging features
+
+### Powerful data visualizers
+
+### Easily share your results with others
+
+### Better with SQL Server
+
+### Scalable compute resources
+
+
 TODO: write a comprehensive summary of the feature set of RTVS. Highlights:
 
 feature. You can [configure a secure server](setup-remote.html) that your data
@@ -133,12 +152,6 @@ the GNU Public License V2.
 A. Visual Studio 2015 Update 3 and higher. Community, Pro, and Enterprise
 Editions. Visual Studio 2017 support will be released shortly.
 
-Note that there are software packages that ship with the _Visual Studio Shell_,
-e.g., Test Professional and SQL Management Studio. The Visual Studio Shell lacks
-several components that are required by RTVS, so we explicitly block the
-installation of RTVS if it detects the presence of the Visual Studio Shell.
-Install one of the supported versions of Visual Studio before you install RTVS.
-
 **Q. Does RTVS work with Visual Studio Express editions?**
 
 A. No.
@@ -216,10 +229,6 @@ can see it here: [R
 **Q. Can I store my Visual Studio project on a network share?**
 
 A. No. This is not a supported scenario for Visual Studio.
-
-**Q. My computer does not have access to the Internet. How can I install RTVS?**
-
-Follow the [offline installation instructions](installation.html).
 
 ## Contributing to the docs and samples
 
