@@ -53,7 +53,103 @@ walks you through the features that light up that scenario.
 
 ### Highly Productive Inner Loop
 
+We spent countless hours designing and building a key set of features to improve
+your _inner loop_ productivity. We think of your _inner loop_ as the set of
+features that you use every minute of every day:
+
+* Syntax highlighting
+* IntelliSense
+* Interactive code execution
+* Code navigation
+* Automatic formatting
+* Extensions
+
+**Syntax highlighting** makes it easy to distinguish between different token
+types in your code. Strings, comments, and keywords are all visually distinct in
+the editor. We even highlight and enable clickable hyperlinks in comments, to
+make it easy to embed references in the comments to your R code. 
+
+![](media/syntax-colors-example.png)
+
+Visual Studio supports _themes_ which let you switch between a set of predefined
+themes (e.g., Blue, Dark, and Light) as well as making it easy for you to define
+custom colors for R syntax elements through Visual Studio's extensive
+customization features.
+
+**IntelliSense** puts information about functions that you can call, members of
+objects, and [code snippets](code-snippets.html) you can insert directly in your
+line of sight as you code. It displays possible completions as you type, and
+completes when you press the TAB or ENTER keys.
+
+![](./media/RTVS-REPL-auto-complete-save.png) 
+
+**Interactive code execution** lets you execute and see the results of running
+small pieces of code as you write it. We integrate the typing experience in the
+editor with the Interactive Window. You type code into the editor window, and
+press CTRL+ENTER to send the current line under the cursor to the Interactive
+Window for execution. You can select several lines of code in the editor (see
+the screenshot below), and press CTRL+ENTER to send the selection to the
+Interactive Window for execution. Placing the editor window and the Interactive
+Window side-by-side is a great way to experience this feature:
+
+![](./media/RTVS-REPL-interactive-execution.png)
+
+**Code navigation** gives you quick access to the source code of your program
+and its libraries. You can quickly go to the definition of one of your functions
+by pressing F12, or pop up an inline mini editor to read the source code of a
+library function by pressing ALT+F12 (see below). This is a key feature to help
+keep you in the flow of your work vs. being distracted by having to search for
+and manually navigate to the code of interest.
+
+![](./media/peek-definition.png)
+
+**Automatic formatting** saves you time when documenting code or formatting it
+the way you want it to be - even if you copy and pasted that code from a
+different implementation. Here's an example of generating an
+[Roxygen](http://roxygen.org/) comment using the parameter names of a function
+simply by typing `###` on a blank line above the function definition:
+
+![](media/roxygen_comments.gif)
+
+**Extensions** for Visual Studio are provided by a rich ecosystem of 3rd party
+developers. Here are some examples of popular Visual Studio extensions that you
+can use to further improve your productivity while working with R. One of the most popular 
+
+* [VsVim for vim key bindings](https://marketplace.visualstudio.com/items?itemName=JaredParMSFT.VsVim)
+* [Github](https://marketplace.visualstudio.com/items?itemName=GitHub.GitHubExtensionforVisualStudio)
+* [Markdown editor with live preview](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor)
+
+See the [Visual Studio Marketplace](https://marketplace.visualstudio.com/) to
+find more extensions.
+
 ### Extensive debugging features
+
+One of the key strengths of Visual Studio is its award-winning debugging UI.
+RTVS builds on top of this strong foundation, and adds innovative new UI such as
+the [Variable Explorer](./variable-explorer.html) and the Table Viewer. We'll
+see how these key Visual Studio features will help you write better code,
+faster:
+
+* Breakpoints
+* Watch windows
+* Inspectors
+* Stack view
+* Variable explorer
+* Table viewer
+* Interactive window
+
+**Breakpoints** are key to the debugging experience. You can set standard
+breakpoints, which break into the debugger every time, and press F5 to launch
+the startup script under control of the Visual Studio debugger. 
+
+**Watch windows** are windows that inspect variables. You can layout as many
+watch windows as you want, and the values of the variables that you are
+inspecting in those watch windows will update each time you break into the
+debugger. If you want to interactively inspect variables using your mouse while
+you are stopped at a breakpoint, simply hover over a variable and you'll be able
+to inspect the variable and even drill down into sub-objects interactively:
+
+![](media/debugger_tooltips.gif)
 
 ### Powerful data visualizers
 
