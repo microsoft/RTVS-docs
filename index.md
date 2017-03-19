@@ -307,8 +307,9 @@ For more details, see the [workspaces documentation](./remote-execution.html).
 * [Help](help.html)
 * [SQL tooling](sqlserver.html)
 * [R Markdown](rmarkdown.html)
-* [Git](git.html)
 * [Extensions](extensions.html)
+* [Configuring RTVS options](options.html)
+* [Git](git.html)
 * [Polyglot IDE](polyglot.html)
 
 ## Send us your feedback!
