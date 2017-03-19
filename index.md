@@ -2,7 +2,7 @@
 layout: default
 ---
 
-## Welcome to R Tools for Visual Studio Preview!
+## Welcome to R Tools for Visual Studio 1.0!
 
 ![](./media/installer_screenshot.png)
 
@@ -13,35 +13,28 @@ The pre-requisites for RTVS are:
 * Visual Studio 2015 Community, Professional or Enterprise
 * Visual Studio 2015 Update 3
 * An R interpreter: CRAN-R or Microsoft R Open
-* Note that the Visual Studio 2017 release of RTVS is not quite ready yet, but
-  will ship soon.
+* Note that the [Visual Studio 2017](https://www.visualstudio.com/vs/whatsnew/)
+  release of RTVS is not quite ready yet, but will ship soon.
 
-Note that there are software packages that ship with the _Visual Studio Shell_,
-e.g., Test Professional and SQL Management Studio. The Visual Studio Shell lacks
-several components that are required by RTVS, so we explicitly block the
-installation of RTVS if it detects the presence of the Visual Studio Shell.
-Install one of the supported versions of Visual Studio before you install RTVS.
+You may have tools installed on your computer that ship with the _Visual Studio
+Shell_, e.g., [Test
+Professional](https://www.microsoft.com/en-us/download/details.aspx?id=48154)
+and [SQL Management
+Studio](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms).
+The Visual Studio Shell lacks several components that are required by RTVS, so
+we explicitly block the installation of RTVS if it detects the presence of the
+Visual Studio Shell. You must install one of the supported versions of Visual
+Studio before you install RTVS.
 
-Please check out the installation steps, *especially* if you are new to Visual
-Studio
+If you **already** have Visual Studio 2015 with Update 3 and R installed, you
+can download and run the RTVS setup from the link below - but we highly
+recommend following the [Installation guide](installation.html):
 
-* [RTVS Installation](installation.html) 
+* [Download R Tools for Visual Studio](https://aka.ms/rtvs-current)
 
 Once installed, create a project and code away!
 
 * [How to start a new project in RTVS](start-project.html)
-
-## About this release
-
-This is our final release on the road to 1.0! Please try this release in all of
-your data science scenarios and [send us your
-feedback](https://github.com/Microsoft/RTVS/issues).
-
-If you **already** have Visual Studio 2015 with Update 3 (or higher) and R
-installed, you can download RTVS from the link below - but we highly recommend
-following the [Installation guide](installation.html):
-
-* [Download R Tools for Visual Studio](https://aka.ms/rtvs-current)
 
 ## Key features in Version 1.0
 
@@ -211,26 +204,19 @@ to other tools so that you can generate reports from your data.
 Sharing your results with others, easily, is a key design goal of RTVS. Your
 colleauges prefer to consume their documents using a variety of different media: 
 ranging from web pages to PDFs to Word documents. Your results often include
-formatted text, plots and equations. We give you a set of features that 
-
-* RMarkdown
-* Show off math support
-* Generate PDF, Word, and HTML
-* Exporting to Excel
-* Rdoc?
+formatted text, plots and equations. 
 
 **RMarkdown** gives you a way to easily [create
 documents](http://rmarkdown.rstudio.com/) to share your results with your
-colleagues. We take advantage of Visual Studio's superbly designed
-high-performance editor to deliver a lag-free typing experience in your
-RMarkdown documents. Our editor has syntax coloring and IntelliSense, for both
-your Markdown markup and the R code within Markdown code blocks:
+colleagues. We take advantage of Visual Studio's high-performance editor to
+deliver a lag-free typing experience in your RMarkdown documents. Our editor has
+syntax coloring and IntelliSense, for both your Markdown markup **and the R code
+within Markdown code blocks**:
 
 ![](./media/rmarkdown-intellisense.png)
 
-We make it easy for you to generate HTML previews of your RMarkdown documents. 
-
-Oftentimes, 
+We make it easy for you to generate HTML, PDF, or Word markdown documents. For
+more details, see the [RMarkdown documentation](./rmarkdown.html).
 
 ### Better with SQL Server
 
