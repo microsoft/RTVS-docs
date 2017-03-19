@@ -23,7 +23,7 @@ context menu:
 
 ![Copy](./media/RTVS-REPL-copy.png)
 
-You can paste input into the REPL by using **CTRL-V** at an input prompt or by
+You can paste input into the REPL by using **CTRL+V** at an input prompt or by
 right-clicking and using the context menu:
 
 ![Insert](./media/RTVS-REPL-insert.png)
@@ -39,11 +39,13 @@ on the toolbar:
  
 ![Escape](./media/RTVS-REPL-escape.png)
 
-While you are executing code in you are building up context (i.e., global
-variables, function definitions, library loads etc.). This context is
-collectively called a Workspace, and you have the ability to load and save
-workspaces. To save a Workspace using a specific filename (the default is
-.RData), click on the Save Workspace button in the REPL:
+## Workspaces and sessions
+
+While you are executing code during an interactive session in you are building
+up context (i.e., global variables, function definitions, library loads etc.).
+This context is collectively called a Workspace, and you have the ability to
+load and save workspaces. To save a Workspace using a specific filename (the
+default is `.RData`), click on the Save Workspace button in the REPL:
 
 ![Save workspace](./media/RTVS-REPL-save-workspace.png)
 
@@ -66,6 +68,8 @@ This will pop up a dialog that asks you what Workspace file you want to load:
 ![Reload workspace dialog](./media/RTVS-REPL-reload-workspace-dialog.png)
  
 ## <a name="repl-history"></a>REPL history
+
+## History
 
 The REPL supports history. Every line that you type and execute using the REPL
 is preserved in your history. Consider this example:
@@ -108,7 +112,9 @@ Now press DOWN ARROW:
 Note that what you originally typed is preserved in this case, and that we have
 positioned the cursor at the start of the line.
  
-The REPL supports multi-line behavior. So if you define a function and press {,
+## History and multi-line code blocks
+
+The REPL supports multi-line code blocks. So if you define a function and press {,
 we will both auto-type } for you as well as enable smart multi-line behavior. 
  
 ![](./media/RTVS-REPL-history-multilines.png)
@@ -197,3 +203,25 @@ for these as well as tool-tips that will help make this feature more
 discoverable:
 
 ![](./media/RTVS-REPL-history-multiline-navigation.png)
+
+## Working Directory
+
+It's pretty common to switch your working directory while working in an
+interactive R session. We've now made it even easier to switch your working
+directory by adding some additional commands:
+
+1. You can switch the current working directory to the directory that contains
+   the current file that you're editing. CTRL+SHIFT+E runs this command.
+
+1. You can switch the current working directory to the directory that contains
+   the root of the RTVS project. CTRL+SHIFT+P runs this command.
+
+There are two new toolbar icons within the R Interactive Window that are also
+run these commands for folks who are like to use the mouse:
+
+![](media/04_working_directory.png)
+
+Code snippets now work in both the editor and the R Interactive Window. Below,
+I'm typing = and then pressing TAB to perform the completion.
+
+![](media/04_repl_snippets.gif)
