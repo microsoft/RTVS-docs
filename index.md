@@ -132,10 +132,8 @@ faster:
 
 * Breakpoints
 * Watch windows
-* Inspectors
-* Stack view
+* Data Tips
 * Variable explorer
-* Table viewer
 * Interactive window
 
 **Breakpoints** are key to the debugging experience. You can set standard
@@ -145,13 +143,39 @@ the startup script under control of the Visual Studio debugger.
 **Watch windows** are windows that inspect variables. You can layout as many
 watch windows as you want, and the values of the variables that you are
 inspecting in those watch windows will update each time you break into the
-debugger. If you want to interactively inspect variables using your mouse while
-you are stopped at a breakpoint, simply hover over a variable and you'll be able
-to inspect the variable and even drill down into sub-objects interactively:
+debugger. 
+
+If you want to interactively inspect variables while stopped at the debugger,
+you can use Visual Studio's handy [Data
+Tips](https://msdn.microsoft.com/en-us/library/ea46xwzd.aspx) feature. Just
+hover over a variable using your mouse pointer, and you'll be able to inspect
+the variable and even drill down into sub-objects interactively:
 
 ![](media/debugger_tooltips.gif)
 
+While Visual Studio has a powerful set of features for inspecting variables,
+oftentimes R developers are using data structures such as data frames that
+aren't easily visualized using the Visual Studio UI. To improve this experience,
+we have created the [Variable Explorer](./variable-explorer.html) which lets you
+interactively inspect data frames, and even export their contents to Excel. This
+makes it easy to snapshot the state of a data frame between transformations to
+better understand where things may have gone wrong in your computations:
+
+![](media/RTVS-REPL-variable-explorer-excel-view.png)
+
+Finally, the [Interactive Window](./interactive-repl.html) is a powerful tool
+that lets you interactively call functions in your code. You can also have the
+debugger bound to your Interactive Window session, which lets you step through
+the code that you're calling. This makes it easy to call functions with
+different parameter values to verify that the behavior of your function is
+correct.
+
 ### Powerful data visualizers
+
+While writing your R progarms, you will frequently need to visualize your data.
+Either through inspecting the values of your data or through plots, RTVS
+provides you with the tools that you need to be highly productive in your day to
+day work.
 
 ### Easily share your results with others
 
