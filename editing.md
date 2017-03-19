@@ -12,12 +12,20 @@ example, if you prefer vim key bindings, you can install the [free VsVim
 extension](https://visualstudiogallery.msdn.microsoft.com/59ca71b3-a4a3-46ca-8fe1-0e90e3f79329)
 from the Visual Studio gallery.
 
-## Editing window
+## Typing and organizing your code
 
-When you are writing code in the editor, we will pop up IntelliSense for
-library functions: 
- 
-![](./media/RTVS-Editing-auto-completion.png)
+As you type your code, we do a number of things to improve your productivity.
+For example, we will auto-complete braces and parenthesis as you type: 
+
+![](media/04_inline_formatting.gif)
+
+When typing calls to functions that have many parameters, oftentimes you want to
+line up the parameters to make the code easier to read. We now support
+remembering the indentation position for your parameters once you've told us
+what it is. From that point onwards we'll automatically indent to that
+indentation position when you press ENTER at the end of a line:
+
+![](media/04_lined_up_parameters.gif)
 
 Collapsible code regions are really useful when you want to temporarily hide
 chunks of code in the editor. You just need to surround the code that you want
@@ -29,6 +37,8 @@ this below:
 
 ![](media/04_collapsible_regions.gif)
  
+## Editor and Interactive Window
+
 A very common style of programming involves write code in the editor, and then
 selecting and sending lines to the R Interactive window (also known as a
 Read-Eval-Print-Loop or REPL). You can select code within the editor and send to
@@ -46,16 +56,6 @@ twice.
  
 ![](./media/RTVS-Editing-code-to-repl-by-line.png) 
  
-## Code Suggestions
-
-When a light bulb appears in the margin, Visual Studio is suggesting that there
-is a shortcut available for a commonly used action. If you hover over a line
-that contains a `library` statement in the editor, we will display a light bulb
-to the left of that line. Clicking on the light bulb will reveal a couple of
-options. 
-
-![](media/04_smart_tags.png)
-
 ## Code Formatting
 
 The editor supports automatically formatting R code based on your preferences.
@@ -106,6 +106,6 @@ that you copy from a web browser, for example.
 You can also undo formatting. If you have **Format** on paste enabled in the
 RTVS options, and you want to preserve the formatting in the pasted code without
 permanently turning off the **Format** on paste option in RTVS, all you need to
-do is paste it into RTVS and press **CTRL-Z** to undo the formatting changes.
+do is paste it into RTVS and press **CTRL+Z** to undo the formatting changes.
  
  
