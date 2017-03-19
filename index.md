@@ -172,10 +172,39 @@ correct.
 
 ### Powerful data visualizers
 
-While writing your R progarms, you will frequently need to visualize your data.
+While writing your R programs, you will frequently need to visualize your data.
 Either through inspecting the values of your data or through plots, RTVS
 provides you with the tools that you need to be highly productive in your day to
-day work.
+day work. Let's look at some of the powerful data visualization features in RTVS:
+
+* Variable explorer
+* Table viewer
+* Excel integration
+* Plot windows
+* Window docking
+* Multiple plot windows
+* Plot history
+
+The [Variable Explorer](./variable-explorer.html) gives you a convenient way to
+see all of the variables that you have defined in your program, including data
+frames:
+
+![](./media/RTVS-REPL-variable-explorer-cmds-example-drill-down2.png)
+
+It provides convenient links to other tools like the **Table viewer** for
+visualizing your data frames, and a one-click experience for exporting your data
+frame to **Excel**:
+
+![](./media/RTVS-REPL-variable-explorer-table-view.png)
+
+[Plots](./plotting.html) are a key part of your workflow as an R developer.
+There are fantastic plotting libraries available for R, and we make it easy for
+you to interact with the plots that they create. We give you tools to arrange
+your plots where you want them to be, we give you with an interactive history of
+all of the plots that you've created, and we make it easy to export your plots
+to other tools so that you can generate reports from your data.
+
+![Plotting Hero Image](./media/plotting-hero-image.png)
 
 ### Easily share your results with others
 
