@@ -208,53 +208,122 @@ to other tools so that you can generate reports from your data.
 
 ### Easily share your results with others
 
+Sharing your results with others, easily, is a key design goal of RTVS. Your
+colleauges prefer to consume their documents using a variety of different media: 
+ranging from web pages to PDFs to Word documents. Your results often include
+formatted text, plots and equations. We give you a set of features that 
+
+* RMarkdown
+* Show off math support
+* Generate PDF, Word, and HTML
+* Exporting to Excel
+* Rdoc?
+
+**RMarkdown** gives you a way to easily [create
+documents](http://rmarkdown.rstudio.com/) to share your results with your
+colleagues. We take advantage of Visual Studio's superbly designed
+high-performance editor to deliver a lag-free typing experience in your
+RMarkdown documents. Our editor has syntax coloring and IntelliSense, for both
+your Markdown markup and the R code within Markdown code blocks:
+
+![](./media/rmarkdown-intellisense.png)
+
+We make it easy for you to generate HTML previews of your RMarkdown documents. 
+
+Oftentimes, 
+
 ### Better with SQL Server
+
+A tremendous amount of enterprise data is stored in relational databases, and
+[SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-2016) is one
+of the most popular relational databases on the market. SQL Server 2016 has a
+feature called [SQL Server R
+Services](https://www.microsoft.com/en-us/sql-server/sql-server-r-services),
+where we have embedded an R runtime in the database server. This makes it easy
+to use R to perform advanced analytics over your relational data, and
+dramatically reduces the latency required to perform those analytics by
+eliminating the need for data movement.
+
+This feature uses [SQL R Stored
+Procedures](https://msdn.microsoft.com/en-us/library/mt591996.aspx) that mixes R
+and SQL code together in a stored procedure. You'll need to write some SQL code
+to select the data that your R code analyzes. Since you're writing code in two
+different languages, we've added features in RTVS to write **and test** your SQL
+code, and your R code _independently_. You begin by using our `SQL R Stored
+Procedure` template in Visual Studio to create a new Stored Procedure. It
+generates three files for you:
+
+1. `StoredProcedure.R` is where you write the R code that you want to execute in
+   your SQL stored procedure.
+1. `StoredProcedure.Query.sql` is where you write the SQL code that you want to
+   execute in your SQL stored procedure.
+1. `StoredProcedure.Template.sql` is the generated template file that will
+   combine your SQL query and your R code.
+
+![Solution Explorer Expanded View Of SQL Stored Procedure](./media/sql-solution-explorer-expanded.png)
+
+When you double click on the `StoredProcedure.Query.sql` file, we activate the SQL
+editor, courtesy of the [SQL Server Data Tools for Visual Studio
+extension](https://msdn.microsoft.com/en-us/mt186501.aspx) that gives you syntax
+coloring and IntelliSense for your SQL code. 
+
+![SQL Window Query Results](./media/sql-query-results.png)
+
+Once you're happy with your SQL and your R Code, RTVS will handle combining your
+results and packaging them up to send to SQL Server. For more details, see the
+detailed walkthrough in our documentation for [SQL Server
+support](./sqlserver.html).
 
 ### Scalable compute resources
 
+R developers and data scientists often prefer to use laptops in their day-to-day
+work. They develop their models against down-sampled datasets until they are
+satisfied with the results that they can get from those datasets. When they want
+to validate their models against larger datasets, they often have to move their
+code or their development environments to a more powerful machine.
 
-TODO: write a comprehensive summary of the feature set of RTVS. Highlights:
+The [workspaces](./remote-execution.html) feature of RTVS makes it easy to bind
+RTVS to different workspaces. Local workspaces are simply other versions of the
+R interpreter that you have on your local computer. **Remote workspaces** are R
+interpreters that are installed on remote computers. By [installing RTVS Remote
+Services](./setup-remote.html) on a machine with lots of CPU cores, lots of RAM,
+lots of storage, or lots of GPU, you can tailor the execution environment to the
+needs of your code and the data that you want to analyze. A remote workspace can
+be shared by several team members, making it easier to collaborate on large or
+sensitive datasets that must reside on an IT-managed computer.
 
-feature. You can [configure a secure server](setup-remote.html) that your data
-scientists can share. This server lets you:
+![](./media/workspace-window.png)
 
-* Make more powerful computing resources (CPU, GPU, memory) available to your
-  data scientists.
-* Lock down sensitive data to a secure, IT-managed server. Data scientists must
-  bring their code to the data, not the other way around.
+You can even setup your remote workspaces on [Azure virtual
+machines](https://azure.microsoft.com/en-us/services/virtual-machines/?b=17.08),
+eliminating the need for capital expenditures to get the computing resources
+that you need to get your work done. 
+
+When you are using a remote workspace, all editing and visualization are done
+using RTVS on your local computer. All code execution occurs on the remote
+computer. This ensures that the computing resources on your remote computer are
+totally dedicated to running your R code, without the overhead of running an IDE. 
+
+For more details, see the [workspaces documentation](./remote-execution.html).
 
 ### Table of contents for the documentation
 
-* [Variable Explorer](variable-explorer.html)
 * [Editor](editing.html)
+* [IntelliSense](intellisense.html)
 * [Code Navigation](code-navigation.html)
 * [Code Snippets](code-snippets.html)
-* [History window](history.html)
-* [Help](help.html)
-* [Plotting](plotting.html)
-* [SQL tooling](sqlserver.html)
 * [R Interactive Window](interactive-repl.html)
-* [IntelliSense](intellisense.html)
+* [History window](history.html)
+* [Variable Explorer](variable-explorer.html)
+* [Plotting](plotting.html)
 * [Debugging](debugging.html)
+* [Workspaces and remote execution](remote-execution.html)
+* [Help](help.html)
+* [SQL tooling](sqlserver.html)
 * [R Markdown](rmarkdown.html)
 * [Git](git.html)
 * [Extensions](extensions.html)
 * [Polyglot IDE](polyglot.html)
-* [Remote Execution](remote-execution.html)
-
-## Video feature walk-throughs
-
-TODO: update videos
-
-Here's the most recent walk-through video for RTVS 0.4:
-
-<iframe width="560" height="315" align="middle" src="https://www.youtube.com/embed/k1_6XLyhHbo" frameborder="0" allowfullscreen></iframe>
-
-Here's the video for 0.3:
-
-<iframe width="560" height="315" align="middle" src="https://www.youtube.com/embed/KPS0ytrt9SA" frameborder="0" allowfullscreen></iframe>
-
-<br>
 
 ## Send us your feedback!
 
