@@ -36,6 +36,19 @@ We can drill as deep as the data is nested within the data frame:
  
 ![](./media/RTVS-REPL-variable-explorer-cmds-example-drill-down2.png)
 
+You can delete variables from your R session directly from the variable
+explorer. Just right click on the variable that you want to remove from your R
+session and select the Delete command. Or you can just select the variable that
+you want to remove and press the DELETE key.
+
+![](media/variable-explorer-delete-variables.png)
+
+If you want to search for an observation in a data frame, we now have an
+incremental search over all observations in a data frame. Note that you must
+first expand the data frame in Variable Explorer for this to work. 
+
+![](media/variable-explorer-incremental-search.png)
+
 ## Data Table Viewer
 
 Since the data for each team is *tabular*, it makes sense to view them in a
@@ -53,6 +66,12 @@ the sorting is performed. For example, in the figure below, we are sorting first
 by cylinder, and then by displacement.
 
 ![](./media/RTVS-REPL-variable-explorer-table-view-sorting.png)
+
+You can now view multiple data frames in separate Data Table Viewer tabs. Using
+Visual Studio's window layout features, you can drag the tabs to arrange them
+side-by-side as well:
+
+![](media/04_multiple_datatables.png)
 
 ## Export to Excel
 
@@ -96,6 +115,12 @@ local variables defined at the current execution point: `country_data` and
 `max_destinations`:
 
 ![](media/RTVS-REPL-variable-explorer-view-locals.png)
+
+We support viewing variables defined inside of private named scopes as well
+(i.e., variables defined within a package). For example, here are the variables
+defined in the Shiny package:
+
+![](media/04_variable_explorer_scopes.png)
 
 ## Importing data into Variable Explorer
 
