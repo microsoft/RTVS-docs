@@ -20,7 +20,7 @@ IntelliSense suggestions are also available for members of R objects:
  
 ![](./media/RTVS-REPL-auto-complete-r-objects.png)
  
-/o accept the current highlighted suggestion while typing, press the **TAB** key:
+To accept the current highlighted suggestion while typing, press the **TAB** key:
 
 ![](./media/RTVS-REPL-auto-complete-save.png) 
 

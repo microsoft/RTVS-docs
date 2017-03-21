@@ -43,8 +43,8 @@ on the toolbar:
 
 While you are executing code during an interactive session in you are building
 up context (i.e., global variables, function definitions, library loads etc.).
-This context is collectively called a Workspace, and you have the ability to
-load and save workspaces. To save a Workspace using a specific filename (the
+This context is collectively called a workspace, and you have the ability to
+load and save workspaces. To save an Workspace using a specific filename (the
 default is `.RData`), click on the Save Workspace button in the REPL:
 
 ![Save workspace](./media/RTVS-REPL-save-workspace.png)
