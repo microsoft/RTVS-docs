@@ -4,6 +4,23 @@ layout: default
 
 # Debugging with R Tools for Visual Studio
 
+## Starting the debugger
+
+There are two different ways to run code under the debugger: **launching** and
+**attaching**.
+
+To **launch** code under the debugger, you must first tell Visual Studio what
+script to launch when you press F5. If you have created a new project using
+Visual Studio, the file **Script.R**, which was automatically created for you,
+is predefined as the startup script. If you want to launch a different script,
+all you need to do is right-click on a script in Solution Explorer and run the
+`Set As StartUp R Script` command:
+
+![](./media/debugger-set-as-startup-script.png)
+
+You'll want to 
+
+
 ## Attaching the debugger
 
 If you're an experienced Visual Studio user, you'll find that the debugging
@@ -72,35 +89,3 @@ arbitrary variables in-place while stopped in the debugger without having to
 resort to using other windows like the locals window.
 
 ![](media/debugger_tooltips.gif)
-
-### Known Issues in the Debugger:
-
-* Setting a breakpoint on the first line of a function declaration doesn't
-work: line 1 the example below, so don't do this:
-
-{% highlight R %}
-f <- function(x) {
-    print(x + 1)
-}
-{% endhighlight %}
-
-* We are working on adding data tips (hover over a variable to see information
-display the value of the variable) for a future release.
-
-* If you are stopped on a breakpoint you may need to press **F10** multiple
-times to step over the line that contains the breakpoint. This is a known
-issue with R itself (you see similar behavior in RStudio), and we are working
-on a long term fix for this. You can simply turn off the breakpoint on that
-line and continue stepping without having to press F10 multiple times to get
-over that line. 
-
-[1] R is different than C# because there isn't a main() function to start
-debugging at. Furthermore, since there isn't a compilation step either, you
-need to first tell RTVS what code you would like to debug. In this way, R is
-more like ASP.NET debugging, where you need to tell Visual Studio which page to
-start debugging at. In the Public Preview of RTVS, we're looking to make the
-model more similar to the ASP.NET model to simplify things, and to allow you to
-return to F5-style debugging.  
-
-Note that calling the standard source() function from the R Interactive Window
-will not work in this scenario. 
