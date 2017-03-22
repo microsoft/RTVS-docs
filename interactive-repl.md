@@ -34,7 +34,7 @@ execute the code on that line:
 ![Execute](./media/RTVS-REPL-execute.png)
 
 If you are executing some code in the REPL, and you want to cancel the currently
-running code, you can press **ESCAPE**, or click on the **Interrupt R **button
+running code, you can press **ESCAPE**, or click on the **Interrupt R** button
 on the toolbar:
  
 ![Escape](./media/RTVS-REPL-escape.png)
