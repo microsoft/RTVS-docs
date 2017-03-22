@@ -14,7 +14,6 @@ activity.
 This page contains the documentation for the plotting features of RTVS. Below is
 a quick video overview of the plotting features:
 
-TODO: update
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ZTbKmz5RSgY" frameborder="0" allowfullscreen></iframe>
 
 ## The Plot Window
