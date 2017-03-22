@@ -39,10 +39,14 @@ Once installed, create a project and code away!
 ## Key features in Version 1.0
 
 R Tools for Visual Studio 1.0 is our first release of tools for the R
-programming language. This section gives you an overview of some of the key
-features of the product, through the lens of _scenarios_. Below, you'll see
-descriptions of key scenarios in the product, and an accompanying video that
-walks you through the features that light up that scenario.
+programming language. Watch this 5 minute feature highlight video to get a feel
+for the features in our 1.0 release!
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/RcSDEfMgUvU" frameborder="0" allowfullscreen></iframe>
+
+Below is an overview of some of the key features of the product, through the
+lens of _scenarios_. Below, you'll see descriptions of key scenarios in the
+product.
 
 ### Highly Productive Inner Loop
 
