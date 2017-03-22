@@ -39,7 +39,12 @@ saves you a number of mouse clicks / keystrokes:
 
 It's important to note that if you attach a debugger to your session, you'll
 first need to tell RTVS what code you would like to debug. You do so by running
-the `source` command on the files that you want to debug. 
+the `source` command on the files that you want to debug. You can do this by either:
+
+1. Right-clicking on the editor window containing the file you want to source
+   and running the `Source R Script` command
+1. Right-clicking on the file in Solution Explorer and running the `Source
+   Selected File(s)` command
 
 If you use F5 to start the debugger, RTVS will automatically source the StartUp
 file on your behalf.
