@@ -15,3 +15,6 @@ author:
 
 github:
     repo:       https://github.com/microsoft/RTVS-docs
+
+gems:
+  - jekyll-redirect-from
