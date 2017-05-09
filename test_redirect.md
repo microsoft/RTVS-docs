@@ -1,3 +1,3 @@
 ---
-redirect_url: https://docs.microsoft.com/visualstudio/
+redirect_from: "https://docs.microsoft.com/visualstudio/"
 ---
