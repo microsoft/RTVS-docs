@@ -1,5 +1,3 @@
 ---
-layout: default
+redirect_to: "https://docs.microsoft.com/visualstudio/install/troubleshooting-installation-issues"
 ---
-
-# Troubleshooting Visual Studio setup
