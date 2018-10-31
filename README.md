@@ -9,7 +9,7 @@ in each directory.
 Click [here to view the documentation for RTVS](https://microsoft.github.io/RTVS-docs).
 
 You can run all of these samples easily using [R Tools for Visual
-Studio](http://microsoft.github.io/RTVS-docs/), or your favorite R IDE / text
+Studio](http://microsoft.github.io/RTVS-docs/), or your favorite R IDE/text
 editor.
 
 ## A First Look at R
@@ -21,5 +21,5 @@ and help you get your feet wet.
 
 If you're new to [Microsoft R Server Developer
 Edition](https://www.microsoft.com/en-us/server-cloud/products/r-server/), these
-samples will show you how it can speeding up your processing of big data sets
+samples will show you how it can speed up your processing of big data sets
 and use them to solve machine learning probvlems.
